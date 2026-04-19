@@ -1,0 +1,8 @@
+#stars {
+  position: relative;
+  z-index: -10;
+}
+
+#stars > canvas {
+  position: absolute;
+}

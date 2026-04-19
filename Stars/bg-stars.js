@@ -1,16 +1,17 @@
-star_container = document.createElement("div");
-document.addEventListener("DOMContentLoaded", function(event) {
-   document.body.appendChild(star_container);
-});
-
-star_purple = new Image();
-star_purple.src = "/Stars/star-purple.png";
-star_purple.addEventListener("load", () => {
-  star_scattering_stars();
-});
-
 parallax_layers = [];
 mouse_position = new Vector2(0, 0);
+
+star_container = document.createElement("div");
+star_container.setAttribute("id", "stars");
+document.addEventListener("DOMContentLoaded", function(event) {
+   document.body.prepend(star_container);
+});
+
+scatter_stars("/Stars/star-red.png", 200, 0.1, 0.4, 0.2);
+scatter_stars("/Stars/star-pink.png", 100, 0.2, 0.5, 0.3);
+scatter_stars("/Stars/star-yellow.png", 100, 0.3, 0.6, 0.4);
+scatter_stars("/Stars/star-purple.png", 200, 0.4, 0.7, 0.5);
+scatter_stars("/Stars/star-blue.png", 50, 0.5, 0.8, 0.6);
 
 function update_parallax(layer) {
   for (const layer of parallax_layers) {
@@ -18,27 +19,34 @@ function update_parallax(layer) {
   }
 }
 
-function star_scattering_stars() {
-  var canvas = document.createElement("canvas");
-  canvas.width = 1920;
-  canvas.height = 1080;
-  var layer = new ParallaxLayer(canvas, 0.25);
-  scatter_images(canvas, star_purple, 200);
-  parallax_layers.push(layer);
-  star_container.appendChild(canvas);
+function scatter_stars(star_path, count, size_min, size_max, parallax_speed) {
+  var star = new Image();
+  star.src = star_path;
+  star.addEventListener("load", () => {
+    var layer = new ParallaxLayer(1920, 1080, parallax_speed);
+    scatter_images(layer.canvas, star, count, size_min, size_max);
+    parallax_layers.push(layer);
+    star_container.appendChild(layer.canvas);
+  });
+  
 }
 
-function scatter_images(canvas, image, count) {
+function scatter_images(canvas, image, count, image_size_min=1, image_size_max=1) {
   let ctx = canvas.getContext("2d");
   for (let i = 0; i < count; i++) {
     let x = getRandomArbitrary(0, canvas.width);
     let y = getRandomArbitrary(0, canvas.height);
-    ctx.drawImage(image, x, y);
+    let scale = getRandomArbitrary(image_size_min, image_size_max);
+    let w = scale * image.width;
+    let h = scale * image.height;
+    ctx.drawImage(image, x, y, w, h);
   }
 }
 
-function ParallaxLayer(canvas, move_rate, origin=null, lerp=0.05) {
-  this.canvas = canvas;
+function ParallaxLayer(w, h, move_rate, origin=null, lerp=0.05) {
+  this.canvas = document.createElement("canvas");
+  this.canvas.width = w;
+  this.canvas.height = h;
   this.moveRate = move_rate;
   if (origin === null) {
     origin = new Vector2(0, 0); 
