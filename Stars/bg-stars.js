@@ -7,11 +7,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
    document.body.prepend(star_container);
 });
 
-scatter_stars("/Stars/star-red.png", 200, 0.1, 0.4, 0.2);
-scatter_stars("/Stars/star-pink.png", 100, 0.2, 0.5, 0.3);
-scatter_stars("/Stars/star-yellow.png", 100, 0.3, 0.6, 0.4);
-scatter_stars("/Stars/star-purple.png", 200, 0.4, 0.7, 0.5);
-scatter_stars("/Stars/star-blue.png", 50, 0.5, 0.8, 0.6);
+scatter_stars("/Stars/star-red.png", 200, 0.1, 0.4);
+scatter_stars("/Stars/star-pink.png", 100, 0.2, 0.5);
+//scatter_stars("/Stars/star-yellow.png", 100, 0.3, 0.6, 0.4);
+scatter_stars("/Stars/star-purple.png", 100, 0.4, 0.8);
+//scatter_stars("/Stars/star-blue.png", 50, 0.5, 0.9, 0.6);
+scatter_stars("/Stars/star.png", 200, 0.1, 0.4);
+scatter_stars("/Stars/star.png", 100, 0.3, 0.6);
+scatter_stars("/Stars/star.png", 50, 0.5, 0.9);
 
 function update_parallax(layer) {
   for (const layer of parallax_layers) {
@@ -19,11 +22,12 @@ function update_parallax(layer) {
   }
 }
 
-function scatter_stars(star_path, count, size_min, size_max, parallax_speed) {
+function scatter_stars(star_path, count, size_min, size_max) {
+  let parallax = 1;
   var star = new Image();
   star.src = star_path;
   star.addEventListener("load", () => {
-    var layer = new ParallaxLayer(1920, 1080, parallax_speed);
+    var layer = new ParallaxLayer(1920, 1080, parallax);
     scatter_images(layer.canvas, star, count, size_min, size_max);
     parallax_layers.push(layer);
     star_container.appendChild(layer.canvas);
