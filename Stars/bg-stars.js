@@ -1,3 +1,5 @@
+// TODO: Fix scrollbars
+
 // I'm not thrilled with the result of this.
 // I thought about changing it so that each star is its own element and has its own parallax speed.
 // This would give a slightly more authentic look to the movement of the stars, more depth.
