@@ -13,7 +13,7 @@ function update_parallax() {
 }
 
 function scatter_stars(star_path, count, size_min, size_max) {
-  let parallax = (size_min + size_max) / 2;
+  let parallax = (size_min + size_max) / 20;
   var star = new Image();
   star.src = star_path;
   star.addEventListener("load", () => {
@@ -37,7 +37,7 @@ function scatter_images(canvas, image, count, image_size_min=1, image_size_max=1
   }
 }
 
-function ParallaxLayer(w, h, move_rate, origin=null, lerpSpeed=0.05) {
+function ParallaxLayer(w, h, move_rate, origin=null, lerpSpeed=0.1) {
   this.canvas = document.createElement("canvas");
   this.canvas.width = w;
   this.canvas.height = h;
@@ -50,14 +50,14 @@ function ParallaxLayer(w, h, move_rate, origin=null, lerpSpeed=0.05) {
   this.position = new Vector2(0, 0);
   
   this.MoveToward = function(target_position) {
-    let move_toward = new Vector2(0 ,0);
+    let move_toward = new Vector2(0, 0);
     move_toward.x = target_position.x * this.moveRate;
     move_toward.y = target_position.y * this.moveRate;
-    this.position.x = lerp(this.position.x, move_toward.x, this.lerpSpeed) + this.origin.x;
-    this.position.y = lerp(this.position.y, move_toward.y, this.lerpSpeed) + this.origin.y;
+    this.position.x = lerp(this.position.x, move_toward.x, this.lerpSpeed);
+    this.position.y = lerp(this.position.y, move_toward.y, this.lerpSpeed);
     
-    this.canvas.style.left = this.position.x + "px";
-    this.canvas.style.top = this.position.y + "px";
+    this.canvas.style.left = this.position.x + this.origin.x + "px";
+    this.canvas.style.top = this.position.y + this.origin.x + "px";
   };
 }
 
@@ -71,7 +71,7 @@ function random_range(min, max) {
 }
 
 function lerp(from, to, t) {
-  return (from + (to - from)) * t;
+  return ((to - from) * t) + from;
 }
 
 
@@ -87,12 +87,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 scatter_stars("/Stars/star-red.png", 200, 0.1, 0.4);
 scatter_stars("/Stars/star-pink.png", 100, 0.2, 0.5);
-//scatter_stars("/Stars/star-yellow.png", 100, 0.3, 0.6, 0.4);
 scatter_stars("/Stars/star-purple.png", 100, 0.4, 0.8);
-//scatter_stars("/Stars/star-blue.png", 50, 0.5, 0.9, 0.6);
 scatter_stars("/Stars/star.png", 200, 0.1, 0.4);
 scatter_stars("/Stars/star.png", 100, 0.3, 0.6);
 scatter_stars("/Stars/star.png", 50, 0.5, 0.9);
 
 document.addEventListener("mousemove", update_mouse_position);
-setInterval(update_parallax, 50);
+setInterval(update_parallax, 25);
