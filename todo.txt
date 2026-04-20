@@ -1,0 +1,18 @@
+check over files for file-specific todos
+
+pages to make:
+make not found page pretty
+profile page
+websites i like
+schedule page
+music page
+port over writeups and stuff from personal page
+old text adventures (bad)
+music/games/books libraries filled using various apis
+guestbook
+dedication pages
+port over bike inventory page
+music player!
+master directory (that is primarily for me and not others)
+rat page
+general animal pages
