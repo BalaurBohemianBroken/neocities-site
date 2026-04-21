@@ -98,27 +98,27 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 // TODO: arrange by parallax level
-scatter_stars("/Stars/star.png", 100, 0.1, 0.25);
-scatter_stars("/Stars/star-red.png", 100, 0.1, 0.25);
-scatter_stars("/Stars/star.png", 100, 0.25, 0.4);
-scatter_stars("/Stars/star-red.png", 100, 0.25, 0.4);
+scatter_stars("/Resources/Stars/star.png", 100, 0.1, 0.25);
+scatter_stars("/Resources/Stars/star-red.png", 100, 0.1, 0.25);
+scatter_stars("/Resources/Stars/star.png", 100, 0.25, 0.4);
+scatter_stars("/Resources/Stars/star-red.png", 100, 0.25, 0.4);
 
-scatter_stars("/Stars/star-pink.png", 60, 0.2, 0.35);
-scatter_stars("/Stars/star-pink.png", 40, 0.35, 0.5);
+scatter_stars("/Resources/Stars/star-pink.png", 60, 0.2, 0.35);
+scatter_stars("/Resources/Stars/star-pink.png", 40, 0.35, 0.5);
 
-scatter_stars("/Stars/star-purple.png", 60, 0.4, 0.6);
-scatter_stars("/Stars/star-purple.png", 40, 0.6, 0.8);
+scatter_stars("/Resources/Stars/star-purple.png", 60, 0.4, 0.6);
+scatter_stars("/Resources/Stars/star-purple.png", 40, 0.6, 0.8);
 
-scatter_stars("/Stars/star.png", 50, 0.3, 0.45);
-scatter_stars("/Stars/star.png", 50, 0.45, 0.6);
-scatter_stars("/Stars/star.png", 25, 0.5, 0.7);
-scatter_stars("/Stars/star.png", 25, 0.7, 0.9);
+scatter_stars("/Resources/Stars/star.png", 50, 0.3, 0.45);
+scatter_stars("/Resources/Stars/star.png", 50, 0.45, 0.6);
+scatter_stars("/Resources/Stars/star.png", 25, 0.5, 0.7);
+scatter_stars("/Resources/Stars/star.png", 25, 0.7, 0.9);
 
-scatter_stars("/Stars/nova.png", 10, 1.2, 1.2, 0.1);
-scatter_stars("/Stars/nova.png", 8, 1.4, 1.4, 0.2);
-scatter_stars("/Stars/nova.png", 6, 1.6, 1.6, 0.3);
-scatter_stars("/Stars/nova.png", 4, 1.8, 1.8, 0.4);
-scatter_stars("/Stars/nova.png", 2, 2, 2, 0.5);
+scatter_stars("/Resources/Stars/nova.png", 10, 1.2, 1.2, 0.1);
+scatter_stars("/Resources/Stars/nova.png", 8, 1.4, 1.4, 0.2);
+scatter_stars("/Resources/Stars/nova.png", 6, 1.6, 1.6, 0.3);
+scatter_stars("/Resources/Stars/nova.png", 4, 1.8, 1.8, 0.4);
+scatter_stars("/Resources/Stars/nova.png", 2, 2, 2, 0.5);
 
 document.addEventListener("mousemove", update_mouse_position);
 setInterval(update_parallax, 25);
