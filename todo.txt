@@ -1,5 +1,7 @@
 check over files for file-specific todos
 
+start making relevant playlists. lot of music to go through.
+
 pages to make:
 make not found page pretty
 profile page
