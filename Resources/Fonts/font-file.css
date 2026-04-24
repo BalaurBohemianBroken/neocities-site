@@ -7,3 +7,18 @@
   font-family: l-lora;
   src: url(/Resources/Fonts/lora.ttf);
 }
+
+@font-face {
+  font-family: l-monospace-main;
+  src: url(/Resources/Fonts/cmu.sans-serif-medium.ttf);
+}
+
+@font-face {
+  font-family: l-monospace-sub;
+  src: url(/Resources/Fonts/monospace.medium.ttf);
+}
+
+@font-face {
+  font-family: l-ubuntu;
+  src: url(/Resources/Fonts/ubuntu.regular.ttf);
+}
