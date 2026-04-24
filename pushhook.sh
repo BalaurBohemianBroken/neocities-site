@@ -1,11 +1,8 @@
-API_HERE="e8e2869dfba7b89f130f55b4b7164b3d"
-
-TOPUSH=$(git diff-tree --no-commit-id --name-only --diff-filter=AM -n 1 HEAD~1..HEAD)
+API_HERE=""
+IFS=$'\n'  # Ensures we only split the string of results by newline.
+# Check what files were modified or added in the last commit.
+TOPUSH=$(git diff-tree --no-commit-id --name-only -r --diff-filter=AM -n 1 HEAD~1..HEAD)
 if [ ! -z "$TOPUSH" ]; then
-    # I don't fully know how this works.
-    # Best I get is that it uses what's defined in IFS to delimit
-    # how the string is split into an array.
-    # It seems to work with linebreaks fine.
     TOPUSH=($TOPUSH)
     CURRFILE=""
     COMMAND='curl -H "'
@@ -13,12 +10,11 @@ if [ ! -z "$TOPUSH" ]; then
     COMMAND+='" '
     # This loop is designed to get the same position in bash (linux) and zsh (mac). zsh normally indexes from 1
     for ((i = 0; i < ${#TOPUSH[@]}; ++i)); do
+        # Ensures we push all the files in a single API call.
         CURRFILE=${TOPUSH[*]:$i:1}
         COMMAND+='-F "'
         COMMAND+="${CURRFILE}=@${CURRFILE}"
         COMMAND+='" '
-        # I thought about changing this so that it pushes multiple files in a single api call
-        # I decided against it,
     done
     COMMAND+='"https://neocities.org/api/upload"'
     echo "here's the push command i'm running!! :)"
@@ -27,29 +23,24 @@ if [ ! -z "$TOPUSH" ]; then
     eval ${COMMAND}
 fi
 
-TODEL=$(git diff-tree --no-commit-id --name-only --diff-filter=D -n 1 HEAD~1..HEAD)
+# This is largely a mirror of the above command, changed to work with a deletion request.
+# Check what files were deleted in the last commit.
+TODEL=$(git diff-tree --no-commit-id --name-only -r --diff-filter=D -n 1 HEAD~1..HEAD)
 if [ ! -z "$TODEL" ]; then
-    # I don't fully know how this works.
-    # Best I get is that it uses what's defined in IFS to delimit
-    # how the string is split into an array.
-    # It seems to work with linebreaks fine.
     TODEL=($TODEL)
     CURRFILE=""
     COMMAND='curl -H "'
     COMMAND+="Authorization: Bearer ${API_HERE}"
     COMMAND+='" '
-    # This loop is designed to get the same position in bash (linux) and zsh (mac). zsh normally indexes from 1
     for ((i = 0; i < ${#TODEL[@]}; ++i)); do
         CURRFILE=${TODEL[*]:$i:1}
-        COMMAND+='-F "'
-        COMMAND+="${CURRFILE}=@${CURRFILE}"
+        COMMAND+='-d "'
+        COMMAND+="filenames[]=${CURRFILE}"
         COMMAND+='" '
-        # I thought about changing this so that it pushes multiple files in a single api call
-        # I decided against it,
     done
-    COMMAND+='"https://neocities.org/api/upload"'
+    COMMAND+='"https://neocities.org/api/delete"'
     echo "here's the delete command i'm running!! c:"
     echo $COMMAND
     echo
-    #eval ${COMMAND}
+    eval ${COMMAND}
 fi
