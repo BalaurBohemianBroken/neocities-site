@@ -10,7 +10,7 @@
     <script src="/Resources/Stars/bg-stars.js"></script>
     <script src="/Resources/Stars/all.js"></script>
   </head>
-  <body>
+  <body style="width: 800px;">
     <p class="memory-date" title="you can probably figure this one out">20260417</p> 
     <p>music.<br>
         in the future i'll have an audio play widget with more details and 40% default volume and stuff<br>
@@ -61,6 +61,19 @@
     Hmm, I don't think I've expressed myself quite how I want to, here. It is quite late and I'm just rambling. I should really have gone into this with a plan.<br>
     The article has made me more accepting of compromise for accessibility, but I continue to see it as compromise, not inclusion. It's hard to make sweeping statements on these topics, because taken to an extreme, either stance is unreasonable. There's a lot of nuance that goes into choosing who something is for.<br>
     Maybe I'll rewrie this ramble sometime. Or delete it.<br>
+    <br>
+    -------<br>
+    <br>
+    here's the git pre-commit hook i use for my neocities site<br>
+    designed on opensuse linux. <!-- TODO: colour previous fun --> not sure if it works on windows - lemme know if you find out<br>
+    it reads the current commit to get a list of changed/added files to push. it also reads for specifically deleted files, to remove from the server.<br>
+    it is intended that you do a `git push` after every commit; the command only checks the last commit. if you need it to check more, you can try to edit the command. but i just push after each commit<br>
+    this uses the raw neocities api, not the neocities ruby CLI app<br>
+    <br>
+    === setup ===<br>
+    i'm gonna assume you have the git side of it setup. this text goes into .git/hooks/pre-push<br>
+    to set it up, you need to put in your website's api key from neocities, in the variable API_HERE.<br>
+    <pre class="code-text">(i'm actually in the mid of testing this right now it'll go here)</pre>
     <br>
     -------<br>
     <br>
