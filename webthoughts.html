@@ -10,7 +10,7 @@
     <script src="/Resources/Stars/bg-stars.js"></script>
     <script src="/Resources/Stars/all.js"></script>
   </head>
-  <body style="width: 800px;">
+  <body>
     <p class="memory-date" title="you can probably figure this one out">20260417</p> 
     <p>music.<br>
         in the future i'll have an audio play widget with more details and 40% default volume and stuff<br>
@@ -73,13 +73,55 @@
     === setup ===<br>
     i'm gonna assume you have the git side of it setup. this text goes into .git/hooks/pre-push<br>
     to set it up, you need to put in your website's api key from neocities, in the variable API_HERE.<br>
-    <pre class="code-text">(i'm actually in the mid of testing this right now it'll go here)</pre>
+    <pre class="code-text" style="width: 800px; height: 400px;">
+API_HERE="replace this"
+IFS=$'\n'
+TOPUSH=$(git diff-tree --no-commit-id --name-only -r --diff-filter=AM -n 1 HEAD~1..HEAD)
+if [ ! -z "$TOPUSH" ]; then
+    TOPUSH=($TOPUSH)
+    CURRFILE=""
+    COMMAND='curl -H "'
+    COMMAND+="Authorization: Bearer ${API_HERE}"
+    COMMAND+='" '
+    # This loop is designed to get the same position in bash (linux) and zsh (mac). zsh normally indexes from 1
+    for ((i = 0; i < ${#TOPUSH[@]}; ++i)); do
+        CURRFILE=${TOPUSH[*]:$i:1}
+        COMMAND+='-F "'
+        COMMAND+="${CURRFILE}=@${CURRFILE}"
+        COMMAND+='" '
+    done
+    COMMAND+='"https://neocities.org/api/upload"'
+    echo "here's the push command i'm running!! :)"
+    echo $COMMAND
+    echo
+    eval ${COMMAND}
+fi
+
+TODEL=$(git diff-tree --no-commit-id --name-only -r --diff-filter=D -n 1 HEAD~1..HEAD)
+if [ ! -z "$TODEL" ]; then
+    TODEL=($TODEL)
+    CURRFILE=""
+    COMMAND='curl -H "'
+    COMMAND+="Authorization: Bearer ${API_HERE}"
+    COMMAND+='" '
+    for ((i = 0; i < ${#TODEL[@]}; ++i)); do
+        CURRFILE=${TODEL[*]:$i:1}
+        COMMAND+='-d "'
+        COMMAND+="filenames[]=${CURRFILE}"
+        COMMAND+='" '
+    done
+    COMMAND+='"https://neocities.org/api/delete"'
+    echo "here's the delete command i'm running!! c:"
+    echo $COMMAND
+    echo
+    eval ${COMMAND}
+fi</pre>
     <br>
     -------<br>
     <br>
     TODO: section about design philosophy<br>
     TODO: section on tools i've made/use for web stuff<br>
     </p>
-    <p class="version">6.20260424</p>
+    <p class="version">7.20260424</p>
   </body>
 </html>
