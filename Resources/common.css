@@ -7,15 +7,12 @@
   font-family: l-monospace-sub;
 }
 
-/* yoinked from the neocities docs */
-.code-text {
-  background: #1d0d36;
-  border-left: 6px solid #673086;
-  color: #00c7ab;
-  display: block;
-  font-family: l-monospace-sub;
-  font-size: .8em;
-  padding: 12px 8px 12px 20px;
-  overflow: scroll;
-  font-weight: bold; /* this is specifically for the font i use, which is a bit spindly */
+.title {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 1.3em;
+  font-weight: bold;
 }

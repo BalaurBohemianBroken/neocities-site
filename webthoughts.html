@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>balaur</title>
+    
     <link href="/Resources/style.css" rel="stylesheet" type="text/css" media="all">
     <link href="/Resources/common.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/Resources/GenericStyles/copy-button.css" rel="stylesheet" type="text/css" media="all">
+
     <link href="/Resources/Stars/bg-stars.css" rel="stylesheet" type="text/css" media="all">
     <script src="/Resources/Stars/bg-stars.js"></script>
     <script src="/Resources/Stars/all.js"></script>
+    <script src="/Resources/GenericScripts/click-copy.js"></script>
   </head>
   <body>
     <p class="memory-date" title="you can probably figure this one out">20260417</p> 
@@ -64,17 +68,22 @@
     <br>
     -------<br>
     <br>
-    here's the git pre-commit hook i use for my neocities site<br>
-    designed on opensuse linux. <!-- TODO: colour previous fun --> not sure if it works on windows - lemme know if you find out<br>
+    <span class="title" style="color: darkmagenta">=== git-neocities prepush hook ===</span><br>
+    TODO: change this into a general "working on neocities locally" section<br>
+    here's the git prepush hook i use for my neocities site<br>
+    works with bash (linux) and zsh (mac) <!-- TODO: colour previous fun --> not sure if it works in pwsh (windows) - probably not, lemme know otherwise <!-- TODO: check this yourself, lazy --><br>
     it reads the current commit to get a list of changed/added files to push. it also reads for specifically deleted files, to remove from the server.<br>
     it is intended that you do a `git push` after every commit; the command only checks the last commit. if you need it to check more, you can try to edit the command. but i just push after each commit<br>
     this uses the raw neocities api, not the neocities ruby CLI app<br>
     <br>
-    === setup ===<br>
+    <span class="subtitle" style="color: darkmagenta">--- setup ---</span><br>
     i'm gonna assume you have the git side of it setup. this text goes into .git/hooks/pre-push<br>
     to set it up, you need to put in your website's api key from neocities, in the variable API_HERE.<br>
-    <pre class="code-text" style="width: 800px; height: 400px;">
-API_HERE="replace this"
+    <br>
+    <!-- there's an issue with the right not having any padding. apparently, this is a know and common issue that's a pain to solve. yteeeey -->
+    <div style="display: inline-block; position: relative;">
+        <div class="code-block" style="width: 800px; height: 400px;">
+<pre class="code-text" id="pushhookcode">API_HERE="replace this"
 IFS=$'\n'
 TOPUSH=$(git diff-tree --no-commit-id --name-only -r --diff-filter=AM -n 1 HEAD~1..HEAD)
 if [ ! -z "$TOPUSH" ]; then
@@ -116,12 +125,15 @@ if [ ! -z "$TODEL" ]; then
     echo
     eval ${COMMAND}
 fi</pre>
+        </div>
+        <button onclick="copyTextContent('pushhookcode')" class="code-copy-button" style="position: absolute; right: 10px; bottom: 10px;">copy</button>
+    </div>
     <br>
     -------<br>
     <br>
     TODO: section about design philosophy<br>
     TODO: section on tools i've made/use for web stuff<br>
     </p>
-    <p class="version">7.20260424</p>
+    <p class="version">8.20260425</p>
   </body>
 </html>

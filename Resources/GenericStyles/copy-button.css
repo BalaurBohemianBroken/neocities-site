@@ -1,0 +1,76 @@
+/* yoinked from the neocities docs */
+.code-block {
+  background: #1d0d36;
+  border-left: 6px solid #673086;
+  display: block;
+  padding: 20px 8px 30px 20px;
+  overflow: scroll;
+  position: relative; /* necessary to get the position: static copy button to work */
+}
+
+.code-text {
+  color: #00c7ab;
+  font-family: l-monospace-sub;
+  font-size: .8em;
+  font-weight: bold; /* this is specifically for the font i use, which is a bit spindly */
+  margin: 0;
+}
+
+
+/* taken from: https://getcssscan.com/css-buttons-examples */
+.code-copy-button {
+  appearance: button;
+  background-color: #3f1657;
+  /* background-image: linear-gradient(180deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, 0)); */
+  border-radius: 1rem;
+  border: none;
+  /* box-shadow: rgba(255, 255, 255, 0.15) 0 1px 0 inset,rgba(46, 54, 80, 0.075) 0 1px 1px; */
+  box-sizing: border-box;
+  color: #42a092;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Inter,sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  margin: 0;
+  padding: .5rem 1rem;
+  text-align: center;
+  text-transform: none;
+  transition: color .1s ease-in-out,background-color .1s ease-in-out,border-color .1s ease-in-out,box-shadow .1s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+.code-copy-button:focus:not(:focus-visible),
+.code-copy-button:focus {
+  outline: 0;
+}
+
+.code-copy-button:hover {
+  background-color: #520f79;
+}
+
+/* .code-copy-button:focus {
+  background-color: #413FC5;
+  box-shadow: rgba(255, 255, 255, 0.15) 0 1px 0 inset, rgba(46, 54, 80, 0.075) 0 1px 1px, rgba(104, 101, 235, 0.5) 0 0 0 .2rem;
+} */
+
+.code-copy-button:active {
+  background-color: #66298a;
+  background-image: none;
+  /* box-shadow: rgba(46, 54, 80, 0.125) 0 3px 5px inset; */
+}
+
+/* .code-copy-button:active:focus {
+  box-shadow: rgba(46, 54, 80, 0.125) 0 3px 5px inset, rgba(104, 101, 235, 0.5) 0 0 0 .2rem;
+} */
+
+.code-copy-button:disabled {
+  background-image: none;
+  /* box-shadow: none; */
+  opacity: .65;
+  pointer-events: none;
+}
