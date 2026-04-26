@@ -5,3 +5,11 @@ body {
   color: white;
   font-family: l-monospace-main;
 }
+
+a:link {
+  color: cornflowerblue;
+}
+
+a:visited, a:active {
+  color: blueviolet;
+}
