@@ -68,16 +68,16 @@
     <br>
     -------<br>
     <br>-->
-    <span class="title" style="color: darkmagenta">=== git-neocities prepush hook ===</span><br>
+    <span class="title" style="color: darkmagenta">=== git-neocities pre-push hook ===</span><br>
     TODO: change this into a general "working on neocities locally" section<br>
     here's the git prepush hook i use for my neocities site<br>
     works with bash (linux) and zsh (mac) <!-- TODO: colour previous fun --> not sure if it works in pwsh (windows) - probably not, lemme know otherwise <!-- TODO: check this yourself, lazy --><br>
-    it reads the current commit to get a list of changed/added files to push. it also reads for specifically deleted files, to remove from the server.<br>
+    it reads the current commit to get a list of files changed. this works for added, deleted, modified and renamed files (probably other states, have not encountered)<br>
     it is intended that you do a `git push` after every commit; the command only checks the last commit. if you need it to check more, you can try to edit the command. but i just push after each commit<br>
-    this uses the raw neocities api, not the neocities ruby CLI app<br>
+    this uses the raw neocities api, not the neocities ruby CLI app.<br>
     <br>
     <span class="subtitle" style="color: darkmagenta">--- setup ---</span><br>
-    i'm gonna assume you have the git side of it setup. this text goes into .git/hooks/pre-push<br>
+    i'm gonna assume you have the git side of it setup. this code goes into .git/hooks/pre-push<br>
     to set it up, you need to put in your website's api key from neocities, in the variable API_HERE.<br>
     <br>
     <!-- there's an issue with the right not having any padding. apparently, this is a know and common issue that's a pain to solve. yteeeey -->
@@ -134,6 +134,6 @@ fi</pre>
     TODO: section about design philosophy<br>
     TODO: section on tools i've made/use for web stuff<br>
     </p>
-    <p class="version">10.20260426</p>
+    <p class="version">11.20260426</p>
   </body>
 </html>
