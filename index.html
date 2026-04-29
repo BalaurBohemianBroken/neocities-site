@@ -15,6 +15,12 @@
      This will make this page emulate a terminal screen.
      The layout will be inspired by games such as hacknet, duskers, TIS-100.
      On the side will be the "LOGGED IN AS: BALAUR" along with a pfp.
+     balaur.service that pulls my last online status. based on:
+      ○ gunicorn.service - gunicorn daemon
+          Loaded: loaded (/etc/systemd/system/gunicorn.service; static)
+          Active: inactive (dead)
+      TriggeredBy: ● gunicorn.socket
+
      Below that, a music player - controllable by mouse or console.
      Typing anywhere focuses the input into the terminal.
      Resize only changes size of text.
