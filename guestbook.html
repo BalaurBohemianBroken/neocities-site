@@ -6,12 +6,36 @@
     <title>balaur</title>
     <link href="/Resources/default.css" rel="stylesheet" type="text/css" media="all">
     <link href="/Resources/common.css" rel="stylesheet" type="text/css" media="all">
-    <link href="/Resources/Stars/bg-stars.css" rel="stylesheet" type="text/css" media="all">
-    <script src="/Resources/Stars/bg-stars.js"></script>
+
     <script src="/Resources/all.js"></script>
+    <script src="/Resources/Stars/bg-stars.js"></script>
+    <link href="/Resources/Stars/bg-stars.css" rel="stylesheet" type="text/css" media="all">
+    <script src="/Resources/Guestbook/guestbook.js"></script>
   </head>
   <body>
   <p class="memory-date" title="discord was a completely new world. i finally belonged somewhere" style="position:absolute; left:500px; top:100px;">20180209</p>
+  <p><a href="https://github.com/BalaurBohemianBroken/neocities-backend/blob/master/api/views.py">api backend code</a>; if you find any exploits lemme know<!-- TODO: Link to contact -->, i will offer a small reward</p>
+  <div>
+    <!-- controlled in js -->
+    <p>ascii characters only (sorry oken)</p>
+    <div id="field_info">
+      <p data-fieldName="falias">how do you want to be remembered.</p> <!-- TODO: link to oken -->
+      <p data-fieldName="fwebsite">where is your home?</p>
+      <p data-fieldName="fmessage">what's up?</p>
+      <!-- TODO: Maybe I let people place down a message from their ship? -->
+      <p data-fieldName="flocation_x">where are you? -944<=int<=944</p>
+      <p data-fieldName="flocation_y">where are you? -524<=int<=524</p>
+    </div>
+    <div id="guestbook_input">
+      <label for="falias">alias*: </label><input type="text" id="falias" name="falias"><br>
+      <label for="fwebsite">website: </label><input type="text" id="fwebsite" name="fwebsite"><br>
+      <label for="fmessage">message*: </label><input type="text" id="fmessage" name="fmessage"><br>
+      <label for="flocRandom">random location: </label><input type="checkbox" id="flocRandom" name="flocRandom"><br>
+      <label for="flocation_x">location: </label><input type="text" id="flocation_x" name="flocation_x"> <input type="text" id="flocation_y" name="flocation_y"><br>
+      <!--input type="text" id="image" name="image">
+      <input type="text" id="sprite" name="sprite"-->
+    </div>
+  </div>
   <pre>
     todo/process:
     ssl for my home server
@@ -35,6 +59,6 @@
 
     space ship navigation/interaction? might not work for something with this potential for size
   </pre>
-  <p class="version">4.20260430</p>
+  <p class="version">5.20260501</p>
   </body>
 </html>
