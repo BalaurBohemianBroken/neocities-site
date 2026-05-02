@@ -25,16 +25,28 @@
         text-align: right;
         margin-right: 8px;
       }
-      #fmessage {
-        height: 50px;
-      }
-      #fmessage, #guestbook_fields > div > input {
+      #fmessage, #guestbook_fields > div > input, #flocation_x, #flocation_y {
         width: 200px;
         resize: none;
         background-color: #606a;
         border-radius: 10px;
         border-color: #606a;
         outline: none;
+        color: #08adad;
+        font-family: l-monospace-main;
+        font-size: 13px;
+      }
+      input::selection, textarea::selection {
+        background-color: #6f0ca7;
+      }
+      #fmessage {
+        height: 50px;
+      }
+      #flocation_x, #flocation_y {
+        width: 60px;
+      }
+      #flocation {
+        gap: 55px;
       }
     </style>
   </head>
@@ -62,16 +74,16 @@
       </div>
       <div>
         <label for="fmessage">*message:</label><br>
-        <textarea type="text" id="fmessage" name="fmessage"></textarea>
+        <textarea type="text" id="fmessage" name="fmessage" spellcheck="false"></textarea>
       </div>
       <div>
         <label for="flocRandom">random location:</label><br>
         <input type="checkbox" id="flocRandom" name="flocRandom">
       </div>
       <div>
-        <label for="flocation_x">location:</label><br>
+        <label for="flocation_x">x:</label><br>
         <div id="flocation" style="display:flex">
-          <div style="display: flex"><label for="flocation_x">x: </label><input type="text" id="flocation_x" name="flocation_x"></div>
+          <input type="text" id="flocation_x" name="flocation_x">
           <div><label for="flocation_y">y: </label><input type="text" id="flocation_y" name="flocation_y"></div>
         </div>
       </div>
@@ -104,6 +116,6 @@
 
     space ship navigation/interaction? might not work for something with this potential for size
   </pre>
-  <p class="version">6.20260501</p>
+  <p class="version">7.20260502</p>
   </body>
 </html>
