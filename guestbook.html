@@ -20,13 +20,14 @@
       }
       #guestbook_fields > div {
         display: flex;
+        gap: 8px;
       }
-      #guestbook_fields > div > label {
+      /* #guestbook_fields > div > label {
         width: 130px;
         text-align: right;
-        margin-right: 8px;
+        /* margin-right: 8px;
         align-content: center;
-      }
+      } */
       #fmessage, #guestbook_fields > div > input, #flocation_x, #flocation_y {
         width: 200px;
         height: 25px;
@@ -46,10 +47,15 @@
         height: 50px;
       }
       #flocation_x, #flocation_y {
-        width: 60px;
+        width: 56px;
       }
       #flocation {
-        gap: 55px;
+        gap: 8px;
+      }
+      .guestbookLabel {
+        width: 130px;
+        text-align: right;
+        align-content: center;
       }
     </style>
   </head>
@@ -68,28 +74,25 @@
     </div>
     <div id="guestbook_fields">
       <div>
-        <label for="falias">*alias:</label>
+        <label class="guestbookLabel" for="falias">*alias:</label>
         <input type="text" id="falias" name="falias">
       </div>
       <div>
-        <label for="fwebsite">website:</label><br>
+        <label class="guestbookLabel" for="fwebsite">website:</label>
         <input type="text" id="fwebsite" name="fwebsite">
       </div>
       <div>
-        <label for="fmessage">*message:</label><br>
+        <label class="guestbookLabel" for="fmessage">*message:</label>
         <textarea type="text" id="fmessage" name="fmessage" spellcheck="false"></textarea>
       </div>
       <div>
-        <label for="flocRandom">random location:</label><br>
+        <label class="guestbookLabel" for="flocCustom">custom location:</label>
         <label class="customCheckbox">
-          <input type="checkbox" id="flocRandom" name="flocRandom">
+          <input type="checkbox" id="flocCustom" name="flocCustom">
           <span class="checkmark"></span>
         </label>
-      </div>
-      <div>
-        <label for="flocation_x">x:</label><br>
         <div id="flocation" style="display:flex">
-          <input type="text" id="flocation_x" name="flocation_x">
+          <div><label for="flocation_x">x: </label><input type="text" id="flocation_x" name="flocation_x"></div>
           <div><label for="flocation_y">y: </label><input type="text" id="flocation_y" name="flocation_y"></div>
         </div>
       </div>
@@ -122,6 +125,6 @@
 
     space ship navigation/interaction? might not work for something with this potential for size
   </pre>
-  <p class="version">8.20260503</p>
+  <p class="version">9.20260503</p>
   </body>
 </html>
