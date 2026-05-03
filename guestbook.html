@@ -36,6 +36,17 @@
         display: flex;
         gap: 8px;
       }
+      .guestbookPfp {
+        width: 128px;
+        height: 128px;
+      }
+      .guestbookPfpRow {
+        display: flex;
+        gap: 8px;
+      }
+      .guestbookPfpLabel {
+        width: 64px;
+      }
       /* #guestbook_entry > div > label {
         width: 130px;
         text-align: right;
@@ -96,27 +107,28 @@
     <div id="guestbook_entry">
       <div id="guestbook_container">
         <div class="guestbookRow">
-          <label class="guestbookRowLabel guestbookLabel" for="falias">*alias:</label>
-          <input class="guestbookText" type="text" id="falias" name="falias">
-        </div>
-        <div class="guestbookRow">
-          <label class="guestbookRowLabel guestbookLabel" for="fwebsite">website:</label>
-          <input class="guestbookText" type="text" id="fwebsite" name="fwebsite">
+          <div id="guestbook_img_slot">
+            <img src="Resources/Sona/Corruptions/corrupt01.png" width="128" height="128">
+          </div>
+          <div class="guestbookRow" style="flex-direction: column;">
+            <div class="guestbookPfpRow">
+              <label class="guestbookLabel guestbookPfpLabel" for="falias">*alias:</label>
+              <input class="guestbookText" type="text" id="falias" name="falias">
+            </div>
+            <div class="guestbookPfpRow">
+              <label class="guestbookLabel guestbookPfpLabel" for="fwebsite">website:</label>
+              <input class="guestbookText" type="text" id="fwebsite" name="fwebsite">
+            </div>
+            <div id="flocation" class="guestbookPfpRow" style="display:flex">
+              <label class="guestbookLabel guestbookPfpLabel">location:</label>
+              <div><input class="guestbookText" type="text" id="flocation_x" name="flocation_x"><label for="flocation_x" class="guestbookLabel"> x</label></div>
+              <div><input class="guestbookText" type="text" id="flocation_y" name="flocation_y"><label for="flocation_y" class="guestbookLabel"> y</label></div>
+            </div>
+          </div>
         </div>
         <div class="guestbookRow">
           <label class="guestbookRowLabel guestbookLabel" for="fmessage">*message:</label>
           <textarea class="guestbookText" type="text" id="fmessage" name="fmessage" spellcheck="false"></textarea>
-        </div>
-        <div class="guestbookRow">
-          <label class="guestbookRowLabel guestbookLabel" for="flocCustom">custom location:</label>
-          <label class="customCheckbox">
-            <input type="checkbox" id="flocCustom" name="flocCustom">
-            <span class="checkmark"></span>
-          </label>
-          <div id="flocation" style="display:flex">
-            <div><label for="flocation_x" class="guestbookLabel">x: </label><input class="guestbookText" type="text" id="flocation_x" name="flocation_x"></div>
-            <div><label for="flocation_y" class="guestbookLabel">y: </label><input class="guestbookText" type="text" id="flocation_y" name="flocation_y"></div>
-          </div>
         </div>
         <div class="guestbookRow">
           <label class="guestbookRowLabel guestbookLabel"></label>
@@ -151,6 +163,6 @@
 
     space ship navigation/interaction? might not work for something with this potential for size
   </pre>
-  <p class="version">10.20260503</p>
+  <p class="version">11.20260503</p>
   </body>
 </html>
