@@ -6,6 +6,7 @@
     <title>balaur</title>
     <link href="/Resources/default.css" rel="stylesheet" type="text/css" media="all">
     <link href="/Resources/common.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/Resources/GenericStyles/custom-checkbox.css" rel="stylesheet" type="text/css" media="all">
 
     <script src="/Resources/all.js"></script>
     <script src="/Resources/Stars/bg-stars.js"></script>
@@ -24,9 +25,11 @@
         width: 130px;
         text-align: right;
         margin-right: 8px;
+        align-content: center;
       }
       #fmessage, #guestbook_fields > div > input, #flocation_x, #flocation_y {
         width: 200px;
+        height: 25px;
         resize: none;
         background-color: #606a;
         border-radius: 10px;
@@ -78,7 +81,10 @@
       </div>
       <div>
         <label for="flocRandom">random location:</label><br>
-        <input type="checkbox" id="flocRandom" name="flocRandom">
+        <label class="customCheckbox">
+          <input type="checkbox" id="flocRandom" name="flocRandom">
+          <span class="checkmark"></span>
+        </label>
       </div>
       <div>
         <label for="flocation_x">x:</label><br>
@@ -116,6 +122,6 @@
 
     space ship navigation/interaction? might not work for something with this potential for size
   </pre>
-  <p class="version">7.20260502</p>
+  <p class="version">8.20260503</p>
   </body>
 </html>
