@@ -32,6 +32,7 @@
         background-position: 10px 10px;
       }
       .guestbookRow {
+        position: relative;
         display: flex;
         gap: 8px;
       }
@@ -42,10 +43,12 @@
         align-content: center;
       } */
       .guestbookLabel {
-        width: 130px;
         text-align: right;
         align-content: center;
         color: #ace8ff;
+      }
+      .guestbookRowLabel {
+        width: 130px;
       }
       .guestbookText {
         width: 200px;
@@ -71,6 +74,10 @@
       #flocation {
         gap: 8px;
       }
+      .guestbookEntryLimits {
+        font-family: l-monospace-sub;
+        font-size: 13px;
+      }
     </style>
   </head>
   <body>
@@ -89,35 +96,38 @@
     <div id="guestbook_entry">
       <div id="guestbook_container">
         <div class="guestbookRow">
-          <label class="guestbookLabel" for="falias">*alias:</label>
+          <label class="guestbookRowLabel guestbookLabel" for="falias">*alias:</label>
           <input class="guestbookText" type="text" id="falias" name="falias">
         </div>
         <div class="guestbookRow">
-          <label class="guestbookLabel" for="fwebsite">website:</label>
+          <label class="guestbookRowLabel guestbookLabel" for="fwebsite">website:</label>
           <input class="guestbookText" type="text" id="fwebsite" name="fwebsite">
         </div>
         <div class="guestbookRow">
-          <label class="guestbookLabel" for="fmessage">*message:</label>
+          <label class="guestbookRowLabel guestbookLabel" for="fmessage">*message:</label>
           <textarea class="guestbookText" type="text" id="fmessage" name="fmessage" spellcheck="false"></textarea>
         </div>
         <div class="guestbookRow">
-          <label class="guestbookLabel" for="flocCustom">custom location:</label>
+          <label class="guestbookRowLabel guestbookLabel" for="flocCustom">custom location:</label>
           <label class="customCheckbox">
             <input type="checkbox" id="flocCustom" name="flocCustom">
             <span class="checkmark"></span>
           </label>
           <div id="flocation" style="display:flex">
-            <div><label for="flocation_x">x: </label><input class="guestbookText" type="text" id="flocation_x" name="flocation_x"></div>
-            <div><label for="flocation_y">y: </label><input class="guestbookText" type="text" id="flocation_y" name="flocation_y"></div>
+            <div><label for="flocation_x" class="guestbookLabel">x: </label><input class="guestbookText" type="text" id="flocation_x" name="flocation_x"></div>
+            <div><label for="flocation_y" class="guestbookLabel">y: </label><input class="guestbookText" type="text" id="flocation_y" name="flocation_y"></div>
+          </div>
+        </div>
+        <div class="guestbookRow">
+          <label class="guestbookRowLabel guestbookLabel"></label>
+          <div style="position: relative; width: 200px; height: 25px;">
+            <span id="restriction" class="guestbookEntryLimits" style="position: absolute; left: 0;">ascii only</span>
+            <span id="charsLeft" class="guestbookEntryLimits" style="position: absolute; right: 0;">512</span>
           </div>
         </div>
       </div>
     </div>
   </div>
-      <div>
-        <span id="charsLeft">512</span>
-        <span id="restriction">printing ascii only</span>
-      </div>
   <pre>
     todo/process:
     ssl for my home server
@@ -141,6 +151,6 @@
 
     space ship navigation/interaction? might not work for something with this potential for size
   </pre>
-  <p class="version">9.20260503</p>
+  <p class="version">10.20260503</p>
   </body>
 </html>
