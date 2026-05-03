@@ -26,16 +26,16 @@ Inserted into HTML with the following code:
     left: 0;
     height: 30.5px;
     width: 30.5px;
-    background-color: #606a;
+    background-color: #6067;
     border-radius: 5px;
 }
 /* On mouse-over colour */
 .customCheckbox:hover input ~ .checkmark {
-    background-color: #505a;
+    background-color: #5057;
 }
 /* When the checkbox is checked, add a blue background */
 .customCheckbox input:checked ~ .checkmark {
-    background-color: #606a;
+    background-color: #6067;
 }
 /* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {

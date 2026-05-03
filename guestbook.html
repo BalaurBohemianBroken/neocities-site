@@ -13,34 +13,53 @@
     <link href="/Resources/Stars/bg-stars.css" rel="stylesheet" type="text/css" media="all">
     <script src="/Resources/Guestbook/guestbook.js"></script>
     <style>
-      #guestbook_fields {
+      #guestbook_entry {
+        position: relative;
+        display: flex;
+      }
+      #guestbook_container {
+        /* position: absolute; */
+        background: #220022dd;
         display: flex;
         flex-direction: column;
         gap: 8px;
+
+        border-radius: 5px;
+        padding: 10px;
+
+        background-image: linear-gradient(to right, #29d7ff10 1px, transparent 1px), linear-gradient(to bottom, #29d7ff10 1px, transparent 1px);
+        background-size: 20px 20px;
+        background-position: 10px 10px;
       }
-      #guestbook_fields > div {
+      .guestbookRow {
         display: flex;
         gap: 8px;
       }
-      /* #guestbook_fields > div > label {
+      /* #guestbook_entry > div > label {
         width: 130px;
         text-align: right;
         /* margin-right: 8px;
         align-content: center;
       } */
-      #fmessage, #guestbook_fields > div > input, #flocation_x, #flocation_y {
+      .guestbookLabel {
+        width: 130px;
+        text-align: right;
+        align-content: center;
+        color: #ace8ff;
+      }
+      .guestbookText {
         width: 200px;
         height: 25px;
         resize: none;
-        background-color: #606a;
+        background-color: #6067;
         border-radius: 10px;
-        border-color: #606a;
+        border-color: #6060;
         outline: none;
         color: #08adad;
         font-family: l-monospace-main;
         font-size: 13px;
       }
-      input::selection, textarea::selection {
+      .guestbookText::selection {
         background-color: #6f0ca7;
       }
       #fmessage {
@@ -51,11 +70,6 @@
       }
       #flocation {
         gap: 8px;
-      }
-      .guestbookLabel {
-        width: 130px;
-        text-align: right;
-        align-content: center;
       }
     </style>
   </head>
@@ -72,28 +86,30 @@
       <p data-fieldName="flocation_x">where are you? -944<=int<=944</p>
       <p data-fieldName="flocation_y">where are you? -524<=int<=524</p>
     </div>
-    <div id="guestbook_fields">
-      <div>
-        <label class="guestbookLabel" for="falias">*alias:</label>
-        <input type="text" id="falias" name="falias">
-      </div>
-      <div>
-        <label class="guestbookLabel" for="fwebsite">website:</label>
-        <input type="text" id="fwebsite" name="fwebsite">
-      </div>
-      <div>
-        <label class="guestbookLabel" for="fmessage">*message:</label>
-        <textarea type="text" id="fmessage" name="fmessage" spellcheck="false"></textarea>
-      </div>
-      <div>
-        <label class="guestbookLabel" for="flocCustom">custom location:</label>
-        <label class="customCheckbox">
-          <input type="checkbox" id="flocCustom" name="flocCustom">
-          <span class="checkmark"></span>
-        </label>
-        <div id="flocation" style="display:flex">
-          <div><label for="flocation_x">x: </label><input type="text" id="flocation_x" name="flocation_x"></div>
-          <div><label for="flocation_y">y: </label><input type="text" id="flocation_y" name="flocation_y"></div>
+    <div id="guestbook_entry">
+      <div id="guestbook_container">
+        <div class="guestbookRow">
+          <label class="guestbookLabel" for="falias">*alias:</label>
+          <input class="guestbookText" type="text" id="falias" name="falias">
+        </div>
+        <div class="guestbookRow">
+          <label class="guestbookLabel" for="fwebsite">website:</label>
+          <input class="guestbookText" type="text" id="fwebsite" name="fwebsite">
+        </div>
+        <div class="guestbookRow">
+          <label class="guestbookLabel" for="fmessage">*message:</label>
+          <textarea class="guestbookText" type="text" id="fmessage" name="fmessage" spellcheck="false"></textarea>
+        </div>
+        <div class="guestbookRow">
+          <label class="guestbookLabel" for="flocCustom">custom location:</label>
+          <label class="customCheckbox">
+            <input type="checkbox" id="flocCustom" name="flocCustom">
+            <span class="checkmark"></span>
+          </label>
+          <div id="flocation" style="display:flex">
+            <div><label for="flocation_x">x: </label><input class="guestbookText" type="text" id="flocation_x" name="flocation_x"></div>
+            <div><label for="flocation_y">y: </label><input class="guestbookText" type="text" id="flocation_y" name="flocation_y"></div>
+          </div>
         </div>
       </div>
     </div>
