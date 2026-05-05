@@ -14,6 +14,9 @@
   <script src="/Resources/Guestbook/guestbook.js"></script>
   <script src="/Resources/GenericScripts/input_with_ghost.js"></script>
   <style>
+    input::selection, span::selection, label::selection {
+      color: #c7299f;
+    }
     #guestbook_entry {
       position: relative;
       display: flex;
@@ -110,10 +113,6 @@
       outline: none;
       color: #08adad;
     }
-    .guestbookText::selection {
-      /* background-color: #6f0ca777; */
-      color: #c7299f;
-    }
     #fmessage {
       height: 50px;
       width: 100%;
@@ -162,9 +161,17 @@
           <!-- TODO: Have "ghost" padding numbers. If the user inputs + or -, change ghost symbol and remove character-->
           <span class="guestbookMetadataText">20260504.1908</span>
           <span class="guestbookMetadataText">#00(</span>
-          <input class="guestbookMetadataInput" type="text" id="flocation_x" name="flocation_x">
+          <div style="position: relative;" class="inputCoordinates">
+            <span class="guestbookMetadataText metadataInputGhost" style="position: absolute; color: #ace8ff;">+</span>
+            <span class="guestbookMetadataText metadataInputGhost" style="position: absolute; left: 8px;">000000</span>
+            <input class="guestbookMetadataInput" type="text" id="flocation_x" name="flocation_x">
+          </div>
           <span class="guestbookMetadataText">x</span>
-          <input class="guestbookMetadataInput" type="text" id="flocation_y" name="flocation_y">
+          <div style="position: relative;" class="inputCoordinates">
+            <span class="guestbookMetadataText metadataInputGhost" style="position: absolute; color: #ace8ff;">+</span>
+            <span class="guestbookMetadataText metadataInputGhost" style="position: absolute; left: 8px;">000000</span>
+            <input class="guestbookMetadataInput" type="text" id="flocation_y" name="flocation_y">
+          </div>
           <span class="guestbookMetadataText">y)</span>
         </div>
         <div class="row">
