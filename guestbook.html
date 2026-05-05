@@ -1,191 +1,219 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>balaur</title>
-    <link href="/Resources/default.css" rel="stylesheet" type="text/css" media="all">
-    <link href="/Resources/common.css" rel="stylesheet" type="text/css" media="all">
-    <link href="/Resources/GenericStyles/custom-checkbox.css" rel="stylesheet" type="text/css" media="all">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>balaur</title>
+  <link href="/Resources/default.css" rel="stylesheet" type="text/css" media="all">
+  <link href="/Resources/common.css" rel="stylesheet" type="text/css" media="all">
+  <link href="/Resources/GenericStyles/custom-checkbox.css" rel="stylesheet" type="text/css" media="all">
 
-    <script src="/Resources/all.js"></script>
-    <script src="/Resources/Stars/bg-stars.js"></script>
-    <link href="/Resources/Stars/bg-stars.css" rel="stylesheet" type="text/css" media="all">
-    <script src="/Resources/Guestbook/guestbook.js"></script>
-    <style>
-      #guestbook_entry {
-        position: relative;
-        display: flex;
-        font-family: l-monospace-main;
-        font-size: 16px;
-        color: #ace8ff
-      }
-      #guestbook_container {
-        /* position: absolute; */
-        background: #220022dd;
-        display: flex;
-        /* flex-direction: column; */
-        gap: 8px;
+  <script src="/Resources/all.js"></script>
+  <script src="/Resources/Stars/bg-stars.js"></script>
+  <link href="/Resources/Stars/bg-stars.css" rel="stylesheet" type="text/css" media="all">
+  <script src="/Resources/Guestbook/guestbook.js"></script>
+  <style>
+    #guestbook_entry {
+      position: relative;
+      display: flex;
+      font-family: l-monospace-main;
+      font-size: 16px;
+      color: #ace8ff
+    }
+    #guestbook_container {
+      /* position: absolute; */
+      background: #220022dd;
+      display: flex;
+      /* flex-direction: column; */
+      gap: 8px;
 
-        border-radius: 5px;
-        padding: 10px;
+      border-radius: 5px;
+      padding: 10px;
 
-        background-image: linear-gradient(to right, #29d7ff10 1px, transparent 1px), linear-gradient(to bottom, #29d7ff10 1px, transparent 1px);
-        background-size: 20px 20px;
-        background-position: 10px 10px;
-      }
-      .column {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-      .row {
-        position: relative;
-        display: flex;
-        gap: 8px;
-      }
-      .guestbookPfp {
-        width: 128px;
-        height: 128px;
-      }
-      .guestbookPfpLabel {
-        width: 64px;
-      }
-      #guestbook_metadata {
-        display: flex;
-        align-items: center;
-        gap: 0;
-      }
-      .guestbookMetadataText {
-        font-family: l-monospace-sub;
-        font-size: 13px;
-        align-content: center;
-      }
-      .guestbookMetadataInput {
-        width: 56px;
-        height: 14px;
-        padding: 0;
-        border: 0;
-        vertical-align: center;
-        background-color: #00665878;
-        outline: none;
-        color: #ace8ff;
-        font-family: l-monospace-sub;
-        text-align: right;
-      }
-      .guestbookLabel {
-        text-align: right;
-        align-content: center;
-        color: #ace8ff;
-      }
-      .guestbookRowLabel {
-        width: 130px;
-      }
-      .guestbookText {
-        width: 200px;
-        height: 25px;
-        resize: none;
-        background-color: #6067;
-        border-radius: 10px;
-        border-color: #6060;
-        outline: none;
-        color: #08adad;
-      }
-      .guestbookText::selection {
-        /* background-color: #6f0ca777; */
-        color: #c7299f;
-      }
-      #fmessage {
-        height: 50px;
-        width: 100%;
-      }
-      #flocation_x, #flocation_y {
-        width: 56px;
-      }
-      .guestbookEntryLimits {
-        font-family: l-monospace-sub;
-        font-size: 13px;
-      }
-    </style>
-  </head>
-  <body>
-  <p class="memory-date" title="discord was a completely new world. i finally belonged somewhere" style="position:absolute; left:500px; top:100px;">20180209</p>
-  <p><a href="https://github.com/BalaurBohemianBroken/neocities-backend/blob/master/api/views.py">api backend code</a>; if you find any exploits lemme know<!-- TODO: Link to contact -->, i will offer a small reward</p>
-  <div>
-    <!-- controlled in js -->
-    <div id="field_info">
-      <p data-fieldName="falias">how do you want to be remembered</p> <!-- TODO: link to oken -->
-      <p data-fieldName="fwebsite">where is your home?</p>
-      <p data-fieldName="fmessage">what's up?</p>
-      <!-- TODO: Maybe I let people place down a message from their ship? -->
-      <p data-fieldName="flocation_x">where are you? -944<=int<=944</p>
-      <p data-fieldName="flocation_y">where are you? -524<=int<=524</p>
-    </div>
-    <div id="guestbook_entry">
-      <div id="guestbook_container">
-        <div id="left_panel" class="column">
-          <div id="guestbook_img_slot">
-            <img src="Resources/Sona/Corruptions/corrupt01.png" width="128" height="128">
-          </div>
+      background-image: linear-gradient(to right, #29d7ff10 1px, transparent 1px), linear-gradient(to bottom, #29d7ff10 1px, transparent 1px);
+      background-size: 20px 20px;
+      background-position: 10px 10px;
+    }
+    .column {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .row {
+      position: relative;
+      display: flex;
+      gap: 8px;
+    }
+    .guestbookPfp {
+      width: 128px;
+      height: 128px;
+    }
+    .guestbookPfpLabel {
+      width: 64px;
+    }
+    #guestbook_metadata {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+    .guestbookMetadataText {
+      font-family: l-monospace-sub;
+      font-size: 13px;
+      align-content: center;
+    }
+    .guestbookMetadataInput {
+      width: 56px;
+      height: 14px;
+      padding: 0;
+      border: 0;
+      vertical-align: center;
+      background-color: #00665878;
+      outline: none;
+      color: #ace8ff;
+      font-family: l-monospace-sub;
+      text-align: right;
+    }
+    .metadataInputGhost {
+      position: absolute;
+      left: 0;
+      color: #f00;
+      pointer-events: none;
+      width: 40px;
+      height: 14px;
+      font-size: 13.3333px;
+      top: -0.5px;
+    }
+    #radio_container {
+      gap: 0;
+      align-items: center;
+    }
+    #radio_freq {
+      width: 40px;
+    }
+    .guestbookLabel {
+      text-align: right;
+      align-content: center;
+      color: #ace8ff;
+    }
+    .guestbookRowLabel {
+      width: 130px;
+    }
+    .guestbookText {
+      width: 200px;
+      height: 25px;
+      resize: none;
+      background-color: #6067;
+      border-radius: 10px;
+      border-color: #6060;
+      outline: none;
+      color: #08adad;
+    }
+    .guestbookText::selection {
+      /* background-color: #6f0ca777; */
+      color: #c7299f;
+    }
+    #fmessage {
+      height: 50px;
+      width: 100%;
+    }
+    #flocation_x, #flocation_y {
+      width: 56px;
+    }
+    .guestbookEntryLimits {
+      font-family: l-monospace-sub;
+      font-size: 13px;
+    }
+    
+  </style>
+</head>
+
+<body>
+<p class="memory-date" title="discord was a completely new world. i finally belonged somewhere" style="position:absolute; left:500px; top:100px;">20180209</p>
+<p><a href="https://github.com/BalaurBohemianBroken/neocities-backend/blob/master/api/views.py">api backend code</a>; if you find any exploits lemme know<!-- TODO: Link to contact -->, i will offer a small reward</p>
+<div>
+  <!-- controlled in js -->
+  <div id="field_info">
+    <p data-fieldName="falias">how do you want to be remembered</p> <!-- TODO: link to oken -->
+    <p data-fieldName="fwebsite">where is your home?</p>
+    <p data-fieldName="fmessage">what's up?</p>
+    <!-- TODO: Maybe I let people place down a message from their ship? -->
+    <p data-fieldName="flocation_x">where are you? -944<=int<=944</p>
+    <p data-fieldName="flocation_y">where are you? -524<=int<=524</p>
+  </div>
+  <div id="guestbook_entry">
+    <div id="guestbook_container">
+      <div id="left_panel" class="column">
+        <div id="guestbook_img_slot">
+          <img src="Resources/Sona/Corruptions/corrupt01.png" width="128" height="128">
         </div>
-        <div id="right_panel" class="column">
-          <div id="guestbook_metadata" class="row">
-            <!-- TODO: Have "ghost" padding numbers. If the user inputs + or -, change ghost symbol and remove character-->
-            <span class="guestbookMetadataText">20260504.1908</span>
-            <span class="guestbookMetadataText">#00(</span>
-            <input class="guestbookMetadataInput" type="text" id="flocation_x" name="flocation_x">
-            <span class="guestbookMetadataText">x</span>
-            <input class="guestbookMetadataInput" type="text" id="flocation_y" name="flocation_y">
-            <span class="guestbookMetadataText">y)</span>
+        <div id="radio_container" class="row">
+          <span id="radio_format" class="guestbookMetadataText">LSB^</span>
+          <div style="position: relative;" class="inputWithGhost">
+            <span class="guestbookMetadataText metadataInputGhost" style="position: absolute;">00000</span>
+            <input id="radio_freq" type="text" class="guestbookMetadataInput">
           </div>
-          <div class="row">
-            <label class="guestbookLabel guestbookPfpLabel" for="falias">*alias:</label>
-            <input class="guestbookText" type="text" id="falias" name="falias">
-          </div>
-          <div class="row">
-            <label class="guestbookLabel guestbookPfpLabel" for="fwebsite">website:</label>
-            <input class="guestbookText" type="text" id="fwebsite" name="fwebsite">
-          </div>
-          <div class="row" style="justify-content: center;">
-            <span>=== transmission start ===</span>
-          </div>
-          <div class="row">
-            <textarea class="guestbookText" type="text" id="fmessage" name="fmessage" spellcheck="false"></textarea>
-          </div>
-          <div class="row">
-            <div style="position: relative; width: 100%; height: 25px;">
-              <span id="restriction" class="guestbookEntryLimits" style="position: absolute; left: 0;">ascii only</span>
-              <span id="charsLeft" class="guestbookEntryLimits" style="position: absolute; right: 0;">512</span>
-            </div>
+          <span class="guestbookMetadataText">MHz</span>
+        </div>
+      </div>
+      <div id="right_panel" class="column">
+        <div id="guestbook_metadata" class="row">
+          <!-- TODO: Have "ghost" padding numbers. If the user inputs + or -, change ghost symbol and remove character-->
+          <span class="guestbookMetadataText">20260504.1908</span>
+          <span class="guestbookMetadataText">#00(</span>
+          <input class="guestbookMetadataInput" type="text" id="flocation_x" name="flocation_x">
+          <span class="guestbookMetadataText">x</span>
+          <input class="guestbookMetadataInput" type="text" id="flocation_y" name="flocation_y">
+          <span class="guestbookMetadataText">y)</span>
+        </div>
+        <div class="row">
+          <label class="guestbookLabel guestbookPfpLabel" for="falias">*alias:</label>
+          <input class="guestbookText" type="text" id="falias" name="falias">
+        </div>
+        <div class="row">
+          <label class="guestbookLabel guestbookPfpLabel" for="fwebsite">website:</label>
+          <input class="guestbookText" type="text" id="fwebsite" name="fwebsite">
+        </div>
+        <div class="row" style="justify-content: center;">
+          <span>=== transmission start ===</span>
+        </div>
+        <div class="row">
+          <textarea class="guestbookText" type="text" id="fmessage" name="fmessage" spellcheck="false"></textarea>
+        </div>
+        <div class="row">
+          <div style="position: relative; width: 100%; height: 25px;">
+            <span id="restriction" class="guestbookEntryLimits" style="position: absolute; left: 0;">ascii only</span>
+            <span id="charsLeft" class="guestbookEntryLimits" style="position: absolute; right: 0;">512</span>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <pre>
-    todo/process:
-    ssl for my home server
-    set up nginx/gunicorn/django again
-    guestbook fill out - alias, website, message, position, sprite, pfp
-    send requeest via api.balaur.online
-    upload to temp file for validation
-    explanation of how this works on a technical level
+</div>
+<pre>
+  todo/process:
+  AM FM LSB CW USB QAM
+  ssl for my home server
+  set up nginx/gunicorn/django again
+  guestbook fill out - alias, website, message, position, sprite, pfp
+  send requeest via api.balaur.online
+  upload to temp file for validation
+  explanation of how this works on a technical level
 
-    sprites:
-    broken ship
-    duskers robot
-    teapot?
-    just a house
-    satellite
-    creature in space suit
+  sprites:
+  broken ship
+  duskers robot
+  teapot?
+  just a house
+  satellite
+  creature in space suit
 
-    signals pointing to nearest undiscovered entries
-    gun
-    engine particles
+  signals pointing to nearest undiscovered entries
+  gun
+  engine particles
 
-    space ship navigation/interaction? might not work for something with this potential for size
-  </pre>
-  <p class="version">12.20260505</p>
-  </body>
+  space ship navigation/interaction? might not work for something with this potential for size
+</pre>
+<p class="version">13.20260505</p>
+</body>
 </html>
