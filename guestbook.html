@@ -16,12 +16,15 @@
       #guestbook_entry {
         position: relative;
         display: flex;
+        font-family: l-monospace-main;
+        font-size: 16px;
+        color: #ace8ff
       }
       #guestbook_container {
         /* position: absolute; */
         background: #220022dd;
         display: flex;
-        flex-direction: column;
+        /* flex-direction: column; */
         gap: 8px;
 
         border-radius: 5px;
@@ -31,7 +34,13 @@
         background-size: 20px 20px;
         background-position: 10px 10px;
       }
-      .guestbookRow {
+      .column {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .row {
         position: relative;
         display: flex;
         gap: 8px;
@@ -40,19 +49,31 @@
         width: 128px;
         height: 128px;
       }
-      .guestbookPfpRow {
-        display: flex;
-        gap: 8px;
-      }
       .guestbookPfpLabel {
         width: 64px;
       }
-      /* #guestbook_entry > div > label {
-        width: 130px;
-        text-align: right;
-        /* margin-right: 8px;
+      #guestbook_metadata {
+        display: flex;
+        align-items: center;
+        gap: 0;
+      }
+      .guestbookMetadataText {
+        font-family: l-monospace-sub;
+        font-size: 13px;
         align-content: center;
-      } */
+      }
+      .guestbookMetadataInput {
+        width: 56px;
+        height: 14px;
+        padding: 0;
+        border: 0;
+        vertical-align: center;
+        background-color: #00665878;
+        outline: none;
+        color: #ace8ff;
+        font-family: l-monospace-sub;
+        text-align: right;
+      }
       .guestbookLabel {
         text-align: right;
         align-content: center;
@@ -70,20 +91,17 @@
         border-color: #6060;
         outline: none;
         color: #08adad;
-        font-family: l-monospace-main;
-        font-size: 13px;
       }
       .guestbookText::selection {
-        background-color: #6f0ca7;
+        /* background-color: #6f0ca777; */
+        color: #c7299f;
       }
       #fmessage {
         height: 50px;
+        width: 100%;
       }
       #flocation_x, #flocation_y {
         width: 56px;
-      }
-      #flocation {
-        gap: 8px;
       }
       .guestbookEntryLimits {
         font-family: l-monospace-sub;
@@ -106,35 +124,40 @@
     </div>
     <div id="guestbook_entry">
       <div id="guestbook_container">
-        <div class="guestbookRow">
+        <div id="left_panel" class="column">
           <div id="guestbook_img_slot">
             <img src="Resources/Sona/Corruptions/corrupt01.png" width="128" height="128">
           </div>
-          <div class="guestbookRow" style="flex-direction: column;">
-            <div class="guestbookPfpRow">
-              <label class="guestbookLabel guestbookPfpLabel" for="falias">*alias:</label>
-              <input class="guestbookText" type="text" id="falias" name="falias">
-            </div>
-            <div class="guestbookPfpRow">
-              <label class="guestbookLabel guestbookPfpLabel" for="fwebsite">website:</label>
-              <input class="guestbookText" type="text" id="fwebsite" name="fwebsite">
-            </div>
-            <div id="flocation" class="guestbookPfpRow" style="display:flex">
-              <label class="guestbookLabel guestbookPfpLabel">location:</label>
-              <div><input class="guestbookText" type="text" id="flocation_x" name="flocation_x"><label for="flocation_x" class="guestbookLabel"> x</label></div>
-              <div><input class="guestbookText" type="text" id="flocation_y" name="flocation_y"><label for="flocation_y" class="guestbookLabel"> y</label></div>
-            </div>
+        </div>
+        <div id="right_panel" class="column">
+          <div id="guestbook_metadata" class="row">
+            <!-- TODO: Have "ghost" padding numbers. If the user inputs + or -, change ghost symbol and remove character-->
+            <span class="guestbookMetadataText">20260504.1908</span>
+            <span class="guestbookMetadataText">#00(</span>
+            <input class="guestbookMetadataInput" type="text" id="flocation_x" name="flocation_x">
+            <span class="guestbookMetadataText">x</span>
+            <input class="guestbookMetadataInput" type="text" id="flocation_y" name="flocation_y">
+            <span class="guestbookMetadataText">y)</span>
           </div>
-        </div>
-        <div class="guestbookRow">
-          <label class="guestbookRowLabel guestbookLabel" for="fmessage">*message:</label>
-          <textarea class="guestbookText" type="text" id="fmessage" name="fmessage" spellcheck="false"></textarea>
-        </div>
-        <div class="guestbookRow">
-          <label class="guestbookRowLabel guestbookLabel"></label>
-          <div style="position: relative; width: 200px; height: 25px;">
-            <span id="restriction" class="guestbookEntryLimits" style="position: absolute; left: 0;">ascii only</span>
-            <span id="charsLeft" class="guestbookEntryLimits" style="position: absolute; right: 0;">512</span>
+          <div class="row">
+            <label class="guestbookLabel guestbookPfpLabel" for="falias">*alias:</label>
+            <input class="guestbookText" type="text" id="falias" name="falias">
+          </div>
+          <div class="row">
+            <label class="guestbookLabel guestbookPfpLabel" for="fwebsite">website:</label>
+            <input class="guestbookText" type="text" id="fwebsite" name="fwebsite">
+          </div>
+          <div class="row" style="justify-content: center;">
+            <span>=== transmission start ===</span>
+          </div>
+          <div class="row">
+            <textarea class="guestbookText" type="text" id="fmessage" name="fmessage" spellcheck="false"></textarea>
+          </div>
+          <div class="row">
+            <div style="position: relative; width: 100%; height: 25px;">
+              <span id="restriction" class="guestbookEntryLimits" style="position: absolute; left: 0;">ascii only</span>
+              <span id="charsLeft" class="guestbookEntryLimits" style="position: absolute; right: 0;">512</span>
+            </div>
           </div>
         </div>
       </div>
@@ -163,6 +186,6 @@
 
     space ship navigation/interaction? might not work for something with this potential for size
   </pre>
-  <p class="version">11.20260503</p>
+  <p class="version">12.20260505</p>
   </body>
 </html>
