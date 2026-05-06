@@ -1,0 +1,134 @@
+/* Gotta be a better way for this, but this is fast to do. */
+input::selection, textarea::selection, span::selection, label::selection {
+    color: #c7299f;
+}
+#guestbook_entry {
+    position: relative;
+    display: flex;
+    font-family: l-monospace-main;
+    font-size: 16px;
+    color: #ace8ff
+}
+.guestbookPanel {
+    background: #220022dd;
+    display: flex;
+
+    border-radius: 5px;
+    padding: 10px;
+
+    background-image: linear-gradient(to right, #29d7ff10 1px, transparent 1px), linear-gradient(to bottom, #29d7ff10 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-position: 10px 10px;
+}
+/* #guestbook_container {
+    background: #220022dd;
+    display: flex;
+    gap: 8px;
+
+    border-radius: 5px;
+    padding: 10px;
+
+    background-image: linear-gradient(to right, #29d7ff10 1px, transparent 1px), linear-gradient(to bottom, #29d7ff10 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-position: 10px 10px;
+} */
+.column {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+.row {
+    position: relative;
+    display: flex;
+    gap: 0;
+}
+.gapped {
+    gap: 8px;
+}
+.guestbookPfp {
+    width: 128px;
+    height: 128px;
+}
+.guestbookPfpLabel {
+    width: 64px;
+}
+#guestbook_metadata {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+.guestbookMetadataText {
+    font-family: l-monospace-sub;
+    font-size: 13px;
+    align-content: center;
+}
+.guestbookMetadataInput {
+    width: 56px;
+    height: 14px;
+    padding: 0;
+    border: 0;
+    vertical-align: center;
+    background-color: #00665878;
+    outline: none;
+    color: #ace8ff;
+    font-family: l-monospace-sub;
+    text-align: right;
+}
+.metadataInputGhost {
+    position: absolute;
+    left: 0;
+    color: #f00;
+    pointer-events: none;
+    width: 40px;
+    height: 14px;
+    font-size: 13.3333px;
+    top: -0.5px;
+}
+#radio_container {
+    align-items: center;
+}
+#radio_freq {
+    width: 40px;
+}
+.guestbookLabel {
+    text-align: right;
+    align-content: center;
+    color: #ace8ff;
+}
+.guestbookRowLabel {
+    width: 130px;
+}
+.guestbookText {
+    width: 200px;
+    height: 25px;
+    resize: none;
+    background-color: #6067;
+    border-radius: 10px;
+    border-color: #6060;
+    outline: none;
+    color: #08adad;
+}
+#fmessage {
+    height: 50px;
+    width: 100%;
+}
+#flocation_x, #flocation_y {
+    width: 56px;
+}
+.guestbookEntryLimits {
+    font-family: l-monospace-sub;
+    font-size: 13px;
+}
+
+#debug_container {
+    font-family: l-monospace-sub;
+    background-color: #0b2943de;
+    flex-direction:column;
+    height: 80px;
+}
+#submit_button {
+    display: flex;
+    justify-content: center;
+    border: 3px;
+}
