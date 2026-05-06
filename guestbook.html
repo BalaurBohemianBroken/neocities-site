@@ -151,7 +151,7 @@
           <span id="radio_format" class="guestbookMetadataText">LSB^</span>
           <div style="position: relative;" class="inputWithGhost">
             <span id="radio_freq_ghost" class="guestbookMetadataText metadataInputGhost" style="position: absolute;">00001</span>
-            <input id="radio_freq" type="text" class="guestbookMetadataInput" oninput="oninput_ghost(this, 'radio_freq_ghost', '00001', true, /[^0-9]/)">
+            <input id="radio_freq" type="text" class="guestbookMetadataInput" oninput="oninput_limit(this, 5, /[^0-9]/); oninput_ghost(this, 'radio_freq_ghost', '00001')">
           </div>
           <span class="guestbookMetadataText">MHz</span>
         </div>
@@ -164,13 +164,13 @@
           <div style="position: relative;" class="inputCoordinates">
             <span id="x_plusminus" class="guestbookMetadataText metadataInputGhost" style="position: absolute; color: #ace8ff;">+</span>
             <span id="flocation_x_ghost" class="guestbookMetadataText metadataInputGhost" style="position: absolute; left: 8px;">000000</span>
-            <input class="guestbookMetadataInput" type="text" id="flocation_x" name="flocation_x" oninput="oninput_plusminus(this, 'x_plusminus'); oninput_ghost(this, 'flocation_x_ghost', '000000', true, /[^0-9]/);">
+            <input class="guestbookMetadataInput" type="text" id="flocation_x" name="flocation_x" oninput="oninput_plusminus(this, 'x_plusminus'); oninput_limit(this, 6, /[^0-9]/); oninput_ghost(this, 'flocation_x_ghost', '000000');">
           </div>
           <span class="guestbookMetadataText">x</span>
           <div style="position: relative;" class="inputCoordinates">
             <span id="y_plusminus" class="guestbookMetadataText metadataInputGhost" style="position: absolute; color: #ace8ff;">+</span>
             <span id="flocation_y_ghost" class="guestbookMetadataText metadataInputGhost" style="position: absolute; left: 8px;">000000</span>
-            <input class="guestbookMetadataInput" type="text" id="flocation_y" name="flocation_y" oninput="oninput_plusminus(this, 'y_plusminus'); oninput_ghost(this, 'flocation_y_ghost', '000000', true, /[^0-9]/);">
+            <input class="guestbookMetadataInput" type="text" id="flocation_y" name="flocation_y" oninput="oninput_plusminus(this, 'y_plusminus'); oninput_limit(this, 6, /[^0-9]/); oninput_ghost(this, 'flocation_y_ghost', '000000');">
           </div>
           <span class="guestbookMetadataText">y)</span>
         </div>
@@ -222,6 +222,6 @@
 
   space ship navigation/interaction? might not work for something with this potential for size
 </pre>
-<p class="version">15.20260506</p>
+<p class="version">16.20260506</p>
 </body>
 </html>
