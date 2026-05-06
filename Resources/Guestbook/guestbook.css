@@ -125,10 +125,19 @@ input::selection, textarea::selection, span::selection, label::selection {
     font-family: l-monospace-sub;
     background-color: #0b2943de;
     flex-direction:column;
-    height: 80px;
+    height: 180px;
+    cursor: pointer;
 }
 #submit_button {
     display: flex;
     justify-content: center;
-    border: 3px;
+    border-color: #750500;
+    background-color: #3f0000;
+    border-width: 2px;
+    border-style: solid;
+    width: 80%;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    align-content: center;
+    align-items: center;
 }
