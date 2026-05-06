@@ -1,26 +1,17 @@
-window.addEventListener("load", get_ghosts);
-
-function get_ghosts() {
-    let ghosts = document.getElementsByClassName("inputWithGhost");
-    for (let i = 0; i < ghosts.length; i++) {
-        let e = ghosts[i];
-        let ig = InputGhost(e);
-        e.addEventListener("input", function() {oninput_ghost(ig)});
+function oninput_ghost(input_element, ghost_id, ghost_default, limit_size = true, regex_remove = null) {
+    let default_len = ghost_default.length;
+    let ghost = document.getElementById(ghost_id);
+    if (regex_remove !== null) {
+        input_element.value = input_element.value.replace(regex_remove, "");
     }
-}
+    let input_len = input_element.value.length;
+    let ghost_size = Math.max(ghost_default.length - input_len, 0);
+    ghost.innerText = ghost_default.slice(0, ghost_size);
 
-function oninput_ghost(input_ghost) {
-    let input_len = input_ghost.input.value.length;
-    let num_chars = Math.max(input_ghost.default_len - input_len, 0);
-    input_ghost.text.innerText = input_ghost.default.slice(0, num_chars);
-}
-
-function InputGhost(e) {
-    let el = {};
-    el.root = e;
-    el.text = e.getElementsByTagName("span")[0];
-    el.default = el.text.innerText;
-    el.default_len = el.default.length;
-    el.input = e.getElementsByTagName("input")[0];
-    return el;
+    if (!limit_size) {
+        return;
+    }
+    if (input_len > ghost_default.length) {
+        input_element.value = input_element.value.slice(0, ghost_default.length);
+    }
 }
