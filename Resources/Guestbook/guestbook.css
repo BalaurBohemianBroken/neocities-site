@@ -84,6 +84,9 @@ input::selection, textarea::selection, span::selection, label::selection {
     height: 14px;
     font-size: 13.3333px;
     top: -0.5px;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 #radio_container {
     align-items: center;
@@ -131,13 +134,17 @@ input::selection, textarea::selection, span::selection, label::selection {
 #submit_button {
     display: flex;
     justify-content: center;
-    border-color: #750500;
-    background-color: #3f0000;
-    border-width: 2px;
+    border-color: #363636;
+    background-color: #4c0000;
+    border-width: 3px;
     border-style: solid;
     width: 80%;
     aspect-ratio: 1;
     border-radius: 100%;
     align-content: center;
     align-items: center;
+    background: radial-gradient(circle at left top, #862828, #300000);
+}
+#submit_button:active {
+    background: radial-gradient(circle at left top, #661d1d, #1e0000);
 }
