@@ -148,3 +148,6 @@ input::selection, textarea::selection, span::selection, label::selection {
 #submit_button:active {
     background: radial-gradient(circle at left top, #661d1d, #1e0000);
 }
+#guestbook_input_img {
+    cursor: pointer;
+}

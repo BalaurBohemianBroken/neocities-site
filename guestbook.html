@@ -32,7 +32,8 @@
     <div id="guestbook_container" class="guestbookPanel gapped">
       <div id="left_panel" class="column">
         <div id="guestbook_img_slot">
-          <img src="Resources/Sona/Corruptions/corrupt01.png" width="128" height="128">
+          <img id="guestbook_input_img" src="Resources/Sona/Corruptions/corrupt01.png" width="128" height="128" onclick="document.getElementById('image_select').click();">
+          <input id="image_select" accept=".png,.jpg" style="display: none;" type="file" onchange="image_selected(event)">
         </div>
         <div id="radio_container" class="row">
           <!-- TODO: AM FM LSB CW USB QAM selection-->
@@ -67,17 +68,18 @@
         </div>
         <div class="row gapped">
           <label class="guestbookLabel guestbookPfpLabel" for="falias">*alias:</label>
-          <input class="guestbookText" type="text" id="falias" name="falias">
+          <input class="guestbookText" type="text" id="falias" name="falias" oninput="oninput_limit(this, 32, /[^ -~]/);">
         </div>
         <div class="row gapped">
           <label class="guestbookLabel guestbookPfpLabel" for="fwebsite">website:</label>
-          <input class="guestbookText" type="text" id="fwebsite" name="fwebsite">
+          <input class="guestbookText" type="text" id="fwebsite" name="fwebsite" oninput="oninput_limit(this, 64, /[^ -~]/);">
         </div>
         <div class="row gapped" style="justify-content: center;">
           <span>=== transmission start ===</span>
         </div>
         <div class="row gapped">
-          <textarea class="guestbookText" type="text" id="fmessage" name="fmessage" spellcheck="false"></textarea>
+          <!-- TODO: Limit this by width and height, rather than character count.-->
+          <textarea class="guestbookText" type="text" id="fmessage" name="fmessage" spellcheck="false" oninput="oninput_limit(this, 512, /[^ -~\r\n]/)"></textarea>
         </div>
       </div>
     </div>
@@ -91,7 +93,7 @@
       <div class="row">
         <span id="charsLeft" class="guestbookEntryLimits">512</span>
       </div>
-      <div class="row" style="justify-content: center;">
+      <div class="row" style="justify-content: center;" onclick="submit()">
         <div id="submit_button" class="noselect"><span style="pointer-events: none;">BROADCAST</span></div>
       </div>
     </div>
@@ -123,6 +125,6 @@
 
   space ship navigation/interaction? might not work for something with this potential for size
 </pre>
-<p class="version">19.20260507</p>
+<p class="version">20.20260512</p>
 </body>
 </html>
