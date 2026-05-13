@@ -113,7 +113,7 @@ input::selection, textarea::selection, span::selection, label::selection {
     color: #08adad;
 }
 #fmessage {
-    height: 50px;
+    height: 113px;
     width: 100%;
 }
 #flocation_x, #flocation_y {
@@ -127,9 +127,8 @@ input::selection, textarea::selection, span::selection, label::selection {
 #debug_container {
     font-family: l-monospace-sub;
     background-color: #0b2943de;
-    flex-direction:column;
-    height: 180px;
-    cursor: pointer;
+    flex-direction: column;
+    height: 253px;
 }
 #submit_button {
     display: flex;
@@ -144,6 +143,7 @@ input::selection, textarea::selection, span::selection, label::selection {
     align-content: center;
     align-items: center;
     background: radial-gradient(circle at left top, #862828, #300000);
+    cursor: pointer;
 }
 #submit_button:active {
     background: radial-gradient(circle at left top, #661d1d, #1e0000);

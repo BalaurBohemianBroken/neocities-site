@@ -95,3 +95,22 @@ function image_selected(e) {
 
   reader.readAsDataURL(selectedFile);
 }
+
+function oninput_ioreadout_update_limit() {
+    document.getElementById("chars_left").innerText = io_curr_count - io_curr_input.value.length;
+}
+
+io_curr_input = null;
+io_curr_count = -1;
+function onfocus_ioreadout(e, msg, count) {
+    if (io_curr_input !== null) {
+        io_curr_input.removeEventListener("input", oninput_ioreadout_update_limit);
+        io_curr_input = null;
+    }
+
+    io_curr_input = e;
+    io_curr_count = count;
+    io_curr_input.addEventListener("input", oninput_ioreadout_update_limit);
+    document.getElementById("restriction").innerText = msg;
+    oninput_ioreadout_update_limit();
+}
