@@ -12,17 +12,20 @@ function oninput_plusminus(e_input, id_plusminus) {
 
 function submit() {
     let sub = gather_submission();
-    if (!validate_submission()) {
+    if (!validate_submission(sub)) {
         // TODO: error readout for user
+        set_log("<span style='color:red'>Broadcast failed</span>")
         return;
     }
+    set_log("Init broadcast..");
+
 }
 
 function gather_submission() {
     let o = {};
     o.alias = document.getElementById("falias").value;
-    o.x = document.getElementById("x_plusminus").value + document.getElementById("flocation_x").value.padStart(1, "0");
-    o.y = document.getElementById("y_plusminus").value + document.getElementById("flocation_y").value.padStart(1, "0");
+    o.x = document.getElementById("x_plusminus").innerText + document.getElementById("flocation_y_ghost").innerText;
+    o.y = document.getElementById("y_plusminus").innerText + document.getElementById("flocation_y_ghost").innerText;
     o.website = document.getElementById("fwebsite").value;
     // o.freq = document.getElementById("radio_freq").value;
     o.message = document.getElementById("fmessage").value;
@@ -41,30 +44,46 @@ function validate_submission(s) {
     let m_max = 512;
     let x_range = (1920 - collision_distance) / 2;
     let y_range = (1080 - collision_distance) / 2;
-    let re_chars_allowed = /^[ -~]+$/;
+    let re_chars_alias = /^[ -~]+$/;
+    let re_chars_web = /^[ -~]*$/;
     let re_number = /^[\+\-]?[0-9]+$/;
 
-    if (!validate_input(s.alias, re_chars_allowed, alias_min, alias_max))
+    if (!validate_input(s.alias, re_chars_alias, alias_min, alias_max)) {
+        set_log("<span style='color:red'>Bad alias</span>");
         return false;
-    if (!validate_input(s.website, re_chars_allowed, web_min, web_max))
+    }
+    if (!validate_input(s.website, re_chars_web, web_min, web_max)) {
+        set_log("<span style='color:red'>Bad website</span>");
         return false;
-    if (!validate_input(s.message, re_chars_allowed, m_min, m_max))
+    }
+    if (!validate_input(s.message, re_chars_alias, m_min, m_max)) {
+        set_log("<span style='color:red'>Bad message</span>");
         return false;
+    }
     
-    if (!re_number.test(s.x))
+    if (!re_number.test(s.x)) {
+        set_log("<span style='color:red'>Bad x</span>");
         return false;
+    }
     // This can send -0. I don't know if that's a problem.
     s.x = Number(s.x);
-    if (Math.abs(s.x) > x_range)
+    if (Math.abs(s.x) > x_range) {
+        set_log("<span style='color:red'>x too large</span>");
         return false;
+    }
 
-    if (!re_number.test(s.x))
+    if (!re_number.test(s.y)) {
+        set_log("<span style='color:red'>Bad y</span>");
         return false;
+    }
     s.y = Number(s.y);
-    if (Math.abs(s.y) > y_range)
+    if (Math.abs(s.y) > y_range) {
+        set_log("<span style='color:red'>y too large</span>");
         return false;
-
+    }
     // TODO: Collision check.
+
+    return true;
 }
 
 function validate_input(text, re, min, max) {
@@ -76,6 +95,7 @@ function validate_input(text, re, min, max) {
 }
 
 function place_signal() {
+    // TODO:
     // Player clicks somewhere on screen to place their signal.
     // Provides x/y inherently.
     return;
@@ -113,4 +133,20 @@ function onfocus_ioreadout(e, msg, count) {
     io_curr_input.addEventListener("input", oninput_ioreadout_update_limit);
     document.getElementById("restriction").innerText = msg;
     oninput_ioreadout_update_limit();
+}
+
+// Width of 16 characters currently.
+debug_log_entries = [];
+function set_log(msg) {
+    debug_log_entries.push(msg);
+    let log_lines = 3;
+    let inner_str = "";
+    for (let i = 0; i < log_lines; i++) {
+        let log_index = debug_log_entries.length - 1 - i;
+        let content = "";
+        if (log_index >= 0)
+            content = debug_log_entries[debug_log_entries.length - 1 - i];
+        inner_str = content + "<br>" + inner_str;
+    }
+    document.getElementById("debug_log").innerHTML = inner_str;
 }

@@ -129,6 +129,7 @@ input::selection, textarea::selection, span::selection, label::selection {
     background-color: #0b2943de;
     flex-direction: column;
     height: 253px;
+    width: 125px;
 }
 #submit_button {
     display: flex;
