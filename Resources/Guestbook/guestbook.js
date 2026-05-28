@@ -18,7 +18,25 @@ function submit() {
         return;
     }
     set_log("Init broadcast..");
+    send_guestbook_request(sub);
+}
 
+// this code waa written on my phone at a bus stop sorry
+function send_guestbook_request(submission) {
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", "https://api.balaur.online/guestbook/", true);
+  xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+  const body = JSON.stringify(submission);
+  xhr.onload = () => {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      set_log("<span style='color: green;'>Successful!</span>");
+    }
+    else {
+      set_log("<span style='color: red;'>Unknown error</span>");
+      console.log(`Error submitting broadcast: ${xhr.status}`);
+    }
+  };
+  xhr.send(body);
 }
 
 function gather_submission() {
@@ -36,7 +54,7 @@ function validate_submission(s) {
     let collision_distance = 32;
     // TODO: Change backend web_max to match
     let alias_min = 1;
-    let alias_max = 1;
+    let alias_max = 16;
     let web_min = 0;
     let web_max = 64;
     // TODO: Alt message limitation based on vertical size.
