@@ -19,6 +19,15 @@
 <body class="noselect" style="overflow: clip">
 <p class="memory-date" title="discord was a completely new world. i finally belonged somewhere" style="position:absolute; left:500px; top:100px;">20180209</p>
 <p><a href="https://github.com/BalaurBohemianBroken/neocities-backend/blob/master/api/views.py">api backend code</a>; if you find any exploits lemme know<!-- TODO: Link to contact -->, i will offer a small reward</p>
+<div id="boardcasts">
+  <!-- TODO:
+   Random spin
+   Satellite binary blinking
+   -->
+  <div data-broadcast_id="10" class="boardcast" style="left: 100px; top: 523px;" onclick="onclick_boardcast(this);">
+    <img src="/Resources/Guestbook/Sprites/Satellite/satellite.png">
+  </div>
+</div>
 <div>
   <!-- controlled in js -->
   <!-- <div id="field_info">
@@ -36,7 +45,7 @@
           <input id="image_select" accept=".png,.jpg" style="display: none;" type="file" onchange="image_selected(event)">
         </div>
         <!-- <div id="radio_container" class="row">
-          <!-- TODO: AM FM LSB CW USB QAM selection
+          TODO: AM FM LSB CW USB QAM selection
           <span id="radio_format" class="guestbookMetadataText">LSB^</span>
           <div style="position: relative;" class="inputWithGhost">
             <span id="radio_freq_ghost" class="guestbookMetadataText metadataInputGhost" style="position: absolute;">00001</span>
@@ -104,6 +113,52 @@
       </div>
     </div>
   </div>
+  <div style="height: 100px;"></div>
+  <div class="boardcast_display">
+    <div class="guestbookPanel gapped guestbook_container">
+      <div class="column left_panel">
+        <img class="broadcast_img" src="/Resources/Guestbook/Sprites/no-graphic.png" width="128" height="128">
+        <div class="row">
+          <span class="guestbookMetadataText">x</span>
+          <div style="position: relative;" class="inputCoordinates">
+            <span class="guestbookMetadataText metadataInputGhost x_plusminus" style="position: absolute; color: #ace8ff;">+</span>
+            <span class="guestbookMetadataText metadataInputGhost flocation_x_ghost" style="position: absolute; left: 8px;">000000</span>
+          </div>
+        </div>
+        <div class="row">
+          <span class="guestbookMetadataText">y</span>
+          <div style="position: relative;" class="inputCoordinates">
+            <span class="y_plusminus guestbookMetadataText metadataInputGhost" style="position: absolute; color: #ace8ff;">+</span>
+            <span class="flocation_y_ghost guestbookMetadataText metadataInputGhost" style="position: absolute; left: 8px;">000000</span>
+          </div>
+        </div>
+      </div>
+      <div class="column gapped right_panel">
+        <div class="guestbook_metadata row">
+          <span class="guestbook_date guestbookMetadataText">20260504.1908</span> <!-- TODO: Pull current time -->
+          <span class="guestbook_time guestbookMetadataText">#00</span> <!-- TODO: Update ID here based on num entries present. -->
+        </div>
+        <div class="row gapped">
+          <label class="guestbookLabel guestbookPfpLabel">alias:</label>
+          <span class="boardcast_variable_text broadcast_alias">NONE</span>
+          <!-- <input class="guestbookText" type="text" id="falias" name="falias" onfocus="onfocus_ioreadout(this, 'ascii only', 32);" oninput="oninput_limit(this, 32, /[^ -~]/); "> -->
+        </div>
+        <div class="row gapped">
+          <label class="guestbookLabel guestbookPfpLabel" for="fwebsite">website:</label>
+          <span class="boardcast_variable_text broadcast_website">NONE</span>
+          <!-- <input class="guestbookText" type="text" id="fwebsite" name="fwebsite" onfocus="onfocus_ioreadout(this, 'ascii only', 64);" oninput="oninput_limit(this, 64, /[^ -~]/);"> -->
+        </div>
+        <div class="row gapped" style="justify-content: center;">
+          <span>=== transmission start ===</span>
+        </div>
+        <div class="row gapped">
+          <!-- TODO: Limit this by width and height, rather than character count.-->
+          <span class="boardcast_variable_text boardcast_message">NONE</span>
+          <!-- <textarea class="guestbookText" type="text" id="fmessage" name="fmessage" spellcheck="false" onfocus="onfocus_ioreadout(this, 'ascii only', 256);" oninput="oninput_limit(this, 256, /[^ -~]/)"></textarea> -->
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 
@@ -129,6 +184,6 @@
   gun
   engine particles
 </pre>
-<p class="version">24.20260524</p>
+<p class="version">25.20260528</p>
 </body>
 </html>

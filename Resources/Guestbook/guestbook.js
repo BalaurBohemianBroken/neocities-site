@@ -1,3 +1,23 @@
+// TODO: Handle sending/receiving images for pfps.
+
+function onload_guestbook() {
+    // Spawn in existing entries
+    const request = new Request("/myEndpoint", {
+    method: "POST",
+    });
+    request.json().then((data) => {spawn_guestbook_entries(data)});
+}
+
+function spawn_guestbook_entries(entries) {
+    for (const [key, value] of Object.entries(entries["entries"])) {
+        spawn_guestbook_entry(value);
+    }
+}
+
+function spawn_guestbook_entry(entry) {
+
+}
+
 function oninput_plusminus(e_input, id_plusminus) {
     let e_plusminus = document.getElementById(id_plusminus);
     if (e_input.value.includes("+")) {
