@@ -1,0 +1,20 @@
+p {
+    margin: 4px 0 4px 0;
+}
+
+.Indented {
+    margin-left: 1em;
+}
+
+.Collapsible {
+    cursor: pointer;
+}
+
+.CollapsibleActivated {
+    
+}
+
+.CollapsibleContent {
+    display: none;
+    overflow: hidden;
+}
