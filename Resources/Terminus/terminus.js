@@ -1,9 +1,41 @@
-dropdown_collapsed = "🞂 ";
-dropdown_uncollapsed = "🞃 ";
+// scope variables
+terminus = {
+    dropdown_collapsed: "🞂 ",
+    dropdown_uncollapsed: "🞃 ",
+    main_panel: null,
+    side_panel: null,
+    body_content_elements: {},
+    body_content_current: null,
+};
 
 document.addEventListener("DOMContentLoaded", function(event) {
-    InitCollapsibles();
+    Terminus();
 });
+
+function Terminus() {
+    terminus.main_panel = document.getElementById("main_panel");
+    terminus.side_panel = document.getElementById("side_panel");
+    InitBodyContent();
+    InitCollapsibles();
+}
+
+function InitBodyContent() {
+    let elements = terminus.main_panel.getElementsByClassName("BodyContent");
+    // Register body content
+    for (const element of elements) {
+        let name = element.getAttribute("data-content_name");
+        if (name == null) {
+            console.warn("Couldn't find attribute data-content_name on an element.");
+            continue;
+        }
+        terminus.body_content_elements[name] = element;
+    }
+    // Add onclick events for HasBodyContent
+    let content_havers = terminus.side_panel.getElementsByClassName("HasBodyContent");
+    for (const element of content_havers) {
+        element.addEventListener("click", function() {LoadBodyContent(element.innerText);});
+    }
+}
 
 function InitCollapsibles() {
     let collapsibles = document.getElementsByClassName("Collapsible");
@@ -11,7 +43,7 @@ function InitCollapsibles() {
     for (let i = 0; i < collapsibles.length; i++) {
         let element = collapsibles[i];
         element.addEventListener("click", function() {HandleCollapse(element);});
-        element.innerText = dropdown_collapsed + element.innerText;
+        element.innerText = terminus.dropdown_collapsed + element.innerText;
         element.nextElementSibling.style.display = "none";
     }
 }
@@ -22,10 +54,23 @@ function HandleCollapse(element) {
     let content = element.nextElementSibling;
     if (isCollapsed) {
         content.style.display = "none";
-        element.innerText = dropdown_collapsed + element.innerText.slice(3);
+        element.innerText = terminus.dropdown_collapsed + element.innerText.slice(3);
     }
     else {
         content.style.display = "block";
-        element.innerText = dropdown_uncollapsed + element.innerText.slice(3);
+        element.innerText = terminus.dropdown_uncollapsed + element.innerText.slice(3);
+    }
+}
+
+function LoadBodyContent(content_name) {
+    // TODO: This. Test stuff works too.
+    let target_element = terminus.body_content_elements[content_name];
+    if (target_element == null) {
+        console.warn("Couldn't find body content element with name " + content_name);
+        return;
+    }
+    if (terminus.body_content_current != null) {
+        // Display: none is in their class.
+        terminus.body_content_current.style = "";
     }
 }

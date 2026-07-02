@@ -1,3 +1,7 @@
+body {
+    font-family: l-monospace-sub;
+}
+
 p {
     margin: 4px 0 4px 0;
 }
@@ -35,4 +39,12 @@ p {
 .CollapsibleContent {
     display: none;
     overflow: hidden;
+}
+
+.HasBodyContent {
+
+}
+
+.BodyContent {
+    display: none;
 }
