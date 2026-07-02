@@ -2,6 +2,24 @@ p {
     margin: 4px 0 4px 0;
 }
 
+#main_panel {
+    border-left: 0;
+    border-right: 0;
+    width: 100%;
+    padding: 10px;
+}
+
+#side_panel {
+    width: 300px;
+    padding: 10px;
+}
+
+.GayBorder {
+    border-left: 2px solid #5b095e;
+    /*border-right: 2px solid #5b095e;*/
+    /*border-top: 2px solid #5b095e;*/
+}
+
 .Indented {
     margin-left: 1em;
 }
