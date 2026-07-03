@@ -33,7 +33,8 @@ function InitBodyContent() {
     // Add onclick events for HasBodyContent
     let content_havers = terminus.side_panel.getElementsByClassName("HasBodyContent");
     for (const element of content_havers) {
-        element.addEventListener("click", function() {LoadBodyContent(element.innerText);});
+        let name = element.innerText;
+        element.addEventListener("click", function() {LoadBodyContent(name);});
     }
 }
 
@@ -71,6 +72,8 @@ function LoadBodyContent(content_name) {
     }
     if (terminus.body_content_current != null) {
         // Display: none is in their class.
-        terminus.body_content_current.style = "";
+        terminus.body_content_current.style.display = "";
     }
+    terminus.body_content_current = target_element;
+    target_element.style.display = "block";
 }
