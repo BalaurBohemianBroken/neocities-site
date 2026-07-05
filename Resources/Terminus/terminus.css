@@ -9,6 +9,7 @@ body {
 
 p {
     margin: 0;
+    font-size: 0.7em;
 }
 
 #side_panel p {
@@ -31,7 +32,7 @@ p {
 #content {
     display: flex;
     flex-direction: column;
-    width: 50vw;
+    width: 70vw;
     height: 100%;
     margin: auto;
     align-items: center;
@@ -49,13 +50,10 @@ p {
     overflow: scroll;
     width: 50%;
     padding: 10px;
-    font-size: 0.7em;
 }
 
 .GayBorder {
     border-left: 2px solid #5b095e;
-    /*border-right: 2px solid #5b095e;*/
-    /*border-top: 2px solid #5b095e;*/
 }
 
 .Indented {
@@ -83,6 +81,10 @@ p {
 
 .BodyContent {
     display: none;
+}
+
+.Poem {
+    white-space: nowrap;
 }
 
 .version {
