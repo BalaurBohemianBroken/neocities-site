@@ -9,11 +9,17 @@ body {
 
 p {
     margin: 0;
-    font-size: 0.7em;
+    font-size: 1.1em;
+}
+
+a:link {
+    text-decoration: none;
 }
 
 #side_panel p {
-    margin: 5px 0;
+    margin: 8px 0;
+    line-height: 1em;
+    font-size: 0.8em;
     /*border-bottom: 1px solid #5b095e;*/
 }
 
@@ -32,7 +38,7 @@ p {
 #content {
     display: flex;
     flex-direction: column;
-    width: 70vw;
+    width: 50vw;
     height: 100%;
     margin: auto;
     align-items: center;
@@ -44,6 +50,7 @@ p {
     width: 100%;
     padding: 10px;
     overflow: scroll;
+    font-family: l-monospace-main;
 }
 
 #side_panel {
@@ -77,6 +84,10 @@ p {
 
 .HasBodyContent {
     cursor: pointer;
+}
+
+.HasBodyContent.Selected {
+    background-color: #5b095e88;
 }
 
 .BodyContent {
