@@ -4,8 +4,10 @@ terminus = {
     dropdown_uncollapsed: "🞃 ",
     main_panel: null,
     side_panel: null,
+    
     body_content_elements: {},
     body_content_current: null,
+    side_panel_selected: null,
 };
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -34,7 +36,7 @@ function InitBodyContent() {
     let content_havers = terminus.side_panel.getElementsByClassName("HasBodyContent");
     for (const element of content_havers) {
         let name = element.innerText;
-        element.addEventListener("click", function() {LoadBodyContent(name);});
+        element.addEventListener("click", function() {SidePanelSelect(this, name);});
     }
 }
 
@@ -63,13 +65,22 @@ function HandleCollapse(element) {
     }
 }
 
-function LoadBodyContent(content_name) {
+function SidePanelSelect(selected_element, content_name) {
     // TODO: This. Test stuff works too.
     let target_element = terminus.body_content_elements[content_name];
     if (target_element == null) {
         console.warn("Couldn't find body content element with name " + content_name);
         return;
     }
+    
+    // Handle side panel
+    if (terminus.side_panel_selected != null) {
+        terminus.side_panel_selected.classList.remove("Selected");
+    }
+    selected_element.classList.add("Selected");
+    terminus.side_panel_selected = selected_element;
+    
+    // Handle body content
     if (terminus.body_content_current != null) {
         // Display: none is in their class.
         terminus.body_content_current.style.display = "";
