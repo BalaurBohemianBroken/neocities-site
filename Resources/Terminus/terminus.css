@@ -8,7 +8,12 @@ body {
 }
 
 p {
-    margin: 4px 0 4px 0;
+    margin: 0;
+}
+
+#side_panel p {
+    margin: 5px 0;
+    /*border-bottom: 1px solid #5b095e;*/
 }
 
 #title {
@@ -42,8 +47,9 @@ p {
 
 #side_panel {
     overflow: scroll;
-    width: 300px;
+    width: 50%;
     padding: 10px;
+    font-size: 0.7em;
 }
 
 .GayBorder {
@@ -60,14 +66,16 @@ p {
     cursor: pointer;
 }
 
-.CollapsibleActivated {
-    
+.Deactivated {
+    display: none;
 }
 
-.CollapsibleContent {
-    display: none;
-    overflow: hidden;
-}
+/*.CollapsibleContent #side_panel {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    overflow: hidden;*/
+/*    gap: 5px;*/
+/*}*/
 
 .HasBodyContent {
     cursor: pointer;

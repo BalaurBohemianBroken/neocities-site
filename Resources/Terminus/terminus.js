@@ -45,7 +45,7 @@ function InitCollapsibles() {
         let element = collapsibles[i];
         element.addEventListener("click", function() {HandleCollapse(element);});
         element.innerText = terminus.dropdown_collapsed + element.innerText;
-        element.nextElementSibling.style.display = "none";
+        element.nextElementSibling.classList.add("Deactivated");
     }
 }
 
@@ -54,11 +54,11 @@ function HandleCollapse(element) {
     let isCollapsed = !element.classList.contains("Active");
     let content = element.nextElementSibling;
     if (isCollapsed) {
-        content.style.display = "none";
+        content.classList.add("Deactivated");
         element.innerText = terminus.dropdown_collapsed + element.innerText.slice(3);
     }
     else {
-        content.style.display = "block";
+        content.classList.remove("Deactivated");
         element.innerText = terminus.dropdown_uncollapsed + element.innerText.slice(3);
     }
 }
