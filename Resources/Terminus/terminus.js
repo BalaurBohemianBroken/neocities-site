@@ -77,6 +77,7 @@ function HandleCollapse(element) {
 }
 
 function SidePanelSelect(selected_element, content_name) {
+    // TODO: Reset scroll.
     let target_element = terminus.body_content_elements[content_name];
     if (target_element == null) {
         console.warn("Couldn't find body content element with name " + content_name);
