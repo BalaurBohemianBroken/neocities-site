@@ -25,6 +25,12 @@ function Terminus() {
     terminus.unparsed_data = document.getElementById("unparsed_data");
     terminus.parsed_data = ParseData();
     InitMenu(terminus.parsed_data);
+    
+    // Open and select based on fragment.
+    let fragment = decodeURIComponent(window.location.hash.substring(1));
+    if (fragment in terminus.data_point_register) {
+        OpenDataPoint(fragment);
+    }
 }
 
 function ParseData() {
@@ -42,6 +48,7 @@ function CreateDataPoint(element, parent_name) {
     let data_point = {
         full_name: "",
         name: "",
+        parent_name: "",
         // Filled with an element.
         body_element: null,
         menu_element: null,
@@ -52,9 +59,12 @@ function CreateDataPoint(element, parent_name) {
     
     // name
     data_point.name = element.getAttribute("data-name");
-    data_point.full_name = data_point.name; 
-    if (data_point.name !== null && parent_name !== "") {
-        data_point.full_name = parent_name + "." + name;
+    data_point.parent_name = parent_name;
+    if (data_point.name && parent_name) {
+        data_point.full_name = parent_name + "." + data_point.name;
+    }
+    else {
+        data_point.full_name = data_point.name;
     }
     
     // menu_element
@@ -172,4 +182,24 @@ function MenuSelect(data_point) {
     terminus.main_panel.appendChild(data_point.body_element);
     terminus.data_point_selected = data_point;
     terminus.main_panel.scroll(0, 0);
+}
+
+function OpenDataPoint(data_point_name) {
+    let target_data_point = terminus.data_point_register[data_point_name];
+    let forcebreak = 0;  // Guard against reference loops.
+    let chain = [target_data_point];
+    while (forcebreak++ < 10 && target_data_point.parent_name) {
+        target_data_point = terminus.data_point_register[target_data_point.parent_name];
+        chain.unshift(target_data_point);
+    }
+
+    if (forcebreak >= 10) {
+        console.error("Hit forcebreak while trying to open DataPoint named: " + data_point_name);
+        return;
+    }
+
+    // Click down the chain!
+    for (const data_point of chain) {
+        data_point.menu_element.click();
+    }
 }
