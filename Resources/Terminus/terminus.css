@@ -21,20 +21,21 @@ a:link {
     font-size: 2em;
 }
 
-#panel_containers {
-    height: min(70%, 500px);
-    margin: 20px 0 0 0;
-    display: flex;
-    width: 100%;
-}
-
 #content {
     display: flex;
     flex-direction: column;
-    width: 50vw;
+    width: max(50vw, 400px);
     height: 100%;
     margin: auto;
     align-items: center;
+}
+
+#panel_containers {
+    height: 100%;
+    margin: 20px 0 0 0;
+    display: flex;
+    width: 100%;
+    overflow: hidden;
 }
 
 #main_panel {
@@ -56,7 +57,7 @@ a:link {
 #side_panel p {
     margin: 8px 0;
     line-height: 1em;
-    font-size: 0.8em;
+    font-size: 1em;
     /*border-bottom: 1px solid #5b095e;*/
 }
 
@@ -99,8 +100,5 @@ a:link {
 }
 
 .version {
-    bottom: 10px;
-    /*width: 100%;*/
     text-align: center;
-    position: absolute;
 }

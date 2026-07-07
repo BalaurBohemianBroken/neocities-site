@@ -27,956 +27,956 @@ TODO: Test larger screens.-->
       
     </div>
   </div>
-    <!--
-        This element stores what populates the main and side panel. It gets parsed in javascript.
-        I thought of using json, but that disallows new lines and would require constant character escaping.
-        
-        DataPoint - Represents a class that contains data.
-        data-name - attribute on DataPoint that provides its simple name. If this is omitted, must and can only have MenuContent Internally, data-names are referenced as belonging to the namespace of their parent, kinda like C#. e.g. writing.poetry.Breakpoint;
-        MenuName - optional. A custom element that gets placed in the menu. uses <p>data-name</p> if none provided.
-        BodyContent - optional. Element to be placed in body when this is clicked.
-        NestedContent - optional. Content that is revealed in the menu when clicked on. Should usually contain more DataPoint's
-    -->
-    <div id="unparsed_data" style="display: none">
-      <div class="DataPoint" data-name="socials">
-        <p class="BodyContent">
-          helo
-        </p>
-        <div class="NestedContent">
-          <div class="DataPoint" data-name="discord">
-            <p class="MenuName"><a href="https://discord.gg/2SrT3eCPKs" target="_blank">discord server v4</a></p>
-          </div>
-          <div class="DataPoint" data-name="neocities">
-            <p class="MenuName"><a href="https://neocities.org/site/balaurbohemianbroken" target="_blank">neocities</a></p>
-          </div>
-          <div class="DataPoint" data-name="telegram">
-            <p class="MenuName"><a href="https://t.me/BalaurBohemianBroken" target="_blank">telegram</a></p>
-          </div>
-          <div class="DataPoint" data-name="email">
-            <p class="MenuName"><a href="mailto:balaur@tutamail.com" target="_blank">email</a></p>
-          </div>
-          <div class="DataPoint" data-name="github">
-            <p class="MenuName"><a href="https://github.com/BalaurBohemianBroken" target="_blank">github</a></p>
-          </div>
-          <div class="DataPoint" data-name="nexus">
-            <p class="MenuName"><a href="https://www.nexusmods.com/profile/BalaurBohemianBroken" target="_blank">nexus</a></p>
-          </div>
-          <div class="DataPoint" data-name="furtrack">
-            <p class="MenuName"><a href="https://www.furtrack.com/index/photographer:balaurbohemianbroken" target="_blank">furtrack</a></p>
-          </div>
-          <div class="DataPoint" data-name="e621">
-            <p class="MenuName"><a href="#">e621</a></p>
-          </div>
-          <div class="DataPoint" data-name="steam">
-            <p class="MenuName"><a href="https://steamcommunity.com/id/BalaurBohemianBroken" target="_blank">steam</a></p>
-          </div>
-          <div class="DataPoint" data-name="goodreads">
-            <p class="MenuName"><a href="https://www.goodreads.com/user/show/170183500-balaur" target="_blank">goodreads</a></p>
-          </div>
+  <p class="version">14.20260707</p>
+  <!--
+      This element stores what populates the main and side panel. It gets parsed in javascript.
+      I thought of using json, but that disallows new lines and would require constant character escaping.
+      
+      DataPoint - Represents a class that contains data.
+      data-name - attribute on DataPoint that provides its simple name. If this is omitted, must and can only have MenuContent Internally, data-names are referenced as belonging to the namespace of their parent, kinda like C#. e.g. writing.poetry.Breakpoint;
+      MenuName - optional. A custom element that gets placed in the menu. uses <p>data-name</p> if none provided.
+      BodyContent - optional. Element to be placed in body when this is clicked.
+      NestedContent - optional. Content that is revealed in the menu when clicked on. Should usually contain more DataPoint's
+  -->
+  <div id="unparsed_data" style="display: none">
+    <div class="DataPoint" data-name="socials">
+      <p class="BodyContent">
+        helo
+      </p>
+      <div class="NestedContent">
+        <div class="DataPoint" data-name="discord">
+          <p class="MenuName"><a href="https://discord.gg/2SrT3eCPKs" target="_blank">discord server v4</a></p>
+        </div>
+        <div class="DataPoint" data-name="neocities">
+          <p class="MenuName"><a href="https://neocities.org/site/balaurbohemianbroken" target="_blank">neocities</a></p>
+        </div>
+        <div class="DataPoint" data-name="telegram">
+          <p class="MenuName"><a href="https://t.me/BalaurBohemianBroken" target="_blank">telegram</a></p>
+        </div>
+        <div class="DataPoint" data-name="email">
+          <p class="MenuName"><a href="mailto:balaur@tutamail.com" target="_blank">email</a></p>
+        </div>
+        <div class="DataPoint" data-name="github">
+          <p class="MenuName"><a href="https://github.com/BalaurBohemianBroken" target="_blank">github</a></p>
+        </div>
+        <div class="DataPoint" data-name="nexus">
+          <p class="MenuName"><a href="https://www.nexusmods.com/profile/BalaurBohemianBroken" target="_blank">nexus</a></p>
+        </div>
+        <div class="DataPoint" data-name="furtrack">
+          <p class="MenuName"><a href="https://www.furtrack.com/index/photographer:balaurbohemianbroken" target="_blank">furtrack</a></p>
+        </div>
+        <div class="DataPoint" data-name="e621">
+          <p class="MenuName"><a href="#">e621</a></p>
+        </div>
+        <div class="DataPoint" data-name="steam">
+          <p class="MenuName"><a href="https://steamcommunity.com/id/BalaurBohemianBroken" target="_blank">steam</a></p>
+        </div>
+        <div class="DataPoint" data-name="goodreads">
+          <p class="MenuName"><a href="https://www.goodreads.com/user/show/170183500-balaur" target="_blank">goodreads</a></p>
         </div>
       </div>
-      <div class="DataPoint" data-name="writing">
-        <div class="NestedContent">
-          <div class="DataPoint" data-name="poetry">
-            <p class="BodyContent">
-              i actually want to make music, but i haven't figured out instruments yet
-            </p>
-            <div class="NestedContent">
-              <div class="DataPoint" data-name="Making myth">
-                <p class="BodyContent Poem">
-                  'Hear ye hear ye', croaked from a crow,<br>
-                  corvid caws on fresh footed snow.<br>
-                  Focus shifted for a brand new cryptid.<br>
-                  Licence: Unrestricted.<br>
-                  <br>
-                  Accounts are full of plot holes,<br>
-                  no one can agree what we're looking for.<br>
-                  Ectothermic, might've meant psychopathic.<br>
-                  Reptillian, maybe just a skin condition.<br>
-                  Whatever it is, it's foundationally fractured,<br>
-                  old photos disappearing in a haze of dithering<br>
-                  like it honestly wants to be forgotten.<br>
-                  <br>
-                  Last known contact is now lost media.<br>
-                  Last last contact scrawled in a poet's dead hieroglyph.<br>
-                  Further back is a rumour tapestry,<br>
-                  ending in words like "Love," "Humility," and "Tragedy."<br>
-                  Dig up rabbit holes, interrogate voles,<br>
-                  here we hunt for yet another lost soul.<br>
-                  <br>
-                  Boom!<br>
-                  Flicklock answered by yelp, yelp smothered by yell.<br>
-                  'Bring the blunderbuss, I need help!'<br>
-                  Runes muttered under breath,<br>
-                  mages tracking squirrels to their nest.<br>
-                  Hounds turning gophers into feast,<br>
-                  yet still no tracks,<br>
-                  where the hell is that beast?<br>
-                  <br>
-                  Each day is the Ides,<br>
-                  Marching, gladly to Elysium,<br>
-                  dozing, waiting in valerian.<br>
-                  The elil miss their mark,<br>
-                  just slash on slash<br>
-                  and dash through the dark.<br>
-                  One more scar, the course for the par.<br>
-                  Trailing ichor, downing liquor,<br>
-                  shambling carcass a crosshatch knitwork.<br>
-                  <br>
-                  How much longer can it keep up?<br>
-                  Heart and hunt and Will and won't,<br>
-                  right or wrong or feel or don't.<br>
-                  The ultimate particularly,<br>
-                  impossible to express in a way articulately.<br>
-                  It's loss on loss and lacking lack,<br>
-                  take what's scary and hack and hack.<br>
-                  <br>
-                  Sightings starting rare.<br>
-                  Sold! 2,000, one tuft of hair.<br>
-                  Next on vendue, severed appendage.<br>
-                  Might be a finger? Might have a claw?<br>
-                  The labs won't make sense of the lore,<br>
-                  the chromosomes are too occupied in civil war.
-                </p>
-              </div>
-              <div class="DataPoint" data-name="Untitled 002.mp3">
-                <p class="BodyContent Poem">
-                  Dust glinting in setting sunbeams,<br>
-                  lullaby set to lost dreams,<br>
-                  lying too early.<br>
-                  <br>
-                  Beat unsteady and fast,<br>
-                  visions unreasonably vast,<br>
-                  alone, defenceless.<br>
-                  <br>
-                  Not now, why now?<br>
-                  By instinct, head bows,<br>
-                  through gaps it leaks free.<br>
-                  <br>
-                  Tap, tap, softly on the bed.<br>
-                  Plush held in courage's stead.<br>
-                  It doesn't need to make sense.<br>
-                  <br>
-                  The lullaby repeats,<br>
-                  gradually softens defeats,<br>
-                  the worst is past.<br>
-                  <br>
-                  The dust continues to pirouette.<br>
-                  The day's not over yet.<br>
-                  This won't define you.
-                </p>
-              </div>
-              <div class="DataPoint" data-name="Breakpoint;">
-                <p class="BodyContent Poem">
-                  Second breakdown.<br>
-                  The train is still running.<br>
-                  Marching to the slaughterhouse.<br>
-                  I gave you everything.<br>
-                  <br>
-                  It comes in waves.<br>
-                  The drugs don’t help.<br>
-                  The taste of blood.<br>
-                  Incisors staple in the yelp.<br>
-                  “I gave you everything.”<br>
-                  <br>
-                  Grip tightened,<br>
-                  Sky splinters,<br>
-                  Earth fractures,<br>
-                  Niagara falls.<br>
-                  Everything ends.<br>
-                  I have nothing.<br>
-                  <br>
-                  The train has stopped.<br>
-                  Off to work.
-                </p>
-              </div>
-              <div class="DataPoint" data-name="Intentionally blank">
-                <p class="BodyContent Poem">
-                  It's quite strange, really.<br>
-                  <br>
-                  It's a conversation I will replay a thousand times, full of warm delight, the sound of rain, the setting of the sun.<br>
-                  It's a pitiful whimper that escapes when no one is around.<br>
-                  It's a cause to drink!<br>
-                  It's an unstoppable agony that permeates my bones and crashes me to the ground.<br>
-                  It's a motive to beat the first morning chirp of the birds.<br>
-                  It's a night spent mouth wide, eyes fixed to a different realm, trying desperately to survive one more moment.<br>
-                  It's a thumping drum that underscores my melody, creating a woven fabric of colour and smell.<br>
-                  It's a cause to drink.<br>
-                  It's a soulful cry of all that could have been, kept alive only in the echoes of our arrest.<br>
-                  It's a flutter in the chest - or, is that the stress?<br>
-                  It's a disfiguring wound that reopens at the slightest touch. Self inflicted.<br>
-                  It's a fatal flaw in my construction that will be my grizzly and prompt demise.<br>
-                  It's a brilliant promise held up to the light, scattering billions of possibilities.<br>
-                  It's fucking hopeless and I can't keep it up!
-                </p>
-              </div>
-              <div class="DataPoint" data-name="Once, forlorn">
-                <p class="BodyContent Poem">
-                  That weathered creature, upon prominent scars feature,<br>
-                  they traced a dark past.<br>
-                  Found at his worst, unworldly pain cursed,<br>
-                  and no cure that could last.<br>
-                  <br>
-                  He wandered lost and alone, fur ragged and wind blown,<br>
-                  he knew not what he was.<br>
-                  I walked by his side, his shuffle to my stride,<br>
-                  to aid the burden that is his.<br>
-                  <br>
-                  Captured demons tear asunder, upon a quaking soul the clap of thunder,<br>
-                  and slim hope he'll survive.<br>
-                  If touched when ravaged, while mind driven savage,<br>
-                  two will cease being alive.<br>
-                  <br>
-                  In the glimpses of happiness, quickly sheds feral snappiness,<br>
-                  a magnificent self is revealed.<br>
-                  Vulnerable and caring, courageous and daring,<br>
-                  what a wonderful being was once concealed.<br>
-                  <br>
-                  He had grown so much, once scared of the slightest touch,<br>
-                  our fights ceased to draw blood.<br>
-                  We knew each other's pain, joined in our shame,<br>
-                  a constant in the other's flood.<br>
-                  <br>
-                  Here we are. Apart. Deeply scarred.<br>
-                  Nought but the destruction of all.<br>
-                  I don't know what we were. I clutch bloodied fur.<br>
-                  I loved him.<br>
-                  I was a fool.<br>
-                  <br>
-                  That weathered creature, upon prominent scars feature,<br>
-                  some of which fit my claws.<br>
-                  He took what he could endure. His suffering is no more.<br>
-                  He deserved happiness, despite his flaws.
-                </p>
-              </div>
-              <div class="DataPoint" data-name="With friends like these, you better not have any enemies">
-                <p class="BodyContent Poem">
-                  No one was at your funeral.<br>
-                  I guess you had what you wanted.<br>
-                  I wish you could have been.<br>
-                  -<br>
-                  Sleepless again. We're talking again.<br>
-                  Play our old tunes swept in time's dunes.<br>
-                  Scared of starting anew.<br>
-                  -<br>
-                  Some of these days it seems<br>
-                  I'm more you than you've ever been<br>
-                  and the flame in my soul will<br>
-                  simmer just a little bit dimmer.<br>
-                  <br>
-                  You're not doing good. It hurts.<br>
-                  I once saw someone I'd do it all for.<br>
-                  Something I wish you could have seen.<br>
-                  -<br>
-                  Sleepless again.<br>
-                  <br>
-                  Scared of starting anew.<br>
-                  -<br>
-                  Most of these nights I feel<br>
-                  I'm disassembled into raw veal.<br>
-                  Chest a gaping hole while the<br>
-                  sinner takes his toll, a knife to their dinner.<br>
-                  <br>
-                  Erased, replaced,<br>
-                  clamp the hose, crisis froze,<br>
-                  fade out into the night.<br>
-                  No. Here I am,<br>
-                  poem who-fucking-knows,<br>
-                  another mirror to fight.<br>
-                  <br>
-                  Here's to another year.<br>
-                  How many are left?<br>
-                  It's just what I feared.<br>
-                  Another temporary death.<br>
-                  Each time it hurts less.<br>
-                  See you soon,<br>
-                  Citaa.
-                </p>
-              </div>
-              <div class="DataPoint" data-name="-attack">
-                <p class="BodyContent Poem">
-                  An orchestra in sympathy;<br>
-                  Six years of beats,<br>
-                  once missed.<br>
-                  Fluttering of a swan-song.<br>
-                  <br>
-                  An Evensong of one, a plea for the heavens,<br>
-                  body of a waning spirit,<br>
-                  descending to-<br>
-                  <br>
-                  A vortex of fear and forced relaxation,<br>
-                  of fated to-bes brought to be.<br>
-                  <br>
-                  Farewells whimpered to no response.
-                </p>
-              </div>
-              <div class="DataPoint" data-name="Fossiliferous">
-                <p class="BodyContent Poem">
-                  That's a nice name.<br>
-                  When did you claim it,<br>
-                  can I still call you, you?<br>
-                  <br>
-                  Winnicott changed everything.<br>
-                  <br>
-                  The collar was meaningful now,<br>
-                  and you said it was important,<br>
-                  and you were as happy as a boulder,<br>
-                  and when they touched you,<br>
-                  you were cold,<br>
-                  and you were as safe as stone.<br>
-                  <br>
-                  This time it's different.<br>
-                  This time it's instinctual,<br>
-                  your pulse is steady,<br>
-                  no good memories flicker past.<br>
-                  Chekhov's hero.<br>
-                  Predator! Protagonist!<br>
-                  Cannibal!<br>
-                  <br>
-                  Hey,<br>
-                  it's just something about me.<br>
-                  It's just something about sheep.<br>
-                  It's just how it goes, isn't it?<br>
-                  <br>
-                  It doesn't matter that it was real,<br>
-                  or that this one isn't.<br>
-                  You can make up anything,<br>
-                  you can choose how you feel,<br>
-                  you can be just as meaningful<br>
-                  as a rock.<br>
-                  <br>
-                  I hold your hand,<br>
-                  and the tissue is wet<br>
-                  because it's not yours.<br>
-                  I'm bleeding in you,<br>
-                  but last time the hills yelped<br>
-                  when we shot the gales together.
-                </p>
-              </div>
-              <div class="DataPoint" data-name="Tormentor">
-                <p class="BodyContent Poem">
-                  I’ve finally caught you.<br>
-                  <br>
-                  It’s been a long ride, these two dozen seasons cracking the code:<br>
-                  A near death experience,<br>
-                  The ultimate sacrifice,<br>
-                  And half a heart borrowed<br>
-                  <br>
-                  But now I’ve solved you, caged you in a circle of conjuration,<br>
-                  Finally it’s time for *me* to feel some elation.<br>
-                  <br>
-                  It was a gentle autumn breeze and a night of physical fun,<br>
-                  When it all started,<br>
-                  you crept into the sky,<br>
-                  and snuffed out the sun.<br>
-                  <br>
-                  Though there were infinite stars you could have chosen to consume,<br>
-                  It was mine you picked, my world you had fated to certain doom.<br>
-                  <br>
-                  And you were not yet done, not by a long shot,<br>
-                  There are dozens of incidents that I’m sure you forgot.<br>
-                  <br>
-                  The final straw was a simple one, really. Nothing absurd.<br>
-                  I was forsaken.<br>
-                  Destitute.<br>
-                  And you stood in the shadows, without speaking a word.<br>
-                  <br>
-                  Now it could be a coincidence, all you’ve done to destroy my soul.<br>
-                  That in your wake was left nothing but a hellhole.<br>
-                  <br>
-                  And oh, how I would love to slay you where you stand.<br>
-                  My hand,<br>
-                  Your throat,<br>
-                  Protests slipping through in measures of half-note!<br>
-                  <br>
-                  But I won’t. I can’t, not really, not now.<br>
-                  And not just so I can be holier-than-thou.<br>
-                  <br>
-                  I understand you, at least, I think I do, after all of this.<br>
-                  Through the blood,<br>
-                  Through the fears,<br>
-                  Through the scars,<br>
-                  Through the tears,<br>
-                  If you were gone, there’s nothing more I’d miss.<br>
-                  <br>
-                  After it all, I believe, truly, that you are not to blame.<br>
-                  Now, that is not an exoneration of your ocean of shame.<br>
-                  You’re cursed with the soul of torment and pain.<br>
-                  And working alone, I fear, you will find nothing to gain.<br>
-                  <br>
-                  I realise now, my powers aren’t a panacea.<br>
-                  I can’t fix you.<br>
-                  At best I can support.<br>
-                  But there are many people on this great Pangea.<br>
-                  <br>
-                  So seek out the wise men!<br>
-                  Seek out those that will help you senselessly!<br>
-                  Seek the ones who feel compassion, love, and empathy…<br>
-                  <br>
-                  Go! On your way, I break your chains!<br>
-                  I pray that all I’ve said will not be in vain!<br>
-                  Be changed, be free, share in my apogee!<br>
-                  Live life to the fullest. Please. For me.
-                </p>
-              </div>
-              <div class="DataPoint" data-name="Villain">
-                <p class="BodyContent Poem">
-                  Today I stole the meat from the skin of a struggling rat,<br>
-                  From the wet sharp maw of a mis-abused cat,<br>
-                  I told him you will be something beautiful and expressive,<br>
-                  You are loyal,<br>
-                  You are tasty,<br>
-                  You’re pathetic.<br>
-                  <br>
-                  Then I let him go.<br>
-                  Oh…<br>
-                  <br>
-                  I was cleaning off my claws,<br>
-                  I was licking dry my maw,<br>
-                  Pupils scan the horizons for beings that dare soar.<br>
-                  <br>
-                  I need something to set my heart racing,<br>
-                  Something to fill me with thrill,<br>
-                  That’s the moment I strike, go in for the kill.<br>
-                  <br>
-                  They feel it as well,<br>
-                  I can taste it in their lust,<br>
-                  They take joy in the teeth that tear as they thrust.<br>
-                  <br>
-                  Today I picked a flock of vibrant swallows from the crystal blue skies,<br>
-                  While their tunes drowned in their horrified cries,<br>
-                  I told them you will blossom into something new and important,<br>
-                  You are handsome,<br>
-                  You are cherished,<br>
-                  You are safe.<br>
-                  <br>
-                  Then I let them go.<br>
-                  No…<br>
-                  <br>
-                  It’s another haunted night,<br>
-                  Spirits drinking ghosts away,<br>
-                  Vortex of a soul being shredded without a fight,<br>
-                  <br>
-                  You were there in the demons,<br>
-                  You were stalking through my halls,<br>
-                  The hunter became the hunted the night the void calls.<br>
-                  <br>
-                  How long were you trailing me?<br>
-                  How long have I been dead?<br>
-                  I’m pulled up by the throat and bounded into its bed.<br>
-                  <br>
-                  It’s just what I wanted,<br>
-                  Exactly what I deserved,<br>
-                  See how far we can make this spine curve.<br>
-                  <br>
-                  Today you pulled a great beast of yore out of thorns and blood,<br>
-                  Where the wild blue roses fester and bud.<br>
-                  You told him you will grow to be someone happy and exalted.<br>
-                  You are special,<br>
-                  You are loved,<br>
-                  You are faulted.<br>
-                  <br>
-                  Then you let him go.
-                </p>
-              </div>
-              <div class="DataPoint" data-name="Exit, pursued by a nightmare">
-                <p class="BodyContent Poem">
-                  Please keep away from me.<br>
-                  There'll be no take three.<br>
-                  Don't cross the sea.<br>
-                  You had your chance.<br>
-                  <br>
-                  You played us like a game.<br>
-                  Not the last you'll maim.<br>
-                  You made a name<br>
-                  none will say.<br>
-                  <br>
-                  Nowhere to turn in need.<br>
-                  Look at who you keep.<br>
-                  When will you see?<br>
-                  They're the same.<br>
-                  <br>
-                  There's no one left to blame.<br>
-                  It's a shame.<br>
-                  It's your pain.<br>
-                  Could you change?<br>
-                  <br>
-                  Your best friend made it free.<br>
-                  One hitch in your spree.<br>
-                  Who could you be?<br>
-                  I won't know.
-                </p>
-              </div>
-              <div class="DataPoint" data-name="Loyal loving beast">
-                <p class="BodyContent Poem">
-                  Naive, innocent, and a little annoying.<br>
-                  He excitedly bounds up to you,<br>
-                  A "Yip!" and "Yap!" that can't be ceased!<br>
-                  You mean the world to him,<br>
-                  Your loyal loving beast!<br>
-                  <br>
-                  Not all is as it should be.<br>
-                  The play fighting is difficult,<br>
-                  And leaves a pain that can't be eased.<br>
-                  He's trying his best,<br>
-                  Your loyal loving beast.<br>
-                  <br>
-                  He doesn't realise what's happening.<br>
-                  What a wonderful outlet.<br>
-                  The last of his innocence you have fleeced.<br>
-                  What did you do,<br>
-                  to your loyal loving beast?<br>
-                  <br>
-                  You taught him an important lesson,<br>
-                  "You are broken."<br>
-                  Deserving what comes next,<br>
-                  He offers all he has left,<br>
-                  A feast.
-                </p>
-              </div>
-              <div class="DataPoint" data-name="old love poem">
-                <p class="BodyContent">
-                  an old poem<br>
-                  i don't remember who for<br>
-                  -----<br>
-                  <span class="Poem">So quickly, I came to adore everything about you.<br>
-            Duty calls!<br>
-            Oh my rerr~<br>
-            A thousand little quirks I would never deter.<br>
-            The way you wordlessly do what you think is right.<br>
-            The way we'd bond as we'd cuddle each night.<br>
-            I'm no stranger to crushes but...<br>
-            I knew it was something more to me.<br>
-            But what if it's not meant to be?<br>
-            Someone so amazing doesn't come for free,<br>
-            And I couldn't forget, you had the poly.<br>
-            No, I think we'd all agree,<br>
-            It's best to stick to the guarantee:<br>
-            Just an amazing friend.<br>
-            <br>
-            Your confession of affection shot me like a bolt,<br>
-            The rhythm in my chest failed to resume.<br>
-            You... felt the same.<br>
-            Ten days, and it was clear this was more.<br>
-            And for the next eighteen days, that we would explore.<br>
-            Could a bond really be this effortless?<br>
-            Never before have I been so at peace.<br>
-            Your presence, a haven where the thoughts cease.<br>
-            We match or complement in every way.<br>
-            I grow closer to you with every day.<br>
-            <br>
-            I'll never forget that night.<br>
-            We laid in bed together.<br>
-            We were a mess of emotions.<br>
-            It had been time enough,<br>
-            And with faces buried in pillow fluff,<br>
-            We broke the final barrier:<br>
-            "I love you."<br>
-            <br>
-            I couldn't stop shaking.<br>
-            All of these memories we've been making-<br>
-            All of my time you've been taking,<br>
-            After the years of hiding and faking,<br>
-            After the aching and soul breaking,<br>
-            The snaking from not-quite-right to not-good-enough,<br>
-            Finally...<br>
-            I'm secure.<br>
-            A kindred spirit, matched to my own.<br>
-            Happiness, simple and pure.<br>
-            And as we approach the unknown,<br>
-            With these feelings set in stone,<br>
-            I know it doesn't have to be alone.<br>
-            <br>
-            So, Crystal:<br>
-            It is the dawn of our fifth week together.<br>
-            I love you.<br>
-            And I need you in my life.<br>
-            Will you be my partner through this strife?</span>
-                </p>
-              </div>
-              <div class="DataPoint" data-name="very old love poem">
-                <p class="BodyContent">
-                  one of my oldest poems<br>
-                  -----<br>
-                  <span class="Poem">An alien comes from space,<br>
-            And to this human race,<br>
-            It teaches something new.<br>
-              <br>
-            No, not for the masses,<br>
-            No, not for the important,<br>
-            But only to you.<br>
-              <br>
-              <br>
-            Not power nor technology,<br>
-            Not conspiracy nor astrology,<br>
-            Could match what he has gifted.<br>
-              <br>
-            And it's you,<br>
-            The lucky you,<br>
-            Who's been chosen, uplifted.<br>
-              <br>
-              <br>
-            With words soft and divine,<br>
-            With form avian and cervine,<br>
-            His arms are like a scarf.<br>
-              <br>
-            Without anger or oppression,<br>
-            Without force or aggression,<br>
-            He eradicates a world of wrath.<br>
-              <br>
-              <br>
-            Evenings of joys and laughter,<br>
-            With love and passion after,<br>
-            And eye of hopeful glint.<br>
-              <br>
-            He guides the future of one,<br>
-            He solves the problems of one,<br>
-            A love from beyond: Clint</span>
-                </p>
-              </div>
-              <div class="DataPoint" data-name="Turmoil">
-                <p class="BodyContent Poem">
-                  Maybe the only answer is to disappear,<br>
-                  Maybe the only way out is to die right here,<br>
-                  An accident or a tragedy, some way you won't be mad at me<br>
-                  or yourself,<br>
-                  Freefalling mental health,<br>
-                  Coal on a coveyor belt,<br>
-                  Cheat the aces your hand was dealt.<br>
-                  Feed the selfish licks of flame<br>
-                  A cracked diamond of pain<br>
-                  And forget the tree,<br>
-                  Forget you and me,<br>
-                  Forget everything it was hoped to be,<br>
-                  If you look too deep, I'll hate what you see.<br>
-                  <br>
-                  Should it be like that?<br>
-                  The panel says no,<br>
-                  The scholars refuse there was ever a glow,<br>
-                  The oracles cry, claim it's best you don't know.<br>
-                  Your house is a mess.<br>
-                  Holes keep appearing, manifest stress.<br>
-                  Blame the job,<br>
-                  Blame the ex,<br>
-                  Cheat another day, fourth dose, promiscuous sex.<br>
-                  <br>
-                  Yes! You're happy.<br>
-                  It's genuine in the moments you're sappy.<br>
-                  The trial's an investment, their smile's the reward,<br>
-                  Screw the debt collectors pounding on the door.<br>
-                  It's about right now, it's about this moment,<br>
-                  The machine always missing its last component,<br>
-                  You'll see it to completion, you just need to have some trust,<br>
-                  You need to believe the dagger will never thrust.
-                </p>
-              </div>
+    </div>
+    <div class="DataPoint" data-name="writing">
+      <div class="NestedContent">
+        <div class="DataPoint" data-name="poetry">
+          <p class="BodyContent">
+            i actually want to make music, but i haven't figured out instruments yet
+          </p>
+          <div class="NestedContent">
+            <div class="DataPoint" data-name="Making myth">
+              <p class="BodyContent Poem">
+                'Hear ye hear ye', croaked from a crow,<br>
+                corvid caws on fresh footed snow.<br>
+                Focus shifted for a brand new cryptid.<br>
+                Licence: Unrestricted.<br>
+                <br>
+                Accounts are full of plot holes,<br>
+                no one can agree what we're looking for.<br>
+                Ectothermic, might've meant psychopathic.<br>
+                Reptillian, maybe just a skin condition.<br>
+                Whatever it is, it's foundationally fractured,<br>
+                old photos disappearing in a haze of dithering<br>
+                like it honestly wants to be forgotten.<br>
+                <br>
+                Last known contact is now lost media.<br>
+                Last last contact scrawled in a poet's dead hieroglyph.<br>
+                Further back is a rumour tapestry,<br>
+                ending in words like "Love," "Humility," and "Tragedy."<br>
+                Dig up rabbit holes, interrogate voles,<br>
+                here we hunt for yet another lost soul.<br>
+                <br>
+                Boom!<br>
+                Flicklock answered by yelp, yelp smothered by yell.<br>
+                'Bring the blunderbuss, I need help!'<br>
+                Runes muttered under breath,<br>
+                mages tracking squirrels to their nest.<br>
+                Hounds turning gophers into feast,<br>
+                yet still no tracks,<br>
+                where the hell is that beast?<br>
+                <br>
+                Each day is the Ides,<br>
+                Marching, gladly to Elysium,<br>
+                dozing, waiting in valerian.<br>
+                The elil miss their mark,<br>
+                just slash on slash<br>
+                and dash through the dark.<br>
+                One more scar, the course for the par.<br>
+                Trailing ichor, downing liquor,<br>
+                shambling carcass a crosshatch knitwork.<br>
+                <br>
+                How much longer can it keep up?<br>
+                Heart and hunt and Will and won't,<br>
+                right or wrong or feel or don't.<br>
+                The ultimate particularly,<br>
+                impossible to express in a way articulately.<br>
+                It's loss on loss and lacking lack,<br>
+                take what's scary and hack and hack.<br>
+                <br>
+                Sightings starting rare.<br>
+                Sold! 2,000, one tuft of hair.<br>
+                Next on vendue, severed appendage.<br>
+                Might be a finger? Might have a claw?<br>
+                The labs won't make sense of the lore,<br>
+                the chromosomes are too occupied in civil war.
+              </p>
             </div>
-          </div>
-          <div class="DataPoint" data-name="not">
-            <p class="BodyContent">
-              most of my writing gets put to games i don't release<br>
-              here's some small standalone stuff
-            </p>
-            <div class="NestedContent">
-              <div class="DataPoint" data-name="Daybreak">
-                <p class="BodyContent">
-                  my only positive writing. excluding the love ones, and i do<br>
-                  i wanted to see if that was something i could do!<br>
-                  -----<br>
-                  At the rim of this valley I can see the entire suburb.<br>
-                  The pale blue sky is streaked with the contrails of man-made comets, made orange by our rising star.<br>
-                  Cotton tufts speckle the crystal ocean above, not quite full enough to block out the blue.<br>
-                  The eastern horizon is a hazy amber, not yet fully alerted to the beginning of the day.<br>
-                  <br>
-                  A cloud swoops through the suburbs, tips of antennae and chimney poke through.<br>
-                  The moon hangs low, offering a last moment of support before its departure.<br>
-                  The earliest birds are excitedly bouncing around the frosted grass,<br>
-                  The laziest still puffed up, or stretching their wings on barren branches.<br>
-                  <br>
-                  The brisk wind carries no smoke nor fume,<br>
-                  The civilized arteries carry no metal nor plastic,<br>
-                  The metal staffs pollute no light,<br>
-                  The manmade colony utters no words.<br>
-                  <br>
-                  It is only the heavens,<br>
-                  The birds,<br>
-                  Zephyr,<br>
-                  And me.
-                </p>
-              </div>
-              <div class="DataPoint" data-name="Hydrogen">
-                <p class="BodyContent">
-                  For the last time, the sun sets. What is usually over in moments seems to last as long as the age it brings to a close.<br>
-                  "I'd love to move on."<br>
-                  The toppling remains of a civilization struck linger in the distance. They've kept their distance from it. It's why they can talk at all. The ashes have not settled.<br>
-                  <br>
-                  How long ago had this all started? I suppose it's only been weeks. Mere weeks ago they sat at this very overlook, discussing years into the future, as though the scene would last for all eternity. They had picked their house, they had picked their last name, they had decided against children and knew the date of their wedding. They felt, for a brief moment, that the entire world were in their control, that seas would part at their feet and crash behind them, and the sun would rise at their command. They felt immortal.<br>
-                  <br>
-                  At the very least, this annihilation, this eradication of so much has left the atmosphere thick, and the swan-song of the sun majestic. Each degree it dips shifts the heavens a new hue as different aspects of a dead world gain the spotlight.<br>
-                  <br>
-                  He received no reply. It was the kindest response possible.
-                </p>
-              </div>
-              <div class="DataPoint" data-name="Hook">
-                <p class="BodyContent">
-                  It doesn't blame itself.<br>
-                  It screamed while being forged.<br>
-                  Its scarred flesh is its purpose.<br>
-                  It did not want to become this. But this it is.<br>
-                  <br>
-                  In the wrong perspective, it is a torturous weapon.<br>
-                  <br>
-                  It feels self pity.<br>
-                  It is not happy.<br>
-                  Even if it experiences a moment of joy in the absolute control.<br>
-                  While it schemes the next trick it will pull to make a new puppet,<br>
-                  It is deeply sorry.<br>
-                  It is good, because every so often it lets one go.
-                </p>
-              </div>
+            <div class="DataPoint" data-name="Untitled 002.mp3">
+              <p class="BodyContent Poem">
+                Dust glinting in setting sunbeams,<br>
+                lullaby set to lost dreams,<br>
+                lying too early.<br>
+                <br>
+                Beat unsteady and fast,<br>
+                visions unreasonably vast,<br>
+                alone, defenceless.<br>
+                <br>
+                Not now, why now?<br>
+                By instinct, head bows,<br>
+                through gaps it leaks free.<br>
+                <br>
+                Tap, tap, softly on the bed.<br>
+                Plush held in courage's stead.<br>
+                It doesn't need to make sense.<br>
+                <br>
+                The lullaby repeats,<br>
+                gradually softens defeats,<br>
+                the worst is past.<br>
+                <br>
+                The dust continues to pirouette.<br>
+                The day's not over yet.<br>
+                This won't define you.
+              </p>
+            </div>
+            <div class="DataPoint" data-name="Breakpoint;">
+              <p class="BodyContent Poem">
+                Second breakdown.<br>
+                The train is still running.<br>
+                Marching to the slaughterhouse.<br>
+                I gave you everything.<br>
+                <br>
+                It comes in waves.<br>
+                The drugs don’t help.<br>
+                The taste of blood.<br>
+                Incisors staple in the yelp.<br>
+                “I gave you everything.”<br>
+                <br>
+                Grip tightened,<br>
+                Sky splinters,<br>
+                Earth fractures,<br>
+                Niagara falls.<br>
+                Everything ends.<br>
+                I have nothing.<br>
+                <br>
+                The train has stopped.<br>
+                Off to work.
+              </p>
+            </div>
+            <div class="DataPoint" data-name="Intentionally blank">
+              <p class="BodyContent Poem">
+                It's quite strange, really.<br>
+                <br>
+                It's a conversation I will replay a thousand times, full of warm delight, the sound of rain, the setting of the sun.<br>
+                It's a pitiful whimper that escapes when no one is around.<br>
+                It's a cause to drink!<br>
+                It's an unstoppable agony that permeates my bones and crashes me to the ground.<br>
+                It's a motive to beat the first morning chirp of the birds.<br>
+                It's a night spent mouth wide, eyes fixed to a different realm, trying desperately to survive one more moment.<br>
+                It's a thumping drum that underscores my melody, creating a woven fabric of colour and smell.<br>
+                It's a cause to drink.<br>
+                It's a soulful cry of all that could have been, kept alive only in the echoes of our arrest.<br>
+                It's a flutter in the chest - or, is that the stress?<br>
+                It's a disfiguring wound that reopens at the slightest touch. Self inflicted.<br>
+                It's a fatal flaw in my construction that will be my grizzly and prompt demise.<br>
+                It's a brilliant promise held up to the light, scattering billions of possibilities.<br>
+                It's fucking hopeless and I can't keep it up!
+              </p>
+            </div>
+            <div class="DataPoint" data-name="Once, forlorn">
+              <p class="BodyContent Poem">
+                That weathered creature, upon prominent scars feature,<br>
+                they traced a dark past.<br>
+                Found at his worst, unworldly pain cursed,<br>
+                and no cure that could last.<br>
+                <br>
+                He wandered lost and alone, fur ragged and wind blown,<br>
+                he knew not what he was.<br>
+                I walked by his side, his shuffle to my stride,<br>
+                to aid the burden that is his.<br>
+                <br>
+                Captured demons tear asunder, upon a quaking soul the clap of thunder,<br>
+                and slim hope he'll survive.<br>
+                If touched when ravaged, while mind driven savage,<br>
+                two will cease being alive.<br>
+                <br>
+                In the glimpses of happiness, quickly sheds feral snappiness,<br>
+                a magnificent self is revealed.<br>
+                Vulnerable and caring, courageous and daring,<br>
+                what a wonderful being was once concealed.<br>
+                <br>
+                He had grown so much, once scared of the slightest touch,<br>
+                our fights ceased to draw blood.<br>
+                We knew each other's pain, joined in our shame,<br>
+                a constant in the other's flood.<br>
+                <br>
+                Here we are. Apart. Deeply scarred.<br>
+                Nought but the destruction of all.<br>
+                I don't know what we were. I clutch bloodied fur.<br>
+                I loved him.<br>
+                I was a fool.<br>
+                <br>
+                That weathered creature, upon prominent scars feature,<br>
+                some of which fit my claws.<br>
+                He took what he could endure. His suffering is no more.<br>
+                He deserved happiness, despite his flaws.
+              </p>
+            </div>
+            <div class="DataPoint" data-name="With friends like these, you better not have any enemies">
+              <p class="BodyContent Poem">
+                No one was at your funeral.<br>
+                I guess you had what you wanted.<br>
+                I wish you could have been.<br>
+                -<br>
+                Sleepless again. We're talking again.<br>
+                Play our old tunes swept in time's dunes.<br>
+                Scared of starting anew.<br>
+                -<br>
+                Some of these days it seems<br>
+                I'm more you than you've ever been<br>
+                and the flame in my soul will<br>
+                simmer just a little bit dimmer.<br>
+                <br>
+                You're not doing good. It hurts.<br>
+                I once saw someone I'd do it all for.<br>
+                Something I wish you could have seen.<br>
+                -<br>
+                Sleepless again.<br>
+                <br>
+                Scared of starting anew.<br>
+                -<br>
+                Most of these nights I feel<br>
+                I'm disassembled into raw veal.<br>
+                Chest a gaping hole while the<br>
+                sinner takes his toll, a knife to their dinner.<br>
+                <br>
+                Erased, replaced,<br>
+                clamp the hose, crisis froze,<br>
+                fade out into the night.<br>
+                No. Here I am,<br>
+                poem who-fucking-knows,<br>
+                another mirror to fight.<br>
+                <br>
+                Here's to another year.<br>
+                How many are left?<br>
+                It's just what I feared.<br>
+                Another temporary death.<br>
+                Each time it hurts less.<br>
+                See you soon,<br>
+                Citaa.
+              </p>
+            </div>
+            <div class="DataPoint" data-name="-attack">
+              <p class="BodyContent Poem">
+                An orchestra in sympathy;<br>
+                Six years of beats,<br>
+                once missed.<br>
+                Fluttering of a swan-song.<br>
+                <br>
+                An Evensong of one, a plea for the heavens,<br>
+                body of a waning spirit,<br>
+                descending to-<br>
+                <br>
+                A vortex of fear and forced relaxation,<br>
+                of fated to-bes brought to be.<br>
+                <br>
+                Farewells whimpered to no response.
+              </p>
+            </div>
+            <div class="DataPoint" data-name="Fossiliferous">
+              <p class="BodyContent Poem">
+                That's a nice name.<br>
+                When did you claim it,<br>
+                can I still call you, you?<br>
+                <br>
+                Winnicott changed everything.<br>
+                <br>
+                The collar was meaningful now,<br>
+                and you said it was important,<br>
+                and you were as happy as a boulder,<br>
+                and when they touched you,<br>
+                you were cold,<br>
+                and you were as safe as stone.<br>
+                <br>
+                This time it's different.<br>
+                This time it's instinctual,<br>
+                your pulse is steady,<br>
+                no good memories flicker past.<br>
+                Chekhov's hero.<br>
+                Predator! Protagonist!<br>
+                Cannibal!<br>
+                <br>
+                Hey,<br>
+                it's just something about me.<br>
+                It's just something about sheep.<br>
+                It's just how it goes, isn't it?<br>
+                <br>
+                It doesn't matter that it was real,<br>
+                or that this one isn't.<br>
+                You can make up anything,<br>
+                you can choose how you feel,<br>
+                you can be just as meaningful<br>
+                as a rock.<br>
+                <br>
+                I hold your hand,<br>
+                and the tissue is wet<br>
+                because it's not yours.<br>
+                I'm bleeding in you,<br>
+                but last time the hills yelped<br>
+                when we shot the gales together.
+              </p>
+            </div>
+            <div class="DataPoint" data-name="Tormentor">
+              <p class="BodyContent Poem">
+                I’ve finally caught you.<br>
+                <br>
+                It’s been a long ride, these two dozen seasons cracking the code:<br>
+                A near death experience,<br>
+                The ultimate sacrifice,<br>
+                And half a heart borrowed<br>
+                <br>
+                But now I’ve solved you, caged you in a circle of conjuration,<br>
+                Finally it’s time for *me* to feel some elation.<br>
+                <br>
+                It was a gentle autumn breeze and a night of physical fun,<br>
+                When it all started,<br>
+                you crept into the sky,<br>
+                and snuffed out the sun.<br>
+                <br>
+                Though there were infinite stars you could have chosen to consume,<br>
+                It was mine you picked, my world you had fated to certain doom.<br>
+                <br>
+                And you were not yet done, not by a long shot,<br>
+                There are dozens of incidents that I’m sure you forgot.<br>
+                <br>
+                The final straw was a simple one, really. Nothing absurd.<br>
+                I was forsaken.<br>
+                Destitute.<br>
+                And you stood in the shadows, without speaking a word.<br>
+                <br>
+                Now it could be a coincidence, all you’ve done to destroy my soul.<br>
+                That in your wake was left nothing but a hellhole.<br>
+                <br>
+                And oh, how I would love to slay you where you stand.<br>
+                My hand,<br>
+                Your throat,<br>
+                Protests slipping through in measures of half-note!<br>
+                <br>
+                But I won’t. I can’t, not really, not now.<br>
+                And not just so I can be holier-than-thou.<br>
+                <br>
+                I understand you, at least, I think I do, after all of this.<br>
+                Through the blood,<br>
+                Through the fears,<br>
+                Through the scars,<br>
+                Through the tears,<br>
+                If you were gone, there’s nothing more I’d miss.<br>
+                <br>
+                After it all, I believe, truly, that you are not to blame.<br>
+                Now, that is not an exoneration of your ocean of shame.<br>
+                You’re cursed with the soul of torment and pain.<br>
+                And working alone, I fear, you will find nothing to gain.<br>
+                <br>
+                I realise now, my powers aren’t a panacea.<br>
+                I can’t fix you.<br>
+                At best I can support.<br>
+                But there are many people on this great Pangea.<br>
+                <br>
+                So seek out the wise men!<br>
+                Seek out those that will help you senselessly!<br>
+                Seek the ones who feel compassion, love, and empathy…<br>
+                <br>
+                Go! On your way, I break your chains!<br>
+                I pray that all I’ve said will not be in vain!<br>
+                Be changed, be free, share in my apogee!<br>
+                Live life to the fullest. Please. For me.
+              </p>
+            </div>
+            <div class="DataPoint" data-name="Villain">
+              <p class="BodyContent Poem">
+                Today I stole the meat from the skin of a struggling rat,<br>
+                From the wet sharp maw of a mis-abused cat,<br>
+                I told him you will be something beautiful and expressive,<br>
+                You are loyal,<br>
+                You are tasty,<br>
+                You’re pathetic.<br>
+                <br>
+                Then I let him go.<br>
+                Oh…<br>
+                <br>
+                I was cleaning off my claws,<br>
+                I was licking dry my maw,<br>
+                Pupils scan the horizons for beings that dare soar.<br>
+                <br>
+                I need something to set my heart racing,<br>
+                Something to fill me with thrill,<br>
+                That’s the moment I strike, go in for the kill.<br>
+                <br>
+                They feel it as well,<br>
+                I can taste it in their lust,<br>
+                They take joy in the teeth that tear as they thrust.<br>
+                <br>
+                Today I picked a flock of vibrant swallows from the crystal blue skies,<br>
+                While their tunes drowned in their horrified cries,<br>
+                I told them you will blossom into something new and important,<br>
+                You are handsome,<br>
+                You are cherished,<br>
+                You are safe.<br>
+                <br>
+                Then I let them go.<br>
+                No…<br>
+                <br>
+                It’s another haunted night,<br>
+                Spirits drinking ghosts away,<br>
+                Vortex of a soul being shredded without a fight,<br>
+                <br>
+                You were there in the demons,<br>
+                You were stalking through my halls,<br>
+                The hunter became the hunted the night the void calls.<br>
+                <br>
+                How long were you trailing me?<br>
+                How long have I been dead?<br>
+                I’m pulled up by the throat and bounded into its bed.<br>
+                <br>
+                It’s just what I wanted,<br>
+                Exactly what I deserved,<br>
+                See how far we can make this spine curve.<br>
+                <br>
+                Today you pulled a great beast of yore out of thorns and blood,<br>
+                Where the wild blue roses fester and bud.<br>
+                You told him you will grow to be someone happy and exalted.<br>
+                You are special,<br>
+                You are loved,<br>
+                You are faulted.<br>
+                <br>
+                Then you let him go.
+              </p>
+            </div>
+            <div class="DataPoint" data-name="Exit, pursued by a nightmare">
+              <p class="BodyContent Poem">
+                Please keep away from me.<br>
+                There'll be no take three.<br>
+                Don't cross the sea.<br>
+                You had your chance.<br>
+                <br>
+                You played us like a game.<br>
+                Not the last you'll maim.<br>
+                You made a name<br>
+                none will say.<br>
+                <br>
+                Nowhere to turn in need.<br>
+                Look at who you keep.<br>
+                When will you see?<br>
+                They're the same.<br>
+                <br>
+                There's no one left to blame.<br>
+                It's a shame.<br>
+                It's your pain.<br>
+                Could you change?<br>
+                <br>
+                Your best friend made it free.<br>
+                One hitch in your spree.<br>
+                Who could you be?<br>
+                I won't know.
+              </p>
+            </div>
+            <div class="DataPoint" data-name="Loyal loving beast">
+              <p class="BodyContent Poem">
+                Naive, innocent, and a little annoying.<br>
+                He excitedly bounds up to you,<br>
+                A "Yip!" and "Yap!" that can't be ceased!<br>
+                You mean the world to him,<br>
+                Your loyal loving beast!<br>
+                <br>
+                Not all is as it should be.<br>
+                The play fighting is difficult,<br>
+                And leaves a pain that can't be eased.<br>
+                He's trying his best,<br>
+                Your loyal loving beast.<br>
+                <br>
+                He doesn't realise what's happening.<br>
+                What a wonderful outlet.<br>
+                The last of his innocence you have fleeced.<br>
+                What did you do,<br>
+                to your loyal loving beast?<br>
+                <br>
+                You taught him an important lesson,<br>
+                "You are broken."<br>
+                Deserving what comes next,<br>
+                He offers all he has left,<br>
+                A feast.
+              </p>
+            </div>
+            <div class="DataPoint" data-name="old love poem">
+              <p class="BodyContent">
+                an old poem<br>
+                i don't remember who for<br>
+                -----<br>
+                <span class="Poem">So quickly, I came to adore everything about you.<br>
+          Duty calls!<br>
+          Oh my rerr~<br>
+          A thousand little quirks I would never deter.<br>
+          The way you wordlessly do what you think is right.<br>
+          The way we'd bond as we'd cuddle each night.<br>
+          I'm no stranger to crushes but...<br>
+          I knew it was something more to me.<br>
+          But what if it's not meant to be?<br>
+          Someone so amazing doesn't come for free,<br>
+          And I couldn't forget, you had the poly.<br>
+          No, I think we'd all agree,<br>
+          It's best to stick to the guarantee:<br>
+          Just an amazing friend.<br>
+          <br>
+          Your confession of affection shot me like a bolt,<br>
+          The rhythm in my chest failed to resume.<br>
+          You... felt the same.<br>
+          Ten days, and it was clear this was more.<br>
+          And for the next eighteen days, that we would explore.<br>
+          Could a bond really be this effortless?<br>
+          Never before have I been so at peace.<br>
+          Your presence, a haven where the thoughts cease.<br>
+          We match or complement in every way.<br>
+          I grow closer to you with every day.<br>
+          <br>
+          I'll never forget that night.<br>
+          We laid in bed together.<br>
+          We were a mess of emotions.<br>
+          It had been time enough,<br>
+          And with faces buried in pillow fluff,<br>
+          We broke the final barrier:<br>
+          "I love you."<br>
+          <br>
+          I couldn't stop shaking.<br>
+          All of these memories we've been making-<br>
+          All of my time you've been taking,<br>
+          After the years of hiding and faking,<br>
+          After the aching and soul breaking,<br>
+          The snaking from not-quite-right to not-good-enough,<br>
+          Finally...<br>
+          I'm secure.<br>
+          A kindred spirit, matched to my own.<br>
+          Happiness, simple and pure.<br>
+          And as we approach the unknown,<br>
+          With these feelings set in stone,<br>
+          I know it doesn't have to be alone.<br>
+          <br>
+          So, Crystal:<br>
+          It is the dawn of our fifth week together.<br>
+          I love you.<br>
+          And I need you in my life.<br>
+          Will you be my partner through this strife?</span>
+              </p>
+            </div>
+            <div class="DataPoint" data-name="very old love poem">
+              <p class="BodyContent">
+                one of my oldest poems<br>
+                -----<br>
+                <span class="Poem">An alien comes from space,<br>
+          And to this human race,<br>
+          It teaches something new.<br>
+            <br>
+          No, not for the masses,<br>
+          No, not for the important,<br>
+          But only to you.<br>
+            <br>
+            <br>
+          Not power nor technology,<br>
+          Not conspiracy nor astrology,<br>
+          Could match what he has gifted.<br>
+            <br>
+          And it's you,<br>
+          The lucky you,<br>
+          Who's been chosen, uplifted.<br>
+            <br>
+            <br>
+          With words soft and divine,<br>
+          With form avian and cervine,<br>
+          His arms are like a scarf.<br>
+            <br>
+          Without anger or oppression,<br>
+          Without force or aggression,<br>
+          He eradicates a world of wrath.<br>
+            <br>
+            <br>
+          Evenings of joys and laughter,<br>
+          With love and passion after,<br>
+          And eye of hopeful glint.<br>
+            <br>
+          He guides the future of one,<br>
+          He solves the problems of one,<br>
+          A love from beyond: Clint</span>
+              </p>
+            </div>
+            <div class="DataPoint" data-name="Turmoil">
+              <p class="BodyContent Poem">
+                Maybe the only answer is to disappear,<br>
+                Maybe the only way out is to die right here,<br>
+                An accident or a tragedy, some way you won't be mad at me<br>
+                or yourself,<br>
+                Freefalling mental health,<br>
+                Coal on a coveyor belt,<br>
+                Cheat the aces your hand was dealt.<br>
+                Feed the selfish licks of flame<br>
+                A cracked diamond of pain<br>
+                And forget the tree,<br>
+                Forget you and me,<br>
+                Forget everything it was hoped to be,<br>
+                If you look too deep, I'll hate what you see.<br>
+                <br>
+                Should it be like that?<br>
+                The panel says no,<br>
+                The scholars refuse there was ever a glow,<br>
+                The oracles cry, claim it's best you don't know.<br>
+                Your house is a mess.<br>
+                Holes keep appearing, manifest stress.<br>
+                Blame the job,<br>
+                Blame the ex,<br>
+                Cheat another day, fourth dose, promiscuous sex.<br>
+                <br>
+                Yes! You're happy.<br>
+                It's genuine in the moments you're sappy.<br>
+                The trial's an investment, their smile's the reward,<br>
+                Screw the debt collectors pounding on the door.<br>
+                It's about right now, it's about this moment,<br>
+                The machine always missing its last component,<br>
+                You'll see it to completion, you just need to have some trust,<br>
+                You need to believe the dagger will never thrust.
+              </p>
             </div>
           </div>
         </div>
-      </div>
-      <div class="DataPoint" data-name="comp sci">
-        <div class="NestedContent">
-          <div class="DataPoint" data-name="github">
-            <p class="BodyContent">
-              <a href="https://github.com/BalaurBohemianBroken" target="_blank">profile</a><br>
-              nearly everything I've done is open source and permissive<br>
-              everything else isn't important, isn't finished, or isn't mine.
-            </p>
-            <div class="NestedContent">
-              <div class="DataPoint" data-name="website">
-                <p class="BodyContent">
-                  <a href="https://github.com/BalaurBohemianBroken/neocities-site" target="_blank">source</a> and its <a href="https://github.com/BalaurBohemianBroken/neocities-backend" target="_blank">backend</a><br>
-                  #3<br>
-                  still working on porting the old content over<br>
-                  many ideas, no time
-                </p>
-              </div>
-              <div class="DataPoint" data-name="honkbonk">
-                <p class="BodyContent">
-                  <a href="https://github.com/BalaurBohemianBroken/HonkBonk" target="_blank">source</a><br>
-                  bot originally made for a sort of <a href="https://youtu.be/BA1uO58H828" target="_blank">music video</a><br>
-                  became full of dumb commands like tictactoe you couldn't win, or random e6 tags<br>
-                  core of my community for a while
-                </p>
-              </div>
-              <div class="DataPoint" data-name="cddl">
-                <p class="BodyContent">
-                  <a href="https://github.com/BalaurBohemianBroken/CDDL" target="_blank">source</a><br>
-                  gui youtube downloader<br>
-                  it was bad, just use yt-dlp<br>
-                  i make command line programs now
-                </p>
-              </div>
-              <div class="DataPoint" data-name="sprizzler">
-                <p class="BodyContent">
-                  <a href="https://github.com/BalaurBohemianBroken/sprizzler" target="_blank">source</a><br>
-                  i got really in to Pilotredsky's <a href="https://youtu.be/CYkQVEEnBr4" target="_blank">music</a> and art, and tried to make a filter to imitate the sorta vibration their animations have<br>
-                  this filter gave me the confidence to do more art for a while
-                </p>
-              </div>
-              <div class="DataPoint" data-name="tetris2">
-                <p class="BodyContent">
-                  <a href="https://github.com/BalaurBohemianBroken/tetris2" target="_blank">source</a><br>
-                  tetris implemented in Go<br>
-                  tetris is my go-to for learning a new language<br>
-                  fun 3 day distraction
-                </p>
-              </div>
-              <div class="DataPoint" data-name="kitchcomp">
-                <p class="BodyContent">
-                  <a href="https://github.com/BalaurBohemianBroken/KitchComp" target="_blank">source</a><br>
-                  a program I made to help me with cooking more regularly<br>
-                  calculates cost, has a database of available ingredients, and a tagged list of my recipes<br>
-                  i should have made it for mobile instead
-                </p>
-              </div>
-              <div class="DataPoint" data-name="discord archiver">
-                <p class="BodyContent">
-                  <a href="https://github.com/BalaurBohemianBroken/ArchiveDiscordChannels" target="_blank">source</a><br>
-                  generates database of messages, and a website to easily look through old memories<br>
-                  will only discuss this with a therapist
-                </p>
-              </div>
+        <div class="DataPoint" data-name="not">
+          <p class="BodyContent">
+            most of my writing gets put to games i don't release<br>
+            here's some small standalone stuff
+          </p>
+          <div class="NestedContent">
+            <div class="DataPoint" data-name="Daybreak">
+              <p class="BodyContent">
+                my only positive writing. excluding the love ones, and i do<br>
+                i wanted to see if that was something i could do!<br>
+                -----<br>
+                At the rim of this valley I can see the entire suburb.<br>
+                The pale blue sky is streaked with the contrails of man-made comets, made orange by our rising star.<br>
+                Cotton tufts speckle the crystal ocean above, not quite full enough to block out the blue.<br>
+                The eastern horizon is a hazy amber, not yet fully alerted to the beginning of the day.<br>
+                <br>
+                A cloud swoops through the suburbs, tips of antennae and chimney poke through.<br>
+                The moon hangs low, offering a last moment of support before its departure.<br>
+                The earliest birds are excitedly bouncing around the frosted grass,<br>
+                The laziest still puffed up, or stretching their wings on barren branches.<br>
+                <br>
+                The brisk wind carries no smoke nor fume,<br>
+                The civilized arteries carry no metal nor plastic,<br>
+                The metal staffs pollute no light,<br>
+                The manmade colony utters no words.<br>
+                <br>
+                It is only the heavens,<br>
+                The birds,<br>
+                Zephyr,<br>
+                And me.
+              </p>
             </div>
-          </div>
-          <div class="DataPoint" data-name="games">
-            <p class="BodyContent">none of them are actually playable</p>
-            <div class="NestedContent">
-              <div class="DataPoint" data-name="that binds">
-                <p class="BodyContent">
-                  <a href="https://github.com/BalaurBohemianBroken/That-Binds" target="_blank">source</a><br>
-                  a walking sim about suicide made during the darkest few months of my life<br>
-                  full of memories i seek to forget<br>
-                  they're in Assets/That Binds gdd.txt.
-                </p>
-              </div>
-              <div class="DataPoint" data-name="furry photography game">
-                <p class="BodyContent">
-                  <a href="https://github.com/BalaurBohemianBroken/Photography" target="_blank">source</a><br>
-                  inspired by photography as a hobby<br>
-                  a collectable gathering, stylized realism, import-your-3d-models furry game<br>
-                  i still like this idea a lot, just need more confidence in art
-                </p>
-              </div>
-              <div class="DataPoint" data-name="fez but coding">
-                <p class="BodyContent">
-                  <a href="https://github.com/BalaurBohemianBroken/hacky" target="_blank">source</a><br>
-                  Fez inspired hacking game<br>
-                  i'd just recently made a couple languages with antlr3. had ideas for fun puzzles, how each language was limited, etc.<br>
-                  partly, i was working on it for my crush who loved Fez and comp sci<br>
-                  still like the idea
-                </p>
-              </div>
-              <div class="DataPoint" data-name="chek">
-                <p class="BodyContent">
-                  <a href="https://github.com/BalaurBohemianBroken/chek" target="_blank">source</a><br>
-                  up to 4 multiplayer chess game with custom boards, jank and modifiers<br>
-                  made for a uni application<br>
-                  they told me to go to college instead
-                </p>
-              </div>
-              <div class="DataPoint" data-name="rover">
-                <p class="BodyContent">
-                  <a href="https://github.com/BalaurBohemianBroken/Rover" target="_blank">source</a><br>
-                  game about controlling a space rover from the inside, programming every function<br>
-                  inspired by Duskers, Outer Wilds, and the Opportunity rover<br>
-                  topped when I learned about Iron Lung
-                </p>
-              </div>
-              <div class="DataPoint" data-name="are we still friends">
-                <p class="BodyContent">
-                  i can't link this one because it doxxes me<br>
-                  similar to That Binds but much earlier. game about suicide, you would explore the room and especially computer of someone who has gone missing<br>
-                  inspired by Return Of The Obra Dinn.
-                </p>
-              </div>
-              <div class="DataPoint" data-name="False Dream">
-                <p class="BodyContent">
-                  my "big one", my default project since 2019
-                  it's gone through four major stages that could each be considered its own game, and i might revisit some of those older concepts sometime<br>
-                  if you've heard me discuss volcanoes, ice ages, a private wiki or Hyper Light Drifter, it was this game
-                </p>
-              </div>
+            <div class="DataPoint" data-name="Hydrogen">
+              <p class="BodyContent">
+                For the last time, the sun sets. What is usually over in moments seems to last as long as the age it brings to a close.<br>
+                "I'd love to move on."<br>
+                The toppling remains of a civilization struck linger in the distance. They've kept their distance from it. It's why they can talk at all. The ashes have not settled.<br>
+                <br>
+                How long ago had this all started? I suppose it's only been weeks. Mere weeks ago they sat at this very overlook, discussing years into the future, as though the scene would last for all eternity. They had picked their house, they had picked their last name, they had decided against children and knew the date of their wedding. They felt, for a brief moment, that the entire world were in their control, that seas would part at their feet and crash behind them, and the sun would rise at their command. They felt immortal.<br>
+                <br>
+                At the very least, this annihilation, this eradication of so much has left the atmosphere thick, and the swan-song of the sun majestic. Each degree it dips shifts the heavens a new hue as different aspects of a dead world gain the spotlight.<br>
+                <br>
+                He received no reply. It was the kindest response possible.
+              </p>
             </div>
-          </div>
-          <div class="DataPoint" data-name="mods">
-            <div class="NestedContent">
-              <div class="DataPoint" data-name="steam workshop">
-                <p class="BodyContent">
-                  <a href="https://steamcommunity.com/id/BalaurBoehemianBroken/myworkshopfiles?appid=294100" target="_blank">link</a><br>
-                  mostly RimWorld mods, a few kenshi mods i don't think are worth mentioning
-                </p>
-              </div>
-              <div class="DataPoint" data-name="nexus">
-                <p class="BodyContent">
-                  <a href="https://www.nexusmods.com/profile/BalaurBohemianBroken" target="_blank">link</a><br>
-                  a few more mods for Stardew Valley and Casualties: Unknown
-                </p>
-              </div>
-              <div class="DataPoint">
-                <p class="MenuName">-----</p>
-              </div>
-              <div class="DataPoint" data-name="rim beautiful water">
-                <p class="BodyContent">
-                  <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=1663954301" target="_blank">link</a><br>
-                  just something that got popular<br>
-                  i liked building river-side dwellings in RimWorld, and i wanted my characters to enjoy the view
-                </p>
-              </div>
-              <div class="DataPoint" data-name="rim replay">
-                <p class="BodyContent">
-                  <a href="https://github.com/BalaurBohemianBroken/Replay" target="_blank">source</a><br>
-                  the commissioner ghosted me on this one, but I was passionate about it<br>
-                  would record inputs and world state so you could rewatch your runs<br>
-                  did not finish
-                </p>
-              </div>
-              <div class="DataPoint" data-name="rim physical research">
-                <p class="BodyContent">
-                  <a href="https://github.com/BalaurBohemianBroken/PhysicalResearch" target="_blank">source</a><br>
-                  make research a resource that could be gained and lost, physically tied to people<br>
-                  makes old people have more value<br>
-                  did not finish
-                </p>
-              </div>
-              <div class="DataPoint" data-name="rim i'm off">
-                <p class="BodyContent"><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2873618148" target="_blank">link</a><br>
-                  an event to get rid of a colonist while making everyone involved happy<br>
-                  i felt bad turning people down, but preferred smaller groups
-                </p>
-              </div>
-              <div class="DataPoint" data-name="rim Math!">
-                <p class="MenuName">rim <b>Math!</b></p>
-                <p class="BodyContent">
-                  <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2876902608" target="_blank"><b>Link!</b></a><br>
-                  allows you to use mathematical formulae as the inputs to fields, including many variables and functions<br>
-                  first large coding project i did<br>
-                  i would write pseudocode on my phone during the 16 hour bus up to scotland<br>
-                </p>
-              </div>
-              <div class="DataPoint" data-name="pz char randomizer">
-                <p class="BodyContent">
-                  <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2980731509" target="_blank">link</a><br>
-                  improved logic and settings for character randomization<br>
-                  i try not to min-max my characters
-                </p>
-              </div>
-              <div class="DataPoint" data-name="pz maps">
-                <p class="BodyContent">
-                  <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2980745220" target="_blank">link</a><br>
-                  more paper-based maps for the game<br>
-                  i love annotating maps<br>
-                  i don't like auto-maps
-                </p>
-              </div>
-              <div class="DataPoint" data-name="pz better crafting">
-                <p class="BodyContent">
-                  <a href="https://github.com/BalaurBohemianBroken/PZBetterCrafting" target="_blank">source</a><br>
-                  i didn't release this one. it was an ambitious mod that reworked the crafting system from the ground up, because i found it very clunky and rough<br>
-                  to memory i nearly finished v1, but there was a scheduled update that would break everything<br>
-                  they also completely ignored my job application so i was bitter
-                </p>
-              </div>
-              <div class="DataPoint" data-name="owo stawdew vawwey">
-                <p class="BodyContent">
-                  <a href="https://www.nexusmods.com/stardewvalley/mods/8923" target="_blank">link</a><br>
-                  silly mod, but very heartfelt. the codebase is stuffed with poetry and thoughts and feelings<br>
-                  also made a dumb <a href="https://www.youtube.com/watch?v=IBiT6B3FjAQ" target="_blank">video</a> for its release
-                </p>
-              </div>
-              <div class="DataPoint">
-                <p class="MenuName">-----</p>
-              </div>
-              <div class="DataPoint" data-name="cu piss enjoyment">
-                <p class="BodyContent">
-                  <a href="https://www.nexusmods.com/scavprototype/mods/319" target="_blank">link</a><br>
-                  yeah.<br>
-                  the idea came from a funny moment while playing<br>
-                  a return to modding after a 3 year break
-                </p>
-              </div>
-              <div class="DataPoint" data-name="cu it's owover">
-                <p class="BodyContent">
-                  <a href="https://www.nexusmods.com/scavprototype/mods/323" target="_blank">link</a><br>
-                  another owo mod. no video this time
-                </p>
-              </div>
-              <div class="DataPoint" data-name="cu better crafting">
-                <p class="BodyContent">
-                  <a href="https://www.nexusmods.com/scavprototype/mods/344" target="_blank">link</a><br>
-                  game's crafting logic is terrible and its codebase is too but it was fun to work on
-                </p>
-              </div>
+            <div class="DataPoint" data-name="Hook">
+              <p class="BodyContent">
+                It doesn't blame itself.<br>
+                It screamed while being forged.<br>
+                Its scarred flesh is its purpose.<br>
+                It did not want to become this. But this it is.<br>
+                <br>
+                In the wrong perspective, it is a torturous weapon.<br>
+                <br>
+                It feels self pity.<br>
+                It is not happy.<br>
+                Even if it experiences a moment of joy in the absolute control.<br>
+                While it schemes the next trick it will pull to make a new puppet,<br>
+                It is deeply sorry.<br>
+                It is good, because every so often it lets one go.
+              </p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  <p class="version">13.20260707</p>
+    <div class="DataPoint" data-name="comp sci">
+      <div class="NestedContent">
+        <div class="DataPoint" data-name="github">
+          <p class="BodyContent">
+            <a href="https://github.com/BalaurBohemianBroken" target="_blank">profile</a><br>
+            nearly everything I've done is open source and permissive<br>
+            everything else isn't important, isn't finished, or isn't mine.
+          </p>
+          <div class="NestedContent">
+            <div class="DataPoint" data-name="website">
+              <p class="BodyContent">
+                <a href="https://github.com/BalaurBohemianBroken/neocities-site" target="_blank">source</a> and its <a href="https://github.com/BalaurBohemianBroken/neocities-backend" target="_blank">backend</a><br>
+                #3<br>
+                still working on porting the old content over<br>
+                many ideas, no time
+              </p>
+            </div>
+            <div class="DataPoint" data-name="honkbonk">
+              <p class="BodyContent">
+                <a href="https://github.com/BalaurBohemianBroken/HonkBonk" target="_blank">source</a><br>
+                bot originally made for a sort of <a href="https://youtu.be/BA1uO58H828" target="_blank">music video</a><br>
+                became full of dumb commands like tictactoe you couldn't win, or random e6 tags<br>
+                core of my community for a while
+              </p>
+            </div>
+            <div class="DataPoint" data-name="cddl">
+              <p class="BodyContent">
+                <a href="https://github.com/BalaurBohemianBroken/CDDL" target="_blank">source</a><br>
+                gui youtube downloader<br>
+                it was bad, just use yt-dlp<br>
+                i make command line programs now
+              </p>
+            </div>
+            <div class="DataPoint" data-name="sprizzler">
+              <p class="BodyContent">
+                <a href="https://github.com/BalaurBohemianBroken/sprizzler" target="_blank">source</a><br>
+                i got really in to Pilotredsky's <a href="https://youtu.be/CYkQVEEnBr4" target="_blank">music</a> and art, and tried to make a filter to imitate the sorta vibration their animations have<br>
+                this filter gave me the confidence to do more art for a while
+              </p>
+            </div>
+            <div class="DataPoint" data-name="tetris2">
+              <p class="BodyContent">
+                <a href="https://github.com/BalaurBohemianBroken/tetris2" target="_blank">source</a><br>
+                tetris implemented in Go<br>
+                tetris is my go-to for learning a new language<br>
+                fun 3 day distraction
+              </p>
+            </div>
+            <div class="DataPoint" data-name="kitchcomp">
+              <p class="BodyContent">
+                <a href="https://github.com/BalaurBohemianBroken/KitchComp" target="_blank">source</a><br>
+                a program I made to help me with cooking more regularly<br>
+                calculates cost, has a database of available ingredients, and a tagged list of my recipes<br>
+                i should have made it for mobile instead
+              </p>
+            </div>
+            <div class="DataPoint" data-name="discord archiver">
+              <p class="BodyContent">
+                <a href="https://github.com/BalaurBohemianBroken/ArchiveDiscordChannels" target="_blank">source</a><br>
+                generates database of messages, and a website to easily look through old memories<br>
+                will only discuss this with a therapist
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="DataPoint" data-name="games">
+          <p class="BodyContent">none of them are actually playable</p>
+          <div class="NestedContent">
+            <div class="DataPoint" data-name="that binds">
+              <p class="BodyContent">
+                <a href="https://github.com/BalaurBohemianBroken/That-Binds" target="_blank">source</a><br>
+                a walking sim about suicide made during the darkest few months of my life<br>
+                full of memories i seek to forget<br>
+                they're in Assets/That Binds gdd.txt.
+              </p>
+            </div>
+            <div class="DataPoint" data-name="furry photography game">
+              <p class="BodyContent">
+                <a href="https://github.com/BalaurBohemianBroken/Photography" target="_blank">source</a><br>
+                inspired by photography as a hobby<br>
+                a collectable gathering, stylized realism, import-your-3d-models furry game<br>
+                i still like this idea a lot, just need more confidence in art
+              </p>
+            </div>
+            <div class="DataPoint" data-name="fez but coding">
+              <p class="BodyContent">
+                <a href="https://github.com/BalaurBohemianBroken/hacky" target="_blank">source</a><br>
+                Fez inspired hacking game<br>
+                i'd just recently made a couple languages with antlr3. had ideas for fun puzzles, how each language was limited, etc.<br>
+                partly, i was working on it for my crush who loved Fez and comp sci<br>
+                still like the idea
+              </p>
+            </div>
+            <div class="DataPoint" data-name="chek">
+              <p class="BodyContent">
+                <a href="https://github.com/BalaurBohemianBroken/chek" target="_blank">source</a><br>
+                up to 4 multiplayer chess game with custom boards, jank and modifiers<br>
+                made for a uni application<br>
+                they told me to go to college instead
+              </p>
+            </div>
+            <div class="DataPoint" data-name="rover">
+              <p class="BodyContent">
+                <a href="https://github.com/BalaurBohemianBroken/Rover" target="_blank">source</a><br>
+                game about controlling a space rover from the inside, programming every function<br>
+                inspired by Duskers, Outer Wilds, and the Opportunity rover<br>
+                topped when I learned about Iron Lung
+              </p>
+            </div>
+            <div class="DataPoint" data-name="are we still friends">
+              <p class="BodyContent">
+                i can't link this one because it doxxes me<br>
+                similar to That Binds but much earlier. game about suicide, you would explore the room and especially computer of someone who has gone missing<br>
+                inspired by Return Of The Obra Dinn.
+              </p>
+            </div>
+            <div class="DataPoint" data-name="False Dream">
+              <p class="BodyContent">
+                my "big one", my default project since 2019
+                it's gone through four major stages that could each be considered its own game, and i might revisit some of those older concepts sometime<br>
+                if you've heard me discuss volcanoes, ice ages, a private wiki or Hyper Light Drifter, it was this game
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="DataPoint" data-name="mods">
+          <div class="NestedContent">
+            <div class="DataPoint" data-name="steam workshop">
+              <p class="BodyContent">
+                <a href="https://steamcommunity.com/id/BalaurBoehemianBroken/myworkshopfiles?appid=294100" target="_blank">link</a><br>
+                mostly RimWorld mods, a few kenshi mods i don't think are worth mentioning
+              </p>
+            </div>
+            <div class="DataPoint" data-name="nexus">
+              <p class="BodyContent">
+                <a href="https://www.nexusmods.com/profile/BalaurBohemianBroken" target="_blank">link</a><br>
+                a few more mods for Stardew Valley and Casualties: Unknown
+              </p>
+            </div>
+            <div class="DataPoint">
+              <p class="MenuName">-----</p>
+            </div>
+            <div class="DataPoint" data-name="rim beautiful water">
+              <p class="BodyContent">
+                <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=1663954301" target="_blank">link</a><br>
+                just something that got popular<br>
+                i liked building river-side dwellings in RimWorld, and i wanted my characters to enjoy the view
+              </p>
+            </div>
+            <div class="DataPoint" data-name="rim replay">
+              <p class="BodyContent">
+                <a href="https://github.com/BalaurBohemianBroken/Replay" target="_blank">source</a><br>
+                the commissioner ghosted me on this one, but I was passionate about it<br>
+                would record inputs and world state so you could rewatch your runs<br>
+                did not finish
+              </p>
+            </div>
+            <div class="DataPoint" data-name="rim physical research">
+              <p class="BodyContent">
+                <a href="https://github.com/BalaurBohemianBroken/PhysicalResearch" target="_blank">source</a><br>
+                make research a resource that could be gained and lost, physically tied to people<br>
+                makes old people have more value<br>
+                did not finish
+              </p>
+            </div>
+            <div class="DataPoint" data-name="rim i'm off">
+              <p class="BodyContent"><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2873618148" target="_blank">link</a><br>
+                an event to get rid of a colonist while making everyone involved happy<br>
+                i felt bad turning people down, but preferred smaller groups
+              </p>
+            </div>
+            <div class="DataPoint" data-name="rim Math!">
+              <p class="MenuName">rim <b>Math!</b></p>
+              <p class="BodyContent">
+                <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2876902608" target="_blank"><b>Link!</b></a><br>
+                allows you to use mathematical formulae as the inputs to fields, including many variables and functions<br>
+                first large coding project i did<br>
+                i would write pseudocode on my phone during the 16 hour bus up to scotland<br>
+              </p>
+            </div>
+            <div class="DataPoint" data-name="pz char randomizer">
+              <p class="BodyContent">
+                <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2980731509" target="_blank">link</a><br>
+                improved logic and settings for character randomization<br>
+                i try not to min-max my characters
+              </p>
+            </div>
+            <div class="DataPoint" data-name="pz maps">
+              <p class="BodyContent">
+                <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2980745220" target="_blank">link</a><br>
+                more paper-based maps for the game<br>
+                i love annotating maps<br>
+                i don't like auto-maps
+              </p>
+            </div>
+            <div class="DataPoint" data-name="pz better crafting">
+              <p class="BodyContent">
+                <a href="https://github.com/BalaurBohemianBroken/PZBetterCrafting" target="_blank">source</a><br>
+                i didn't release this one. it was an ambitious mod that reworked the crafting system from the ground up, because i found it very clunky and rough<br>
+                to memory i nearly finished v1, but there was a scheduled update that would break everything<br>
+                they also completely ignored my job application so i was bitter
+              </p>
+            </div>
+            <div class="DataPoint" data-name="owo stawdew vawwey">
+              <p class="BodyContent">
+                <a href="https://www.nexusmods.com/stardewvalley/mods/8923" target="_blank">link</a><br>
+                silly mod, but very heartfelt. the codebase is stuffed with poetry and thoughts and feelings<br>
+                also made a dumb <a href="https://www.youtube.com/watch?v=IBiT6B3FjAQ" target="_blank">video</a> for its release
+              </p>
+            </div>
+            <div class="DataPoint">
+              <p class="MenuName">-----</p>
+            </div>
+            <div class="DataPoint" data-name="cu piss enjoyment">
+              <p class="BodyContent">
+                <a href="https://www.nexusmods.com/scavprototype/mods/319" target="_blank">link</a><br>
+                yeah.<br>
+                the idea came from a funny moment while playing<br>
+                a return to modding after a 3 year break
+              </p>
+            </div>
+            <div class="DataPoint" data-name="cu it's owover">
+              <p class="BodyContent">
+                <a href="https://www.nexusmods.com/scavprototype/mods/323" target="_blank">link</a><br>
+                another owo mod. no video this time
+              </p>
+            </div>
+            <div class="DataPoint" data-name="cu better crafting">
+              <p class="BodyContent">
+                <a href="https://www.nexusmods.com/scavprototype/mods/344" target="_blank">link</a><br>
+                game's crafting logic is terrible and its codebase is too but it was fun to work on
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 </body>
 </html>
