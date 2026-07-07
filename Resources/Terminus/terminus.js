@@ -2,18 +2,17 @@
 terminus = {
     dropdown_collapsed: "🞂 ",
     dropdown_uncollapsed: "🞃 ",
+    
     main_panel: null,
-    side_panel: null,
+    menu_panel: null,
+    unparsed_data: null,
+    // DataPoints as they appear in the menu, with nesting.
+    parsed_data: [],
+    // Name: DataPoint
+    data_point_register: {},
     
-    // element name: content that gets hidden 
-    menu_collapsible_elements: {},
-    // element name: HasBodyContent element
-    menu_content_elements: {},
-    
-    // content name: element
-    body_content_elements: {},
     body_content_current: null,
-    side_panel_selected: null,
+    data_point_selected: null,
 };
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -22,85 +21,155 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 function Terminus() {
     terminus.main_panel = document.getElementById("main_panel");
-    terminus.side_panel = document.getElementById("side_panel");
-    InitBodyContent();
-    InitCollapsibles();
+    terminus.menu_panel = document.getElementById("side_panel");
+    terminus.unparsed_data = document.getElementById("unparsed_data");
+    terminus.parsed_data = ParseData();
+    InitMenu(terminus.parsed_data);
 }
 
-function InitBodyContent() {
-    let elements = terminus.main_panel.getElementsByClassName("BodyContent");
-    // Register body content
-    for (const element of elements) {
-        let name = element.getAttribute("data-content_name");
-        if (name == null) {
-            console.warn("Couldn't find attribute data-content_name on an element.");
-            continue;
+function ParseData() {
+    let parsed_data = [];
+    for (const data_point_element of terminus.unparsed_data.querySelectorAll(":scope > .DataPoint")) {
+        let data = CreateDataPoint(data_point_element, "");
+        if (data !== null) {
+            parsed_data.push(data);
         }
-        terminus.body_content_elements[name] = element;
     }
-    // Add onclick events for HasBodyContent
-    let content_havers = terminus.side_panel.getElementsByClassName("HasBodyContent");
-    for (const element of content_havers) {
-        let name = element.innerText;
-        terminus.menu_content_elements[name] = element;
-        element.addEventListener("click", function() {SidePanelSelect(this, name);});
+    return parsed_data;
+}
+
+function CreateDataPoint(element, parent_name) {
+    let data_point = {
+        full_name: "",
+        name: "",
+        // Filled with an element.
+        body_element: null,
+        menu_element: null,
+        nested_data_points: null,
+        // This gets filled in CreateMenuEntry.
+        nesting_element: null
+    };
+    
+    // name
+    data_point.name = element.getAttribute("data-name");
+    data_point.full_name = data_point.name; 
+    if (data_point.name !== null && parent_name !== "") {
+        data_point.full_name = parent_name + "." + name;
     }
     
-    // TODO: Check that there's union between BodyContent and HasBodyContent
-}
-
-function InitCollapsibles() {
-    let collapsibles = document.getElementsByClassName("Collapsible");
-
-    for (let i = 0; i < collapsibles.length; i++) {
-        let element = collapsibles[i];
-        let name = element.innerText;
-        terminus.menu_collapsible_elements[name] = element.nextElementSibling;
-        element.addEventListener("click", function() {HandleCollapse(element);});
-        element.innerText = terminus.dropdown_collapsed + element.innerText;
-        element.nextElementSibling.classList.add("Deactivated");
+    // menu_element
+    let menu_name = element.querySelector(":scope > .MenuName");
+    if (menu_name !== null) {
+        data_point.menu_element = menu_name;
     }
-}
-
-function HandleCollapse(element) {
-    element.classList.toggle("Active");
-    let isCollapsed = !element.classList.contains("Active");
-    let content = element.nextElementSibling;
-    if (isCollapsed) {
-        content.classList.add("Deactivated");
-        element.innerText = terminus.dropdown_collapsed + element.innerText.slice(3);
+    else if (data_point.name !== null) {
+        data_point.menu_element = document.createElement("p");
+        data_point.menu_element.innerText = data_point.name;
     }
     else {
-        content.classList.remove("Deactivated");
-        element.innerText = terminus.dropdown_uncollapsed + element.innerText.slice(3);
+        console.error("DataPoint had no data-name attribute and no MenuName element. Element: ", element);
+        return null;
+    }
+    
+    // body_element
+    data_point.body_element = element.querySelector(":scope > .BodyContent");
+    if (data_point.body_element !== null) {
+        data_point.menu_element.classList.add("HasBodyContent");
+    }
+    
+    // nested_data_points
+    let nested_content_element = element.querySelector(":scope > .NestedContent");
+    if (nested_content_element !== null) {
+        data_point.nested_data_points = [];
+        
+        for (const data_point_element of nested_content_element.querySelectorAll(":scope > .DataPoint")) {
+            let data = CreateDataPoint(data_point_element, data_point.full_name);
+            if (data !== null) {
+                data_point.nested_data_points.push(data);
+            }
+        }
+        data_point.menu_element.innerText = terminus.dropdown_collapsed + data_point.menu_element.innerText; 
+    }
+    
+    terminus.data_point_register[data_point.full_name] = data_point;
+    return data_point;
+}
+
+function InitMenu(data_point_list) {
+    // We create a div element that is not a part of the document flow to insert in,
+    // This is so the document doesn't get updated with every new element that is added,
+    // but instead all at once when we're done.
+    let container = document.createElement("div");
+    for (const data_point of data_point_list) {
+        CreateMenuEntry(data_point, container);
+    }
+    terminus.menu_panel.appendChild(container);
+}
+
+function CreateMenuEntry(data_point, container_element) {
+    // Create entry.
+    container_element.appendChild(data_point.menu_element);
+    
+    // Create collapsible content element if applicable.
+    let collapsible_content = null;
+    if (data_point.nested_data_points !== null) {
+        collapsible_content = document.createElement("div");
+        // collapsible_content.classList.add("CollapsibleContent");
+        collapsible_content.classList.add("Indented");
+        
+        data_point.menu_element.addEventListener("click", function () {
+            HandleCollapse(data_point);
+        });
+        
+        collapsible_content.classList.add("Deactivated");
+        data_point.nesting_element = collapsible_content;
+        container_element.appendChild(collapsible_content);
+        data_point.menu_element.classList.add("Collapsible");
+    }
+    
+    // body_element onclick
+    if (data_point.body_element !== null) {
+        data_point.menu_element.addEventListener("click", function () {
+            MenuSelect(data_point);
+        })
+    }
+    
+    // Create child entries.
+    if (data_point.nesting_element == null || data_point.nested_data_points == null) {
+        return;
+    }
+    
+    for (const child of data_point.nested_data_points) {
+        CreateMenuEntry(child, data_point.nesting_element);
     }
 }
 
-function SidePanelSelect(selected_element, content_name) {
-    // TODO: Reset scroll.
-    let target_element = terminus.body_content_elements[content_name];
-    if (target_element == null) {
-        console.warn("Couldn't find body content element with name " + content_name);
-        return;
+function HandleCollapse(data_point) {
+    let is_collapsed = data_point.nesting_element.classList.contains("Deactivated");
+    if (is_collapsed) {
+        data_point.nesting_element.classList.remove("Deactivated");
+        data_point.menu_element.innerText = terminus.dropdown_uncollapsed + data_point.menu_element.innerText.slice(3);
     }
-    
+    else {
+        data_point.nesting_element.classList.add("Deactivated");
+        data_point.menu_element.innerText = terminus.dropdown_collapsed + data_point.menu_element.innerText.slice(3);
+    }
+}
+
+function MenuSelect(data_point) {
+    // TODO: Reset body scroll.
     // If it's a collapsible, and we just collapsed it, don't do anything.
-    let coll = terminus.menu_collapsible_elements[content_name]; 
-    if (coll != null && !coll.classList.contains("Deactivated")) {
+    if (data_point.nesting_element != null && data_point.nesting_element.classList.contains("Deactivated")) {
         return;
     }
     
-    // Handle menu
-    if (terminus.side_panel_selected != null) {
-        terminus.side_panel_selected.classList.remove("Selected");
+    // Clean up previous selection.
+    if (terminus.data_point_selected != null) {
+        terminus.data_point_selected.menu_element.classList.remove("Selected");
+        terminus.data_point_selected.body_element.remove();
     }
-    selected_element.classList.add("Selected");
-    terminus.side_panel_selected = selected_element;
     
-    // Handle body content
-    if (terminus.body_content_current != null) {
-        terminus.body_content_current.style.display = "";
-    }
-    terminus.body_content_current = target_element;
-    target_element.style.display = "block";
+    data_point.menu_element.classList.add("Selected");
+    terminus.main_panel.appendChild(data_point.body_element);
+    terminus.data_point_selected = data_point;
 }
