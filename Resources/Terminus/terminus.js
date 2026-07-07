@@ -157,7 +157,6 @@ function HandleCollapse(data_point) {
 }
 
 function MenuSelect(data_point) {
-    // TODO: Reset body scroll.
     // If it's a collapsible, and we just collapsed it, don't do anything.
     if (data_point.nesting_element != null && data_point.nesting_element.classList.contains("Deactivated")) {
         return;
