@@ -172,4 +172,5 @@ function MenuSelect(data_point) {
     data_point.menu_element.classList.add("Selected");
     terminus.main_panel.appendChild(data_point.body_element);
     terminus.data_point_selected = data_point;
+    terminus.main_panel.scroll(0, 0);
 }
