@@ -182,6 +182,8 @@ function MenuSelect(data_point) {
     terminus.main_panel.appendChild(data_point.body_element);
     terminus.data_point_selected = data_point;
     terminus.main_panel.scroll(0, 0);
+    // Putting it here makes it only update if there is body content. 
+    window.location.hash = "#" + encodeURI(data_point.full_name);
 }
 
 function OpenDataPoint(data_point_name) {
