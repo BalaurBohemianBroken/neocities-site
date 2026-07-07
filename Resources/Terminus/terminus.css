@@ -24,7 +24,7 @@ a:link {
 #content {
     display: flex;
     flex-direction: column;
-    width: max(50vw, 400px);
+    width: max(60vw, 400px);
     height: 100%;
     margin: auto;
     align-items: center;
