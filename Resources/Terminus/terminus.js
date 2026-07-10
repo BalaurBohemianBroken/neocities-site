@@ -187,6 +187,7 @@ function MenuSelect(data_point) {
 }
 
 function OpenDataPoint(data_point_name) {
+    // TODO: If it is a collapsible element, ensure it remains open.
     let target_data_point = terminus.data_point_register[data_point_name];
     let forcebreak = 0;  // Guard against reference loops.
     let chain = [target_data_point];
