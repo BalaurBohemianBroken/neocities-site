@@ -23,7 +23,7 @@
       
     </div>
   </div>
-  <p class="version">24.20260710</p>
+  <p class="version">25.20260710</p>
   <!--
       This element stores what populates the main and side panel. It gets parsed in javascript.
       I thought of using json, but that disallows new lines and would require constant character escaping.
@@ -1089,13 +1089,28 @@
           </p>
         </div>
         <div class="DataPoint" data-name="home server">
-          <p class="BodyContent">
-            i set up a server from old computer parts. it sort of acts as a NAS, sort of acts as cloud storage, runs the api for my website<br>
-            started to fuel my obsession with <a href="#" onclick="OpenDataPoint('hobbies.archival')">archival</a><br>
-            <br>
-            nerd details: it runs headless debian, with snapraid to back up data<br>
-            the api runs django/gunicorn/nginx
-          </p>
+          <div class="BodyContent">
+            <p>
+              i set up a server from old computer parts. it sort of acts as a NAS, sort of acts as cloud storage, runs the api for my website<br>
+              started to fuel my obsession with <a href="#" onclick="OpenDataPoint('hobbies.archival')">archival</a><br>
+              <br>
+            </p>
+              <h2 style="text-align: center; margin: auto; width: 100%; display: inline-block; color: darkmagenta">nerd details</h2>
+            <p>
+              it runs headless debian, with snapraid to back up data<br>
+              the physical drives are merged using mergerfs into three blocks:<br>
+              <span class="Indented">a public block, which has any non-personal data like music, movies and books<br></span>
+              <span class="Indented">a private block, which has my personal data<br></span>
+              <span class="Indented">a user block, which has storage i give to my friends<br></span>
+              <br>
+              right now i don't have any remote mirrors of the data which scares me. when the bubble pops and storage device prices drop i'd like to set up a mirror of my data with a friend, while letting them do the same on my server<br>
+              i also want to get an SSD to store data that needs regular high speed access, like code or photos<br>
+              <br>
+              i connect my devices to the server using sshfs. except my phone, which i haven't rooted. for my phone, i just use rsync to handle pulling or pushing files as needed<br>
+              <br>
+              the api runs django/gunicorn/nginx<br>
+            </p>
+          </div>
         </div>
         <div class="DataPoint" data-name="books (and binding)">
           <p class="BodyContent">
@@ -1110,7 +1125,7 @@
         </div>
         <div class="DataPoint" data-name="archery">
           <p class="BodyContent">
-            i have a bow and arrows i like to use to hunt cardboard boxes
+            i have a bow and arrows i use to hunt boxes of cardboard
           </p>
         </div>
         <div class="DataPoint" data-name="archival">
