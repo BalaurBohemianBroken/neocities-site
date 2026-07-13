@@ -99,6 +99,19 @@ a:link {
     white-space: nowrap;
 }
 
+.Subtitle {
+    text-align: center;
+    margin: auto;
+    width: 100%;
+    display: inline-block;
+    color: #c500c5;
+    font-size: 1.2em;
+}
+
+.SectionTitle {
+    color: #c500c5;
+}
+
 .version {
     text-align: center;
 }
