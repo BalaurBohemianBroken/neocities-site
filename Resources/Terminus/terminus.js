@@ -187,7 +187,6 @@ function MenuSelect(data_point) {
 }
 
 function OpenDataPoint(data_point_name) {
-    // TODO: If it is a collapsible element, ensure it remains open.
     let target_data_point = terminus.data_point_register[data_point_name];
     let forcebreak = 0;  // Guard against reference loops.
     let chain = [target_data_point];
@@ -203,6 +202,11 @@ function OpenDataPoint(data_point_name) {
 
     // Click down the chain!
     for (const data_point of chain) {
+        // If it is a collapsible element, ensure it remains open.
+        if (data_point.nesting_element !== null && !data_point.nesting_element.classList.contains("Deactivated")) {
+            // MenuSelect(data_point);
+            data_point.menu_element.click();
+        }
         data_point.menu_element.click();
     }
 }
