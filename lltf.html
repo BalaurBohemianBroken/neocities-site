@@ -914,7 +914,18 @@ If they only partially succeed, the creatures back down, but do not reveal infor
 
 If they fail, or if they choose to, the situation turns violent. Fitch is required to fight off a creature, which can very easily kill an unprepared Fitch.
 If they succeed they are able to explore deeper, finding a wounded individual.
-Before being able to attend to them, two more creatures appear. Fitch has the option to flee or to fight, though this second fight requires significant combat abilities to keep Fitch and the wounded alive.</tw-passagedata><tw-passagedata pid="17" name="I will tell you what to do." tags="" position="3500,3725" size="100,100"></tw-passagedata><tw-passagedata pid="18" name="FirearmsInit" tags="Unmapped" position="5825,525" size="100,100">{Skill firearms 0 100 [[Firearms]]}</tw-passagedata><tw-passagedata pid="19" name="StealthInit" tags="Unmapped" position="5725,525" size="100,100">{Skill stealth 0 100 [[Stealth]]}</tw-passagedata><tw-passagedata pid="20" name="Intimidation" tags="" position="6525,525" size="100,100"></tw-passagedata><tw-passagedata pid="21" name="Charm" tags="" position="6625,525" size="100,100">Attraction, flattery and flirtation. Acting and appearing appealing to those susceptible.
+Before being able to attend to them, two more creatures appear. Fitch has the option to flee or to fight, though this second fight requires significant combat abilities to keep Fitch and the wounded alive.</tw-passagedata><tw-passagedata pid="17" name="I will tell you what to do." tags="" position="3500,3725" size="100,100"></tw-passagedata><tw-passagedata pid="18" name="FirearmsInit" tags="Unmapped" position="5825,525" size="100,100">{Skill firearms 0 100 [[Firearms]]
+[[Firearm basics]]
+[[Firearm draw]]
+[[Firing a shot]]
+[[Experienced draw]]
+[[Holstering your gun]]
+[[Quickdraw]]
+[[Internalizing the buzzing]]
+[[Disarmed recovery]]
+[[Firearm intimidation]]
+[[Firearm smokescreen]]
+}</tw-passagedata><tw-passagedata pid="19" name="StealthInit" tags="Unmapped" position="5725,525" size="100,100">{Skill stealth 0 100 [[Stealth]]}</tw-passagedata><tw-passagedata pid="20" name="Intimidation" tags="" position="6525,525" size="100,100"></tw-passagedata><tw-passagedata pid="21" name="Charm" tags="" position="6625,525" size="100,100">Attraction, flattery and flirtation. Acting and appearing appealing to those susceptible.
 
 - Your eyes and coat have always been natural gifts. Even within your species, your sex isn&#39;t apparent, you lie somewhere between the identifiers in a way some find appealing. You&#39;ve learned to play into that, and in time you realized you enjoyed the ambiguity.
 
@@ -986,7 +997,7 @@ Your eyes wouldn&#39;t see much anyway.</tw-passagedata><tw-passagedata pid="39"
 You lay in a dark, quiet room, and just think. You don&#39;t know about what, or how you decide. This is sort of weird really. In fact, you fall asleep a few times.
 At the end of it, it doesn&#39;t feel bad, though. Your chest feels funny, but the world feels a little clearer, and you feel a bit more open to it.</tw-passagedata><tw-passagedata pid="41" name="Eyes in the mirror" tags="" position="5025,825" size="100,100">You see someone in a mirror, and lay looking for a while. You think they look... nice. Clean, soft white fur that stands out against the backdrop. Their eyes seem gifted, a rare shade of lilac brought on by albinism, avoiding the piercing red many of their kind have. Even at this small distance, their arm doesn&#39;t appear unnatural.
 They are cared for well, given advantages many could never imagine. They are important, intelligent, talented...
-So why are they looking at you like that? What more could they want?</tw-passagedata><tw-passagedata pid="42" name="Prisoner negotiation" tags="" position="3425,2575" size="200,100">Fitch leads a negotiation to capture and deport 2 scientists.</tw-passagedata><tw-passagedata pid="43" name="Prisoner transport" tags="" position="3425,2800" size="200,100">If the prisoners were successfully captured, they are transported to the Western Checkpoint.
+So why are they looking at you like that? What more could they want?</tw-passagedata><tw-passagedata pid="42" name="Prisoner negotiation" tags="" position="3400,2175" size="200,100">Fitch leads a negotiation to capture and deport 2 scientists.</tw-passagedata><tw-passagedata pid="43" name="Prisoner transport" tags="" position="3400,2800" size="200,100">If the prisoners were successfully captured, they are transported to the Western Checkpoint.
 
 In most situations, it is ambushed, and the prisoners are either stolen, or killed.
 
@@ -1174,6 +1185,10 @@ Talk about...
 	&lt;div style=&quot;text-align: right&quot;&gt;_contents&lt;/div&gt;
 &lt;&lt;/widget&gt;&gt;\
 
+&lt;&lt;widget &quot;alignCenter&quot; container&gt;&gt;\
+	&lt;div style=&quot;text-align: center&quot;&gt;_contents&lt;/div&gt;
+&lt;&lt;/widget&gt;&gt;\
+
 &lt;&lt;widget &quot;classDiv&quot; container&gt;&gt;\
 	&lt;div @class=&quot;_args[0]&quot;&gt;_contents&lt;/div&gt;
 &lt;&lt;/widget&gt;&gt;\
@@ -1252,7 +1267,7 @@ Is it much further? Maybe you should go back to sleep.
 TODO: End of game</tw-passagedata><tw-passagedata pid="80" name="Look around." tags="" position="3425,1025" size="100,100">With effort, you rise from the bed, stretch your hindlegs and foreleg.
 You woke up just in time, the cart is slowing. Your assistant aids you in putting the glove on your right paw.
 
-You hop down onto the cold rock below, thank the carters, and trail your superior into </tw-passagedata><tw-passagedata pid="81" name="Request from Coal" tags="" position="3425,2250" size="200,100">Coal approaches Fitch&#39;s company to seek help with disappearances in the industrial district.
+You hop down onto the cold rock below, thank the carters, and trail your superior into </tw-passagedata><tw-passagedata pid="81" name="Request from Coal" tags="" position="3400,1750" size="200,100">Coal approaches Fitch&#39;s company to seek help with disappearances in the industrial district.
 
 TODO: Skill check fail for not knowing about policing here.
 &lt;&lt;fitch&gt;&gt;&quot;Why is an artist coming to us, a group from The Hub, about this? Shouldn&#39;t local authorities handle this?&quot;&lt;&lt;/fitch&gt;&gt;
@@ -1337,37 +1352,7 @@ This isn&#39;t the most effective. A &lt;b&gt;lot&lt;/b&gt; of creatures pay att
 
 - You, your trainer, and your assistant have a casual discussion. One of them conceals a blade. Through body language, scent and intonation, you attempt to detect which it is.
 
-- You learn to pay attention to the scent of anger, and fear. Many creatures have a subtle shift in their odor when they anticipate something.</tw-passagedata><tw-passagedata pid="99" name="AthleticsInit" tags="Unmapped" position="5525,525" size="100,100">{Skill athletics 0 80 [[Athletics]]}</tw-passagedata><tw-passagedata pid="100" name="Athletics" tags="" position="5525,625" size="100,100"></tw-passagedata><tw-passagedata pid="101" name="Reflexes" tags="" position="5625,625" size="100,100"></tw-passagedata><tw-passagedata pid="102" name="Stealth" tags="" position="5725,625" size="100,100">Unique to Fitch. The ability to remain undetected.</tw-passagedata><tw-passagedata pid="103" name="Firearms" tags="" position="5825,625" size="100,100">The handling of your unique firearm. This skill is exclusive to Fitch.
-
-[[Firearm basics]]
-- Y
-
-[[Firearm draw]]
-- 
-
-[[Firing a shot]]
-- You get experience firing a few blank rounds, clamping your teeth onto the mechanism to activate it, while a large assistant holds you in place. Even as a blank, it is completely overbearing. The sound kills any thoughts, the recoil is still enough to wind you and hurt your neck, your body is left buzzing afterwards and you can&#39;t focus, and once, the fear of the force makes the gun slip from your maw and misfire upon hitting the ground.
-
-[[Quickdraw]]
-- You spend the day doing normal tasks, while randomly assistants will pretend to try to assault you, and you need to quickly draw your weapon on them. 
-
-[[Holstering your gun]]
-- You learn to holster the weapon without having fired it. A situation that might call for this will be very diplomatically tense, and you do not want to fumble or misfire after threatening someone.
-
-[[Experienced draw]]
-- You practice your draw further, getting a better grip, aligning it with your maw better so that you need only look towards your target to effectively aim, before firing. Accuracy isn&#39;t considered vital, you can&#39;t see very far anyway, but it is preferred.
-
-[[Internalizing the buzzing]]
-- You get more experience firing blanks. You learn to not hold so stiff that your body is launched, but not so loose that you crumple, feeling your limbs rock backwards and paws slide after a shot. You&#39;re starting to become desensitized to the loud noise and buzzing that runs through your body each time you fire, though these are still blanks.
-
-[[Disarmed recovery]]
-- You practice picking the gun up off the ground in a fluid motion, preparing for an instance where you may have been disarmed.
-
-[[Firearm intimidation]]
-- You learn how to not look so scared while holding the gun. You practice your gaze in a mirror with the gun in your maw, learning an expression that does not show malice, but does show intent. You decide against the slight growl, feeling it too beastial.
-
-[[Firearm smokescreen]]
-- You learn to drop the gun and run immediately after firing a shot. The noise will disturb others as much as it disturbed you, and the smoke will briefly obscure your escape. In any situation where you have fired, you will want to get distance.</tw-passagedata><tw-passagedata pid="104" name="Grappling" tags="" position="5925,625" size="100,100">Holding on to something with teeth and claws, usually to harm.
+- You learn to pay attention to the scent of anger, and fear. Many creatures have a subtle shift in their odor when they anticipate something.</tw-passagedata><tw-passagedata pid="99" name="AthleticsInit" tags="Unmapped" position="5525,525" size="100,100">{Skill athletics 0 80 [[Athletics]]}</tw-passagedata><tw-passagedata pid="100" name="Athletics" tags="" position="5525,625" size="100,100"></tw-passagedata><tw-passagedata pid="101" name="Reflexes" tags="" position="5625,625" size="100,100"></tw-passagedata><tw-passagedata pid="102" name="Stealth" tags="" position="5725,625" size="100,100">Unique to Fitch. The ability to remain undetected.</tw-passagedata><tw-passagedata pid="103" name="Firearms" tags="" position="5825,625" size="100,100">The handling of your unique firearm. This skill is exclusive to Fitch.</tw-passagedata><tw-passagedata pid="104" name="Grappling" tags="" position="5925,625" size="100,100">Holding on to something with teeth and claws, usually to harm.
 
 - You&#39;re provided with soft recreations of creatures, usually given to ferals for play. You get used to grabbing them with your teeth, and shaking them hard.
 You feel bad about it at first, but these things are tougher than you.</tw-passagedata><tw-passagedata pid="105" name="Defending" tags="" position="6025,625" size="100,100"></tw-passagedata><tw-passagedata pid="106" name="Evolved senses" tags="" position="5225,725" size="100,100">Ferals, even uplifted ones, are uniquely in tune with their instincts. There are signs your body sends when something&#39;s just not right. Millions of years of evolution have laid the groundwork already.</tw-passagedata><tw-passagedata pid="107" name="First aid" tags="" position="7875,625" size="100,100">The knowledge and ability to stabilize life threatening wounds.
@@ -1532,7 +1517,7 @@ It has not.
 - You learn not to correct mistakes others make if not necessary. It makes them aware of how much you may know, their mistake might lead to an advantageous position, and it makes you appear more cooperative.
 
 - You practice clearly identifying what everyone wants, yourself included. Keeping their goals in mind makes it simpler to understand why they are or are not offering something. You might even realize that your goals are not at conflict, but aligned, and a negotiation can become an alliance.</tw-passagedata><tw-passagedata pid="138" name="Firearm basics" tags="" position="5825,725" size="100,100">You learn the basic functioning of the gun. It can only be fired once, and requires special tools to be reloaded. It is not designed for long-range use, but contains enough power in a shot to immediately disable any creature hit. It is very loud, and produces a lot of smoke when fired. It is specially made around your physiology, is compact, and placed in a special holster in your outfit. Until drawn, it is not obvious that it is a gun.</tw-passagedata><tw-passagedata pid="139" name="Firearm draw" tags="" position="5825,825" size="100,100">You get used to drawing your weapon. The motions are slow and awkward at first. Turning to your side. Gripping the joint handle and trigger with your teeth. Pulling back, and levelling your aim, the red tip of the barrel in the middle of your vision, at your target. Though discrete while holstered, the sinister sanguine barrel makes the intend of the device clear once drawn.
-It&#39;s much harder to holster. At this stage, you find it faster to fully slip free of your harness to return it. It is expected that you will either be safe, running, or dead after drawing this.</tw-passagedata><tw-passagedata pid="140" name="Firing a shot" tags="" position="5650,1200" size="100,100"></tw-passagedata><tw-passagedata pid="141" name="Quickdraw" tags="" position="5775,1325" size="100,100"></tw-passagedata><tw-passagedata pid="142" name="Holstering your gun" tags="" position="5900,1325" size="100,100"></tw-passagedata><tw-passagedata pid="143" name="Experienced draw" tags="" position="5650,1325" size="100,100"></tw-passagedata><tw-passagedata pid="144" name="Disarmed recovery" tags="" position="5900,1450" size="100,100"></tw-passagedata><tw-passagedata pid="145" name="Firearm intimidation" tags="" position="5650,1450" size="100,100"></tw-passagedata><tw-passagedata pid="146" name="Internalizing the buzzing" tags="" position="5775,1450" size="100,100"></tw-passagedata><tw-passagedata pid="147" name="Firearm smokescreen" tags="" position="5775,1575" size="100,100"></tw-passagedata><tw-passagedata pid="148" name="Loneliness in understanding" tags="" position="5025,1125" size="100,100">You think of the countless hours in The Hub spent listening to strangers talk about their life as they offered idle pets. At first you didn&#39;t understand much of what they talked about: work, poverty, politics, death, love. In time their words began to make sense. You experienced some of these yourself. The discussions were always one way. You never felt like you could talk about yourself. They didn&#39;t seem to...
+It&#39;s much harder to holster. At this stage, you find it faster to fully slip free of your harness to return it. It is expected that you will either be safe, running, or dead after drawing this.</tw-passagedata><tw-passagedata pid="140" name="Firing a shot" tags="" position="5825,925" size="100,100">You get experience firing a few blank rounds, clamping your teeth onto the mechanism to activate it, while a large assistant holds you in place. Even as a blank, it is completely overbearing. The sound kills any thoughts, the recoil is still enough to wind you and hurt your neck, your body is left buzzing afterwards and you can&#39;t focus, and once, the fear of the force makes the gun slip from your maw and misfire upon hitting the ground.</tw-passagedata><tw-passagedata pid="141" name="Quickdraw" tags="" position="5825,1225" size="100,100">You spend the day doing normal tasks, while randomly assistants will pretend to try to assault you, requiring you to quickly draw your weapon on them.</tw-passagedata><tw-passagedata pid="142" name="Holstering your gun" tags="" position="5825,1125" size="100,100">You learn to holster the weapon without having fired it. A situation that might call for this will be very diplomatically tense, and you do not want to fumble or misfire after threatening someone.</tw-passagedata><tw-passagedata pid="143" name="Experienced draw" tags="" position="5825,1025" size="100,100">You practice your draw further, getting a better grip, aligning it with your maw better so that you need only look towards your target to effectively aim, before firing. Accuracy isn&#39;t considered vital, you can&#39;t see very far anyway, but it is preferred.</tw-passagedata><tw-passagedata pid="144" name="Disarmed recovery" tags="" position="5825,1425" size="100,100">You practice picking the gun up off the ground in a fluid motion, preparing for an instance where you may have been disarmed.</tw-passagedata><tw-passagedata pid="145" name="Firearm intimidation" tags="" position="5825,1525" size="100,100">You learn how to not look so scared while holding the gun. You practice your gaze in a mirror with the gun in your maw, learning an expression that does not show malice, but does show intent. You decide against the slight growl, feeling it too beastial.</tw-passagedata><tw-passagedata pid="146" name="Internalizing the buzzing" tags="" position="5825,1325" size="100,100">You get more experience firing blanks. You learn to not hold so stiff that your body is launched, but not so loose that you crumple, feeling your limbs rock backwards and paws slide after a shot. You&#39;re starting to become desensitized to the loud noise and buzzing that runs through your body each time you fire, though these are still blanks.</tw-passagedata><tw-passagedata pid="147" name="Firearm smokescreen" tags="" position="5825,1625" size="100,100">You learn to drop the gun and run immediately after firing a shot. The noise will disturb others as much as it disturbed you, and the smoke will briefly obscure your escape. In any situation where you have fired, you will want to get distance.</tw-passagedata><tw-passagedata pid="148" name="Loneliness in understanding" tags="" position="5025,1125" size="100,100">You think of the countless hours in The Hub spent listening to strangers talk about their life as they offered idle pets. At first you didn&#39;t understand much of what they talked about: work, poverty, politics, death, love. In time their words began to make sense. You experienced some of these yourself. The discussions were always one way. You never felt like you could talk about yourself. They didn&#39;t seem to...
 It was like they approached life in a fundamentally different way to you.
 You miss your friends at home. You wish they were enough for you.</tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
