@@ -1562,80 +1562,154 @@ As Rey is taken as a prisoner, they greatly resent what happens to them, and sho
 
 If he is imprisoned, and later escape, he comes to be a core part of the resistance. This can either be beneficial if Fitch has positive rapport, or very harmful.</tw-passagedata><tw-passagedata pid="171" name="Prisoners are taken" tags="" position="3387.5,2300" size="100,100">[[Prisoner transport]]</tw-passagedata><tw-passagedata pid="172" name="Prisoners are refused" tags="" position="3512.5,2300" size="100,100"></tw-passagedata><tw-passagedata pid="173" name="Assault on convoy" tags="" position="3175,3075" size="100,100">&lt;&lt;set $canDisarm = false&gt;&gt;\
 &lt;&lt;set $canThrow = false&gt;&gt;\
+&lt;&lt;set $canHit = false&gt;&gt;\
 \
-&lt;&lt;set $disarmAbility = 0&gt;&gt;\
-&lt;&lt;set $throwAbility = 0&gt;&gt;\
-&lt;&lt;set $escapeAbility = 0&gt;&gt;\
-&lt;&lt;set $warnAbility = 0&gt;&gt;\
-A leather wrapped ball has planted with a thump at his feet. Its fuze shoots a fountain of sparks as if in celebration of its impending victory. It is a grenade.
+&lt;&lt;set $disarmTime = 30&gt;&gt;\
+&lt;&lt;set $throwTime = 40&gt;&gt;\
+&lt;&lt;set $escapeTime = 40&gt;&gt;\
+&lt;&lt;set $warnTime = 30&gt;&gt;\
+You are beside him. On the other side of him, a leather wrapped ball has planted with a thump at his feet. Its rope fuse burns bright in the otherwise dim caverns. It is a grenade.
 He has not yet realized. His death is certain if nothing happens.
 
 &lt;&lt;if $skills.reflexes.value &gt;= 80&gt;&gt;\
 	&lt;&lt;checkPassed $skills.reflexes.desc&gt;&gt;
+    &lt;&lt;set $disarmTime += 3&gt;&gt;\
+    &lt;&lt;set $throwTime += 3&gt;\
+    &lt;&lt;set $escapeTime += 3&gt;&gt;\
+    &lt;&lt;set $warnTime += 3&gt;&gt;\
     Before it has even landed, you are already considering your options.
-    &lt;&lt;set $disarmAbility += 2&gt;&gt;\
-    &lt;&lt;set $throwAbility += 2&gt;&gt;\
-    &lt;&lt;set $escapeAbility += 2&gt;&gt;\
-    &lt;&lt;set $warnAbility += 2&gt;&gt;\
 &lt;&lt;elseif $skills.reflexes.value &gt;= 30&gt;&gt;\
-    &lt;&lt;set $disarmAbility += 1&gt;&gt;\
-    &lt;&lt;set $throwAbility += 1&gt;&gt;\
-    &lt;&lt;set $escapeAbility += 1&gt;&gt;\
-    &lt;&lt;set $warnAbility += 1&gt;&gt;\
+    &lt;&lt;set $disarmTime -= 1&gt;&gt;\
+    &lt;&lt;set $throwTime -= 1&gt;&gt;\
+    &lt;&lt;set $escapeTime -= 1&gt;&gt;\
+    &lt;&lt;set $warnTime -= 1&gt;&gt;\
 	&lt;&lt;checkPartial $skills.reflexes.desc&gt;&gt;
     It takes you a moment to process what this object is, and what threat it poses.
 &lt;&lt;else&gt;&gt;\
 	&lt;&lt;checkFailed $skills.reflexes.desc&gt;&gt;
+    &lt;&lt;set $disarmTime -= 10&gt;&gt;\
+    &lt;&lt;set $throwTime -= 10&gt;&gt;\
+    &lt;&lt;set $escapeTime -= 10&gt;&gt;\
+    &lt;&lt;set $warnTime -= 10&gt;&gt;\
+    A full second has passed before you&#39;ve realized what is happening. 
 &lt;&lt;/if&gt;&gt;\
-    \
-    &lt;&lt;if $skills.firstAid.value &gt;= 50&gt;&gt;\
-        &lt;&lt;set $disarmAbility += 1&gt;&gt;\
-        &lt;&lt;set $throwAbility += 1&gt;&gt;\
-        &lt;&lt;set $escapeAbility += 1&gt;&gt;\
-        &lt;&lt;set $warnAbility += 1&gt;&gt;\
-		&lt;&lt;checkPassed $skills.firstAid.desc&gt;&gt;
-        These kinds of explosives are all about shockwave and internal damage. Even a couple of body-lengths of distance will significantly reduce the harm.
-    &lt;&lt;else&gt;&gt;\
-        &lt;&lt;checkFailed $skills.firstAid.desc&gt;&gt;
-    &lt;&lt;/if&gt;&gt;\
-    \
-    &lt;&lt;if $skills.dangerSense.value &gt;= 50&gt;&gt;\
-      &lt;&lt;set $disarmAbility += 1&gt;&gt;\
-      &lt;&lt;set $throwAbility += 1&gt;&gt;\
-      &lt;&lt;set $escapeAbility += 1&gt;&gt;\
-      &lt;&lt;set $warnAbility += 1&gt;&gt;\
-      &lt;&lt;checkPassed $skills.dangerSense.desc&gt;&gt;
-      The fuse still has some time. At least three seconds, probably more. These are not high quality explosives.
-	&lt;&lt;else&gt;&gt;\
-		&lt;&lt;checkFailed $skills.dangerSense.desc&gt;&gt;
-	&lt;&lt;/if&gt;&gt;\
-    \
-    &lt;&lt;if $skills.grappling.value &gt;= 100&gt;&gt;\
-      &lt;&lt;checkPassed $skills.grappling.desc&gt;&gt;
-      Fuck tossing the bomb - you could bite through the cheap fuze with enough force. Your teeth are made for puncturing and tearing. You might break a few teeth, but there will be no explosion.
-    &lt;&lt;if $skills.grappling.value &gt;= 60&gt;&gt;\
-      &lt;&lt;checkPartial $skills.grappling.desc&gt;&gt;
-      The leather on the bomb is loose enough for you to easily grab with your teeth. You could run beside it, grab, twist and release to throw it a short distance - if it isn&#39;t too heavy.
-    &lt;&lt;else&gt;&gt;\
-      &lt;&lt;checkFailed $skills.grappling.desc&gt;&gt;
-    &lt;&lt;/if&gt;&gt;\
-    \
-    &lt;&lt;if $skills.athletics.value &gt;= 30&gt;&gt;\
-      &lt;&lt;checkPassed $skills.athletics.desc&gt;&gt;
-    	You could reach the bomb in about two seconds. Otherwise, you could escape down a nearby narrow tunnel before it goes off.
-    &lt;&lt;else&gt;&gt;\
-      &lt;&lt;checkFailed $skills.athletics.desc&gt;&gt;
-    &lt;&lt;/if&gt;&gt;\
+\
+&lt;&lt;if $skills.dangerSense.value &gt;= 50&gt;&gt;\
+    &lt;&lt;set $disarmTime += 2&gt;&gt;\
+    &lt;&lt;set $throwTime += 2&gt;&gt;\
+    &lt;&lt;set $escapeTime += 2&gt;&gt;\
+    &lt;&lt;set $warnTime += 2&gt;&gt;\
+    &lt;&lt;checkPassed $skills.dangerSense.desc&gt;&gt;
+    The bomb has only just been thrown. You think you have about three seconds before its fuse disappears into its body, and maybe one second after that before it explodes.
+&lt;&lt;else&gt;&gt;\
+    &lt;&lt;checkFailed $skills.dangerSense.desc&gt;&gt;
+    There&#39;s no telling how much time you have to act.
+&lt;&lt;/if&gt;&gt;\
+\
+&lt;&lt;if $skills.firstAid.value &gt;= 50&gt;&gt;\
+    &lt;&lt;set $throwTime += 2&gt;&gt;\
+    &lt;&lt;set $escapeTime += 2&gt;&gt;\
+    &lt;&lt;set $warnTime += 2&gt;&gt;\
+    &lt;&lt;checkPassed $skills.firstAid.desc&gt;&gt;
+    These kinds of explosives are all about shockwave and internal damage. Even a couple of body-lengths of distance will significantly reduce the harm.
+&lt;&lt;else&gt;&gt;\
+    &lt;&lt;checkFailed $skills.firstAid.desc&gt;&gt;
+&lt;&lt;/if&gt;&gt;\
+\
+&lt;&lt;if $skills.firearms.value &gt;= 70&gt;&gt;\
+    &lt;&lt;set $throwTime += 10&gt;&gt;\
+    &lt;&lt;set $escapeTime += 10&gt;&gt;\
+    &lt;&lt;set $disarmTime += 5&gt;&gt;\
+    &lt;&lt;set $warnTime += 10&gt;&gt;\
+    &lt;&lt;checkPassed $skills.firearms.desc&gt;&gt;
+    This bomb is just a modified mining charge. It was wrapped in leather to help with throwing, its fuse was tripped, and it is not an efficient device for killing. If you are parallel with the ground when it goes off, your odds are good.
+&lt;&lt;elseif $skills.firearms.value &gt;= 30&gt;&gt;\
+    &lt;&lt;set $throwTime += 2&gt;&gt;\
+    &lt;&lt;set $escapeTime += 2&gt;&gt;\
+    &lt;&lt;set $disarmTime += 2&gt;&gt;\
+    &lt;&lt;set $warnTime += 2&gt;&gt;\
+    &lt;&lt;checkPassed $skills.firearms.desc&gt;&gt;
+    This bomb is made of cheap available parts. It is better at scaring than it is at killing. Though at this range, it is still very capable.
+&lt;&lt;else&gt;&gt;\
+    &lt;&lt;checkFailed $skills.firearms.desc&gt;&gt;
+&lt;&lt;/if&gt;&gt;\
 \
 &lt;&lt;if $skills.composure.value &gt;= 80&gt;&gt;\
 	&lt;&lt;checkPassed $skills.composure.desc&gt;&gt;
-    Your focus is unbroken. The world seems to be kept in suspension as you decide on the correct action. Fear has no place, death is to be defeated. Act with your full commitment.
+    Your focus is unbroken. The world seems to be kept in suspension as you decide on the correct action. Death holds no power. You are committed to survival.
+&lt;&lt;elseif $skills.composure.value &gt;= 40&gt;&gt;\
+    &lt;&lt;set $disarmTime -= 3&gt;&gt;\
+    &lt;&lt;set $throwTime -= 3&gt;&gt;\
+    &lt;&lt;set $escapeTime -= 3&gt;&gt;\
+    &lt;&lt;set $warnTime -= 3&gt;&gt;\
+	&lt;&lt;checkPartial $skills.composure.desc&gt;&gt;
+    You feel a flash run through your body, and suddenly you are calm. No, not calm, but angry. This will do.
 &lt;&lt;else&gt;&gt;\
 	&lt;&lt;checkFailed $skills.composure.desc&gt;&gt;
+    &lt;&lt;set $disarmTime -= 10&gt;&gt;\
+    &lt;&lt;set $throwTime -= 10&gt;&gt;\
+    &lt;&lt;set $escapeTime -= 10&gt;&gt;\
+    &lt;&lt;set $warnTime -= 10&gt;&gt;\
+&lt;&lt;/if&gt;&gt;\
+\
+&lt;&lt;if $skills.athletics.value &gt;= 100&gt;&gt;\
+    &lt;&lt;checkPartial $skills.athletics.desc&gt;&gt;
+    &lt;&lt;set $throwTime += 5&gt;&gt;\
+    &lt;&lt;set $canHit = true&gt;&gt;\
+    It is as if you are already in motion. You could defy time and be at the bomb seemingly before it has even landed, with enough force to launch it away. Or, you could be down a tunnel, a blur escaping the shockwave.
+&lt;&lt;elseif $skills.athletics.value &gt;= 60&gt;&gt;\
+    &lt;&lt;checkPartial $skills.athletics.desc&gt;&gt;
+    &lt;&lt;set $canHit = true&gt;&gt;\
+    &lt;&lt;set $disarmTime -= 10&gt;&gt;\
+    &lt;&lt;set $throwTime -= 10&gt;&gt;\
+    &lt;&lt;set $escapeTime -= 10&gt;&gt;\
+    Your body is already in position to bolt before you have even realized where to. You could charge directly at the bomb, slam it with enough force to send it back. Or, you could escape this encounter completely down a nearby passageway.
+&lt;&lt;elseif $skills.athletics.value &gt;= 30&gt;&gt;\
+    &lt;&lt;checkPartial $skills.athletics.desc&gt;&gt;
+    &lt;&lt;set $canHit = true&gt;&gt;\
+    &lt;&lt;set $disarmTime -= 20&gt;&gt;\
+    &lt;&lt;set $throwTime -= 20&gt;&gt;\
+    &lt;&lt;set $escapeTime -= 20&gt;&gt;\
+    You could reach the bomb in about two seconds. Otherwise, you could escape down a nearby narrow tunnel before it goes off.
+    With enough speed, you might be able to headbutt it far enough away to survive.
+&lt;&lt;else&gt;&gt;\
+    &lt;&lt;checkFailed $skills.athletics.desc&gt;&gt;
+    &lt;&lt;set $disarmTime -= 30&gt;&gt;\
+    &lt;&lt;set $throwTime -= 30&gt;&gt;\
+    &lt;&lt;set $escapeTime -= 30&gt;&gt;\
+    Your legs feel as though they are locked in place. You are not prepared for running.
+&lt;&lt;/if&gt;&gt;\
+\
+&lt;&lt;if $skills.grappling.value &gt;= 100&gt;&gt;\
+    &lt;&lt;checkPassed $skills.grappling.desc&gt;&gt;
+    &lt;&lt;set $canDisarm = true&gt;&gt;\
+    &lt;&lt;set $canThrow = true&gt;&gt;\
+    &lt;&lt;set $disarmTime -= 5&gt;&gt;\
+    &lt;&lt;set $throwTime -= 5&gt;&gt;\
+    Bite the fuse with all of your force, press your paw into the ball and tear. You think you could destroy the fuse in a single motion.
+    In that same motion, you could instead choose to throw it. But your teeth suspect disarming is the correct approach.
+&lt;&lt;elseif $skills.grappling.value &gt;= 60&gt;&gt;\
+    &lt;&lt;checkPartial $skills.grappling.desc&gt;&gt;
+    &lt;&lt;set $canDisarm = true&gt;&gt;\
+    &lt;&lt;set $canThrow = true&gt;&gt;\
+    &lt;&lt;set $disarmTime -= 15&gt;&gt;\
+    &lt;&lt;set $throwTime -= 7&gt;&gt;\
+    Your eyes are fixed on the fuse. It can be disarmed - no, it is easy for you to disarm. Your teeth could shred through the rope. But do you have enough time? Have you realized quickly enough? You will need all the time you can get.
+    It might be safer to just throw the thing. That, you know you can do.
+&lt;&lt;elseif $skills.grappling.value &gt;= 20&gt;&gt;\
+    &lt;&lt;checkPartial $skills.grappling.desc&gt;&gt;
+    &lt;&lt;set $canThrow = true&gt;&gt;\
+    &lt;&lt;set $throwTime -= 15&gt;&gt;\
+    &lt;&lt;set $disarmTime -= 30&gt;&gt;\
+    The leather on the bomb is loose enough for you to easily grab with your teeth. You could run beside it, grab, twist and release to throw it a short distance - if it isn&#39;t too heavy.
+&lt;&lt;else&gt;&gt;\
+    &lt;&lt;checkFailed $skills.grappling.desc&gt;&gt;
+    &lt;&lt;set $throwTime -= 20&gt;&gt;\
 &lt;&lt;/if&gt;&gt;\
 \
 &lt;&lt;if $skills.leadership.value &gt;= 80&gt;&gt;\
 	&lt;&lt;checkPassed $skills.leadership.desc&gt;&gt;
+    &lt;&lt;set $warnTime -= 10&gt;&gt;\
     Compel him. Be brief, and be unyielding. Leave no uncertainty in his mind. He can save his own life.
 &lt;&lt;else&gt;&gt;\
 	&lt;&lt;checkFailed $skills.leadership.desc&gt;&gt;
@@ -1644,7 +1718,7 @@ He has not yet realized. His death is certain if nothing happens.
 &lt;&lt;if $skills.interpersonal.value &gt;= 60&gt;&gt;\
 	&lt;&lt;checkPassed $skills.interpersonal.desc&gt;&gt;
     In this moment, you are the only person he trusts. Whatever you decide, he will support.
-    &lt;&lt;else&gt;&gt;\
+&lt;&lt;else&gt;&gt;\
 	&lt;&lt;checkFailed $skills.interpersonal.desc&gt;&gt;
 &lt;&lt;/if&gt;&gt;\
 \
