@@ -31,6 +31,8 @@ function Terminus() {
     if (fragment in terminus.data_point_register) {
         OpenDataPoint(fragment);
     }
+    
+    GetStickerCount();
 }
 
 function ParseData() {
@@ -209,4 +211,19 @@ function OpenDataPoint(data_point_name) {
         }
         data_point.menu_element.click();
     }
+}
+
+function GetStickerCount() {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
+            UpdateStickerCount(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", "/Resources/Stickers/count.txt", true); // true for asynchronous 
+    xmlHttp.send(null);
+}
+
+function UpdateStickerCount(sticker_page_text) {
+    let count = sticker_page_text.split('\n')[0];
+    document.getElementById("stickerCount").innerText = count;
 }
