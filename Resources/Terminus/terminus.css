@@ -99,6 +99,18 @@ a:link {
     white-space: nowrap;
 }
 
+.Positive {
+    color: #36b893;
+}
+
+.Mixed {
+    color: #3693b8;
+}
+
+.Negative {
+    color: #b8365b;
+}
+
 .Subtitle {
     text-align: center;
     margin: auto;
