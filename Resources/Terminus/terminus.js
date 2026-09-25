@@ -31,6 +31,9 @@ function Terminus() {
     if (fragment in terminus.data_point_register) {
         OpenDataPoint(fragment);
     }
+    else {
+        OpenDataPoint("whoami");
+    }
     
     GetStickerCount();
 }
