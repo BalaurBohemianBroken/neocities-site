@@ -36,6 +36,7 @@ function Terminus() {
     }
     
     GetStickerCount();
+    InitPopupImage();
 }
 
 function ParseData() {
@@ -229,4 +230,25 @@ function GetStickerCount() {
 function UpdateStickerCount(sticker_page_text) {
     let count = sticker_page_text.split('\n')[0];
     document.getElementById("stickerCount").innerText = count;
+}
+
+function InitPopupImage() {
+    terminus.popup_container = document.getElementById("popup_image_container");
+    terminus.popup_img = document.getElementById("popup_image");
+    
+    let imgs = document.getElementsByTagName("img");
+    console.log(imgs.length);
+    for (let img of imgs) {
+        img.addEventListener("click", function() {SetPopupState(true, img.src)});
+        img.style.cursor = "pointer";
+    }
+}
+
+function SetPopupState(state, src="") {
+    if (state !== true) {
+        terminus.popup_container.style.display = "none";
+        return;
+    }
+    terminus.popup_container.style.display = "";
+    terminus.popup_img.src = src;
 }

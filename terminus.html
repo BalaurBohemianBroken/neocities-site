@@ -13,6 +13,9 @@
   <script src="/Resources/Terminus/terminus.js"></script>
 </head>
 <body>
+<div id="popup_image_container" style="display: none;" onclick="SetPopupState(false)">
+  <img id="popup_image" src="/Resources/Terminus/rat1.png" onclick="SetPopupState(false)">
+</div>
 <div id="content">
   <p id="title">Terminus</p>
   <div id="panel_containers">
@@ -23,7 +26,7 @@
       
     </div>
   </div>
-  <p class="version">44.20260924</p>
+  <p class="version">46.20260925</p>
   <!--
       This element stores what populates the main and side panel. It gets parsed in javascript.
       I thought of using json, but that disallows new lines and would require constant character escaping.

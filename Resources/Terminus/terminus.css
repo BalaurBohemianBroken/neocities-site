@@ -61,6 +61,23 @@ a:link {
     /*border-bottom: 1px solid #5b095e;*/
 }
 
+#popup_image_container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: #120120a3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#popup_image {
+    margin: auto;
+    max-width: 80vw;
+    max-height: 80vh;
+}
+
 .GayBorder {
     border-left: 2px solid #5b095e;
 }
