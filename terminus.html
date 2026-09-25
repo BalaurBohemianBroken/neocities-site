@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<!-- TODO: make a new +- symbol for ubuntu font, theirs is bad -->
+<!-- TODO: poem analysis -->
 <html>
 <head>
   <meta charset="UTF-8">
@@ -26,7 +28,7 @@
       
     </div>
   </div>
-  <p class="version">46.20260925</p>
+  <p class="version">47.20260925</p>
   <!--
       This element stores what populates the main and side panel. It gets parsed in javascript.
       I thought of using json, but that disallows new lines and would require constant character escaping.
@@ -40,7 +42,6 @@
   <div id="unparsed_data" style="display: none">
     <div class="DataPoint" data-name="whoami">
       <!-- TODO: Decorate this with some artwork. White lineart, or a small sticker at bottom. -->
-      <!-- TODO: make a new +- symbol for ubuntu font, theirs is bad-->
       <div class="BodyContent">
         <p>
           helo. i am balaur<br>
@@ -1003,44 +1004,6 @@
     </div>
     <div class="DataPoint" data-name="hobbies">
       <div class="NestedContent">
-        <div class="DataPoint" data-name="furry boardgame cafe barista volunteering">
-          <div class="BodyContent">
-            <p>
-              there was a place i used to volunteer at for a couple of years. it was the center of most of my communities around here<br>
-              one day they banned me, citing 'serious safeguarding concerns', and after months of trying to be told what i did wrong, i still don't know<br>
-              i was put on a strict no contact decree, and i lost every friend i made there<br>
-              if it were just me i would maybe accept i was just weird or something, but it happened to another person the same day same time, and i don't know anything they did wrong<br>
-              so, i dunno. i guess i just got betrayed again. my issues with authority have never been stronger<br>
-            </p>
-            <div style="width: 100%; display: flex;">
-              <img src="/Resources/Terminus/barista.jpg" alt="barista.jpg" style="width: 50%; margin: auto;">
-            </div>
-          </div>
-        </div>
-        <div class="DataPoint" data-name="music">
-          <p class="BodyContent">
-            i love music more than anything. still trying to find ways to express that love in a way i can share with other people. i've been on/off working on 3d animated music videos, maybe some day i'll finish one<br>
-            <br>
-            i can play guitar, piano and the ocarina, and would love to play more<br>
-            i've made a few instrumental melodies. i like them, but they're not too impressive<br>
-            i would love to learn to make music, but i'm scared of trying in case i learn i can't reach my goals
-          </p>
-        </div>
-        <div class="DataPoint" data-name="rats">
-          <div class="BodyContent">
-            <p>
-              i have pet rats, rey and tapp<br>
-              they will get their own web page some day.<br>
-              <br>
-            </p>
-            <div style="display: grid; grid-template-columns: repeat(2, 0.5fr); width: 100%; gap: 20px; box-sizing: border-box;">
-              <img src="/Resources/Terminus/rat1.png" style="width:100%">
-              <img src="/Resources/Terminus/rat2.png" style="width:100%">
-              <img src="/Resources/Terminus/rat4.png" style="width:100%">
-              <img src="/Resources/Terminus/rat5.png" style="width:100%">
-            </div>
-          </div>
-        </div>
         <div class="DataPoint" data-name="street stickers">
           <div class="BodyContent">
             <p>
@@ -1168,59 +1131,91 @@
                   so how do you choose a spot? each spot is a confluence of variables<br>
                   <br>
                 </p>
-                  <div style="width: 100%; display: flex; gap: 10px;">
-                    <div style="width:50%">
-                      <img src="/Resources/Stickers/lamppost.png" style="width: 100%;">
-                    </div>
-                    <p style="width: 50%;">
-                      <span class="Positive">+ trusty lamp post, classic target. metal adheres well</span><br>
-                      <span class="Positive">+ brown is a good contrasting colour for my white/purple stickers</span><br>
-                      <span class="Mixed">~ quiet residential area. could stay up for ages and be appreciated, could go down immediately</span><br>
-                      <span class="Mixed">~ this spot gets direct sunlight. good visibility, but reduces lifespan</span><br>
-                      <span class="Negative">- stickers don't last as long on curved surfaces</span><br>
-                      <span class="Negative">- this one's kinda gross. there's visual clutter, not pleasing to look at</span><br>
-                      <br>
-                      not a great spot, but it's okay
-                    </p>
+                <div style="width: 100%; display: flex; gap: 10px;">
+                  <div style="width:50%">
+                    <img src="/Resources/Stickers/lamppost.png" style="width: 100%;">
                   </div>
-                  <br>
-                  <div style="width: 100%; display: flex; gap: 10px;">
-                    <p style="width: 50%;">
-                      <span class="Positive">+ black contrasts very well with my stickers</span><br>
-                      <span class="Positive">+ high traffic spot where people have nothing to do but wait</span><br>
-                      <span class="Positive">+ very visible: people have to look here to press the button and see the signal</span><br>
-                      <span class="Positive">+ this spot is barely bigger than my sticker. it will fit here pleasingly</span><br>
-                      <span class="Mixed">~ this plastic is okay for adhesion, but makes them easier to peel off</span><br>
-                      <span class="Negative">- existing sticker debris. implies they get removed, and will impact adhesion</span><br>
-                      <br>
-                      this is a very good spot, i will usually place one here if i can
-                    </p>
-                    <div style="width:50%">
-                      <img src="/Resources/Stickers/crossing signal.png" style="width: 100%;">
-                    </div>
+                  <p style="width: 50%;">
+                    <span class="Positive">+ trusty lamp post, classic target. metal adheres well</span><br>
+                    <span class="Positive">+ brown is a good contrasting colour for my white/purple stickers</span><br>
+                    <span class="Mixed">~ quiet residential area. could stay up for ages and be appreciated, could go down immediately</span><br>
+                    <span class="Mixed">~ this spot gets direct sunlight. good visibility, but reduces lifespan</span><br>
+                    <span class="Negative">- stickers don't last as long on curved surfaces</span><br>
+                    <span class="Negative">- this one's kinda gross. there's visual clutter, not pleasing to look at</span><br>
+                    <br>
+                    not a great spot, but it's okay
+                  </p>
+                </div>
+                <br>
+                <div style="width: 100%; display: flex; gap: 10px;">
+                  <p style="width: 50%;">
+                    <span class="Positive">+ black contrasts very well with my stickers</span><br>
+                    <span class="Positive">+ high traffic spot where people have nothing to do but wait</span><br>
+                    <span class="Positive">+ very visible: people have to look here to press the button and see the signal</span><br>
+                    <span class="Positive">+ this spot is barely bigger than my sticker. it will fit here pleasingly</span><br>
+                    <span class="Mixed">~ this plastic is okay for adhesion, but makes them easier to peel off</span><br>
+                    <span class="Negative">- existing sticker debris. implies they get removed, and will impact adhesion</span><br>
+                    <br>
+                    this is a very good spot, i will usually place one here if i can
+                  </p>
+                  <div style="width:50%">
+                    <img src="/Resources/Stickers/crossing signal.png" style="width: 100%;">
                   </div>
-                  <br>
-                  <div style="width: 100%; display: flex; gap: 10px;">
-                    <div style="width:50%">
-                      <img src="/Resources/Stickers/no drawing.png" style="width: 100%;">
-                    </div>
-                    <p style="width: 50%;">
-                      <span class="Negative">- rock is very bad for adhesion. it won't last long, will come off easily</span><br>
-                      <span class="Mixed">~ in a corner that most people won't look at. may or may not last long, but won't be seen by most</span><br>
-                      <span class="Positive">+ "no drawing" graffiti is pretty funny, worth associating with</span><br>
-                      <br>
-                      if i have too many stickers i'd spare one for this spot
-                    </p>
+                </div>
+                <br>
+                <div style="width: 100%; display: flex; gap: 10px;">
+                  <div style="width:50%">
+                    <img src="/Resources/Stickers/no drawing.png" style="width: 100%;">
                   </div>
+                  <p style="width: 50%;">
+                    <span class="Negative">- rock is very bad for adhesion. it won't last long, will come off easily</span><br>
+                    <span class="Mixed">~ in a corner that most people won't look at. may or may not last long, but won't be seen by most</span><br>
+                    <span class="Positive">+ "no drawing" graffiti is pretty funny, worth associating with</span><br>
+                    <br>
+                    if i have too many stickers i'd spare one for this spot
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="DataPoint" data-name="ringmaking">
+        <div class="DataPoint" data-name="furry boardgame cafe barista volunteering">
+          <div class="BodyContent">
+            <p>
+              there was a place i used to volunteer at for a couple of years. it was the center of most of my communities around here<br>
+              one day they banned me, citing 'serious safeguarding concerns', and after months of trying to be told what i did wrong, i still don't know<br>
+              i was put on a strict no contact decree, and i lost every friend i made there<br>
+              if it were just me i would maybe accept i was just weird or something, but it happened to another person the same day same time, and i don't know anything they did wrong<br>
+              so, i dunno. i guess i just got betrayed again. my issues with authority have never been stronger<br>
+            </p>
+            <div style="width: 100%; display: flex;">
+              <img src="/Resources/Terminus/barista.jpg" alt="barista.jpg" style="width: 50%; margin: auto;">
+            </div>
+          </div>
+        </div>
+        <div class="DataPoint" data-name="music">
           <p class="BodyContent">
-            i sometimes make wooden rings<br>
-            i don't have a lathe so i just use a bolt socket attached to the end of a drill to turn them
+            i love music more than anything. still trying to find ways to express that love in a way i can share with other people. i've been on/off working on 3d animated music videos, maybe some day i'll finish one<br>
+            <br>
+            i can play guitar, piano and the ocarina, and would love to play more<br>
+            i've made a few instrumental melodies. i like them, but they're not too impressive<br>
+            i would love to learn to make music, but i'm scared of trying in case i learn i can't reach my goals
           </p>
+        </div>
+        <div class="DataPoint" data-name="rats">
+          <div class="BodyContent">
+            <p>
+              i have pet rats, rey and tapp<br>
+              they will get their own web page some day.<br>
+              <br>
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(2, 0.5fr); width: 100%; gap: 20px; box-sizing: border-box;">
+              <img src="/Resources/Terminus/rat1.png" style="width:100%">
+              <img src="/Resources/Terminus/rat2.png" style="width:100%">
+              <img src="/Resources/Terminus/rat4.png" style="width:100%">
+              <img src="/Resources/Terminus/rat5.png" style="width:100%">
+            </div>
+          </div>
         </div>
         <div class="DataPoint" data-name="home server">
           <div class="BodyContent">
@@ -1246,20 +1241,12 @@
             </p>
           </div>
         </div>
-        <div class="DataPoint" data-name="books (and binding)">
+        <div class="DataPoint" data-name="archival">
           <p class="BodyContent">
-            i collect and sometimes read books<br>
-            i also handmake some of my own<br>
-          </p>
-        </div>
-        <div class="DataPoint" data-name="3d printing">
-          <p class="BodyContent">
-            i have a shoddy ender 3 that i make art and junk with
-          </p>
-        </div>
-        <div class="DataPoint" data-name="archery">
-          <p class="BodyContent">
-            i have a bow and arrows i use to hunt boxes of cardboard
+            i try to document and backup anything that i find personally important<br>
+            every photo i've taken, every project i've done, every song i like, every message i've seen or sent, games i liked, books i've read. i write journal entries about discussions that were important to me, and photograph scenes where i felt something<br>
+            these get put into varying depths of storage and organization, ranging from an unsorted pile, to a tagged, structured and redundant library<br>
+            that links in to running the <a href="#" onclick="OpenDataPoint('hobbies.home server')">home server</a>
           </p>
         </div>
         <div class="DataPoint" data-name="bicycles, their riding and maintenance">
@@ -1277,14 +1264,28 @@
             </p>
           </div>
         </div>
-        <div class="DataPoint" data-name="archival">
+        <!-- div class="DataPoint" data-name="ringmaking">
           <p class="BodyContent">
-            i try to document and backup anything that i find personally important<br>
-            every photo i've taken, every project i've done, every song i like, every message i've seen or sent, games i liked, books i've read. i write journal entries about discussions that were important to me, and photograph scenes where i felt something<br>
-            these get put into varying depths of storage and organization, ranging from an unsorted pile, to a tagged, structured and redundant library<br>
-            that links in to running the <a href="#" onclick="OpenDataPoint('hobbies.home server')">home server</a>
+            i sometimes make wooden rings<br>
+            i don't have a lathe so i just use a bolt socket attached to the end of a drill to turn them
           </p>
-        </div>
+        </div -->
+        <!-- div class="DataPoint" data-name="books (and binding)">
+          <p class="BodyContent">
+            i collect and sometimes read books<br>
+            i also handmake some of my own<br>
+          </p>
+        </div -->
+        <!-- div class="DataPoint" data-name="3d printing">
+          <p class="BodyContent">
+            i have a shoddy ender 3 that i make art and junk with
+          </p>
+        </div -->
+        <!-- div class="DataPoint" data-name="archery">
+          <p class="BodyContent">
+            i have a bow and arrows i use to hunt boxes of cardboard
+          </p>
+        </div -->
       </div>
       <!--
        tailoring
