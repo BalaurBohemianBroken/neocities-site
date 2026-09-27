@@ -146,6 +146,27 @@ a:link {
     color: #c500c5;
 }
 
+.PoemAnalysis {
+    display: flex;
+}
+
+.AnalysisNode {
+    background-color: #c500c566;
+    cursor: pointer;
+}
+
+.AnalysisNodeSelected {
+    background-color: #c500c5aa;
+}
+
+.AnalysisNode:hover {
+    background-color: #c500c5aa;
+}
+
+.AnalysisEntry {
+    display: none;
+}
+
 .version {
     text-align: center;
 }

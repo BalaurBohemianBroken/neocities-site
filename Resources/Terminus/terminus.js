@@ -37,6 +37,7 @@ function Terminus() {
     
     GetStickerCount();
     InitPopupImage();
+    InitPoemAnalysis();
 }
 
 function ParseData() {
@@ -237,7 +238,6 @@ function InitPopupImage() {
     terminus.popup_img = document.getElementById("popup_image");
     
     let imgs = document.getElementsByTagName("img");
-    console.log(imgs.length);
     for (let img of imgs) {
         img.addEventListener("click", function() {SetPopupState(true, img.src)});
         img.style.cursor = "pointer";
@@ -251,4 +251,66 @@ function SetPopupState(state, src="") {
     }
     terminus.popup_container.style.display = "";
     terminus.popup_img.src = src;
+}
+
+function InitPoemAnalysis() {
+    let analyses = document.getElementsByClassName("PoemAnalysis");
+    let analysis_dict = {};
+    for (let analysis of analyses) {
+        let panel = analysis.querySelector(".AnalysisPanel");
+        let analysis_data = {
+            entries: {},
+            nodes: {},
+            entry_active: null,
+            nodes_active: [],
+            analysis: analysis,
+            analysis_panel: panel,
+        };
+        
+        let analysis_entries = analysis.querySelectorAll(".AnalysisEntry");
+        for (let entry of analysis_entries) {
+            let entry_id = entry.dataset.id;
+            analysis_data.entries[entry_id] = entry;
+        }
+        
+        let analysis_nodes = analysis.querySelectorAll(".AnalysisNode");
+        for (let node of analysis_nodes) {
+            let node_id = node.dataset.id;
+            // Since an analysis node can relate to multiple spots of the poem, it needs to be an array.
+            if (!(node_id in analysis_data.nodes)) {
+                analysis_data.nodes[node_id] = [];
+            }
+            analysis_data.nodes[node_id].push(node);
+
+            node.addEventListener("click", function() {SetAnalysisFocus(analysis_data, node_id)});
+        }
+        analysis_dict[analysis] = analysis_dict;
+    }
+    
+    terminus.analyses = analysis_dict;
+}
+
+function SetAnalysisFocus(analysis_data, node_id) {
+    // Deselect old node
+    for (let node of analysis_data.nodes_active) {
+        node.classList.remove("AnalysisNodeSelected");
+    }
+    analysis_data.nodes_active = {};
+    // Hide old entry
+    if (analysis_data.entry_active !== null) {
+        analysis_data.entry_active.style.display = "";
+        analysis_data.entry_active = null
+    }
+    
+    // Select the nodes
+    analysis_data.nodes_active = analysis_data.nodes[node_id];
+    for (let node of analysis_data.nodes_active) {
+        node.classList.add("AnalysisNodeSelected");
+    }
+    // Display the entry
+    analysis_data.entry_active = analysis_data.entries[node_id];
+    analysis_data.entry_active.style.display = "inline";
+    
+    // Reset entry scroll
+    analysis_data.analysis_panel.scrollTop = 0;
 }
