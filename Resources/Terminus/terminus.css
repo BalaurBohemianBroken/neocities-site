@@ -66,6 +66,7 @@ a:link {
     position: absolute;
     width: 100vw;
     height: 100vh;
+    min-width: 900px;
     background-color: #120120a3;
     display: flex;
     justify-content: center;
