@@ -28,6 +28,7 @@ a:link {
     height: 100%;
     margin: auto;
     align-items: center;
+    min-width: 900px;
 }
 
 #panel_containers {
