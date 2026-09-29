@@ -2,6 +2,7 @@
 music_page = {
     albums_container: null,
     art_path: "/Resources/Music/Index",
+    music_index: null,
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -23,26 +24,34 @@ function GetMusicIndex() {
 }
 
 function ParseMusicIndex(json_index) {
-    for (let index = 0; index < json_index.length; index++) {
+    CreateTiles(json_index.toSorted(SortByArtist));
+    // console.log(json_index);
+}
+
+function CreateTiles(tiles) {
+    for (let index = 0; index < tiles.length; index++) {
+        let album = tiles[index]; 
         let container = document.createElement("div");
         container.classList.add("AlbumEntry");
-        
+
         let img = document.createElement("img");
-        img.src = music_page.art_path + "/" + encodeURIComponent(json_index[index]["art"]);
+        img.src = music_page.art_path + "/" + encodeURIComponent(album["art"]);
         img.classList.add("AlbumEntryImg");
 
         let album_name = document.createElement("p");
         album_name.classList.add("AlbumName");
-        album_name.innerText = json_index[index]["album"];
+        album_name.innerText = album["album"];
         let artist_name = document.createElement("p");
         artist_name.classList.add("ArtistName");
-        artist_name.innerText = json_index[index]["artist"];
+        artist_name.innerText = album["artist"];
 
         container.appendChild(img);
         container.appendChild(album_name);
         container.appendChild(artist_name);
         music_page.albums_container.appendChild(container);
     }
-    
-    // console.log(json_index);
+}
+
+function SortByArtist(a, b) {
+    return a["artist"].localeCompare(b["artist"]);
 }
