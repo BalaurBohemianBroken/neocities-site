@@ -5,7 +5,7 @@ music_page = {
     music_index: null,
     sort_array: [SortByArtist, SortByAlbum, SortByAverageColor],
     sort_names: ["artist", "album", "colour"],
-    sort_current: 0,
+    sort_current: 2,
     sort_inverted: false,
     sort_multiplier: 1,
     sort_text_e: null,
@@ -71,6 +71,10 @@ function NextSort() {
 function SortInvertedToggle() {
     SetSort(music_page.sort_current, !music_page.sort_inverted);
 }
+
+// function UpdateTileSize(slider_e) {
+//     document.getElementsByClassName()
+// }
 
 function SetSort(index, inverted) {
     if (index >= music_page.sort_array.length) {
