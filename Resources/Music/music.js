@@ -24,7 +24,7 @@ function GetMusicIndex() {
 }
 
 function ParseMusicIndex(json_index) {
-    CreateTiles(json_index.toSorted(SortByArtist));
+    CreateTiles(json_index.toSorted(SortByAverageColor));
     // console.log(json_index);
 }
 
@@ -54,4 +54,40 @@ function CreateTiles(tiles) {
 
 function SortByArtist(a, b) {
     return a["artist"].localeCompare(b["artist"]);
+}
+
+function SortByAlbum(a, b) {
+    return a["album"].localeCompare(b["album"]);
+}
+
+function SortByAverageColor(a, b) {
+    let a_hsv = RGBtoHSV(a["average_color"]);
+    let b_hsv = RGBtoHSV(b["average_color"]);
+    console.log(a["average_color"]);
+    return a_hsv.h > b_hsv.h;
+}
+
+// From: https://stackoverflow.com/questions/17242144/how-to-convert-hsb-hsv-color-to-rgb-accurately
+function RGBtoHSV(rgb) {
+    let r = rgb[0];
+    let b = rgb[1];
+    let g = rgb[2];
+    var max = Math.max(r, g, b), min = Math.min(r, g, b),
+        d = max - min,
+        h,
+        s = (max === 0 ? 0 : d / max),
+        v = max / 255;
+
+    switch (max) {
+        case min: h = 0; break;
+        case r: h = (g - b) + d * (g < b ? 6: 0); h /= 6 * d; break;
+        case g: h = (b - r) + d * 2; h /= 6 * d; break;
+        case b: h = (r - g) + d * 4; h /= 6 * d; break;
+    }
+
+    return {
+        h: h,
+        s: s,
+        v: v
+    };
 }
