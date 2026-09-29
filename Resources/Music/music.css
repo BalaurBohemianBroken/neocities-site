@@ -1,7 +1,11 @@
+#content {
+    width: 80%;
+    margin: auto;
+}
+
 #albums_container {
     grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
     grid-auto-rows: min-content;
-    width: 80%;
     gap: .5rem;
     display: grid;
     font-size: 85%;
@@ -22,8 +26,13 @@ input[type='range'] {
     font-weight: bolder;
 }
 
+.SortContainer > p {
+    margin: 0;
+}
+
 #sort_mode {
     width: 100px;
+    text-align: center;
 }
 
 .SizeSlider {
@@ -46,4 +55,8 @@ input[type='range'] {
 
 .ArtistName {
     font-size: 0.8em;
+}
+
+#sorting_settings {
+    
 }

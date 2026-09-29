@@ -6,22 +6,36 @@
     <title>balaur</title>
     <link href="/Resources/default.css" rel="stylesheet" type="text/css" media="all">
     <link href="/Resources/common.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/Resources/custom-checkbox.css" rel="stylesheet" type="text/css" media="all">
     <script src="/Resources/all.js"></script>
 
     <link href="/Resources/Music/music.css" rel="stylesheet" type="text/css" media="all">
     <script src="/Resources/Music/music.js"></script>
   </head>
   <body>
-    <div class="SortContainer">
-      <p class="Clickable" onclick="PreviousSort();"><</p>
-      <p class="Clickable" id="sort_mode" onclick="NextSort();"></p>
-      <p class="Clickable" onclick="NextSort();">></p>
-    </div>
-    <div>
-      <input class="SizeSlider" type="range" id="volume" name="volume" min="0" max="100" />
-    </div>
-    <div id="albums_container">
-      
+    <p class="version">8.20260929</p>
+    <div id="content">
+      <div id="settings">
+        <div id="sorting_settings">
+          <div class="SortContainer">
+            <p class="Clickable" onclick="PreviousSort();"><</p>
+            <p class="Clickable" id="sort_mode" onclick="NextSort();"></p>
+            <p class="Clickable" onclick="NextSort();">></p>
+          </div>
+          <div id="sort_inverted">
+            <label class="customCheckbox">
+              <input type="checkbox" onclick="SortInvertedToggle()">
+              <span class="checkmark">invert</span>
+            </label>
+          </div>
+        </div>
+        <div>
+          <input class="SizeSlider" type="range" id="size_slider" name="size_slider" min="0" max="100" />
+        </div>
+      </div>
+      <div id="albums_container">
+        
+      </div>
     </div>
 <!--  <p class="memory-date" title="The first song that really hooked me. I had this shitty trial download of it that only had the first 2 minutes of the song. Whenever I listen to it, I remember vividly the point it'd cut out." style="position:absolute; left:500px; top:100px;">20110328</p>-->
 <!--  <p>things to note:<br>-->
@@ -36,6 +50,5 @@
 <!--    my music rambles/analyses? dig up from old channels? don't bother?<br>-->
 <!--    some of the artists i listen to a lot, with small rambles on them. links to the master list. genre.<br>-->
 <!--  </p>-->
-  <p class="version">7.20260929</p>
   </body>
 </html>

@@ -7,6 +7,7 @@ music_page = {
     sort_names: ["artist", "album", "colour"],
     sort_current: 0,
     sort_inverted: false,
+    sort_multiplier: 1,
     sort_text_e: null,
 }
 
@@ -31,7 +32,7 @@ function GetMusicIndex() {
 
 function ParseMusicIndex(json_index) {
     music_page.music_index = json_index;
-    CreateTiles(json_index.toSorted(SortByAverageColor));
+    SetSort(0, false);
     // console.log(json_index);
 }
 
@@ -59,34 +60,51 @@ function CreateTiles(tiles) {
     }
 }
 
-function NextSort() {
-
-}
-
 function PreviousSort() {
-
+    SetSort(music_page.sort_current - 1, music_page.sort_inverted);
 }
 
-function SetSort(index) {
+function NextSort() {
+    SetSort(music_page.sort_current + 1, music_page.sort_inverted);
+}
+
+function SortInvertedToggle() {
+    SetSort(music_page.sort_current, !music_page.sort_inverted);
+}
+
+function SetSort(index, inverted) {
+    if (index >= music_page.sort_array.length) {
+        index = 0;
+    }
+    if (index < 0) {
+        index = music_page.sort_array.length - 1;
+    }
+    music_page.sort_inverted = inverted;
+    music_page.sort_multiplier = inverted ? -1 : 1;
+    music_page.sort_current = index;
     // Clear existing tiles
+    music_page.albums_container.innerHTML = "";
+    
     // Generate new tiles
+    CreateTiles(music_page.music_index.toSorted(music_page.sort_array[music_page.sort_current]));
+    
     // Update text
-    music_page.sort_text_e = music_page.sort_names[index];
+    music_page.sort_text_e.innerText = music_page.sort_names[index];
 }
 
+// dumb chud language doesn't have a way to pass or handle inverting these functions, so i'm using a global!!!
 function SortByArtist(a, b) {
-    return a["artist"].localeCompare(b["artist"]);
+    return a["artist"].localeCompare(b["artist"]) * music_page.sort_multiplier;
 }
 
 function SortByAlbum(a, b) {
-    return a["album"].localeCompare(b["album"]);
+    return a["album"].localeCompare(b["album"]) * music_page.sort_multiplier;
 }
 
 function SortByAverageColor(a, b) {
     let a_hsv = RGBtoHSV(a["average_color"]);
     let b_hsv = RGBtoHSV(b["average_color"]);
-    console.log(a["average_color"]);
-    return a_hsv.h > b_hsv.h;
+    return Math.sign(a_hsv.h - b_hsv.h) * music_page.sort_multiplier;
 }
 
 // From: https://stackoverflow.com/questions/17242144/how-to-convert-hsb-hsv-color-to-rgb-accurately
