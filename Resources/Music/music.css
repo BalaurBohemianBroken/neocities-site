@@ -9,6 +9,27 @@
     margin: auto;
 }
 
+input[type='range'] {
+    accent-color: purple;
+}
+
+.Clickable {
+    cursor: pointer;
+}
+
+.SortContainer {
+    display: flex;
+    font-weight: bolder;
+}
+
+#sort_mode {
+    width: 100px;
+}
+
+.SizeSlider {
+    width: 100px;
+}
+
 .AlbumEntry {
     
 }

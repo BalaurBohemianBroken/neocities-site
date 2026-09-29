@@ -3,6 +3,11 @@ music_page = {
     albums_container: null,
     art_path: "/Resources/Music/Index",
     music_index: null,
+    sort_array: [SortByArtist, SortByAlbum, SortByAverageColor],
+    sort_names: ["artist", "album", "colour"],
+    sort_current: 0,
+    sort_inverted: false,
+    sort_text_e: null,
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -10,7 +15,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 function MusicPage() {
-    music_page.albums_container= document.getElementById("albums_container");
+    music_page.albums_container = document.getElementById("albums_container");
+    music_page.sort_text_e = document.getElementById("sort_mode");
     GetMusicIndex()
 }
 
@@ -24,6 +30,7 @@ function GetMusicIndex() {
 }
 
 function ParseMusicIndex(json_index) {
+    music_page.music_index = json_index;
     CreateTiles(json_index.toSorted(SortByAverageColor));
     // console.log(json_index);
 }
@@ -50,6 +57,21 @@ function CreateTiles(tiles) {
         container.appendChild(artist_name);
         music_page.albums_container.appendChild(container);
     }
+}
+
+function NextSort() {
+
+}
+
+function PreviousSort() {
+
+}
+
+function SetSort(index) {
+    // Clear existing tiles
+    // Generate new tiles
+    // Update text
+    music_page.sort_text_e = music_page.sort_names[index];
 }
 
 function SortByArtist(a, b) {
