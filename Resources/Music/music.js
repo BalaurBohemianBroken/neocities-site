@@ -32,7 +32,7 @@ function GetMusicIndex() {
 
 function ParseMusicIndex(json_index) {
     music_page.music_index = json_index;
-    SetSort(0, false);
+    SetSort(2, false);
     // console.log(json_index);
 }
 
