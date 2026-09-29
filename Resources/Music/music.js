@@ -24,10 +24,24 @@ function GetMusicIndex() {
 
 function ParseMusicIndex(json_index) {
     for (let index = 0; index < json_index.length; index++) {
+        let container = document.createElement("div");
+        container.classList.add("AlbumEntry");
+        
         let img = document.createElement("img");
         img.src = music_page.art_path + "/" + encodeURIComponent(json_index[index]["art"]);
-        img.classList.add("AlbumEntry");
-        music_page.albums_container.appendChild(img);    
+        img.classList.add("AlbumEntryImg");
+
+        let album_name = document.createElement("p");
+        album_name.classList.add("AlbumName");
+        album_name.innerText = json_index[index]["album"];
+        let artist_name = document.createElement("p");
+        artist_name.classList.add("ArtistName");
+        artist_name.innerText = json_index[index]["artist"];
+
+        container.appendChild(img);
+        container.appendChild(album_name);
+        container.appendChild(artist_name);
+        music_page.albums_container.appendChild(container);
     }
     
     // console.log(json_index);

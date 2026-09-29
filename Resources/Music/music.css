@@ -10,5 +10,19 @@
 }
 
 .AlbumEntry {
+    
+}
+
+.AlbumEntryImg {
     width: 128px;
+}
+
+.AlbumName, .ArtistName {
+    margin: 0;
+    text-align: center;
+    font-family: l-lora;
+}
+
+.ArtistName {
+    font-size: 0.8em;
 }
