@@ -3,8 +3,8 @@ music_page = {
     albums_container: null,
     full_index: null,
     music_index: null,
-    sort_array: [SortByArtist, SortByAlbum, SortByAverageColor],
-    sort_names: ["artist", "album", "colour"],
+    sort_array: [SortByArtist, SortByAlbum, SortByAverageColor, SortByDate],
+    sort_names: ["artist", "album", "colour", "date"],
     sort_current: 2,
     sort_inverted: false,
     sort_multiplier: 1,
@@ -40,26 +40,49 @@ function ParseMusicIndex(json_index) {
 
 function CreateTiles(tiles) {
     for (let index = 0; index < tiles.length; index++) {
-        let album = tiles[index]; 
-        let container = document.createElement("div");
-        container.classList.add("AlbumEntry");
-
-        let img = document.createElement("img");
-        img.src = "/" + encodeURIComponent(album["art"]);
-        img.classList.add("AlbumEntryImg");
-
-        let album_name = document.createElement("p");
-        album_name.classList.add("AlbumName");
-        album_name.innerText = album["album"];
-        let artist_name = document.createElement("p");
-        artist_name.classList.add("ArtistName");
-        artist_name.innerText = album["artist"];
-
-        container.appendChild(img);
-        container.appendChild(album_name);
-        container.appendChild(artist_name);
-        music_page.albums_container.appendChild(container);
+        let album = tiles[index];
+        music_page.albums_container.appendChild(CreateTile(album));
     }
+}
+
+function CreateTilesYear(albums) {
+    let current_year = "0"
+    for (let index = 0; index < albums.length; index++) {
+        if (current_year !== albums[index]["release_date"]) {
+            current_year = albums[index]["release_date"];
+            let p = document.createElement("p");
+            p.innerText = current_year + ":";
+            p.classList.add("YearSeparator")
+            music_page.albums_container.appendChild(p);
+        }
+        let album = albums[index];
+        music_page.albums_container.appendChild(CreateTile(album));
+    }
+}
+
+function CreateTile(album) {
+    let container = document.createElement("div");
+    container.classList.add("AlbumEntry");
+
+    let img = document.createElement("img");
+    img.src = "/" + encodeURIComponent(album["art"]);
+    img.classList.add("AlbumEntryImg");
+
+    let album_name = document.createElement("p");
+    album_name.classList.add("AlbumName");
+    album_name.innerText = album["album"];
+    let artist_name = document.createElement("p");
+    artist_name.classList.add("ArtistName");
+    artist_name.innerText = album["artist"];
+    let year = document.createElement("p");
+    year.classList.add("Year");
+    year.innerText = album["release_date"];
+
+    container.appendChild(img);
+    container.appendChild(album_name);
+    container.appendChild(artist_name);
+    container.appendChild(year);
+    return container
 }
 
 function PreviousSort() {
@@ -92,7 +115,12 @@ function SetSort(index, inverted) {
     music_page.albums_container.innerHTML = "";
     
     // Generate new tiles
-    CreateTiles(music_page.music_index.toSorted(music_page.sort_array[music_page.sort_current]));
+    // if (music_page.sort_current === 3) {
+    //     CreateTilesYear(music_page.music_index.toSorted(music_page.sort_array[music_page.sort_current]));
+    // }
+    // else {
+        CreateTiles(music_page.music_index.toSorted(music_page.sort_array[music_page.sort_current]));
+    // }
     
     // Update text
     music_page.sort_text_e.innerText = music_page.sort_names[index];
@@ -111,6 +139,10 @@ function SortByAverageColor(a, b) {
     let a_hsv = RGBtoHSV(a["average_color"]);
     let b_hsv = RGBtoHSV(b["average_color"]);
     return Math.sign(a_hsv.h - b_hsv.h) * music_page.sort_multiplier;
+}
+
+function SortByDate(a, b) {
+    return Math.sign(parseInt(a["release_date"]) - parseInt(b["release_date"])) * music_page.sort_multiplier;
 }
 
 // From: https://stackoverflow.com/questions/17242144/how-to-convert-hsb-hsv-color-to-rgb-accurately
