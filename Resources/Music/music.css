@@ -4,13 +4,36 @@
 }
 
 #albums_container {
+    margin: auto;
+}
+
+.ImageGrid {
     grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
     grid-auto-rows: min-content;
     gap: .5rem;
     display: grid;
     font-size: 85%;
     line-height: 1.25em;
-    margin: auto;
+    width: 100%;
+}
+
+.YearSectionContainer {
+    display: flex;
+    gap: 1rem;
+}
+
+.CountInYear {
+    margin: 0;
+    font-family: l-lora;
+    text-align: right;
+    font-size: 0.8em;
+}
+
+.YearSeparator {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0;
+    margin-top: 20px;
 }
 
 input[type='range'] {

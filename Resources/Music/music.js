@@ -39,25 +39,58 @@ function ParseMusicIndex(json_index) {
 }
 
 function CreateTiles(tiles) {
+    let container = document.createElement("div");
+    container.classList.add("ImageGrid");
     for (let index = 0; index < tiles.length; index++) {
         let album = tiles[index];
-        music_page.albums_container.appendChild(CreateTile(album));
+        container.appendChild(CreateTile(album));
     }
+    music_page.albums_container.appendChild(container);
 }
 
 function CreateTilesYear(albums) {
     let current_year = "0"
+    let image_year_container = null;
+    let section_container = null;
+    let num_in_year = 0;
+    let year_container = null;
     for (let index = 0; index < albums.length; index++) {
         if (current_year !== albums[index]["release_date"]) {
             current_year = albums[index]["release_date"];
+            if (section_container !== null) {
+                let p = document.createElement("p");
+                p.innerText = "(" + num_in_year.toString() + ")";
+                p.classList.add("CountInYear");
+                year_container.appendChild(p);
+                
+                music_page.albums_container.appendChild(section_container);
+            }
+            num_in_year = 0;
+            section_container = document.createElement("div");
+            section_container.classList.add("YearSectionContainer");
+            image_year_container = document.createElement("div");
+            image_year_container.classList.add("ImageGrid");
+            year_container = document.createElement("div");
+
             let p = document.createElement("p");
             p.innerText = current_year + ":";
-            p.classList.add("YearSeparator")
-            music_page.albums_container.appendChild(p);
+            p.classList.add("YearSeparator");
+            
+            year_container.appendChild(p);
+            section_container.appendChild(year_container);
+            section_container.appendChild(image_year_container);
         }
+        num_in_year += 1;
         let album = albums[index];
-        music_page.albums_container.appendChild(CreateTile(album));
+        image_year_container.appendChild(CreateTile(album));
     }
+
+    let p = document.createElement("p");
+    p.innerText = "(" + num_in_year.toString() + ")";
+    p.classList.add("CountInYear");
+    year_container.appendChild(p);
+
+    music_page.albums_container.appendChild(section_container);
 }
 
 function CreateTile(album) {
@@ -115,12 +148,12 @@ function SetSort(index, inverted) {
     music_page.albums_container.innerHTML = "";
     
     // Generate new tiles
-    // if (music_page.sort_current === 3) {
-    //     CreateTilesYear(music_page.music_index.toSorted(music_page.sort_array[music_page.sort_current]));
-    // }
-    // else {
+    if (music_page.sort_current === 3) {
+        CreateTilesYear(music_page.music_index.toSorted(music_page.sort_array[music_page.sort_current]));
+    }
+    else {
         CreateTiles(music_page.music_index.toSorted(music_page.sort_array[music_page.sort_current]));
-    // }
+    }
     
     // Update text
     music_page.sort_text_e.innerText = music_page.sort_names[index];
