@@ -1,3 +1,7 @@
+html {
+    --tile_size: 128px;
+}
+
 #content {
     width: 80%;
     margin: auto;
@@ -6,8 +10,16 @@
 #albums_container {
 }
 
+.AlbumName, .ArtistName {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
 .ImageGrid {
-    grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(var(--tile_size), 1fr));
     grid-auto-rows: min-content;
     gap: .5rem;
     display: grid;
@@ -66,7 +78,7 @@ input[type='range'] {
 }
 
 .AlbumEntryImg {
-    width: 128px;
+    width: var(--tile_size);
 }
 
 .AlbumName, .ArtistName, .Year {

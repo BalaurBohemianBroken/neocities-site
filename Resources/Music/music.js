@@ -3,6 +3,9 @@ music_page = {
     albums_container: null,
     full_index: null,
     music_index: null,
+    tile_size_min: 32,
+    tile_size_default: 128,
+    tile_size_max: 700,
     sort_array: [SortByArtist, SortByAlbum, SortByAverageColor, SortByDate],
     sort_names: ["artist", "album", "colour", "date"],
     sort_current: 2,
@@ -176,9 +179,12 @@ function SortInvertedToggle() {
     SetSort(music_page.sort_current, !music_page.sort_inverted);
 }
 
-// function UpdateTileSize(slider_e) {
-//     document.getElementsByClassName()
-// }
+function UpdateTileSize(slider_e) {
+    let t = slider_e.value / 100;
+    let delta = (music_page.tile_size_max - music_page.tile_size_min)
+    let new_size = delta * t + music_page.tile_size_min;
+    document.documentElement.style.setProperty("--tile_size", `${new_size}px`);
+}
 
 function SetSort(index, inverted) {
     if (index >= music_page.sort_array.length) {

@@ -13,7 +13,7 @@
     <script src="/Resources/Music/music.js"></script>
   </head>
   <body>
-    <p class="version">16.20260930</p>
+    <p class="version">17.20260930</p>
     <div id="content" style="gap: 10px; display: flex; flex-direction: column;">
       <div id="top_row" style="display: flex; gap: 10px;">
         <div id="settings">
@@ -28,9 +28,9 @@
               <span class="checkmark">invert</span>
             </label>
           </div>
-          <!--        <div>-->
-          <!--          <input class="SizeSlider" type="range" id="size_slider" onchange="UpdateTileSize(this)" name="size_slider" min="0" max="100" />-->
-          <!--        </div>-->
+          <div>
+            <input class="SizeSlider" type="range" id="size_slider" oninput="UpdateTileSize(this)" name="size_slider" min="0" max="100" />
+          </div>
         </div>
         <div id="stats">
           <p>stats</p>
