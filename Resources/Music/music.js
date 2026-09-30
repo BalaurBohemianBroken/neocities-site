@@ -32,10 +32,56 @@ function GetMusicIndex() {
 
 function ParseMusicIndex(json_index) {
     music_page.full_index = json_index;
-    console.log(json_index)
     music_page.music_index = Object.values(json_index["index"]);
+    console.log(json_index);
+    MakeStats(json_index);
     SetSort(2, false);
     // console.log(json_index);
+}
+
+function MakeStats(json_index) {
+    let stats_e = document.getElementById("stats");
+    let albums = Object.values(json_index["index"]);
+    
+    let num_albums = albums.length;
+    let num_songs = 0;
+    let artists = new Set();
+    let duration = 0;
+    let unindex_albums = json_index["metadata"]["omitted"];
+    
+    for (let index = 0; index < albums.length; index++) {
+        let album = albums[index];
+        duration += album["duration"];
+        num_songs += album["song_count"];
+        artists.add(album["artist"]);
+    }
+    
+    let p = null;
+    p = document.createElement("p");
+    p.innerText = "albums: " + num_albums;
+    stats_e.appendChild(p);
+
+    p = document.createElement("p");
+    p.innerText = "artists: " + artists.size;
+    stats_e.appendChild(p);
+
+    p = document.createElement("p");
+    p.innerText = "songs: " + num_songs;
+    stats_e.appendChild(p);
+
+    p = document.createElement("p");
+    // let days = Math.floor(duration / 86400);
+    let hours = Math.floor(duration / 3600);
+    let minutes = String(Math.floor((duration % 3600) / 60)).padStart(2, "0");
+    let seconds  = String(Math.floor(duration % 60)).padStart(2, "0");
+    p.innerText = `duration: ${hours}h ${minutes}m ${seconds}s`;
+    stats_e.appendChild(p);
+    
+    // Number of albums
+    // Total songs
+    // Total artists
+    // Total duration
+    // Unindexed albums
 }
 
 function CreateTiles(tiles) {

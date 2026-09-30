@@ -4,7 +4,6 @@
 }
 
 #albums_container {
-    margin: auto;
 }
 
 .ImageGrid {
@@ -82,4 +81,41 @@ input[type='range'] {
 
 #sorting_settings {
     
+}
+
+#stats {
+    display: inline-flex;
+    flex-direction: column;
+
+    background: #220022dd;
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-image: none;
+    background-size: auto;
+    border-radius: 5px;
+    padding: 10px;
+    background-size: 20px 20px;
+    background-position: 10px 10px;
+    font-family: l-monospace-sub;
+    
+    font-size: 0.9rem;
+}
+
+#stats > p {
+    margin: 0;
+}
+
+#settings {
+    display: inline-flex;
+    flex-direction: column;
+
+    background: #001522de;
+    background-position-x: 0;
+    background-position-y: 0;
+    background-image: none;
+    border-radius: 5px;
+    padding: 10px;
+    /*font-family: l-monospace-sub;*/
+
+    /*font-size: 0.9rem;*/
 }

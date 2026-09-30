@@ -13,10 +13,10 @@
     <script src="/Resources/Music/music.js"></script>
   </head>
   <body>
-    <p class="version">15.20260930</p>
-    <div id="content">
-      <div id="settings">
-        <div id="sorting_settings">
+    <p class="version">16.20260930</p>
+    <div id="content" style="gap: 10px; display: flex; flex-direction: column;">
+      <div id="top_row" style="display: flex; gap: 10px;">
+        <div id="settings">
           <div class="SortContainer">
             <p class="Clickable" onclick="PreviousSort();"><</p>
             <p class="Clickable" id="sort_mode" onclick="NextSort();"></p>
@@ -28,10 +28,13 @@
               <span class="checkmark">invert</span>
             </label>
           </div>
+          <!--        <div>-->
+          <!--          <input class="SizeSlider" type="range" id="size_slider" onchange="UpdateTileSize(this)" name="size_slider" min="0" max="100" />-->
+          <!--        </div>-->
         </div>
-<!--        <div>-->
-<!--          <input class="SizeSlider" type="range" id="size_slider" onchange="UpdateTileSize(this)" name="size_slider" min="0" max="100" />-->
-<!--        </div>-->
+        <div id="stats">
+          <p>stats</p>
+        </div>
       </div>
       <div id="albums_container">
         
