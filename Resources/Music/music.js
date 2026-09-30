@@ -1,7 +1,6 @@
 // Scope variables
 music_page = {
     albums_container: null,
-    art_path: "/Resources/Music/Index",
     music_index: null,
     sort_array: [SortByArtist, SortByAlbum, SortByAverageColor],
     sort_names: ["artist", "album", "colour"],
@@ -31,7 +30,7 @@ function GetMusicIndex() {
 }
 
 function ParseMusicIndex(json_index) {
-    music_page.music_index = json_index;
+    music_page.music_index = Object.values(json_index);
     SetSort(2, false);
     // console.log(json_index);
 }
@@ -43,7 +42,7 @@ function CreateTiles(tiles) {
         container.classList.add("AlbumEntry");
 
         let img = document.createElement("img");
-        img.src = music_page.art_path + "/" + encodeURIComponent(album["art"]);
+        img.src = "/" + encodeURIComponent(album["art"]);
         img.classList.add("AlbumEntryImg");
 
         let album_name = document.createElement("p");
