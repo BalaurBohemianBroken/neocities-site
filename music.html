@@ -13,23 +13,46 @@
     <script src="/Resources/Music/music.js"></script>
   </head>
   <body>
-    <p class="version">17.20260930</p>
+    <p class="version">18.20260930</p>
     <div id="content" style="gap: 10px; display: flex; flex-direction: column;">
       <div id="top_row" style="display: flex; gap: 10px;">
         <div id="settings">
-          <div class="SortContainer">
-            <p class="Clickable" onclick="PreviousSort();"><</p>
-            <p class="Clickable" id="sort_mode" onclick="NextSort();"></p>
-            <p class="Clickable" onclick="NextSort();">></p>
+          <div id="settings_left">
+            <div class="SortContainer">
+              <p class="Clickable" onclick="PreviousSort();"><</p>
+              <p class="Clickable" id="sort_mode" onclick="NextSort();"></p>
+              <p class="Clickable" onclick="NextSort();">></p>
+            </div>
+            <div id="sort_inverted">
+              <label class="customCheckbox">
+                <input type="checkbox" onclick="SortInvertedToggle()">
+                <span class="checkmark">invert</span>
+              </label>
+            </div>
+            <div>
+              <input class="SizeSlider" type="range" id="size_slider" oninput="UpdateTileSize(this)" name="size_slider" min="0" max="100" />
+            </div>
           </div>
-          <div id="sort_inverted">
-            <label class="customCheckbox">
-              <input type="checkbox" onclick="SortInvertedToggle()">
-              <span class="checkmark">invert</span>
-            </label>
-          </div>
-          <div>
-            <input class="SizeSlider" type="range" id="size_slider" oninput="UpdateTileSize(this)" name="size_slider" min="0" max="100" />
+          <div id="settings_right">
+            <span>show:</span>
+            <div id="toggle_title">
+              <label class="customCheckbox">
+                <input type="checkbox" checked onclick="ToggleTitles()">
+                <span class="checkmark">title</span>
+              </label>
+            </div>
+            <div id="toggle_artist">
+              <label class="customCheckbox">
+                <input type="checkbox" checked onclick="ToggleArtists()">
+                <span class="checkmark">artist</span>
+              </label>
+            </div>
+            <div id="toggle_dates">
+              <label class="customCheckbox">
+                <input type="checkbox" checked onclick="ToggleDates()">
+                <span class="checkmark">date</span>
+              </label>
+            </div>
           </div>
         </div>
         <div id="stats">

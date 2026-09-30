@@ -12,6 +12,10 @@ music_page = {
     sort_inverted: false,
     sort_multiplier: 1,
     sort_text_e: null,
+    
+    display_titles: true,
+    display_artists: true,
+    display_dates: true,
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -149,21 +153,27 @@ function CreateTile(album) {
     let img = document.createElement("img");
     img.src = "/" + encodeURIComponent(album["art"]);
     img.classList.add("AlbumEntryImg");
-
-    let album_name = document.createElement("p");
-    album_name.classList.add("AlbumName");
-    album_name.innerText = album["album"];
-    let artist_name = document.createElement("p");
-    artist_name.classList.add("ArtistName");
-    artist_name.innerText = album["artist"];
-    let year = document.createElement("p");
-    year.classList.add("Year");
-    year.innerText = album["release_date"];
-
     container.appendChild(img);
-    container.appendChild(album_name);
-    container.appendChild(artist_name);
-    container.appendChild(year);
+
+    if (music_page.display_titles) {
+        let album_name = document.createElement("p");
+        album_name.classList.add("AlbumName");
+        album_name.innerText = album["album"];
+        container.appendChild(album_name);
+    }
+    if (music_page.display_artists) {
+        let artist_name = document.createElement("p");
+        artist_name.classList.add("ArtistName");
+        artist_name.innerText = album["artist"];
+        container.appendChild(artist_name);
+    }
+    if (music_page.display_dates) {
+        let year = document.createElement("p");
+        year.classList.add("Year");
+        year.innerText = album["release_date"];
+        container.appendChild(year);
+    }
+
     return container
 }
 
@@ -179,6 +189,21 @@ function SortInvertedToggle() {
     SetSort(music_page.sort_current, !music_page.sort_inverted);
 }
 
+function ToggleTitles() {
+    music_page.display_titles = !music_page.display_titles;
+    SetSort(music_page.sort_current, music_page.sort_inverted);
+}
+
+function ToggleArtists() {
+    music_page.display_artists = !music_page.display_artists;
+    SetSort(music_page.sort_current, music_page.sort_inverted);
+}
+
+function ToggleDates() {
+    music_page.display_dates = !music_page.display_dates;
+    SetSort(music_page.sort_current, music_page.sort_inverted);
+}
+
 function UpdateTileSize(slider_e) {
     let t = slider_e.value / 100;
     let delta = (music_page.tile_size_max - music_page.tile_size_min)
@@ -186,7 +211,7 @@ function UpdateTileSize(slider_e) {
     document.documentElement.style.setProperty("--tile_size", `${new_size}px`);
 }
 
-function SetSort(index, inverted) {
+function SetSort(index, inverted) {    
     if (index >= music_page.sort_array.length) {
         index = 0;
     }
