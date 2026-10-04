@@ -26,7 +26,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 function RadioInit() {
-    
+    RequestText("/Resources/Music/song_data.html", ParseSongData);
+}
+
+function ParseSongData(data) {
+    let song_data = document.createElement("div");
+    song_data.innerHTML = data;
+    // document.body.appendChild(song_data);
 }
 
 function SyncRadio() {
