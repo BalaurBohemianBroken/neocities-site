@@ -1,9 +1,36 @@
 html {
     --schedule-cell-width: 40px;
+    --schedule-cell-height: 20px;
+}
+
+#schedule_container p {
+    margin: 0;
 }
 
 #schedule_grid {
     display: flex;
+}
+
+#schedule_days > * {
+    width: var(--schedule-cell-width);
+}
+
+#schedule_days > p {
+    text-align: center;
+}
+
+#schedule_hours {
+    width: var(--schedule-cell-width);
+}
+
+#schedule_hours > p {
+    height: var(--schedule-cell-height);
+    width: var(--schedule-cell-width);
+    text-align: center;
+}
+
+.ScheduleTopLinePadding {
+    width: var(--schedule-cell-width);
 }
 
 .ScheduleFree {
@@ -29,5 +56,5 @@ html {
     width: 100%;
     height: 480px;
     background-image: linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px);
-    background-size: var(--schedule-cell-width) 20px;
+    background-size: var(--schedule-cell-width) var(--schedule-cell-height);
 }
