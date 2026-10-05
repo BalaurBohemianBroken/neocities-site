@@ -41,6 +41,7 @@ function ParseSchedule(data) {
     }
     
     AddGridlines();
+    AddGridMargins();
 }
 
 function AddGridlines() {
@@ -48,6 +49,15 @@ function AddGridlines() {
     gridlines.classList.add("Gridlines");
     gridlines.style.width = (schedule.state.num_days * schedule.day_width).toString() + "px";
     document.getElementById("schedule_grid").appendChild(gridlines);
+}
+
+function AddGridMargins() {
+    let hours = document.getElementById("schedule_hours");
+    for (let i = 0; i < 24; i++) {
+        let p = document.createElement("p");
+        p.innerText = i.toString().padStart(2, "0");
+        hours.appendChild(p);
+    }
 }
 
 function GetCurrentDay() {
