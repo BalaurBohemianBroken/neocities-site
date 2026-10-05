@@ -2,6 +2,7 @@ schedule = {
     current_day: null,
     json: null,
     pixels_per_day: 480,
+    day_width: 40,
     day_length: (24 * 60 * 60 * 1000),
     
     state: {
@@ -10,6 +11,7 @@ schedule = {
         day_time: 0,
         next_day_time: 0,
         last_time: 0,
+        num_days: 0,
     },
 }
 
@@ -33,9 +35,19 @@ function ParseSchedule(data) {
 
         let from = new Date(entry["time"] * 1000);
         let to = new Date(end);
-        
-        
+
+        FillSchedule(from, null);
+        FillSchedule(to, entry);
     }
+    
+    AddGridlines();
+}
+
+function AddGridlines() {
+    let gridlines = document.createElement("div");
+    gridlines.classList.add("Gridlines");
+    gridlines.style.width = (schedule.state.num_days * schedule.day_width).toString() + "px";
+    document.getElementById("schedule_grid").appendChild(gridlines);
 }
 
 function GetCurrentDay() {
@@ -50,7 +62,7 @@ function FillSchedule(to, event) {
     let s = schedule.state;
     if (s.schedule_e === null) {
         // TODO: Probably wanna ID and fetch this instead, only one.
-        s.schedule_e = document.createElement("div");
+        s.schedule_e = document.getElementById("schedule_grid");
     }
     if (s.day_e === null) {
         ScheduleGeneratorNewDay();
@@ -65,7 +77,9 @@ function FillSchedule(to, event) {
     }
     
     // Coloured box
-    let duration = to - s.last_time;
+    let duration = Math.max(to - s.last_time, 0);
+    if (duration === 0)
+        return;
     while (duration > 0) {
         let day_remaining = s.next_day_time - s.last_time;
         let fill_time = Math.min(duration, day_remaining);
@@ -74,24 +88,28 @@ function FillSchedule(to, event) {
         let fill_e = document.createElement("div");
         fill_e.classList.add(fill_type);
         fill_e.style.height = `${fill_pixels}px`;
+        // debug info for if stuff looks weird
+        fill_e.setAttribute("starttime", new Date(s.last_time).toTimeString());
+        fill_e.setAttribute("end", new Date(s.last_time + fill_time).toTimeString());
+        s.day_e.appendChild(fill_e);
         
         s.last_time = s.last_time + fill_time;
         day_remaining -= fill_time;
         duration -= fill_time;
+        // Hover tooltip
         
         // Start new day
         if (day_remaining <= 0) {
             ScheduleGeneratorNewDay();
         }
     }
-    
-    // Hover tooltip
 }
 
 function ScheduleGeneratorNewDay() {
     let s = schedule.state;
     if (s.day_e !== null) {
         s.schedule_e.appendChild(s.day_e);
+        s.num_days++;
     }
     
     s.day_e = document.createElement("div");

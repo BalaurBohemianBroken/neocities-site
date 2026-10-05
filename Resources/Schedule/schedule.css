@@ -1,0 +1,33 @@
+html {
+    --schedule-cell-width: 40px;
+}
+
+#schedule_grid {
+    display: flex;
+}
+
+.ScheduleFree {
+    background-color: mediumpurple;
+}
+
+.ScheduleBusy {
+    background-color: purple;
+}
+
+.ScheduleFree, .ScheduleBusy {
+    width: var(--schedule-cell-width);
+}
+
+.ScheduleDay {
+    height: 480px;
+    display: flex;
+    flex-direction: column;
+}
+
+.Gridlines {
+    position: absolute;
+    width: 100%;
+    height: 480px;
+    background-image: linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px);
+    background-size: var(--schedule-cell-width) 20px;
+}
