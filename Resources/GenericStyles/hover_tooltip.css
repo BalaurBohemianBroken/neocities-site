@@ -1,0 +1,7 @@
+.TooltipContainer {
+    background-color: lightgray;
+    height: 10px;
+    position: fixed;
+    width: 10px;
+    display: none;
+}
