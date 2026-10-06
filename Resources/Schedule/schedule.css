@@ -5,14 +5,12 @@ html {
 
 #schedule_container p {
     margin: 0;
-}
-
-#schedule_grid {
-    display: flex;
+    font-size: 0.8em;
 }
 
 #schedule_days > * {
     width: var(--schedule-cell-width);
+    flex-shrink: 0;
 }
 
 #schedule_days > p {

@@ -4,6 +4,7 @@ schedule = {
     pixels_per_day: 480,
     day_width: 40,
     day_length: (24 * 60 * 60 * 1000),
+    days: ["sun", "mon", "tue", "wed", "thu", "fri", "sat"],
     
     state: {
         schedule_e: null,
@@ -57,6 +58,16 @@ function AddGridMargins() {
         let p = document.createElement("p");
         p.innerText = i.toString().padStart(2, "0");
         hours.appendChild(p);
+    }
+    
+    // dates at top
+    let i_day = schedule.current_day.getDay();
+    let days_e = document.getElementById("schedule_days");
+    for (let i = 0; i < schedule.state.num_days; i++) {
+        let p = document.createElement("p");
+        p.innerText = schedule.days[i_day];
+        days_e.appendChild(p);
+        i_day = (i_day + 1) % schedule.days.length;
     }
 }
 
