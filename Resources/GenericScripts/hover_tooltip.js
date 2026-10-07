@@ -49,10 +49,10 @@ function UpdateTooltip() {
     let ttl = tooltip.tooltips_on;
     if (ttl.length > 0) {
         let to_display_e = tooltip.index.get(tooltip.tooltips_on[ttl.length - 1]);
-        tooltip.e.innerHTML = to_display_e.innerHTML;
+        tooltip.e.appendChild(to_display_e.cloneNode(true));
         
         tooltip.e.style.display = "block";
-        // tooltip.e.firstChild.style.display = "block";
+        tooltip.e.firstChild.style.display = "block";
     }
     else {
         tooltip.e.style.display = "none";

@@ -122,8 +122,12 @@ function FillSchedule(to, event) {
             let hover_to = new Date(to);
             let from_str = `${hover_from.getHours().toString().padStart(2, "0")}:${hover_from.getMinutes().toString().padStart(2, "0")}`;
             let to_str = `${hover_to.getHours().toString().padStart(2, "0")}:${hover_to.getMinutes().toString().padStart(2, "0")}`;
-            let timeframe = `<span>${from_str}-${to_str}</span><br>`;
-            span.innerHTML = timeframe + event["name"];
+            let from_date = `${hover_from.getFullYear()}${hover_from.getMonth().toString().padStart(2, "0")}${hover_from.getDate().toString().padStart(2, "0")}`; 
+            let timeframe = `<span style="font-size:0.8rem; font-family: l-monospace-sub;">${from_date}<br>
+${from_str}-${to_str}</span><br>
+<br>
+<span style="font-size:1rem;">${event["name"]}</span>`;
+            span.innerHTML = timeframe;
             fill_e.appendChild(span);
             RegisterTooltip(span);
         }
