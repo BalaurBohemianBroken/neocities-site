@@ -114,10 +114,21 @@ function FillSchedule(to, event) {
         fill_e.setAttribute("end", new Date(s.last_time + fill_time).toTimeString());
         s.day_e.appendChild(fill_e);
         
+        // Hover tooltip
+        if (event !== null && "name" in event) {
+            let s = document.createElement("span");
+            s.classList.add("Tooltip");
+            let hover_from = new Date(s.last_time);
+            let hover_to = new Date(to);
+            let timeframe = `${hover_from.getHours()}:${hover_from.getMinutes()}-${hover_to.getHours()}:${hover_to.getMinutes()}`;
+            s.innerText = timeframe + "\n" + event["name"];
+            fill_e.appendChild(s);
+            RegisterTooltip(s);
+        }
+
         s.last_time = s.last_time + fill_time;
         day_remaining -= fill_time;
         duration -= fill_time;
-        // Hover tooltip
         
         // Start new day
         if (day_remaining <= 0) {
