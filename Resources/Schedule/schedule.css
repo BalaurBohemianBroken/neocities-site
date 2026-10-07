@@ -39,6 +39,10 @@ html {
     background-color: #9f00e580;
 }
 
+.ScheduleBusy:hover {
+    background-color: #d06aff;
+}
+
 .ScheduleFree, .ScheduleBusy {
     width: var(--schedule-cell-width);
 }

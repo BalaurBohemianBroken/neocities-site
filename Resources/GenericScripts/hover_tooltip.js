@@ -2,7 +2,7 @@
 // make an element with class "Tooltip". this element will be used in the tooltip popup container
 tooltip = {
     e: null,
-    index: {},
+    index: new Map(),
     tooltips_on: [],
 };
 
@@ -26,11 +26,10 @@ function TooltipInit() {
 // Can also be called from other scripts if a tooltip is defined in code, rather than part of the .html
 function RegisterTooltip(tooltip_e) {
     let par = tooltip_e.parentNode;
-    // For some reason this always triggers??
-    // if (par in tooltip.index) {
-    //     return;
-    // }
-    tooltip.index[par] = tooltip_e;
+    if (tooltip.index.has(par)) {
+        return;
+    }
+    tooltip.index.set(par, tooltip_e);
     par.addEventListener("mouseover", function() {TooltipOn(par)});
     par.addEventListener("mouseout", function() {TooltipOff(par)});
 }
@@ -49,7 +48,7 @@ function UpdateTooltip() {
     tooltip.e.innerHTML = "";
     let ttl = tooltip.tooltips_on;
     if (ttl.length > 0) {
-        let to_display_e = tooltip.index[tooltip.tooltips_on[ttl.length - 1]];
+        let to_display_e = tooltip.index.get(tooltip.tooltips_on[ttl.length - 1]);
         tooltip.e.innerHTML = to_display_e.innerHTML;
         
         tooltip.e.style.display = "block";

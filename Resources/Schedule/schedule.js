@@ -114,7 +114,7 @@ function FillSchedule(to, event) {
         fill_e.setAttribute("end", new Date(s.last_time + fill_time).toTimeString());
         s.day_e.appendChild(fill_e);
         
-        // Hover tooltip
+        // Hover tooltip and colour
         if (event !== null && "name" in event) {
             let span = document.createElement("span");
             span.classList.add("Tooltip");
