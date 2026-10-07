@@ -32,11 +32,11 @@ html {
 }
 
 .ScheduleFree {
-    background-color: mediumpurple;
+    background-color: #0074b8a1;
 }
 
 .ScheduleBusy {
-    background-color: purple;
+    background-color: #9f00e580;
 }
 
 .ScheduleFree, .ScheduleBusy {
@@ -53,6 +53,7 @@ html {
     position: absolute;
     width: 100%;
     height: 480px;
-    background-image: linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px);
+    background-image: linear-gradient(to right, #0008 1px, transparent 1px), linear-gradient(to bottom, #0008 1px, transparent 1px);
     background-size: var(--schedule-cell-width) var(--schedule-cell-height);
+    pointer-events: none;
 }

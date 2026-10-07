@@ -1,7 +1,10 @@
 .TooltipContainer {
-    background-color: lightgray;
-    height: 10px;
-    position: fixed;
-    width: 10px;
     display: none;
+    background-color: #380052;
+    max-width: 200px;
+    position: fixed;
+    transform: translate(10px, -50%);
+    border-radius: 5px;
+    font-size: 0.8rem;
+    padding: 5px;
 }
