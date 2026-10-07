@@ -53,7 +53,7 @@ function UpdateTooltip() {
         tooltip.e.innerHTML = to_display_e.innerHTML;
         
         tooltip.e.style.display = "block";
-        tooltip.e.firstChild.style.display = "block";
+        // tooltip.e.firstChild.style.display = "block";
     }
     else {
         tooltip.e.style.display = "none";

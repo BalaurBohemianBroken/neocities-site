@@ -116,14 +116,16 @@ function FillSchedule(to, event) {
         
         // Hover tooltip
         if (event !== null && "name" in event) {
-            let s = document.createElement("span");
-            s.classList.add("Tooltip");
+            let span = document.createElement("span");
+            span.classList.add("Tooltip");
             let hover_from = new Date(s.last_time);
             let hover_to = new Date(to);
-            let timeframe = `${hover_from.getHours()}:${hover_from.getMinutes()}-${hover_to.getHours()}:${hover_to.getMinutes()}`;
-            s.innerText = timeframe + "\n" + event["name"];
-            fill_e.appendChild(s);
-            RegisterTooltip(s);
+            let from_str = `${hover_from.getHours().toString().padStart(2, "0")}:${hover_from.getMinutes().toString().padStart(2, "0")}`;
+            let to_str = `${hover_to.getHours().toString().padStart(2, "0")}:${hover_to.getMinutes().toString().padStart(2, "0")}`;
+            let timeframe = `<span>${from_str}-${to_str}</span><br>`;
+            span.innerHTML = timeframe + event["name"];
+            fill_e.appendChild(span);
+            RegisterTooltip(span);
         }
 
         s.last_time = s.last_time + fill_time;
