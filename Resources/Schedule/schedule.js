@@ -55,7 +55,7 @@ function ParseSchedule(data) {
     }
     
     AddGridlines();
-    AddGridMargins();
+    // AddGridMargins();
 }
 
 function AddGridlines() {
