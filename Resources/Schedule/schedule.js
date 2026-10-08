@@ -5,6 +5,13 @@ schedule = {
     day_width: 40,
     day_length: (24 * 60 * 60 * 1000),
     days: ["sun", "mon", "tue", "wed", "thu", "fri", "sat"],
+    category_classes: {
+        "work": "ScheduleWork",
+        "sleep": "ScheduleSleep",
+        "event": "ScheduleEvent",
+        "community": "ScheduleCommunity",
+        "appointment": "ScheduleAppointment",
+    },
     
     state: {
         schedule_e: null,
@@ -119,8 +126,17 @@ function FillSchedule(to, event) {
         
         // Hover tooltip and colour
         if (event !== null && "name" in event) {
+            // event colour
+            let event_cat = event["category"];
+            if (!(event_cat in schedule.category_classes)) {
+                console.warn("Provided category isn't defined: " + event["category"]);
+                event_cat = "event";
+            }
+            fill_e.classList.add(schedule.category_classes[event_cat]);
+            
             let span = document.createElement("span");
             span.classList.add("Tooltip");
+            
             let hover_from = new Date(s.last_time);
             let hover_to = new Date(to);
             let from_str = `${hover_from.getHours().toString().padStart(2, "0")}:${hover_from.getMinutes().toString().padStart(2, "0")}`;

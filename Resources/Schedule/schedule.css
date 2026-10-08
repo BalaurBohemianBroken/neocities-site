@@ -36,7 +36,23 @@ html {
 }
 
 .ScheduleBusy {
+    /*background-color: #9f00e580;*/
+}
+
+.ScheduleWork, .ScheduleAppointment {
+    background-color: #e5000080;
+}
+
+.ScheduleSleep {
     background-color: #9f00e580;
+}
+
+.ScheduleEvent {
+    background-color: #00e5c580;
+}
+
+.ScheduleCommunity {
+    background-color: #e500e180
 }
 
 .ScheduleBusy:hover {
