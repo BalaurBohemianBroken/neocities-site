@@ -60,6 +60,6 @@ function UpdateTooltip() {
 }
 
 function MoveTooltip(event) {
-    tooltip.e.style.left = `${event.pageX}px`;
-    tooltip.e.style.top = `${event.pageY}px`;
+    tooltip.e.style.left = `${event.clientX}px`;
+    tooltip.e.style.top = `${event.clientY}px`;
 }
