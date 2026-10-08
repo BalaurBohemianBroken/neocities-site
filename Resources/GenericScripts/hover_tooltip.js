@@ -44,15 +44,31 @@ function TooltipOff(e) {
     UpdateTooltip();
 }
 
+function SortTooltips(a, b) {
+    // bad, slow, oh well, gonna be like 5 elements in the list
+    let ia = 0;
+    while (a.parentElement != null) {
+        ia += 1;
+        a = a.parentElement;
+    }
+    
+    let ib = 0;
+    while (b.parentElement != null) {
+        ib += 1;
+        b = b.parentElement;
+    }
+    return ia - ib;
+}
+
 function UpdateTooltip() {
     if (tooltip.e.firstChild !== null) {
         tooltip.e.firstChild.display = "";
         tooltip.e.removeChild(tooltip.e.firstChild);
     }
     
-    let ttl = tooltip.tooltips_on;
+    let ttl = tooltip.tooltips_on.toSorted(SortTooltips);
     if (ttl.length > 0) {
-        let to_display_e = tooltip.index.get(tooltip.tooltips_on[ttl.length - 1]);
+        let to_display_e = tooltip.index.get(tooltip.tooltips_on[0]);
         tooltip.e.appendChild(to_display_e);
         
         tooltip.e.style.display = "block";
