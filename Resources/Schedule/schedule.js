@@ -56,7 +56,9 @@ function AddGridMargins() {
     let hours = document.getElementById("schedule_hours");
     for (let i = 0; i < 24; i++) {
         let p = document.createElement("p");
-        p.innerText = i.toString().padStart(2, "0");
+        if (i % 6 === 0) {
+            p.innerText = i.toString().padStart(2, "0");
+        }
         hours.appendChild(p);
     }
     
@@ -65,7 +67,8 @@ function AddGridMargins() {
     let days_e = document.getElementById("schedule_days");
     for (let i = 0; i < schedule.state.num_days; i++) {
         let p = document.createElement("p");
-        p.innerText = schedule.days[i_day];
+        if (i_day === 0 || i === 0)
+            p.innerText = schedule.days[i_day];
         days_e.appendChild(p);
         i_day = (i_day + 1) % schedule.days.length;
     }
@@ -122,8 +125,10 @@ function FillSchedule(to, event) {
             let hover_to = new Date(to);
             let from_str = `${hover_from.getHours().toString().padStart(2, "0")}:${hover_from.getMinutes().toString().padStart(2, "0")}`;
             let to_str = `${hover_to.getHours().toString().padStart(2, "0")}:${hover_to.getMinutes().toString().padStart(2, "0")}`;
-            let from_date = `${hover_from.getFullYear()}${hover_from.getMonth().toString().padStart(2, "0")}${hover_from.getDate().toString().padStart(2, "0")}`; 
+            let from_date = `${hover_from.getFullYear()}${hover_from.getMonth().toString().padStart(2, "0")}${hover_from.getDate().toString().padStart(2, "0")}`;
+            let from_day = `${schedule.days[hover_from.getDay()]}`;
             let timeframe = `<span style="font-size:0.8rem; font-family: l-monospace-sub;">${from_date}<br>
+${from_day}<br>
 ${from_str}-${to_str}</span><br>
 <br>
 <span style="font-size:1rem;">${event["name"]}</span>`;
