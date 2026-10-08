@@ -147,7 +147,7 @@ function FillSchedule(to, event) {
             let hover_to = new Date(to);
             let from_str = `${hover_from.getHours().toString().padStart(2, "0")}:${hover_from.getMinutes().toString().padStart(2, "0")}`;
             let to_str = `${hover_to.getHours().toString().padStart(2, "0")}:${hover_to.getMinutes().toString().padStart(2, "0")}`;
-            let from_date = `${hover_from.getFullYear()}${hover_from.getMonth().toString().padStart(2, "0")}${hover_from.getDate().toString().padStart(2, "0")}`;
+            let from_date = `${hover_from.getFullYear()}${(hover_from.getMonth() + 1).toString().padStart(2, "0")}${hover_from.getDate().toString().padStart(2, "0")}`;
             let from_day = `${schedule.days[hover_from.getDay()]}`;
             let timeframe = `<span style="font-size:0.8rem; font-family: l-monospace-sub;">${from_date}<br>
 ${from_day}<br>
@@ -206,7 +206,7 @@ function UpdateUnbusyTooltip(event) {
     let hovered_date = new Date(day_time + hovered_time);
 
     // lazy, breaking DRY, idc right now
-    let from_date = `${hovered_date.getFullYear()}${hovered_date.getMonth().toString().padStart(2, "0")}${hovered_date.getDate().toString().padStart(2, "0")}`;
+    let from_date = `${hovered_date.getFullYear()}${(hovered_date.getMonth() + 1).toString().padStart(2, "0")}${hovered_date.getDate().toString().padStart(2, "0")}`;
     let from_day = `${schedule.days[hovered_date.getDay()]}`;
     let from_str = `${hovered_date.getHours().toString().padStart(2, "0")}:${hovered_date.getMinutes().toString().padStart(2, "0")}`;
     schedule.grid_tooltip_e.innerHTML = `<span style="font-size:0.8rem; font-family: l-monospace-sub;">${from_date}<br>

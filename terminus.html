@@ -8,9 +8,15 @@
   <link href="/Resources/default.css" rel="stylesheet" type="text/css" media="all">
   <link href="/Resources/common.css" rel="stylesheet" type="text/css" media="all">
   <script src="/Resources/all.js"></script>
+
+  <script src="/Resources/GenericScripts/hover_tooltip.js"></script>
+  <link href="/Resources/GenericStyles/hover_tooltip.css" rel="stylesheet" type="text/css" media="all">
+  <script src="/Resources/GenericScripts/requests.js"></script>
+
+  <link href="/Resources/Schedule/schedule.css" rel="stylesheet" type="text/css" media="all">
+  <script src="/Resources/Schedule/schedule.js"></script>
   
   <link href="/Resources/Terminus/terminus.css" rel="stylesheet" type="text/css" media="all">
-  
   <script src="/Resources/Terminus/terminus.js"></script>
 </head>
 <body>
@@ -27,7 +33,7 @@
       
     </div>
   </div>
-  <p class="version">52.20261008</p>
+  <p class="version">53.20261008</p>
   <!--
       This element stores what populates the main and side panel. It gets parsed in javascript.
       I thought of using json, but that disallows new lines and would require constant character escaping.
@@ -61,15 +67,13 @@
         </p>
       </div>
     </div>
-    <div class="DataPoint" data-name="what am i doing lately">
+    <div class="DataPoint" data-name="schedule">
       <div class="BodyContent">
-        <p>
-          putting stickers on your house<br>
-          art, sort of<br>
-          relearning trust<br>
-          <br>
-          3.20260918
-        </p>
+        <p style="margin-bottom: 10px;">when im busy</p>
+        <!-- TODO: The grid doesn't scroll! -->
+        <div id="schedule_grid" style="display: flex;">
+          <span class="Tooltip" id="schedule_unbusy_tooltip"></span>
+        </div>
       </div>
     </div>
     <div class="DataPoint" data-name="socials">
