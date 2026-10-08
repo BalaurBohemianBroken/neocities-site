@@ -3,7 +3,7 @@
     background-color: #380052;
     max-width: 200px;
     position: fixed;
-    transform: translate(12px, -50%);
+    /*transform: translate(calc(-100% - 2px), -100%);*/
     border-radius: 5px;
     font-size: 0.8rem;
     padding: 5px;

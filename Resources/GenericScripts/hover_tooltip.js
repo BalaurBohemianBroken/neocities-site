@@ -4,6 +4,9 @@ tooltip = {
     e: null,
     index: new Map(),
     tooltips_on: [],
+
+    translate_x: ["12px", "calc(-100% - 2px)"],
+    translate_y: ["-100%", "0"],
 };
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -82,4 +85,24 @@ function UpdateTooltip() {
 function MoveTooltip(event) {
     tooltip.e.style.left = `${event.clientX}px`;
     tooltip.e.style.top = `${event.clientY}px`;
+    SetTooltipOffset();
+}
+
+function SetTooltipOffset() {
+    // Set it to default position
+    let trans_x = tooltip.translate_x[0];
+    let trans_y = tooltip.translate_y[0];
+    tooltip.e.style.transform = `translate(${trans_x}, ${trans_y})`;
+    
+    let x = tooltip.e.getBoundingClientRect().right;
+    if (x >= window.innerWidth) {
+        trans_x = tooltip.translate_x[1];
+    }
+
+    let y = tooltip.e.getBoundingClientRect().top;
+    if (y <= 0) {
+        trans_y = tooltip.translate_y[1];
+    }
+    
+    tooltip.e.style.transform = `translate(${trans_x}, ${trans_y})`;
 }
