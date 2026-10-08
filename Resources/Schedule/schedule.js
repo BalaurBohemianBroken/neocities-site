@@ -1,4 +1,7 @@
 schedule = {
+    grid_e: null,
+    grid_tooltip_e: null,
+    
     current_day: null,
     json: null,
     pixels_per_day: 480,
@@ -28,6 +31,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 function ScheduleInit() {
+    schedule.grid_e = document.getElementById("schedule_grid");
+    schedule.grid_e.addEventListener("mousemove", UpdateUnbusyTooltip);
+    schedule.grid_tooltip_e = document.getElementById("schedule_unbusy_tooltip");
     RequestJSON("/Resources/Schedule/schedule.json", ParseSchedule);
 }
 
@@ -182,4 +188,28 @@ function ScheduleGeneratorNewDay() {
     
     // Aligns this to the start of the day, handles floating point imprecision.
     s.last_time = s.day_time;
+}
+
+function UpdateUnbusyTooltip(event) {
+    let rect = schedule.grid_e.getBoundingClientRect();
+    let x = event.pageX - rect.left;
+    let y = event.pageY - rect.top;
+    // Not on schedule.
+    if (x <= 0 || y <= 0)
+        return;
+    
+    let t = 1 - ((schedule.pixels_per_day - y) / schedule.pixels_per_day);
+    let hovered_time = Math.floor(t * 24) * 60 * 60 * 1000;
+    let day_num = Math.floor(x / schedule.day_width);
+    
+    let day_time = schedule.current_day.getTime() + (day_num * schedule.day_length);
+    let hovered_date = new Date(day_time + hovered_time);
+
+    // lazy, breaking DRY, idc right now
+    let from_date = `${hovered_date.getFullYear()}${hovered_date.getMonth().toString().padStart(2, "0")}${hovered_date.getDate().toString().padStart(2, "0")}`;
+    let from_day = `${schedule.days[hovered_date.getDay()]}`;
+    let from_str = `${hovered_date.getHours().toString().padStart(2, "0")}:${hovered_date.getMinutes().toString().padStart(2, "0")}`;
+    schedule.grid_tooltip_e.innerHTML = `<span style="font-size:0.8rem; font-family: l-monospace-sub;">${from_date}<br>
+${from_day}<br>
+${from_str}</span><br>`;
 }
