@@ -45,11 +45,15 @@ function TooltipOff(e) {
 }
 
 function UpdateTooltip() {
-    tooltip.e.innerHTML = "";
+    if (tooltip.e.firstChild !== null) {
+        tooltip.e.firstChild.display = "";
+        tooltip.e.removeChild(tooltip.e.firstChild);
+    }
+    
     let ttl = tooltip.tooltips_on;
     if (ttl.length > 0) {
         let to_display_e = tooltip.index.get(tooltip.tooltips_on[ttl.length - 1]);
-        tooltip.e.appendChild(to_display_e.cloneNode(true));
+        tooltip.e.appendChild(to_display_e);
         
         tooltip.e.style.display = "block";
         tooltip.e.firstChild.style.display = "block";
