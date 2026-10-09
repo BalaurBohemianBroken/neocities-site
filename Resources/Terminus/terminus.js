@@ -36,7 +36,6 @@ function Terminus() {
     }
     
     GetStickerCount();
-    InitPopupImage();
     InitPoemAnalysis();
 }
 
@@ -113,7 +112,7 @@ function CreateDataPoint(element, parent_name) {
 }
 
 function InitMenu(data_point_list) {
-    // We create a div element that is not a part of the document flow to insert in,
+    // We create a div element that is not a part of the document flow to insert in.
     // This is so the document doesn't get updated with every new element that is added,
     // but instead all at once when we're done.
     let container = document.createElement("div");
@@ -219,7 +218,7 @@ function OpenDataPoint(data_point_name) {
 }
 
 function GetStickerCount() {
-    var xmlHttp = new XMLHttpRequest();
+    let xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
             UpdateStickerCount(xmlHttp.responseText);
@@ -231,26 +230,6 @@ function GetStickerCount() {
 function UpdateStickerCount(sticker_page_text) {
     let count = sticker_page_text.split('\n')[0];
     document.getElementById("stickerCount").innerText = count;
-}
-
-function InitPopupImage() {
-    terminus.popup_container = document.getElementById("popup_image_container");
-    terminus.popup_img = document.getElementById("popup_image");
-    
-    let imgs = document.getElementsByTagName("img");
-    for (let img of imgs) {
-        img.addEventListener("click", function() {SetPopupState(true, img.src)});
-        img.style.cursor = "pointer";
-    }
-}
-
-function SetPopupState(state, src="") {
-    if (state !== true) {
-        terminus.popup_container.style.display = "none";
-        return;
-    }
-    terminus.popup_container.style.display = "";
-    terminus.popup_img.src = src;
 }
 
 function InitPoemAnalysis() {

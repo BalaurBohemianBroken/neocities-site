@@ -12,6 +12,7 @@
   <script src="/Resources/GenericScripts/hover_tooltip.js"></script>
   <link href="/Resources/GenericStyles/hover_tooltip.css" rel="stylesheet" type="text/css" media="all">
   <script src="/Resources/GenericScripts/requests.js"></script>
+  <script src="/Resources/GenericScripts/b-img.js" defer></script>
 
   <link href="/Resources/Schedule/schedule.css" rel="stylesheet" type="text/css" media="all">
   <script src="/Resources/Schedule/schedule.js"></script>
@@ -20,9 +21,6 @@
   <script src="/Resources/Terminus/terminus.js"></script>
 </head>
 <body>
-<div id="popup_image_container" style="display: none;" onclick="SetPopupState(false)">
-  <img id="popup_image" src="/Resources/Terminus/rat1.png" onclick="SetPopupState(false)">
-</div>
 <div id="content">
   <p id="title">Terminus</p>
   <div id="panel_containers">
@@ -33,7 +31,7 @@
       
     </div>
   </div>
-  <p class="version">53.20261008</p>
+  <p class="version">54.20261009</p>
   <!--
       This element stores what populates the main and side panel. It gets parsed in javascript.
       I thought of using json, but that disallows new lines and would require constant character escaping.
@@ -1123,12 +1121,12 @@
               <br>
             </p>
             <div style="display: grid; grid-template-columns: repeat(3, 0.333fr); gap: 20px; box-sizing: border-box;">
-              <img src="/Resources/Stickers/waow1.png" style="width:100%">
-              <img src="/Resources/Stickers/society1.png" style="width:100%">
-              <img src="/Resources/Stickers/waow2.png" style="width:100%">
-              <img src="/Resources/Stickers/society2.png" style="width:100%">
-              <img src="/Resources/Stickers/waow3.png" style="width:100%">
-              <img src="/Resources/Stickers/society3.png" style="width:100%">
+              <b-img src="/Resources/Stickers/waow1.png" style="width:100%;"></b-img>
+              <b-img loading="lazy" src="/Resources/Stickers/society1.png" style="width:100%"></b-img>
+              <b-img loading="lazy" src="/Resources/Stickers/waow2.png" style="width:100%"></b-img>
+              <b-img loading="lazy" src="/Resources/Stickers/society2.png" style="width:100%"></b-img>
+              <b-img loading="lazy" src="/Resources/Stickers/waow3.png" style="width:100%"></b-img>
+              <b-img loading="lazy" src="/Resources/Stickers/society3.png" style="width:100%"></b-img>
             </div>
             <p>
               <br>
@@ -1139,8 +1137,8 @@
             </p>
             <br>
             <div style="display: grid; grid-template-columns: repeat(2, 0.5fr); gap: 20px; box-sizing: border-box;">
-              <img src="/Resources/Stickers/waowcat.png" style="width:100%">
-              <img src="/Resources/Stickers/ribbit.png" style="width:100%">
+              <b-img src="/Resources/Stickers/waowcat.png" style="width:100%"></b-img>
+              <b-img src="/Resources/Stickers/ribbit.png" style="width:100%"></b-img>
             </div>
           </div>
           <div class="NestedContent">
@@ -1193,7 +1191,7 @@
                   keeping them rectangle makes them trivial to cut and mass produce + i think it and white paper is a striking style<br>
                 </p>
                 <div style="width: 100%; display: flex;">
-                  <img src="/Resources/Stickers/sticker sheet.png" style="width: 50%; margin: auto;">
+                  <b-img src="/Resources/Stickers/sticker sheet.png" style="width: 50%; margin: auto;"></b-img>
                 </div>
               </div>
             </div>
@@ -1242,7 +1240,7 @@
                 </p>
                 <div style="width: 100%; display: flex; gap: 10px;">
                   <div style="width:50%">
-                    <img src="/Resources/Stickers/lamppost.png" style="width: 100%;">
+                    <b-img src="/Resources/Stickers/lamppost.png" style="width: 100%;"></b-img>
                   </div>
                   <p style="width: 50%;">
                     <span class="Positive">+ trusty lamp post, classic target. metal adheres well</span><br>
@@ -1268,13 +1266,13 @@
                     this is a very good spot, i will usually place one here if i can
                   </p>
                   <div style="width:50%">
-                    <img src="/Resources/Stickers/crossing signal.png" style="width: 100%;">
+                    <b-img src="/Resources/Stickers/crossing signal.png" style="width: 100%;"></b-img>
                   </div>
                 </div>
                 <br>
                 <div style="width: 100%; display: flex; gap: 10px;">
                   <div style="width:50%">
-                    <img src="/Resources/Stickers/no drawing.png" style="width: 100%;">
+                    <b-img src="/Resources/Stickers/no drawing.png" style="width: 100%;"></b-img>
                   </div>
                   <p style="width: 50%;">
                     <span class="Negative">- rock is very bad for adhesion. it won't last long, will come off easily</span><br>
@@ -1298,7 +1296,7 @@
               so, i dunno. i guess i just got betrayed again. my issues with authority have never been stronger<br>
             </p>
             <div style="width: 100%; display: flex;">
-              <img src="/Resources/Terminus/barista.jpg" alt="barista.jpg" style="width: 50%; margin: auto;">
+              <b-img src="/Resources/Terminus/barista.jpg" alt="barista.jpg" style="width: 50%; margin: auto;"></b-img>
             </div>
           </div>
         </div>
@@ -1319,10 +1317,10 @@
               <br>
             </p>
             <div style="display: grid; grid-template-columns: repeat(2, 0.5fr); width: 100%; gap: 20px; box-sizing: border-box;">
-              <img src="/Resources/Terminus/rat1.png" style="width:100%">
-              <img src="/Resources/Terminus/rat2.png" style="width:100%">
-              <img src="/Resources/Terminus/rat4.png" style="width:100%">
-              <img src="/Resources/Terminus/rat5.png" style="width:100%">
+              <b-img src="/Resources/Terminus/rat1.png" style="width:100%"></b-img>
+              <b-img src="/Resources/Terminus/rat2.png" style="width:100%"></b-img>
+              <b-img src="/Resources/Terminus/rat4.png" style="width:100%"></b-img>
+              <b-img src="/Resources/Terminus/rat5.png" style="width:100%"></b-img>
             </div>
           </div>
         </div>
