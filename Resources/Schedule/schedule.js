@@ -94,6 +94,30 @@ function GetCurrentDay() {
     return cd;
 }
 
+// from and to should be Date objects. message is a string
+function GetTooltipReadout(from, to = null, message = null) {
+    let from_date = `${from.getFullYear()}${(from.getMonth() + 1).toString().padStart(2, "0")}${from.getDate().toString().padStart(2, "0")}`;
+    let from_day = `${schedule.days[from.getDay()]}`;
+    
+    let from_str = `${from.getHours().toString().padStart(2, "0")}:${from.getMinutes().toString().padStart(2, "0")}`;
+    let period = `${from_str}`
+    if (to !== null) {
+        let to_str = `${to.getHours().toString().padStart(2, "0")}:${to.getMinutes().toString().padStart(2, "0")}`;
+        period += `-${to_str}`; 
+    }
+    
+    let tooltip_content = `<span style="font-size:0.8rem; font-family: l-monospace-sub;">${from_date}<br>
+${from_day}<br>
+${period}</span>`;
+    if (message !== null) {
+        tooltip_content += `
+<br>
+<br>
+<span style="font-size:1rem;">${message}</span>`;
+    }
+    return tooltip_content;
+}
+
 // This requires schedule.current_day to be set. Write this better another time.
 function FillSchedule(to, event) {
     let s = schedule.state;
@@ -142,19 +166,8 @@ function FillSchedule(to, event) {
             
             let span = document.createElement("span");
             span.classList.add("Tooltip");
+            span.innerHTML = GetTooltipReadout(new Date(s.last_time), new Date(to), event["name"]);
             
-            let hover_from = new Date(s.last_time);
-            let hover_to = new Date(to);
-            let from_str = `${hover_from.getHours().toString().padStart(2, "0")}:${hover_from.getMinutes().toString().padStart(2, "0")}`;
-            let to_str = `${hover_to.getHours().toString().padStart(2, "0")}:${hover_to.getMinutes().toString().padStart(2, "0")}`;
-            let from_date = `${hover_from.getFullYear()}${(hover_from.getMonth() + 1).toString().padStart(2, "0")}${hover_from.getDate().toString().padStart(2, "0")}`;
-            let from_day = `${schedule.days[hover_from.getDay()]}`;
-            let timeframe = `<span style="font-size:0.8rem; font-family: l-monospace-sub;">${from_date}<br>
-${from_day}<br>
-${from_str}-${to_str}</span><br>
-<br>
-<span style="font-size:1rem;">${event["name"]}</span>`;
-            span.innerHTML = timeframe;
             fill_e.appendChild(span);
             RegisterTooltip(span);
         }
@@ -205,11 +218,5 @@ function UpdateUnbusyTooltip(event) {
     let day_time = schedule.current_day.getTime() + (day_num * schedule.day_length);
     let hovered_date = new Date(day_time + hovered_time);
 
-    // lazy, breaking DRY, idc right now
-    let from_date = `${hovered_date.getFullYear()}${(hovered_date.getMonth() + 1).toString().padStart(2, "0")}${hovered_date.getDate().toString().padStart(2, "0")}`;
-    let from_day = `${schedule.days[hovered_date.getDay()]}`;
-    let from_str = `${hovered_date.getHours().toString().padStart(2, "0")}:${hovered_date.getMinutes().toString().padStart(2, "0")}`;
-    schedule.grid_tooltip_e.innerHTML = `<span style="font-size:0.8rem; font-family: l-monospace-sub;">${from_date}<br>
-${from_day}<br>
-${from_str}</span><br>`;
+    schedule.grid_tooltip_e.innerHTML = GetTooltipReadout(hovered_date);
 }
