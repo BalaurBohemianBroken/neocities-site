@@ -54,7 +54,7 @@ function ParseSchedule(data) {
         FillSchedule(to, entry);
     }
     
-    AddGridlines();
+    // AddGridlines();
     // AddGridMargins();
 }
 
@@ -191,6 +191,7 @@ function ScheduleGeneratorNewDay() {
     }
     
     s.day_e = document.createElement("div");
+    s.day_e.classList.add("ScheduleDay");
     if (s.day_time === 0) {
         s.day_time = schedule.current_day.getTime();
     }

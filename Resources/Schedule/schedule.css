@@ -65,15 +65,23 @@ html {
 
 .ScheduleDay {
     height: 480px;
+    width: var(--schedule-cell-width);
     display: flex;
     flex-direction: column;
+    /*box-sizing: border-box;*/
+    /*border-right: 1px solid #333;*/
+}
+
+.ScheduleDay > div {
+    box-sizing: border-box;
+    border-right: 1px solid #333;
 }
 
 .Gridlines {
     position: absolute;
     width: 100%;
     height: 480px;
-    background-image: linear-gradient(to right, #0008 1px, transparent 1px), linear-gradient(to bottom, #0008 1px, transparent 1px);
+    background-image: linear-gradient(to bottom, #333 2px, transparent 1px);
     background-size: var(--schedule-cell-width) var(--schedule-cell-height);
     pointer-events: none;
 }
