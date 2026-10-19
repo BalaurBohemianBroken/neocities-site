@@ -31,13 +31,13 @@
       
     </div>
   </div>
-  <p class="version">54.20261009</p>
+  <p class="version">55.20261019</p>
   <!--
       This element stores what populates the main and side panel. It gets parsed in javascript.
       I thought of using json, but that disallows new lines and would require constant character escaping.
       
       DataPoint - Represents a class that contains data.
-      data-name - attribute on DataPoint that provides its simple name. If this is omitted, must and can only have MenuContent Internally, data-names are referenced as belonging to the namespace of their parent, kinda like C#. e.g. writing.poetry.Breakpoint;
+      data-name - attribute on DataPoint that provides its simple name. If this is omitted, must and can only have MenuContent. Internally, data-names are referenced as belonging to the namespace of their parent, kinda like C#. e.g. writing.poetry.Breakpoint;
       MenuName - optional. A custom element that gets placed in the menu. uses <p>data-name</p> if none provided.
       BodyContent - optional. Element to be placed in body when this is clicked.
       NestedContent - optional. Content that is revealed in the menu when clicked on. Should usually contain more DataPoint's
@@ -71,6 +71,22 @@
         <p style="margin-bottom: 10px;">when im busy</p>
         <div id="schedule_grid" style="display: flex;">
           <span class="Tooltip" id="schedule_unbusy_tooltip"></span>
+        </div>
+      </div>
+    </div>
+    <div class="DataPoint" data-name="sitemap">
+      <p class="BodyContent">some of the pages on this website that function</p>
+      <div class="NestedContent">
+        <div class="DataPoint" data-name="/terminus">
+          <p class="BodyContent">helo</p>
+        </div>
+        <div class="DataPoint" data-name="/music">
+          <p class="BodyContent"><a href="/music" target="_blank">link</a><br>
+            a list of my private music library with sorting functions and stuff</p>
+        </div>
+        <div class="DataPoint" data-name="/archive/discord">
+          <p class="BodyContent"><a href="/archive/discord" target="_blank">link</a><br>
+            a tool i use to view personal archives of discord channels</p>
         </div>
       </div>
     </div>
