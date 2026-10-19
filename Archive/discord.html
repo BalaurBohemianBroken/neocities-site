@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/Resources/default.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/Resources/common.css" rel="stylesheet" type="text/css" media="all">
+    <script src="/Resources/all.js"></script>
+
+    <link href="/Resources/GenericStyles/hover_tooltip.css" rel="stylesheet" type="text/css" media="all">
+    <script src="/Resources/GenericScripts/hover_tooltip.js"></script>
+    
+    <link href="/Resources/archive/discord_viewer.css" rel="stylesheet" type="text/css" media="all">
+    <script src="/Resources/archive/discord_viewer.js"></script>
+    <title>discord archive</title>
+</head>
+<body>
+<p class="version">3.20261019</p>
+<a id="top"></a>
+<div>
+    <a href="#top" class="button return_to_top">Back to top</a>
+    <span class="Tooltip">get back to the start of the page!!!!.</span>
+</div>
+<label class="button">
+    <input type="file" id="archive_folder_picker" name="fileList" webkitdirectory="">
+    <span class="text">Read archive directory</span>
+    <span class="Tooltip">Choose the folder that the archives are stored in. This is usually the 'archive' folder in the ArchiveChannel program.</span>
+</label>
+<div id="channel_selector">
+
+</div>
+<button id="button_load_all" type="button" style="display: none; position: fixed; bottom: 70px; right: 30px;" title="Load all content from the archive. This can take a while, but will make searching easier." class="button" onclick="load_archive_full()">Load full archive</button>
+<p id="archive_content" class="text">
+
+</p>
+</body>
+</html>

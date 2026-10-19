@@ -1,5 +1,6 @@
 // Also requires CSS file.
 // make an element with class "Tooltip". this element will be used in the tooltip popup container
+// TODO: There's an error I found on /Archive/discord.html, the box shrinks on the right side of the page as the mouse moves. Likely the div resizing itself at the boundary. 
 tooltip = {
     e: null,
     index: new Map(),
