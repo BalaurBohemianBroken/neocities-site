@@ -44,7 +44,7 @@ function check_for_codes(values) {
 }
 
 function blue_rose() {
-    all.br_stylesheet.disabled = true;
+    all.br_stylesheet.textContent = `.BlueRose {background-color: #08608287;}`
 }
 
 // From: https://stackoverflow.com/a/8831937
