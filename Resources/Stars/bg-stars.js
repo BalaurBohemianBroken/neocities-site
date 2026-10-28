@@ -87,7 +87,7 @@ function lerp(from, to, t) {
 
 
 parallax_layers = [];
-parallax_factor = 0.04;
+parallax_factor = 0.1;
 mouse_position = new Vector2(0, 0);
 scroll_position = new Vector2(0, 0);
 
@@ -98,18 +98,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 // TODO: arrange by parallax level
-scatter_stars("/Resources/Stars/star.png", 100, 0.1, 0.25);
-scatter_stars("/Resources/Stars/star-red.png", 100, 0.1, 0.25);
+scatter_stars("/Resources/Stars/star.png", 150, 0.1, 0.25);
+scatter_stars("/Resources/Stars/star-red.png", 150, 0.1, 0.25);
 scatter_stars("/Resources/Stars/star.png", 100, 0.25, 0.4);
 scatter_stars("/Resources/Stars/star-red.png", 100, 0.25, 0.4);
 
-scatter_stars("/Resources/Stars/star-pink.png", 60, 0.2, 0.35);
-scatter_stars("/Resources/Stars/star-pink.png", 40, 0.35, 0.5);
+scatter_stars("/Resources/Stars/star-pink.png", 100, 0.2, 0.35);
+scatter_stars("/Resources/Stars/star-pink.png", 30, 0.35, 0.5);
 
-scatter_stars("/Resources/Stars/star-purple.png", 60, 0.4, 0.6);
-scatter_stars("/Resources/Stars/star-purple.png", 40, 0.6, 0.8);
+scatter_stars("/Resources/Stars/star-purple.png", 80, 0.4, 0.6);
+scatter_stars("/Resources/Stars/star-purple.png", 20, 0.6, 0.8);
 
-scatter_stars("/Resources/Stars/star.png", 50, 0.3, 0.45);
+scatter_stars("/Resources/Stars/star.png", 70, 0.3, 0.45);
 scatter_stars("/Resources/Stars/star.png", 50, 0.45, 0.6);
 scatter_stars("/Resources/Stars/star.png", 25, 0.5, 0.7);
 scatter_stars("/Resources/Stars/star.png", 25, 0.7, 0.9);
