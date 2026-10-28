@@ -63,6 +63,8 @@ function CreateDataPoint(element, parent_name) {
         nesting_element: null
     };
     
+    let e_classes = element.className.split(" ");
+    
     // name
     data_point.name = element.getAttribute("data-name");
     data_point.parent_name = parent_name;
@@ -85,6 +87,13 @@ function CreateDataPoint(element, parent_name) {
     else {
         console.error("DataPoint had no data-name attribute and no MenuName element. Element: ", element);
         return null;
+    }
+    // apply classes from DataPoint to the menu element
+    for (let i = 0; i < e_classes.length; i++) {
+        let c = e_classes[i];
+        if (c === "DataPoint")
+            continue;
+        data_point.menu_element.classList.add(c);
     }
     
     // body_element
