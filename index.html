@@ -7,13 +7,53 @@
     <title>balaur</title>
     <link href="/Resources/default.css" rel="stylesheet" type="text/css" media="all">
     <link href="/Resources/common.css" rel="stylesheet" type="text/css" media="all">
-    <link href="/Resources/Stars/bg-stars.css" rel="stylesheet" type="text/css" media="all">
-    <script src="/Resources/Stars/bg-stars.js"></script>
     <script src="/Resources/all.js"></script>
+      
+<!--    <link href="/Resources/Stars/bg-stars.css" rel="stylesheet" type="text/css" media="all">-->
+<!--    <script src="/Resources/Stars/bg-stars.js"></script>-->
+      
+    <link href="/Resources/Console/console.css" rel="stylesheet" type="text/css" media="all">
+      
   </head>
-  <body>
+  <body style="width: max(500px, 100vw); height: max(500px, 100vh); overflow: hidden; display: flex; margin: 0;">
+  <div style="width: 75%; height: 100%;">
+  </div>
+  <div class="VerticalBorder"></div>
+  <div style="width: 25%; height: 100%;">
+    <div>
+      <p style="margin: 2px; font-family: l-monospace-sub; font-size: 0.8em;">
+        <span style="color: red">○</span> <span class="BalaurColor">balaur</span>.service - balaur daemon<br>
+        Active: inactive (dead)<br>
+        TriggeredBy: <span style="color: green;">●</span> <span class="BalaurColor">balaur</span>.socket<br>
+        Loaded: loaded (/etc/systemd/system/<span class="BalaurColor">balaur</span>.service; static)
+      </p>
+    </div>
+    <div class="HorizontalBorder"></div>
+    <div style="aspect-ratio: 4/3; width: 100%;">
+      <img src="/Resources/Sona/Corruptions/corrupt01.png" style="object-fit: contain; width: 100%; height: 100%;">
+    </div>
+    <div class="HorizontalBorder"></div>
+    <div style="height: 70px;"></div>
+    <div class="HorizontalBorder"></div>
+  </div>
+  
+  
+  
+  
+  
   <div style="display: none">
     <!-- TODO: Terminal update.
+    [28/Oct/2026 22:54:43]
+    Traceback (most recent call last):
+      (purple)File "/Users/crunchyduck/neocities-site/run-website.py", line 16, in <module>
+        (red)httpd.serve_forever()
+        (red)~~~~~~~~~~~~~~~~~~~^^
+      (purple)File "/usr/local/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/socketserver.py", line 235, in serve_forever
+        (purple)ready = selector.select(poll_interval)
+      (purple)File "/usr/local/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/selectors.py", line 398, in select
+        (purple)fd_event_list = self._selector.poll(timeout)
+    (purple)KeyboardInterrupt
+
      This will make this page emulate a terminal screen.
      The layout will be inspired by games such as hacknet, duskers, TIS-100.
      On the side will be the "LOGGED IN AS: BALAUR" along with a pfp.
@@ -133,7 +173,7 @@ master directory (that is primarily for me and not others. maybe encrypted.)
 general animal pages
 put asher graieg message somewhere on the site, linked to hypno. he's cool.
 </pre>
-    <p class="version">18.20261003</p>
+    <p class="version">19.20261029</p>
   </div>
   </body>
 </html>
