@@ -13,16 +13,19 @@
 <!--    <script src="/Resources/Stars/bg-stars.js"></script>-->
       
     <link href="/Resources/Console/console.css" rel="stylesheet" type="text/css" media="all">
-      
+    <script src="/Resources/Console/console.js"></script>     
   </head>
-  <body style="width: max(500px, 100vw); height: max(500px, 100vh); overflow: hidden; display: flex; margin: 0;">
-  <div style="width: 75%; height: 100%;">
+<body style="width: max(500px, 100vw); height: max(500px, 100vh); overflow: hidden; display: flex; margin: 0;">
+  <!-- This doesn't work if I set input to hidden. .focus() doesn't work on it. so i hide it off screen. -->
+  <input type="text" id="console_secret_input" style="position: absolute; top: -1000px;"/>
+  <div id="main" style="width: 75%; height: 100%; display: flex; white-space: pre;">
+    <p><span id="console_log"></span><span id="current_line"></span></p>
   </div>
   <div class="VerticalBorder"></div>
-  <div style="width: 25%; height: 100%;">
+  <div id="main_right" style="width: 25%; height: 100%;">
     <div>
       <p style="margin: 2px; font-family: l-monospace-sub; font-size: 0.8em;">
-        <span style="color: red">○</span> <span class="BalaurColor">balaur</span>.service - balaur daemon<br>
+        <span style="color: red">○</span> <span class="BalaurColor">balaur</span>.service - <span class="BalaurColor">balaur</span> daemon<br>
         Active: inactive (dead)<br>
         TriggeredBy: <span style="color: green;">●</span> <span class="BalaurColor">balaur</span>.socket<br>
         Loaded: loaded (/etc/systemd/system/<span class="BalaurColor">balaur</span>.service; static)
@@ -42,7 +45,42 @@
   
   
   <div style="display: none">
-    <!-- TODO: Terminal update.
+  <!-- TODO: Terminal update.
+    Boot up process
+    Last login
+    whoami
+    
+    help
+    GOTO page
+    git history of pages
+    Query info about web pages
+    ls
+    cd
+    cat
+    echo
+    history (command number + command)
+    view picture - enter for next, shift+enter for previous
+    play song
+
+  forbidden:
+    sudo
+    mkdir
+    nano
+    touch
+    rm
+    
+  files:
+    on notable people
+    poems
+    music
+    in-world archival stuff?
+    in-world files to represent hobbies?
+    RAT REPO
+    
+    command that provides an error - perhaps introspective?
+    command to view camera that uses the bweh meme
+    snippets of old conversations?
+    
     [28/Oct/2026 22:54:43]
     Traceback (most recent call last):
       (purple)File "/Users/crunchyduck/neocities-site/run-website.py", line 16, in <module>
@@ -173,7 +211,7 @@ master directory (that is primarily for me and not others. maybe encrypted.)
 general animal pages
 put asher graieg message somewhere on the site, linked to hypno. he's cool.
 </pre>
-    <p class="version">19.20261029</p>
+    <p class="version">20.20261031</p>
   </div>
-  </body>
+</body>
 </html>
