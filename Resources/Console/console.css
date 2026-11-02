@@ -1,3 +1,7 @@
+body {
+    font-family: l-monospace-sub;
+}
+
 .VerticalBorder {
     /*border-right: 1px solid cornflowerblue;*/
     /*border-left: 1px solid cornflowerblue;*/
@@ -12,6 +16,35 @@
     background-color: cornflowerblue;
 }
 
-.BalaurColor {
-    color: #f642fd;
+.ColorBalaur {
+    color: #cb42fd;
+}
+
+.ConsolePink {
+    color: #ff5ace;
+}
+
+.ConsoleRed {
+    color: red;
+}
+
+.AlignLeft {
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+}
+
+#console_secret_input {
+    background: none;
+    border: none;
+    outline: none;
+    color: white;
+    caret: #cb42fd;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0;
+}
+
+p {
+    margin: 0;
 }
