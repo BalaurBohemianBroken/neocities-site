@@ -16,8 +16,8 @@
     <script src="/Resources/Console/console.js"></script>     
   </head>
 <body style="width: max(500px, 100vw); height: max(500px, 100vh); overflow: hidden; display: flex; margin: 0;">
-  <!-- This doesn't work if I set input to hidden. .focus() doesn't work on it. so i hide it off screen. -->
   <div id="main" style="width: 75%; height: 100%; display: flex; white-space: pre; font-size: 1em; overflow-y: scroll;">
+    <!-- TODO: Fix size of input field -->
     <p style="width: 100%; text-align: right;"><span id="console_log"></span><span class="AlignLeft"><span id="prompt"></span><input type="text" id="console_secret_input"/></span></p>
   </div>
   <div class="VerticalBorder"></div>
@@ -28,7 +28,6 @@
         Active: inactive (dead)<br>
         TriggeredBy: <span style="color: green;">●</span> <span class="ColorBalaur">balaur</span>.socket<br>
         Loaded: loaded (/etc/systemd/system/<span class="ColorBalaur">balaur</span>.service; static)<br>
-        23.20261102<br>
       </p>
     </div>
     <div class="HorizontalBorder"></div>

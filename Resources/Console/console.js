@@ -9,9 +9,17 @@ b_console = {
     account: "<span class='ColorBalaur'>balaur</span>@<span class='ColorBalaur'>balaur</span>",
     filepath: "~",
     
+    greetings: [
+        "welcome home! :)",
+        "hiya again",
+        "henlo",
+        "helo. i appreciate you being here",
+    ],
+    
     commands: {
         "whoami": whoami,
         "cls": cls,
+        "echo": echo,
     },
 }
 
@@ -26,9 +34,9 @@ function Console() {
     b_console.current_line_e = document.getElementById("prompt");
 
     b_console.input_field_e.addEventListener("keydown", OnConsoleInput);
-    OnConsoleInput(null);
     b_console.input_field_e.focus();
     b_console.current_line_e.innerHTML = GetPrompt();
+    PrintToConsole(StartupText());
 }
 
 
@@ -78,6 +86,22 @@ function GetUserInput() {
     return b_console.input_field_e.value;
 }
 
+function StartupText() {
+    let greeting = b_console.greetings[Math.floor(Math.random() * b_console.greetings.length)];
+    // TODO: save/fetch login date
+    return `<span class="AlignCenter">The programs included with this Ba-lOr-S instance are without ownership;
+this unlicenced abandonware is provided for historical, emotional,
+or hypothetical use ONLY.
+
+Ba-lOr-S comes with ABSOLUTELY NO WARRANTY.
+This instance may or may not function or change
+or cease to exist without warning or reason.
+====
+${greeting}
+Last login: Sat Oct 31 15:08:06 2026 from 90.190.222.255.
+v.24.20261102</span>`;
+}
+
 function whoami(command) {
     PrintToConsole(`<span>Traceback (final call last):</span>
 <span class="ConsolePink">File "/bin/ident/whoami.rosh", line 9740.00.00 (841,536,000)</span>
@@ -92,4 +116,8 @@ function whoami(command) {
 
 function cls(command) {
     b_console.console_log_e.innerHTML = "";
+}
+
+function echo(command) {
+    PrintToConsole(command.slice(5));
 }
