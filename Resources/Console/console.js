@@ -1,7 +1,10 @@
 b_console = {
-    input_field_e: null,
+    version: "v.24.20261102",
+    
+    console_e: null,
     console_log_e: null,
     current_line_e: null,
+    input_field_e: null,
     
     command_history: [],
     console_line_history: [],
@@ -29,9 +32,10 @@ document.addEventListener("click", function(event) {
 });
 
 function Console() {
-    b_console.input_field_e = document.getElementById("console_secret_input");
+    b_console.console_e = document.getElementById("console");
     b_console.console_log_e = document.getElementById("console_log");
     b_console.current_line_e = document.getElementById("prompt");
+    b_console.input_field_e = document.getElementById("console_secret_input");
 
     b_console.input_field_e.addEventListener("keydown", OnConsoleInput);
     b_console.input_field_e.focus();
@@ -57,6 +61,7 @@ function ConsoleSubmit() {
     ParseCommand(cmd);
 
     b_console.current_line_e.innerHTML = GetPrompt();
+    b_console.console_e.scrollTop = b_console.console_e.scrollHeight;
 }
 
 function ParseCommand(command) {
@@ -99,7 +104,7 @@ or cease to exist without warning or reason.
 ====
 ${greeting}
 Last login: Sat Oct 31 15:08:06 2026 from 90.190.222.255.
-v.24.20261102</span>`;
+${b_console.version}</span>`;
 }
 
 function whoami(command) {

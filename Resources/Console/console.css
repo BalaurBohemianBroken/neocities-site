@@ -34,6 +34,12 @@ body {
     text-align: left;
 }
 
+.AlignCenter {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
 #console_secret_input {
     background: none;
     border: none;
