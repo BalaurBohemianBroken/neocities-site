@@ -10,7 +10,8 @@ b_console = {
     filepath: "~",
     
     commands: {
-        "whoami": whoami
+        "whoami": whoami,
+        "cls": cls,
     },
 }
 
@@ -53,7 +54,7 @@ function ConsoleSubmit() {
 function ParseCommand(command) {
     command = command.trim();
     let args = command.split(' ');
-    if (args.length <= 0) {
+    if (command === "" || args.length <= 0) {
         return;
     }
     // TODO: More not found text :)
@@ -87,4 +88,8 @@ function whoami(command) {
 <span class="ConsoleRed">formed_ident = self._fragments.collect(timeout);    </span>
 <span class="ConsoleRed">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^~    </span>
 <span class="ConsolePink">DataExcept: Fragments don't fit together. Do they belong to one entity?    </span>`);
+}
+
+function cls(command) {
+    b_console.console_log_e.innerHTML = "";
 }
