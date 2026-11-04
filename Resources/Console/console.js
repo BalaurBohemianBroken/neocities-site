@@ -1,10 +1,12 @@
 b_console = {
-    version: "v.24.20261102",
+    version: "v.26.20261104",
     
     console_e: null,
     console_log_e: null,
     current_line_e: null,
     input_field_e: null,
+
+    linebreak_limit_soft: 40,
     
     command_history: [],
     console_line_history: [],
@@ -16,10 +18,12 @@ b_console = {
         "welcome home! :)",
         "hiya again",
         "henlo",
-        "helo. i appreciate you being here",
+        "helo. thanks for coming",
     ],
     
     commands: {
+        "help": help,
+        "use": use,
         "whoami": whoami,
         "cls": cls,
         "echo": echo,
@@ -41,6 +45,7 @@ function Console() {
     b_console.input_field_e.focus();
     b_console.current_line_e.innerHTML = GetPrompt();
     PrintToConsole(StartupText());
+    localStorage.setItem('last_login', Date.now().toString());
 }
 
 
@@ -75,12 +80,51 @@ function ParseCommand(command) {
         PrintToConsole(`Could not find command ${args[0]}`);
         return;
     }
-    b_console.commands[args[0]](command);
+    b_console.commands[args[0]](command, args);
 }
 
-function PrintToConsole(to_print) {
+function PrintToConsole(to_print, dont_limit = false) {
+    if (!dont_limit)
+        to_print = LimitLineLength(to_print, b_console.linebreak_limit_soft);
     b_console.console_line_history.push(to_print);
     b_console.console_log_e.innerHTML += to_print + "\n";
+}
+
+function LimitLineLength(str_to_limit, soft_limit_length) {
+    // Automatically add linebreaks to keep it within console width.
+    // This isn't robust. If I use < or > in a non-tag format it will get confused.
+    // but the effect of that is that line wrapping doesn't work for that line, so it's not high stakes.
+    let lines = str_to_limit.split("\n");
+    let limited = "";
+    for (const line of lines) {
+        let in_tag = 0;
+        let length = 0;
+
+        for (let i = 0; i < line.length; i++) {
+            let c = line.charAt(i);
+            switch(c) {
+                case "<":
+                    in_tag += 1;
+                    break;
+                case ">":
+                    in_tag -= 1;
+                    break;
+                case " ":
+                    if (length >= soft_limit_length) {
+                        c = "\n";
+                        length = 0;
+                    }
+                    break;
+            }
+
+            if (in_tag === 0) {
+                length += 1;
+            }
+            limited += c;
+        }
+        limited += "\n";
+    }
+    return limited.slice(0, -1);  // Removes the final, redundant \n that is a result of joining lines in the foreach loop
 }
 
 function GetPrompt() {
@@ -93,18 +137,44 @@ function GetUserInput() {
 
 function StartupText() {
     let greeting = b_console.greetings[Math.floor(Math.random() * b_console.greetings.length)];
-    // TODO: save/fetch login date
-    return `<span class="AlignCenter">The programs included with this Ba-lOr-S instance are without ownership;
-this unlicenced abandonware is provided for historical, emotional,
-or hypothetical use ONLY.
+    let last_login = localStorage.getItem("last_login");
+    let login_string = "Never!";
+    if (last_login != null) {
+        let login_date = new Date();
+        login_date.setTime(parseInt(last_login));
+        let options = {
+            weekday: 'short',
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        };
+        login_string = login_date.toLocaleDateString("en-GB", options);
+        login_string = login_string.replaceAll(',', '');
+    }
+    return `<span class="AlignCenter">The programs included with this <span class="ColorBalaur">Ba-lOr-S</span> instance are without ownership;
+this unlicenced abandonware is provided for historical, emotional, or
+hypothetical use ONLY.
 
-Ba-lOr-S comes with ABSOLUTELY NO WARRANTY.
+<span class="ColorBalaur">Ba-lOr-S</span> comes with ABSOLUTELY NO WARRANTY.
 This instance may or may not function or change
 or cease to exist without warning or reason.
-====
-${greeting}
-Last login: Sat Oct 31 15:08:06 2026 from 90.190.222.255.
-${b_console.version}</span>`;
+${"-".repeat(b_console.linebreak_limit_soft)}
+${b_console.version}
+Last login: ${login_string}
+${greeting}</span>`;
+}
+
+function help() {
+    let cmd_list = Object.keys(b_console.commands).join('\n');
+    PrintToConsole(`Hello!
+If you've made it here, you either know something about terminals, or care enough to figure it out.
+<span class="ColorBalaur">Ba-lOr-S</span> is loosely based on the Bourne Again SHell (B.A.S.H) and the ROver SHell (R.O.S.H).
+
+Command list:
+${cmd_list}`);
 }
 
 function whoami(command) {
@@ -119,7 +189,7 @@ function whoami(command) {
 <span class="ConsolePink">DataExcept: Fragments don't fit together. Do they belong to one entity?    </span>`);
 }
 
-function cls(command) {
+function cls() {
     b_console.console_log_e.innerHTML = "";
 }
 

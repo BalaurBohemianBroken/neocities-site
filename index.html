@@ -1,216 +1,98 @@
 <!DOCTYPE html>
 <html>
-  <head>
-<!--    <meta http-equiv="refresh" content="0; url=/terminus" />-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>balaur</title>
-    <link href="/Resources/default.css" rel="stylesheet" type="text/css" media="all">
-    <link href="/Resources/common.css" rel="stylesheet" type="text/css" media="all">
-    <script src="/Resources/all.js"></script>
-      
-<!--    <link href="/Resources/Stars/bg-stars.css" rel="stylesheet" type="text/css" media="all">-->
-<!--    <script src="/Resources/Stars/bg-stars.js"></script>-->
-      
-    <link href="/Resources/Console/console.css" rel="stylesheet" type="text/css" media="all">
-    <script src="/Resources/Console/console.js"></script>     
-  </head>
+<head>
+  <!--    <meta http-equiv="refresh" content="0; url=/terminus" />-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>balaur</title>
+  <link href="/Resources/default.css" rel="stylesheet" type="text/css" media="all">
+  <link href="/Resources/common.css" rel="stylesheet" type="text/css" media="all">
+  <script src="/Resources/all.js"></script>
+
+  <link href="/Resources/Console/console.css" rel="stylesheet" type="text/css" media="all">
+  <script src="/Resources/Console/console.js"></script>
+</head>
 <body style="width: max(500px, 100vw); height: max(500px, 100vh); overflow: hidden; display: flex; margin: 0;">
-  <div id="console" style="width: 75%; height: 100%; display: flex; white-space: pre; font-size: 1em; overflow-y: scroll;">
-    <!-- TODO: Fix size of input field -->
-    <p style="width: 100%; text-align: right;"><span id="console_log"></span><span class="AlignLeft"><span id="prompt"></span><input type="text" id="console_secret_input"/></span></p>
+<div id="console" style="width: 75%; height: 100%; display: flex; white-space: pre; font-size: 1em; overflow-y: scroll;">
+  <!-- TODO: Fix size of input field -->
+  <p style="width: 100%; text-align: right;"><span id="console_log"></span><span class="AlignLeft"><span id="prompt"></span><input type="text" id="console_secret_input"/></span></p>
+</div>
+<div class="VerticalBorder"></div>
+<div id="main_right" style="width: 25%; height: 100%;">
+  <div>
+    <p style="margin: 2px; font-size: 0.8em;">
+      <span style="color: red">○</span> <span class="ColorBalaur">balaur</span>.service - <span
+        class="ColorBalaur">balaur</span> daemon<br>
+      Active: inactive (dead)<br>
+      TriggeredBy: <span style="color: green;">●</span> <span class="ColorBalaur">balaur</span>.socket<br>
+      Loaded: loaded (/etc/systemd/system/<span class="ColorBalaur">balaur</span>.service; static)<br>
+    </p>
   </div>
-  <div class="VerticalBorder"></div>
-  <div id="main_right" style="width: 25%; height: 100%;">
-    <div>
-      <p style="margin: 2px; font-size: 0.8em;">
-        <span style="color: red">○</span> <span class="ColorBalaur">balaur</span>.service - <span class="ColorBalaur">balaur</span> daemon<br>
-        Active: inactive (dead)<br>
-        TriggeredBy: <span style="color: green;">●</span> <span class="ColorBalaur">balaur</span>.socket<br>
-        Loaded: loaded (/etc/systemd/system/<span class="ColorBalaur">balaur</span>.service; static)<br>
-      </p>
-    </div>
-    <div class="HorizontalBorder"></div>
-    <div style="aspect-ratio: 4/3; width: 100%;">
-      <img src="/Resources/Sona/Corruptions/corrupt01.png" style="object-fit: contain; width: 100%; height: 100%;">
-    </div>
-    <div class="HorizontalBorder"></div>
-    <div style="height: 70px;"></div>
-    <div class="HorizontalBorder"></div>
+  <div class="HorizontalBorder"></div>
+  <div style="aspect-ratio: 4/3; width: 100%;">
+    <img src="/Resources/Sona/Corruptions/corrupt01.png" style="object-fit: contain; width: 100%; height: 100%;">
   </div>
+  <div class="HorizontalBorder"></div>
+  <div style="height: 70px;"></div>
+  <div class="HorizontalBorder"></div>
+</div>
+<!-- TODO: Terminal update.
+  Boot up process
+  whoami
   
-  
-  
-  
-  
-  <div style="display: none">
-  <!-- TODO: Terminal update.
-    Boot up process
-    Last login
-    whoami
-    
-    help
-    GOTO page
-    git history of pages
-    Query info about web pages
-    ls
-    cd
-    cat
-    echo
-    history (command number + command)
-    view picture - enter for next, shift+enter for previous
-    play song
+  help
+  about
+  GOTO page
+  git history of pages
+  Query info about web pages
+  ls
+  cd
+  cat
+  echo
+  history (command number + command)
+  view picture - enter for next, shift+enter for previous
+  play song
 
-  forbidden:
-    sudo
-    mkdir
-    nano
-    touch
-    rm
-    
-  files:
-    on notable people
-    poems
-    music
-    in-world archival stuff?
-    in-world files to represent hobbies?
-    RAT REPO
-    
-    command that provides an error - perhaps introspective?
-    command to view camera that uses the bweh meme
-    snippets of old conversations?
-    
-    [28/Oct/2026 22:54:43]
-    Traceback (most recent call last):
-      (purple)File "/Users/crunchyduck/neocities-site/run-website.py", line 16, in <module>
-        (red)httpd.serve_forever()
-        (red)~~~~~~~~~~~~~~~~~~~^^
-      (purple)File "/usr/local/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/socketserver.py", line 235, in serve_forever
-        (purple)ready = selector.select(poll_interval)
-      (purple)File "/usr/local/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/selectors.py", line 398, in select
-        (purple)fd_event_list = self._selector.poll(timeout)
-    (purple)KeyboardInterrupt
+forbidden:
+  sudo
+  mkdir
+  nano
+  touch
+  rm
+  
+files:
+  on notable people
+  poems
+  music
+  in-world archival stuff?
+  in-world files to represent hobbies?
+  RAT REPO
+  
+  command that provides an error - perhaps introspective?
+  command to view camera that uses the bweh meme
+  snippets of old conversations?
 
-     This will make this page emulate a terminal screen.
-     The layout will be inspired by games such as hacknet, duskers, TIS-100.
-     On the side will be the "LOGGED IN AS: BALAUR" along with a pfp.
-     balaur.service that pulls my last online status. based on:
-      ○ gunicorn.service - gunicorn daemon
-          Loaded: loaded (/etc/systemd/system/gunicorn.service; static)
-          Active: inactive (dead)
-      TriggeredBy: ● gunicorn.socket
+   Below that, a music player - controllable by mouse or console.
+   Typing anywhere focuses the input into the terminal.
+   Resize only changes size of text.
+   
+   This layout allows me to easily hide things.
+   It allows me to filter people.
+   I can store as much data as necessary.
+   Console themes.
+   Can "view" images, which changes what is in the side bar. This is how people can see different pfps.
+   Automatically change pfp based on day.
+   A viewable "update" chart, based on Github's, that shows a heatmap of commits for the site.
+    -->
+<bc-folder name="~" home>
+  <bc-folder name="otd">
+    <bc-folder name="aotd" sudo>
 
-     Below that, a music player - controllable by mouse or console.
-     Typing anywhere focuses the input into the terminal.
-     Resize only changes size of text.
-     
-     This layout allows me to easily hide things.
-     It allows me to filter people.
-     I can store as much data as necessary.
-     Console themes.
-     Can "view" images, which changes what is in the side bar. This is how people can see different pfps.
-     Automatically change pfp based on day.
-     A viewable "update" chart, based on Github's, that shows a heatmap of commits for the site.
-      -->
-    <p class="memory-date" title="ignition. bwl." style="position:absolute; left:500px; top:100px;">20260408</p> <!-- hypno -->
-    <div>
-      <p>play the music i like pls<br>
-        <audio autoplay controls loop><source src="/Resources/Music/dan-warren-dog-years.mp3" type="audio/mpeg"></audio></p>
-      okay let's stop dumping text in here now<br>
-      i'll start structuring out the bones of what i wanna do with this<br>
-      and i won't bother hiding everything in comments now, just most things<br>
-      <br>
-      who should this page attract:<br>
-      furries<br>
-      programmers who aren't egotistical<br>
-      people who have far too many projects/creatives who can't help it<br>
-      chill people who take it slow. maybe the flashing neocities button is too much.<br>
-      people who <b>love</b> music, mandatory trait<br>
-      people with compassion<br>
-      <br>
-      <br>
-      <br>
-      i'm still thinking of creative ways to link to other pages<br>
-      i want to make this site a bit of a labyrith<br>
-      but i'm not there yet, so here's at least one link<br>
-      <a href="/webthoughts">webthoughts</a>
-      <br>
-      <br>
-      -------<br>
-      <br>
-      did something you read interest you? try to click it. most of the links on this website will be hidden, but there will be many, and much hover text.<br>
-      components i gotta fit into a "who am i"<br>
-      gay furry pfps (with cycle buttons)<br>
-      "last online" that is periodically updated by heartbeat, every 30 minutes or so? neocities api might not like that, but i don't want to store it on an external server. actually looking at their api they say, don't update index.html constantly, limit recurring site updates to one per minute. i can do that.<br>
-      will<br>
-      male, sort of<br>
-      gay (gender neutral)<br>
-      late 20s<br>
-      scotland, but not scottish<br>
-      learning to love the world again<br>
-      <b><u>music.</u></b> / computer science / game development / psychology (in uni learning counselling) / games / (this can go on for a while)<br>
-      <br>
-      helo<br>
-      i hope this broadcast catches someone with the same wavelength<br>
-      if you think that's you, come say hi.<br>
-      im on discord in a <a href="https://discord.gg/2SrT3eCPKs">server</a><br>
-      or at BalaurBohemianBroken<br>
-    </div>
-    <p>buttons to make/find: FOSS now!; goodoldgames; my own button</p>
-    <p><a href="https://github.com/BalaurBohemianBroken/neocities-site">source code</a></p>
-    <a href="/webthoughts"><img src="/Resources/Buttons/paws.png" title="btn by maplesbian"></a>
-    <a href="https://kingposs.com"><img src="/Resources/Buttons/kingposs.com.gif" title="cool radio critter from the mountains"></a>
-    <a href="https://www.opensuse.org/"><img src="/Resources/Buttons/opensuse.png" title="i made this, sorry"></a>
-    <a href="https://archive.org/"><img src="/Resources/Buttons/internetarchive.gif"></a>
-    <a href="https://neocities.org/site/balaurbohemianbroken"><img src="/Resources/Buttons/neocities.gif" title="btn by arandomsite"></a>
-    
-    <!-- // Begin Current Moon Phase HTML (c) MoonConnection.com // -->
-    <!-- table cellpadding="0" cellspacing="0" border="0" width="130">
-      <tr>
-        <td align="center">
-          <img src="https://www.moonmodule.com/cs/dm/s.gif" width="1" height="196" border="0" alt="" />
-        </td>
-        <td background="https://www.moonmodule.com/cs/dm/vn.gif" valign="bottom" align="center">
-          <a href="https://www.moonconnection.com" target="mc_moon_ph">
-            <img src="https://www.moonmodule.com/cs/dm/s.gif" width="128" height="150" border="0" alt="" />
-          </a>
-          <table cellpadding="0" cellspacing="0" border="0" width="120" height="20">
-            <tr>
-              <td align="center" bgcolor="#000000">
-                <a href="https://www.moonconnection.com/moon_phases.phtml" target="mc_moon_ph">
-                  <font color="#7F7F7F" size="1" face="arial,helvetica,sans-serif">
-                    <span style="color:#7F7F7F;font-family:arial,helvetica,sans-serif;font-size:10px;">lunar phase</span>
-                  </font>
-                </a>
-              </td>
-            </tr>
-          </table>
-          <img src="https://www.moonmodule.com/cs/dm/s.gif" width="1" height="4" border="0" alt="" />
-        </td>
-        <td>
-          <img src="https://www.moonmodule.com/cs/dm/s.gif" width="1" height="196" border="0" alt="" />
-        </td>
-      </tr>
-    </table-->
-    
-<pre stye="font-family: monospace-sub">i'm just gonna put my todo list here for now
-custom tooltips instead of relying on janky `title`
-some reason for people to come back
-schedule page
-<a href="/music">music page</a>
-port over writeups and stuff from personal website
-old text adventures (bad)
-my music/games/books libraries filled using various apis
-<a href="/guestbook">guestbook!</a> still setting up my server for this.
-more dedication pages for friends
-port over and finish bike inventory page
-music player!
-master directory (that is primarily for me and not others. maybe encrypted.)
-<a href="/rats">rat page!!</a> make it whimsical
-general animal pages
-put asher graieg message somewhere on the site, linked to hypno. he's cool.
-</pre>
-    <p class="version"></p>
-  </div>
+    </bc-folder>
+    <bc-folder name="sotd">
+
+    </bc-folder>
+  </bc-folder>
+</bc-folder>
 </body>
 </html>
