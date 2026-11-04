@@ -88,11 +88,12 @@ Camera:
 }
 
 b_console = {
-    version: "v.32.20261104",
+    version: "v.33.20261104",
     
     console_e: null,
+    active_line_e: null,
     console_log_e: null,
-    current_line_e: null,
+    prompt_e: null,
     input_field_e: null,
 
     linebreak_limit_soft: 40,
@@ -128,21 +129,18 @@ document.addEventListener("click", function(event) {
 
 function Console() {
     b_console.console_e = document.getElementById("console");
+    b_console.active_line_e = document.getElementById("active_line");
     b_console.console_log_e = document.getElementById("console_log");
-    b_console.current_line_e = document.getElementById("prompt");
+    b_console.prompt_e = document.getElementById("prompt");
     b_console.input_field_e = document.getElementById("console_secret_input");
 
     b_console.input_field_e.addEventListener("keydown", OnConsoleInput);
-    b_console.input_field_e.focus();
-    b_console.current_line_e.innerHTML = GetPrompt();
-    PrintToConsole(StartupText());
-    localStorage.setItem('last_login', Date.now().toString());
 
     // Hidden for boot process
-    b_console.input_field_e.style.display = "none";
-    b_console.current_line_e.style.display = "none";
+    b_console.active_line_e.style.display = "none";
     let frame_rate = 50;
     let boot_generator = BootProcess(frame_rate);
+    // TODO: kill this coroutine on completion
     let interval_id = setInterval(function() {
         boot_generator.next();
     }, frame_rate);
@@ -155,7 +153,6 @@ function OnConsoleInput(event) {
     }
 }
 
-// TODO: there's a ghosting thing going on here
 function ConsoleSubmit() {
     let cmd = GetUserInput();
     let line = `<span class="AlignLeft">${GetPrompt()}${cmd}</span>`;
@@ -165,7 +162,7 @@ function ConsoleSubmit() {
     PrintToConsole(line);
     ParseCommand(cmd);
 
-    b_console.current_line_e.innerHTML = GetPrompt();
+    b_console.prompt_e.innerHTML = GetPrompt();
     b_console.console_e.scrollTop = b_console.console_e.scrollHeight;
 }
 
@@ -277,6 +274,14 @@ Last login: ${login_string}
 ${greeting}</span>`;
 }
 
+function OnConnected() {
+    b_console.prompt_e.innerHTML = GetPrompt();
+    PrintToConsole(StartupText());
+    b_console.active_line_e.style.display = "";
+    b_console.input_field_e.focus();
+    localStorage.setItem('last_login', Date.now().toString());
+}
+
 function* BootProcess(frame_gap) {
     frame_gap = frame_gap / 1000;
     let boot = {
@@ -320,6 +325,11 @@ function* BootProcess(frame_gap) {
     
     boot.boot_str += "connected!";
 
-    b_console.input_field_e.style.display = "";
-    b_console.current_line_e.style.display = "";
+    wait_time = 0.5;
+    while (wait_time > 0) {
+        wait_time -= frame_gap;
+        yield null;
+    }
+
+    OnConnected();
 }
