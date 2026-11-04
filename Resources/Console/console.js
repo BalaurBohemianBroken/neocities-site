@@ -82,7 +82,7 @@ Camera:
 }
 
 b_console = {
-    version: "v.30.20261104",
+    version: "v.31.20261104",
     
     console_e: null,
     console_log_e: null,
@@ -130,8 +130,18 @@ function Console() {
     b_console.current_line_e.innerHTML = GetPrompt();
     PrintToConsole(StartupText());
     localStorage.setItem('last_login', Date.now().toString());
+
+    // Hidden for boot process
+    b_console.input_field_e.style.display = "none";
+    b_console.current_line_e.style.display = "none";
+    let frame_rate = 50;
+    let boot_generator = BootProcess(frame_rate);
+    let interval_id = setInterval(function() {
+        boot_generator.next();
+    }, frame_rate);
 }
 
+// ========== Events ===========
 function OnConsoleInput(event) {
     if (event !== null && event.key === "Enter") {
         ConsoleSubmit();
@@ -258,4 +268,51 @@ ${"-".repeat(b_console.linebreak_limit_soft)}
 ${b_console.version}
 Last login: ${login_string}
 ${greeting}</span>`;
+}
+
+function* BootProcess(frame_gap) {
+    frame_gap = frame_gap / 1000;
+    let boot = {
+        prompt: "*****@RemoteTerminal ~ %",
+        type_speed: 1,
+        _boot_str: "",
+        get boot_str() {
+            return this._boot_str;
+        },
+        set boot_str(boot_str) {
+            this._boot_str = boot_str;
+            b_console.console_log_e.innerHTML = `<span class="AlignLeft">${boot_str}</span>\n`;
+        },
+    }
+    boot.boot_str = boot.prompt;
+    
+    let to_type = "source sconnect.sh";
+    let wait_time = boot.type_speed;
+    while (to_type.length > 0) {
+        while (wait_time > 0) {
+            wait_time -= frame_gap;
+            yield null;
+        }
+        boot.boot_str += to_type.charAt(0);
+        to_type = to_type.slice(1);
+        yield null;
+    }
+
+    wait_time = 1;
+    while (wait_time > 0) {
+        wait_time -= frame_gap;
+        yield null;
+    }
+    boot.boot_str += "\nconnecting to balaur@balaur...\n";
+
+    wait_time = 2;
+    while (wait_time > 0) {
+        wait_time -= frame_gap;
+        yield null;
+    }
+    
+    boot.boot_str += "connected!";
+
+    b_console.input_field_e.style.display = "";
+    b_console.current_line_e.style.display = "";
 }
