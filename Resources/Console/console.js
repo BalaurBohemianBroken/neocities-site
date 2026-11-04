@@ -1,5 +1,5 @@
 b_console = {
-    version: "v.28.20261104",
+    version: "v.29.20261104",
     
     console_e: null,
     console_log_e: null,
@@ -128,6 +128,18 @@ function LimitLineLength(str_to_limit, soft_limit_length) {
     return limited.slice(0, -1);  // Removes the final, redundant \n that is a result of joining lines in the foreach loop
 }
 
+function InvertIndentation(str) {
+    // Move indentation from the left side of a string to the right side.
+    let ret = "";
+    let lines = str.split("\n");
+    for (let line of lines) {
+        let indent_size = line.match(/^( *)/)[1].length;
+        line = line.slice(indent_size) + " ".repeat(indent_size);
+        ret += line + "\n";
+    }
+    return ret.slice(0, -1);
+}
+
 function GetPrompt() {
     return `${b_console.account}:${b_console.filepath}\$`;
 }
@@ -196,13 +208,14 @@ function use(command, args) {
 function whoami() {
     let str_whoami = `<span>Traceback (final call last):</span>
 <span class="ConsolePink">File "/bin/ident/whoami.rosh", line 9740.00.00 (841,536,000)</span>
-<span class="ConsoleRed">serve_forever();    </span>
+    <span class="ConsoleRed">serve_forever();</span>
 <span class="ConsolePink">line 235, in serve_forever</span>
-<span class="ConsoleRed">ready = self.isthisit(state);    </span>
+    <span class="ConsoleRed">ready = self.isthisit(state);</span>
 <span class="ConsolePink">line 962, in Creature.isthisit</span>
-<span class="ConsoleRed">formed_ident = self._fragments.collect(timeout);    </span>
-<span class="ConsoleRed">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^~    </span>
+    <span class="ConsoleRed">formed_ident = self._fragments.collect(timeout);</span>
+    <span class="ConsoleRed">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^~</span>
 <span class="ConsolePink">DataExcept: Fragments don't fit together. Are you sure form one entity?</span>`;
+    str_whoami = InvertIndentation(str_whoami);
     PrintToConsole(str_whoami, true);
 }
 
@@ -229,18 +242,19 @@ function about() {
 
 function specs() {
     let det = `RAM:
-3-5 discrete single-item units; down from 7  
+  3-5 discrete single-item units; down from 7
 SD:
-1; unreliable/indeterminate quantity/quality  
+  1; unreliable/indeterminate quantity/quality
 Network:
-Wireless LAN;  
-<span class="ConsoleGreen">●</span> Operational telePath Link™    
+  Wireless LAN;
+    <span class="ConsoleGreen">●</span> Operational telePath Link™
 Servos:
-<span class="ConsoleGreen">●</span> Operational (Overclock; Sleep; Service soon!)  
+  <span class="ConsoleGreen">●</span> Operational (Overclock; Sleep; Service soon!)
 PSU:
-76b4chamber stock  
-<span class="ConsoleRed">Volt flux detected!</span> Expect failure!  
+  76b4chamber stock
+  <span class="ConsoleRed">Volt flux detected!</span> Expect failure!
 Camera:
-(2) <span class="ConsoleGreen">●</span> Operational; a.aliased (-1.5); grey-gold  `;
+  (2) <span class="ConsoleGreen">●</span> Operational; a.aliased (-1.5); grey-gold`;
+    det = InvertIndentation(det);
     PrintToConsole(det, true);
 }
