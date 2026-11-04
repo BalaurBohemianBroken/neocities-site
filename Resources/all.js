@@ -14,6 +14,8 @@ all = {
     }`,
     br_stylesheet: null,
 }
+MarkPageVisited();
+
 document.addEventListener("keydown", code_listener)
 
 all.br_stylesheet = document.createElement("style");
@@ -39,7 +41,6 @@ function check_for_codes(values) {
         let h = hash_code(code);
         if (h in all.codes)
             all.codes[h]();
-        console.log(`code: ${code}; hash: ${h}`);
     }
 }
 
@@ -61,4 +62,26 @@ function hash_code(str) {
         hash |= 0; // Convert to 32bit integer
     }
     return hash;
+}
+
+function MarkPageVisited() {
+    let visited = GetPagesVisited();
+    
+    let t = Date.now();
+    let p = window.location.pathname;
+    let count = 1;
+    if (p in visited) {
+        count = visited[p].count + 1;
+    }
+    visited[p] = {"time": t, "count": count};
+    
+    localStorage.setItem("visited", JSON.stringify(visited));
+}
+
+// Stored as [{page_name: {date: int, count: int}}, ...]
+function GetPagesVisited() {
+    let existing_cookie = localStorage.getItem("visited");
+    if (existing_cookie == null)
+        return {};
+    return JSON.parse(existing_cookie);
 }
