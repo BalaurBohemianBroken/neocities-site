@@ -1,5 +1,5 @@
 b_console = {
-    version: "v.27.20261104",
+    version: "v.28.20261104",
     
     console_e: null,
     console_log_e: null,
@@ -25,6 +25,7 @@ b_console = {
         "help": help,
         "use": use,
         "whoami": whoami,
+        "specs": specs,
         "cls": cls,
         "echo": echo,
     },
@@ -155,12 +156,10 @@ function StartupText() {
         login_string = login_string.replaceAll(',', '');
     }
     return `<span class="AlignCenter">The programs included with this <span class="ColorBalaur">Ba-lOr-S</span> instance are without ownership;
-this unlicenced abandonware is provided for historical, emotional, or
-hypothetical use ONLY.
+this unlicenced abandonware is provided for historical, emotional, or hypothetical use ONLY.
 
 <span class="ColorBalaur">Ba-lOr-S</span> comes with ABSOLUTELY NO WARRANTY.
-This instance may or may not function or change
-or cease to exist without warning or reason.
+This instance may or may not function or change or cease to exist without warning or reason.
 ${"-".repeat(b_console.linebreak_limit_soft)}
 ${b_console.version}
 Last login: ${login_string}
@@ -226,4 +225,22 @@ function stats() {
 
 function about() {
     PrintToConsole(`about: /`);
+}
+
+function specs() {
+    let det = `RAM:
+3-5 discrete single-item units; down from 7  
+SD:
+1; unreliable/indeterminate quantity/quality  
+Network:
+Wireless LAN;  
+<span class="ConsoleGreen">●</span> Operational telePath Link™    
+Servos:
+<span class="ConsoleGreen">●</span> Operational (Overclock; Sleep; Service soon!)  
+PSU:
+76b4chamber stock  
+<span class="ConsoleRed">Volt flux detected!</span> Expect failure!  
+Camera:
+(2) <span class="ConsoleGreen">●</span> Operational; a.aliased (-1.5); grey-gold  `;
+    PrintToConsole(det, true);
 }

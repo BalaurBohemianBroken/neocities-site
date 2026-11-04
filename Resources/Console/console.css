@@ -28,6 +28,14 @@ body {
     color: red;
 }
 
+.ConsoleGreen {
+    color: green;
+}
+
+.ConsoleOrange {
+    color: orange;
+}
+
 .AlignLeft {
     display: inline-block;
     width: 100%;
