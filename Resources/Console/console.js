@@ -79,10 +79,16 @@ Camera:
         det = InvertIndentation(det);
         PrintToConsole(det, true);
     }
+    
+    static exit() {
+        while (document.body.children.length > 0) {
+            document.body.children[0].remove();
+        }
+    }
 }
 
 b_console = {
-    version: "v.31.20261104",
+    version: "v.32.20261104",
     
     console_e: null,
     console_log_e: null,
@@ -111,6 +117,7 @@ b_console = {
         "specs": CMDs.specs,
         "cls": CMDs.cls,
         "echo": CMDs.echo,
+        "exit": CMDs.exit,
     },
 }
 
