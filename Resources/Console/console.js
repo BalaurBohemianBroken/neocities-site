@@ -1,5 +1,88 @@
+class CMDs {
+    static help() {
+        let cmd_list = Object.keys(b_console.commands).join('\n');
+        PrintToConsole(`Hello!
+If you've made it here, you either know something about terminals, or care enough to figure it out.
+<span class="ColorBalaur">Ba-lOr-S</span> is loosely based on the Bourne Again SHell (B.A.S.H) and the ROver SHell (R.O.S.H).
+
+Command list:
+${cmd_list}`);
+    }
+
+    static cd(command, args) {
+        if (args.length <= 1) {
+            PrintToConsole('Provide a directory to change to, e.g. cd oad');
+            return;
+        }
+        if (args[1].charAt(0) === '/') {
+            PrintToConsole(`<span class="ConsoleRed">Invalid:</span> Traversal from root is <span class="ConsoleRed">not</span> allowed. You are sandboxed within user:<span class="ColorBalaur">balaur!</span>
+The internal workings elude you.`);
+        }
+
+        let path_tree = args[1].split('/');
+    }
+
+    static use(command, args) {
+
+    }
+
+    static whoami() {
+        let str_whoami = `<span>Traceback (final call last):</span>
+<span class="ConsolePink">File "/bin/ident/whoami.rosh", line 9740.00.00 (841,536,000)</span>
+    <span class="ConsoleRed">serve_forever();</span>
+<span class="ConsolePink">line 235, in serve_forever</span>
+    <span class="ConsoleRed">ready = self.isthisit(state);</span>
+<span class="ConsolePink">line 962, in Creature.isthisit</span>
+    <span class="ConsoleRed">formed_ident = self._fragments.collect(timeout);</span>
+    <span class="ConsoleRed">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^~</span>
+<span class="ConsolePink">DataExcept: Fragments don't fit together. Are you sure form one entity?</span>`;
+        str_whoami = InvertIndentation(str_whoami);
+        PrintToConsole(str_whoami, true);
+    }
+
+    static cls() {
+        b_console.console_log_e.innerHTML = "";
+    }
+
+    static echo(command) {
+        PrintToConsole(command.slice(5));
+    }
+
+    static stats() {
+        let greetings = 0;
+        let song_otd = 0;
+        let art_otd = 0;
+        let pages = 0;
+        let codes = [];
+        let session_time = 0;
+    }
+
+    static about() {
+        PrintToConsole(`about: /`);
+    }
+
+    static specs() {
+        let det = `RAM:
+  3-5 discrete single-item units; down from 7
+SD:
+  1; unreliable/indeterminate quantity/quality
+Network:
+  Wireless LAN;
+    <span class="ConsoleGreen">●</span> Operational telePath Link™
+Servos:
+  <span class="ConsoleGreen">●</span> Operational (Overclock; Sleep; Service soon!)
+PSU:
+  76b4chamber stock
+  <span class="ConsoleRed">Volt flux detected!</span> Expect failure!
+Camera:
+  (2) <span class="ConsoleGreen">●</span> Operational; a.aliased (-1.5); grey-gold`;
+        det = InvertIndentation(det);
+        PrintToConsole(det, true);
+    }
+}
+
 b_console = {
-    version: "v.29.20261104",
+    version: "v.30.20261104",
     
     console_e: null,
     console_log_e: null,
@@ -22,12 +105,12 @@ b_console = {
     ],
     
     commands: {
-        "help": help,
-        "use": use,
-        "whoami": whoami,
-        "specs": specs,
-        "cls": cls,
-        "echo": echo,
+        "help": CMDs.help,
+        "use": CMDs.use,
+        "whoami": CMDs.whoami,
+        "specs": CMDs.specs,
+        "cls": CMDs.cls,
+        "echo": CMDs.echo,
     },
 }
 
@@ -48,7 +131,6 @@ function Console() {
     PrintToConsole(StartupText());
     localStorage.setItem('last_login', Date.now().toString());
 }
-
 
 function OnConsoleInput(event) {
     if (event !== null && event.key === "Enter") {
@@ -176,85 +258,4 @@ ${"-".repeat(b_console.linebreak_limit_soft)}
 ${b_console.version}
 Last login: ${login_string}
 ${greeting}</span>`;
-}
-
-function help() {
-    let cmd_list = Object.keys(b_console.commands).join('\n');
-    PrintToConsole(`Hello!
-If you've made it here, you either know something about terminals, or care enough to figure it out.
-<span class="ColorBalaur">Ba-lOr-S</span> is loosely based on the Bourne Again SHell (B.A.S.H) and the ROver SHell (R.O.S.H).
-
-Command list:
-${cmd_list}`);
-}
-
-function cd(command, args) {
-    if (args.length <= 1) {
-        PrintToConsole('Provide a directory to change to, e.g. cd oad');
-        return;
-    }
-    if (args[1].charAt(0) === '/') {
-        PrintToConsole(`<span class="ConsoleRed">Invalid:</span> Traversal from root is <span class="ConsoleRed">not</span> allowed. You are sandboxed within user:<span class="ColorBalaur">balaur!</span>
-The internal workings elude you.`);
-    }
-    
-    let path_tree = args[1].split('/');
-}
-
-function use(command, args) {
-    
-}
-
-function whoami() {
-    let str_whoami = `<span>Traceback (final call last):</span>
-<span class="ConsolePink">File "/bin/ident/whoami.rosh", line 9740.00.00 (841,536,000)</span>
-    <span class="ConsoleRed">serve_forever();</span>
-<span class="ConsolePink">line 235, in serve_forever</span>
-    <span class="ConsoleRed">ready = self.isthisit(state);</span>
-<span class="ConsolePink">line 962, in Creature.isthisit</span>
-    <span class="ConsoleRed">formed_ident = self._fragments.collect(timeout);</span>
-    <span class="ConsoleRed">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^~</span>
-<span class="ConsolePink">DataExcept: Fragments don't fit together. Are you sure form one entity?</span>`;
-    str_whoami = InvertIndentation(str_whoami);
-    PrintToConsole(str_whoami, true);
-}
-
-function cls() {
-    b_console.console_log_e.innerHTML = "";
-}
-
-function echo(command) {
-    PrintToConsole(command.slice(5));
-}
-
-function stats() {
-    let greetings = 0;
-    let song_otd = 0;
-    let art_otd = 0;
-    let pages = 0;
-    let codes = [];
-    let session_time = 0;
-}
-
-function about() {
-    PrintToConsole(`about: /`);
-}
-
-function specs() {
-    let det = `RAM:
-  3-5 discrete single-item units; down from 7
-SD:
-  1; unreliable/indeterminate quantity/quality
-Network:
-  Wireless LAN;
-    <span class="ConsoleGreen">●</span> Operational telePath Link™
-Servos:
-  <span class="ConsoleGreen">●</span> Operational (Overclock; Sleep; Service soon!)
-PSU:
-  76b4chamber stock
-  <span class="ConsoleRed">Volt flux detected!</span> Expect failure!
-Camera:
-  (2) <span class="ConsoleGreen">●</span> Operational; a.aliased (-1.5); grey-gold`;
-    det = InvertIndentation(det);
-    PrintToConsole(det, true);
 }
