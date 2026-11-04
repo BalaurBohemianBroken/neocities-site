@@ -1,5 +1,5 @@
 b_console = {
-    version: "v.26.20261104",
+    version: "v.27.20261104",
     
     console_e: null,
     console_log_e: null,
@@ -177,8 +177,25 @@ Command list:
 ${cmd_list}`);
 }
 
-function whoami(command) {
-    PrintToConsole(`<span>Traceback (final call last):</span>
+function cd(command, args) {
+    if (args.length <= 1) {
+        PrintToConsole('Provide a directory to change to, e.g. cd oad');
+        return;
+    }
+    if (args[1].charAt(0) === '/') {
+        PrintToConsole(`<span class="ConsoleRed">Invalid:</span> Traversal from root is <span class="ConsoleRed">not</span> allowed. You are sandboxed within user:<span class="ColorBalaur">balaur!</span>
+The internal workings elude you.`);
+    }
+    
+    let path_tree = args[1].split('/');
+}
+
+function use(command, args) {
+    
+}
+
+function whoami() {
+    let str_whoami = `<span>Traceback (final call last):</span>
 <span class="ConsolePink">File "/bin/ident/whoami.rosh", line 9740.00.00 (841,536,000)</span>
 <span class="ConsoleRed">serve_forever();    </span>
 <span class="ConsolePink">line 235, in serve_forever</span>
@@ -186,7 +203,8 @@ function whoami(command) {
 <span class="ConsolePink">line 962, in Creature.isthisit</span>
 <span class="ConsoleRed">formed_ident = self._fragments.collect(timeout);    </span>
 <span class="ConsoleRed">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^~    </span>
-<span class="ConsolePink">DataExcept: Fragments don't fit together. Do they belong to one entity?    </span>`);
+<span class="ConsolePink">DataExcept: Fragments don't fit together. Are you sure form one entity?</span>`;
+    PrintToConsole(str_whoami, true);
 }
 
 function cls() {
@@ -195,4 +213,17 @@ function cls() {
 
 function echo(command) {
     PrintToConsole(command.slice(5));
+}
+
+function stats() {
+    let greetings = 0;
+    let song_otd = 0;
+    let art_otd = 0;
+    let pages = 0;
+    let codes = [];
+    let session_time = 0;
+}
+
+function about() {
+    PrintToConsole(`about: /`);
 }
