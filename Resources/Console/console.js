@@ -10,16 +10,24 @@ ${cmd_list}`);
     }
 
     static cd(command, args) {
-        if (args.length <= 1) {
-            PrintToConsole('Provide a directory to change to, e.g. cd oad');
+        if (args.length <= 1 && b_console.filepath === "~") {
+            PrintToConsole('Already in home directory. Provide a directory to change to, e.g. cd oad');
             return;
         }
         if (args[1].charAt(0) === '/') {
-            PrintToConsole(`<span class="ConsoleRed">Invalid:</span> Traversal from root is <span class="ConsoleRed">not</span> allowed. You are sandboxed within user:<span class="ColorBalaur">balaur!</span>
-The internal workings elude you.`);
+            PrintToConsole(`<span class="ConsoleRed">Invalid:</span> Traversal from root is <span class="ConsoleRed">not</span> allowed. You are sandboxed within user:<span class="ColorBalaur">balaur</span>!`);
         }
 
-        let path_tree = args[1].split('/');
+        let path = b_console.filepath + "/" + args.slice(1).join('/');
+        let new_folder = TraverseFileSystem(path, b_console.file_system_e);
+        if (new_folder === null)
+            return;
+        
+        if (!(new_folder instanceof BCFolder)) {
+            PrintToConsole(`<span class="ConsoleRed">err:</span> ${path} is not a folder.`);
+            return;
+        }
+        b_console.filepath = path;
     }
 
     static use(command, args) {
@@ -88,7 +96,9 @@ Camera:
 }
 
 b_console = {
-    version: "v.34.20261104",
+    version: "v.35.20261104",
+    
+    file_system_e: null,
     
     console_e: null,
     active_line_e: null,
@@ -120,6 +130,7 @@ b_console = {
         "cls": CMDs.cls,
         "echo": CMDs.echo,
         "exit": CMDs.exit,
+        "cd": CMDs.cd,
     },
 }
 
@@ -129,6 +140,8 @@ document.addEventListener("click", function(event) {
 });
 
 function Console() {
+    b_console.file_system_e = document.getElementById("file_system");
+    
     b_console.console_e = document.getElementById("console");
     b_console.active_line_e = document.getElementById("active_line");
     b_console.console_log_e = document.getElementById("console_log");
@@ -148,11 +161,74 @@ function Console() {
     }, frame_rate);
 }
 
+function* BootProcess(frame_gap) {
+    frame_gap = frame_gap / 1000;
+    let boot = {
+        prompt: "*****@RemoteTerminal ~ %",
+        type_speed: 1,
+        _boot_str: "",
+        get boot_str() {
+            return this._boot_str;
+        },
+        set boot_str(boot_str) {
+            this._boot_str = boot_str;
+            b_console.console_log_e.innerHTML = `<span class="AlignLeft">${boot_str}</span>\n`;
+        },
+    }
+    boot.boot_str = boot.prompt;
+
+    let to_type = "source sconnect.sh";
+    let wait_time = boot.type_speed;
+    while (to_type.length > 0) {
+        while (wait_time > 0) {
+            wait_time -= frame_gap;
+            yield null;
+        }
+        boot.boot_str += to_type.charAt(0);
+        to_type = to_type.slice(1);
+        yield null;
+    }
+
+    wait_time = 1;
+    while (wait_time > 0) {
+        wait_time -= frame_gap;
+        yield null;
+    }
+    boot.boot_str += "\nconnecting to balaur@balaur...\n";
+
+    wait_time = 2;
+    while (wait_time > 0) {
+        wait_time -= frame_gap;
+        yield null;
+    }
+
+    boot.boot_str += "connected!";
+
+    wait_time = 0.5;
+    while (wait_time > 0) {
+        wait_time -= frame_gap;
+        yield null;
+    }
+
+    OnConnected();
+}
+
 // ========== Events ===========
 function OnConsoleInput(event) {
     if (event !== null && event.key === "Enter") {
         ConsoleSubmit();
     }
+}
+
+function OnConnected() {
+    b_console.prompt_e.innerHTML = GetPrompt();
+    PrintToConsole(StartupText());
+
+    b_console.active_line_e.style.display = "";
+    b_console.input_field_e.focus();
+
+    b_console.right_panel_e.style.display = "";
+    localStorage.setItem('last_login', Date.now().toString());
 }
 
 function ConsoleSubmit() {
@@ -166,6 +242,27 @@ function ConsoleSubmit() {
 
     b_console.prompt_e.innerHTML = GetPrompt();
     b_console.console_e.scrollTop = b_console.console_e.scrollHeight;
+}
+
+// TODO: This does not work well with ~.
+// TODO: Traverse upwards.
+function TraverseFileSystem(path, file_system) {
+    let stops = path.split("/");
+    let current_path = "";
+    let current_file = file_system;
+    for (let i = 0; i < stops.length; i++) {
+        let stop = stops[i];
+        current_path += stop + "/";
+        // cheating to do it this way but this is a fake file system anyway
+        if (stop === "~")
+            continue;
+        current_file = current_file.querySelector(`[name=${stop}]`);
+        if (current_file === null) {
+            PrintToConsole(`<span class='ConsoleRed'>err:</span> no file at ${current_path}`);
+            return null;
+        }
+    }
+    return current_file;
 }
 
 function ParseCommand(command) {
@@ -239,7 +336,7 @@ function InvertIndentation(str) {
 }
 
 function GetPrompt() {
-    return `${b_console.account}:${b_console.filepath}\$`;
+    return `${b_console.account}:<span class="ConsoleBlue">${b_console.filepath}</span>\$`;
 }
 
 function GetUserInput() {
@@ -274,67 +371,4 @@ ${"-".repeat(b_console.linebreak_limit_soft)}
 ${b_console.version}
 Last login: ${login_string}
 ${greeting}</span>`;
-}
-
-function OnConnected() {
-    b_console.prompt_e.innerHTML = GetPrompt();
-    PrintToConsole(StartupText());
-    
-    b_console.active_line_e.style.display = "";
-    b_console.input_field_e.focus();
-    
-    b_console.right_panel_e.style.display = "";
-    localStorage.setItem('last_login', Date.now().toString());
-}
-
-function* BootProcess(frame_gap) {
-    frame_gap = frame_gap / 1000;
-    let boot = {
-        prompt: "*****@RemoteTerminal ~ %",
-        type_speed: 1,
-        _boot_str: "",
-        get boot_str() {
-            return this._boot_str;
-        },
-        set boot_str(boot_str) {
-            this._boot_str = boot_str;
-            b_console.console_log_e.innerHTML = `<span class="AlignLeft">${boot_str}</span>\n`;
-        },
-    }
-    boot.boot_str = boot.prompt;
-    
-    let to_type = "source sconnect.sh";
-    let wait_time = boot.type_speed;
-    while (to_type.length > 0) {
-        while (wait_time > 0) {
-            wait_time -= frame_gap;
-            yield null;
-        }
-        boot.boot_str += to_type.charAt(0);
-        to_type = to_type.slice(1);
-        yield null;
-    }
-
-    wait_time = 1;
-    while (wait_time > 0) {
-        wait_time -= frame_gap;
-        yield null;
-    }
-    boot.boot_str += "\nconnecting to balaur@balaur...\n";
-
-    wait_time = 2;
-    while (wait_time > 0) {
-        wait_time -= frame_gap;
-        yield null;
-    }
-    
-    boot.boot_str += "connected!";
-
-    wait_time = 0.5;
-    while (wait_time > 0) {
-        wait_time -= frame_gap;
-        yield null;
-    }
-
-    OnConnected();
 }

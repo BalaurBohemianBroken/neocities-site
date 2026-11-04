@@ -13,6 +13,21 @@ class BCFolder extends HTMLElement {
 }
 customElements.define("bc-folder", BCFolder);
 
+class BCAlbum extends BCFolder {
+    constructor() {
+        super();
+    }
+
+    connectedCallback() {
+
+    }
+
+    disconnectedCallback() {
+
+    }
+}
+customElements.define("bc-album", BCAlbum);
+
 class BCImg extends HTMLElement {
     constructor() {
         super();
