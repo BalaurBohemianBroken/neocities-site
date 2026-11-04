@@ -88,13 +88,14 @@ Camera:
 }
 
 b_console = {
-    version: "v.33.20261104",
+    version: "v.34.20261104",
     
     console_e: null,
     active_line_e: null,
     console_log_e: null,
     prompt_e: null,
     input_field_e: null,
+    right_panel_e: null,
 
     linebreak_limit_soft: 40,
     
@@ -133,6 +134,7 @@ function Console() {
     b_console.console_log_e = document.getElementById("console_log");
     b_console.prompt_e = document.getElementById("prompt");
     b_console.input_field_e = document.getElementById("console_secret_input");
+    b_console.right_panel_e = document.getElementById("main_right");
 
     b_console.input_field_e.addEventListener("keydown", OnConsoleInput);
 
@@ -277,8 +279,11 @@ ${greeting}</span>`;
 function OnConnected() {
     b_console.prompt_e.innerHTML = GetPrompt();
     PrintToConsole(StartupText());
+    
     b_console.active_line_e.style.display = "";
     b_console.input_field_e.focus();
+    
+    b_console.right_panel_e.style.display = "";
     localStorage.setItem('last_login', Date.now().toString());
 }
 

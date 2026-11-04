@@ -3,17 +3,11 @@ body {
 }
 
 .VerticalBorder {
-    /*border-right: 1px solid cornflowerblue;*/
-    /*border-left: 1px solid cornflowerblue;*/
-    width: 4px;
-    background-color: cornflowerblue;
+    border-right: 4px solid cornflowerblue;
 }
 
 .HorizontalBorder {
-    /*border-top: 1px solid cornflowerblue;*/
-    /*border-bottom: 1px solid cornflowerblue;*/
-    height: 4px;
-    background-color: cornflowerblue;
+    border-bottom: 4px solid cornflowerblue;
 }
 
 .ColorBalaur {

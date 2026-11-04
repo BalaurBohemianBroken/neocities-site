@@ -13,13 +13,12 @@
   <script src="/Resources/Console/console.js"></script>
 </head>
 <body style="width: max(500px, 100vw); height: max(500px, 100vh); overflow: hidden; display: flex; margin: 0;">
-<div id="console" style="width: 75%; height: 100%; display: flex; white-space: pre; font-size: 1em; overflow-y: scroll;">
+<div id="console" class="VerticalBorder" style="width: 75%; height: 100%; display: flex; white-space: pre; font-size: 1em; overflow-y: scroll;">
   <!-- TODO: Fix size of input field -->
   <p style="width: 100%; text-align: right;"><span id="console_log"></span><span id="active_line" class="AlignLeft"><span id="prompt"></span><input type="text" id="console_secret_input"/></span></p>
 </div>
-<div class="VerticalBorder"></div>
-<div id="main_right" style="width: 25%; height: 100%;">
-  <div>
+<div id="main_right" style="display: none; width: 25%; height: 100%;">
+  <div class="HorizontalBorder">
     <p style="margin: 2px; font-size: 0.8em;">
       <span style="color: red">○</span> <span class="ColorBalaur">balaur</span>.service - <span
         class="ColorBalaur">balaur</span> daemon<br>
@@ -28,13 +27,10 @@
       Loaded: loaded (/etc/systemd/system/<span class="ColorBalaur">balaur</span>.service; static)<br>
     </p>
   </div>
-  <div class="HorizontalBorder"></div>
-  <div style="aspect-ratio: 4/3; width: 100%;">
+  <div class="HorizontalBorder" style="aspect-ratio: 4/3; width: 100%;">
     <img src="/Resources/Sona/Corruptions/corrupt01.png" style="object-fit: contain; width: 100%; height: 100%;">
   </div>
-  <div class="HorizontalBorder"></div>
-  <div style="height: 70px;"></div>
-  <div class="HorizontalBorder"></div>
+  <div class="HorizontalBorder" style="height: 70px;"></div>
 </div>
 <!-- TODO: Terminal update.
   Boot up process
