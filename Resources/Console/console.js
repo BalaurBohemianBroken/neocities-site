@@ -19,11 +19,7 @@ ${cmd_list}`);
         }
 
         // Is path relative to CWD or home?
-        let path = args.slice(1).join("/");
-        if (args[1].charAt(0) !== '~') {
-            path = b_console.filepath + "/" + args.slice(1).join('/');
-        }
-        
+        let path = args.slice(1).join(" ");
         let new_folder = TraverseFileSystem(path);
         if (new_folder === null)
             return;
@@ -36,7 +32,22 @@ ${cmd_list}`);
     }
 
     static ls(command, args) {
+        let folder_e = b_console.cwd_e;
+        if (args.length > 1) {
+            folder_e = TraverseFileSystem(args.slice(1).join(" "));
+            if (folder_e === null) {
+                return;
+            }
+        }
+        let children = folder_e.file_children;
+        if (children.length === 0) {
+            PrintToConsole(`${folder_e.file_path} has no children.`);
+            return;
+        }
         
+        for (let child of children) {
+            PrintToConsole(child.file_name);
+        }
     }
     
     static use(command, args) {
@@ -105,7 +116,7 @@ Camera:
 }
 
 b_console = {
-    version: "v.36.20261106",
+    version: "v.37.20261106",
     
     file_system_e: null,
     cwd_e: null,
@@ -123,7 +134,7 @@ b_console = {
     console_line_history: [],
     console_log: "",
     account: "<span class='ColorBalaur'>balaur</span>@<span class='ColorBalaur'>balaur</span>",
-    get filepath() { return GetFilePath(b_console.cwd_e) },
+    get filepath() { return b_console.cwd_e.file_path; },
     
     greetings: [
         "welcome home! :)",
@@ -141,11 +152,12 @@ b_console = {
         "echo": CMDs.echo,
         "exit": CMDs.exit,
         "cd": CMDs.cd,
+        "ls": CMDs.ls,
     },
 }
 
 document.addEventListener("DOMContentLoaded", Console);
-document.addEventListener("click", function(event) {
+document.addEventListener("click", function() {
     b_console.input_field_e.focus();
 });
 
@@ -255,55 +267,7 @@ function ConsoleSubmit() {
     b_console.console_e.scrollTop = b_console.console_e.scrollHeight;
 }
 
-// TODO: This does not work well with ~.
-function TraverseFileSystem(path) {
-    let current_file = b_console.cwd_e;
-    let stops = path.split("/");
-    // case: absolute path
-    if (stops[0] === "~") {
-        current_file = b_console.file_system_e;
-        stops.shift();
-    }
-    
-    // case: relative path
-    for (let stop of stops) {
-        // cheating to do it this way but this is a fake file system anyway
-        if (stop === "~")
-            continue;
-        current_file = TraverseFolder(stop, current_file)
-        if (current_file === null) {
-            PrintToConsole(`<span class='ConsoleRed'>err:</span> no file at ${current_file}`);
-            return null;
-        }
-    }
-    return current_file;
-}
-
-function TraverseFolder(to_folder, from_folder_e) {
-    if (to_folder === "..")
-        return GetParentFolder(from_folder_e);
-    let child_folder = from_folder_e.querySelector(`[name=${to_folder}]`);
-    return child_folder;
-}
-
-function GetParentFolder(from_folder_e) {
-    let par = from_folder_e.parentNode;
-    if (!(par instanceof BCFolder))
-        return null;
-    return par;
-}
-
-function GetFilePath(file_e) {
-    let path = [file_e.getAttribute("name")];
-    while (true) {
-        file_e = GetParentFolder(file_e);
-        if (file_e === null)
-            break;
-        path.unshift(file_e.getAttribute("name"));
-    }
-    return path.join("/");
-}
-
+// ========== Functions ===========
 function ParseCommand(command) {
     command = command.trim();
     let args = command.split(' ');
@@ -412,28 +376,22 @@ Last login: ${login_string}
 ${greeting}</span>`;
 }
 
-function ResolvePathAbsolute(path, cwd) {
-    const absolute_paths = ["~"];
-    if (path.charAt(0) in absolute_paths) {
-        if (cwd.charAt(-1) !== "~") {
-            cwd += "~";
-        }
-        path = cwd + path;
+function TraverseFileSystem(path) {
+    let current_file = b_console.cwd_e;
+    let stops = path.split("/");
+    // case: absolute path
+    if (stops[0] === "~") {
+        current_file = b_console.file_system_e;
+        stops.shift();
     }
-    
-    // Resolve ..
-    return ResolveDotDot(path);
-}
 
-function ResolveDotDot(path) {
-    let paths = path.split("/");
-    let new_paths = [];
-    for (let p of paths) {
-        if (p === "..") {
-            new_paths.pop();
-            continue;
+    // case: relative path
+    for (let stop of stops) {
+        current_file = current_file.file_traverse(stop);
+        if (current_file === null) {
+            PrintToConsole(`<span class='ConsoleRed'>err:</span> no file at ${current_file}`);
+            return null;
         }
-        new_paths.push(p);
     }
-    return new_paths.join("/");
+    return current_file;
 }
