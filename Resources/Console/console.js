@@ -18,8 +18,13 @@ ${cmd_list}`);
             PrintToConsole(`<span class="ConsoleRed">Invalid:</span> Traversal from root is <span class="ConsoleRed">not</span> allowed. You are sandboxed within user:<span class="ColorBalaur">balaur</span>!`);
         }
 
-        let path = b_console.filepath + "/" + args.slice(1).join('/');
-        let new_folder = TraverseFileSystem(path, b_console.file_system_e);
+        // Is path relative to CWD or home?
+        let path = args.slice(1).join("/");
+        if (args[1].charAt(0) !== '~') {
+            path = b_console.filepath + "/" + args.slice(1).join('/');
+        }
+        
+        let new_folder = TraverseFileSystem(path);
         if (new_folder === null)
             return;
         
@@ -27,9 +32,13 @@ ${cmd_list}`);
             PrintToConsole(`<span class="ConsoleRed">err:</span> ${path} is not a folder.`);
             return;
         }
-        b_console.filepath = path;
+        b_console.cwd_e = new_folder;
     }
 
+    static ls(command, args) {
+        
+    }
+    
     static use(command, args) {
 
     }
@@ -96,9 +105,10 @@ Camera:
 }
 
 b_console = {
-    version: "v.35.20261104",
+    version: "v.36.20261106",
     
     file_system_e: null,
+    cwd_e: null,
     
     console_e: null,
     active_line_e: null,
@@ -113,7 +123,7 @@ b_console = {
     console_line_history: [],
     console_log: "",
     account: "<span class='ColorBalaur'>balaur</span>@<span class='ColorBalaur'>balaur</span>",
-    filepath: "~",
+    get filepath() { return GetFilePath(b_console.cwd_e) },
     
     greetings: [
         "welcome home! :)",
@@ -141,6 +151,7 @@ document.addEventListener("click", function(event) {
 
 function Console() {
     b_console.file_system_e = document.getElementById("file_system");
+    b_console.cwd_e = b_console.file_system_e; 
     
     b_console.console_e = document.getElementById("console");
     b_console.active_line_e = document.getElementById("active_line");
@@ -245,24 +256,52 @@ function ConsoleSubmit() {
 }
 
 // TODO: This does not work well with ~.
-// TODO: Traverse upwards.
-function TraverseFileSystem(path, file_system) {
+function TraverseFileSystem(path) {
+    let current_file = b_console.cwd_e;
     let stops = path.split("/");
-    let current_path = "";
-    let current_file = file_system;
-    for (let i = 0; i < stops.length; i++) {
-        let stop = stops[i];
-        current_path += stop + "/";
+    // case: absolute path
+    if (stops[0] === "~") {
+        current_file = b_console.file_system_e;
+        stops.shift();
+    }
+    
+    // case: relative path
+    for (let stop of stops) {
         // cheating to do it this way but this is a fake file system anyway
         if (stop === "~")
             continue;
-        current_file = current_file.querySelector(`[name=${stop}]`);
+        current_file = TraverseFolder(stop, current_file)
         if (current_file === null) {
-            PrintToConsole(`<span class='ConsoleRed'>err:</span> no file at ${current_path}`);
+            PrintToConsole(`<span class='ConsoleRed'>err:</span> no file at ${current_file}`);
             return null;
         }
     }
     return current_file;
+}
+
+function TraverseFolder(to_folder, from_folder_e) {
+    if (to_folder === "..")
+        return GetParentFolder(from_folder_e);
+    let child_folder = from_folder_e.querySelector(`[name=${to_folder}]`);
+    return child_folder;
+}
+
+function GetParentFolder(from_folder_e) {
+    let par = from_folder_e.parentNode;
+    if (!(par instanceof BCFolder))
+        return null;
+    return par;
+}
+
+function GetFilePath(file_e) {
+    let path = [file_e.getAttribute("name")];
+    while (true) {
+        file_e = GetParentFolder(file_e);
+        if (file_e === null)
+            break;
+        path.unshift(file_e.getAttribute("name"));
+    }
+    return path.join("/");
 }
 
 function ParseCommand(command) {
@@ -371,4 +410,30 @@ ${"-".repeat(b_console.linebreak_limit_soft)}
 ${b_console.version}
 Last login: ${login_string}
 ${greeting}</span>`;
+}
+
+function ResolvePathAbsolute(path, cwd) {
+    const absolute_paths = ["~"];
+    if (path.charAt(0) in absolute_paths) {
+        if (cwd.charAt(-1) !== "~") {
+            cwd += "~";
+        }
+        path = cwd + path;
+    }
+    
+    // Resolve ..
+    return ResolveDotDot(path);
+}
+
+function ResolveDotDot(path) {
+    let paths = path.split("/");
+    let new_paths = [];
+    for (let p of paths) {
+        if (p === "..") {
+            new_paths.pop();
+            continue;
+        }
+        new_paths.push(p);
+    }
+    return new_paths.join("/");
 }
