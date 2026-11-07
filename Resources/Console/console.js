@@ -77,6 +77,7 @@ ${cmd_list}`);
     }
 
     static stats() {
+        // TODO: These
         let greetings = 0;
         let song_otd = 0;
         let art_otd = 0;
@@ -86,6 +87,7 @@ ${cmd_list}`);
     }
 
     static about() {
+        // TODO: This
         PrintToConsole(`about: /`);
     }
 
@@ -116,7 +118,7 @@ Camera:
 }
 
 b_console = {
-    version: "v.37.20261106",
+    version: "v.38.20261106",
     
     file_system_e: null,
     cwd_e: null,
