@@ -160,7 +160,7 @@ Camera:
 }
 
 b_console = {
-    version: "v.39.20261106",
+    get version(){ return document.getElementById("version").innerText; },
     
     file_system_e: null,
     cwd_e: null,
