@@ -1,3 +1,45 @@
+// TODO: Make the side panels load up sequentially in the boot process, flicking on one after another as though read from slow CPU.
+// TODO: startup/ambient sounds
+//   help
+//   about
+//   GOTO page
+//   git history of pages
+//   Query info about web pages
+//   cat
+//   echo
+//   history (command number + command)
+//   view picture - enter for next, shift+enter for previous
+//   play song
+//
+// forbidden:
+//   sudo
+//   mkdir
+//   nano
+//   touch
+//   rm
+//  
+// files:
+//   on notable people
+//   poems
+//   music
+//   in-world archival stuff?
+//   in-world files to represent hobbies?
+//   RAT REPO
+//  
+//   command to view camera that uses the bweh meme
+//   snippets of old conversations?
+//
+//    Below that, a music player - controllable by mouse or console.
+//    Typing anywhere focuses the input into the terminal.
+//    Resize only changes size of text.
+//   
+//    This layout allows me to easily hide things.
+//    It allows me to filter people.
+//    I can store as much data as necessary.
+//    Console themes.
+//    Can "view" images, which changes what is in the side bar. This is how people can see different pfps.
+//    Automatically change pfp based on day.
+//    A viewable "update" chart, based on Github's, that shows a heatmap of commits for the site.
 class CMDs {
     static help() {
         let cmd_list = Object.keys(b_console.commands).join('\n');
@@ -118,7 +160,7 @@ Camera:
 }
 
 b_console = {
-    version: "v.38.20261106",
+    version: "v.39.20261106",
     
     file_system_e: null,
     cwd_e: null,
