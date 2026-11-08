@@ -34,6 +34,36 @@ body {
     color: orange;
 }
 
+.Heatmap {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 2px;
+    margin-right: 3px;
+    background-color: green;
+    /*text-align: center;*/
+}
+
+.HeatmapNone {
+    background-color: #222;
+}
+
+.HeatmapLow {
+    background-color: #cb42fd33;
+}
+
+.HeatmapMid {
+    background-color: #cb42fd55;
+}
+
+.HeatmapHigh {
+    background-color: #cb42fd88;
+}
+
+.HeatmapExcessive {
+    background-color: #cb42fdcc;
+}
+
 .AlignLeft {
     display: inline-block;
     width: 100%;

@@ -226,7 +226,6 @@ function Console() {
     // TODO: Request all data for visited pages, rather than hardcode
     RequestText("/Resources/PageData/Version/_.txt", function(data) {
         b_console.versions["_"] = data;
-        CreateActivityHeatmap();
     });
 
     // Boot process
@@ -308,6 +307,7 @@ function OnConnected() {
 
     b_console.right_panel_e.style.display = "";
     localStorage.setItem('last_login', Date.now().toString());
+    CreateActivityHeatmap(b_console.versions["_"]);
 }
 
 function ConsoleSubmit() {
@@ -454,31 +454,74 @@ function TraverseFileSystem(path) {
 
 function CreateActivityHeatmap() {
     let versions = b_console.versions["_"].split("\n");
+    let commit_dates = {};
+    for (let ver of versions) {
+        const reg = /^(v\.\d+\.(\d+)) (.+)/;
+        let m = ver.match(reg);
+        if (m === null) {
+            console.warning("Unable to match a given version: " + ver);
+            continue;
+        }
+        let version_date = DateTime.YMDToDate(m[2]);
+        let time = version_date.getTime();
+        let c = 0;
+        if (time in commit_dates)
+            c = commit_dates[time];
+        commit_dates[time] = c + 1; 
+    }
     
-    const day_length = (24 * 60 * 60 * 1000);
-    let total_days = 365;
+    let total_days = 364;
     
     let end_day = new Date();
     end_day.setHours(0, 0, 0, 0);
-    end_day = end_day.getTime() + day_length;
     
-    let start_day = new Date(end_day - (day_length * total_days));
-    // align to start of week
-    let days_from_sunday = start_day.getDay();
-    total_days += days_from_sunday;
-    start_day = start_day.getTime() - (days_from_sunday * day_length);
+    let start_day = new Date(end_day.getTime() - (DateTime.day_length * (total_days - 1)));
+    start_day = new Date(start_day.getTime());
 
-    start_day = new Date(start_day);
-    end_day = new Date(end_day);
+    console.log(start_day.getDay());
+    console.log((end_day.getTime() - start_day.getTime()) / DateTime.day_length);
     
-    // console.log(`${start_day} -> ${end_day}`);
-    let day_counts = Array(total_days).fill(0);
+    let heatmap = CreateHeatmap(start_day.getTime(), end_day.getTime(), commit_dates);
     
-    for (const version of versions) {
-        const reg = /^(v\.\d+\.(\d+)) (.+)/;
-        let m = version.match(reg);
-        if (m === null) {
-            console.warning("Unable to match a given version: " + version);
-        }
+    PrintToConsole(heatmap, true);
+}
+
+function CreateHeatmap(start_time, end_time, commits) {
+    let day_strings = Array(14).fill("");
+    let current_time = start_time;
+    let day_i = 0;
+    while (current_time <= end_time) {
+        let compare_time = new Date(current_time);
+        compare_time.setUTCHours(0, 0, 0, 0);
+        compare_time = compare_time.getTime();
+        let c = 0;
+        if (compare_time in commits)
+            c = commits[compare_time];
+        
+        if (c < 1)
+            c = `<div class="Heatmap HeatmapNone"></div>`;
+        else if (c < 3)
+            c = `<div class="Heatmap HeatmapLow"></div>`;
+        else if (c < 5)
+            c = `<div class="Heatmap HeatmapMid"></div>`;
+        else if (c < 6)
+            c = `<div class="Heatmap HeatmapHigh"></div>`;
+        else if (c < 9)
+            c = `<div class="Heatmap HeatmapExcessive"></div>`;
+        else
+            c = `<div class="Heatmap HeatmapExcessive"></div>`;
+        day_strings[day_i] += c;
+        day_i = (day_i + 1) % 14;
+        current_time += DateTime.day_length;
     }
+    // let width = day_strings[0].length;
+    // for (let i = 1; i < day_strings.length; i++) {
+    //     if (day_strings[i].length < width)
+    //         day_strings[i] += " ";
+    // }
+    let ret = `<div></div>`;
+    for (let day of day_strings) {
+        ret += `<div style="height: 13px;">${day}</div>`;
+    }
+    return `<div>${ret}</div>`;
 }
