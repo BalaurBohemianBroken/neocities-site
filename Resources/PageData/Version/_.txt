@@ -1,3 +1,4 @@
+v.42.20261108 small desktop work for pc
 v.41.20261108 standardize line-height
 v.40.20261108 return version to .html file for standardization
 v.39.20261108 update page title; move todos

@@ -198,6 +198,8 @@ b_console = {
         "cd": CMDs.cd,
         "ls": CMDs.ls,
     },
+    
+    versions: {},
 }
 
 document.addEventListener("DOMContentLoaded", Console);
@@ -206,6 +208,7 @@ document.addEventListener("click", function() {
 });
 
 function Console() {
+    // Assign elements
     b_console.file_system_e = document.getElementById("file_system");
     b_console.cwd_e = b_console.file_system_e; 
     
@@ -216,8 +219,17 @@ function Console() {
     b_console.input_field_e = document.getElementById("console_secret_input");
     b_console.right_panel_e = document.getElementById("main_right");
 
+    // Listeners
     b_console.input_field_e.addEventListener("keydown", OnConsoleInput);
 
+    // Requests
+    // TODO: Request all data for visited pages, rather than hardcode
+    RequestText("/Resources/PageData/Version/_.txt", function(data) {
+        b_console.versions["_"] = data;
+        CreateActivityHeatmap();
+    });
+
+    // Boot process
     // Hidden for boot process
     b_console.active_line_e.style.display = "none";
     let frame_rate = 50;
@@ -438,4 +450,35 @@ function TraverseFileSystem(path) {
         }
     }
     return current_file;
+}
+
+function CreateActivityHeatmap() {
+    let versions = b_console.versions["_"].split("\n");
+    
+    const day_length = (24 * 60 * 60 * 1000);
+    let total_days = 365;
+    
+    let end_day = new Date();
+    end_day.setHours(0, 0, 0, 0);
+    end_day = end_day.getTime() + day_length;
+    
+    let start_day = new Date(end_day - (day_length * total_days));
+    // align to start of week
+    let days_from_sunday = start_day.getDay();
+    total_days += days_from_sunday;
+    start_day = start_day.getTime() - (days_from_sunday * day_length);
+
+    start_day = new Date(start_day);
+    end_day = new Date(end_day);
+    
+    // console.log(`${start_day} -> ${end_day}`);
+    let day_counts = Array(total_days).fill(0);
+    
+    for (const version of versions) {
+        const reg = /^(v\.\d+\.(\d+)) (.+)/;
+        let m = version.match(reg);
+        if (m === null) {
+            console.warning("Unable to match a given version: " + version);
+        }
+    }
 }
