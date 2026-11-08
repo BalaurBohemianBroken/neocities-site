@@ -1,18 +1,10 @@
-v.39.20261107
-update page title; move todos
-
-v.38.20261107
-some minor todos
-
-v.37.20261106
-add ls; move functions onto BConsole
-
-v.36.20261106
-more work on file system functions
-
-v.35.20261104
-somewhat add cd command
-
+v.41.20261108 standardize line-height
+v.40.20261108 return version to .html file for standardization
+v.39.20261108 update page title; move todos
+v.38.20261107 some minor todos
+v.37.20261106 add ls; move functions onto BConsole
+v.36.20261106 more work on file system functions
+v.35.20261104 somewhat add cd command
 v.34.20261104 better startup animation again
 v.33.20261104 better boot animation
 v.32.20261104 add exit command (funny)
