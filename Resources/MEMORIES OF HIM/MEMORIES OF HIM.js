@@ -1,6 +1,8 @@
 class MOH {
     static instance = null;
     static tickSpeed = 17;
+    static sfxTick =  new Audio("/Resources/MEMORIES OF HIM/SFX/Tick.mp3");
+    static sfxTock =  new Audio("/Resources/MEMORIES OF HIM/SFX/Tock.mp3");
     
     lastFrameTime = -1;
     frameTime = -1;
@@ -22,13 +24,10 @@ class MOH {
         this.lastFrameTime = MOH.realTime;
         this.frameTime = this.lastFrameTime;
 
-        console.log(this);
-        console.log(MOH.instance === this); 
         this.StartGame();
     }
     
     StartGame() {
-        console.log(MOH.instance === this);
         this.clockTimeRemaining = this.clockTime;
         // For some reason, giving setInterval this.Update causes this. to refer to the Window object, instead of MOH.
         // Only by wrapping it within a function call can I get this. to refer to the object.
@@ -36,7 +35,6 @@ class MOH {
     }
     
     Update() {
-        console.log(MOH.instance === this);
         this.lastFrameTime = this.frameTime;
         this.frameTime = MOH.realTime;
         
@@ -61,12 +59,14 @@ class MOH {
     Tick() {
         // Thought updates
         console.log("tick");
+        MOH.sfxTick.play();
         this.clockNextTrigger = MOH.EClockTriggers.tock;
     }
 
     Tock() {
         // Action updates
         console.log("tock");
+        MOH.sfxTock.play();
         this.clockNextTrigger = MOH.EClockTriggers.tick;
     }
 
