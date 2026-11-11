@@ -1,3 +1,5 @@
+// TODO: Volume check/adjustment
+// TODO: Track passages the player's read, grey them out. Maybe this conflicts with the design of overwhelming the player?
 class MOH {
     static instance = null;
     static tickSpeed = 17;
