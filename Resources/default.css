@@ -4,6 +4,7 @@ body {
   background-color: black;
   color: white;
   font-family: l-monospace-main;
+  margin: 0;
 }
 
 a:link {
