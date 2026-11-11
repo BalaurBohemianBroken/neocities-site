@@ -1,27 +1,79 @@
 class MOH {
     static instance = null;
-    clockSpeedDefault = 5;
+    static tickSpeed = 17;
+    
+    lastFrameTime = -1;
+    frameTime = -1;
+    get deltaTime() {
+        return this.frameTime - this.lastFrameTime; 
+    };
+    static get realTime() {
+        return Date.now();
+    };
+
+    clockTime = 5000;
     clockSpeedMultiplier = 1;
     
-    static Init() {
-        MOH.instance = new MOH();
-    }
+    clockTimeRemaining = this.clockTime;
+    clockNextTrigger = MOH.EClockTriggers.tick;
     
     constructor() {
-        setInterval(this.MainUpdate, 17);
+        MOH.instance = this;
+        this.lastFrameTime = MOH.realTime;
+        this.frameTime = this.lastFrameTime;
+
+        console.log(this);
+        console.log(MOH.instance === this); 
+        this.StartGame();
     }
     
-    MainUpdate() {
+    StartGame() {
+        console.log(MOH.instance === this);
+        this.clockTimeRemaining = this.clockTime;
+        // For some reason, giving setInterval this.Update causes this. to refer to the Window object, instead of MOH.
+        // Only by wrapping it within a function call can I get this. to refer to the object.
+        setInterval(function () {MOH.instance.Update()}, MOH.tickSpeed);
+    }
+    
+    Update() {
+        console.log(MOH.instance === this);
+        this.lastFrameTime = this.frameTime;
+        this.frameTime = MOH.realTime;
         
+        this.clockTimeRemaining -= this.deltaTime * this.clockSpeedMultiplier;
+        if (this.clockTimeRemaining <= 0) {
+            this.ClockProgressed();
+            this.clockTimeRemaining += this.clockTime;  // += is used to carry any overflow to the next frame. Keeps on time.
+        }
+    }
+    
+    ClockProgressed() {
+        switch (this.clockNextTrigger) {
+            case MOH.EClockTriggers.tick:
+                this.Tick();
+                break;
+            case MOH.EClockTriggers.tock:
+                this.Tock();
+                break;
+        }
     }
 
     Tick() {
         // Thought updates
+        console.log("tick");
+        this.clockNextTrigger = MOH.EClockTriggers.tock;
     }
 
     Tock() {
         // Action updates
+        console.log("tock");
+        this.clockNextTrigger = MOH.EClockTriggers.tick;
     }
+
+    static EClockTriggers = {
+        tick: 1,
+        tock: 2,
+    };
 }
 
-document.addEventListener('DOMContentLoaded', MOH.Init);
+document.addEventListener('DOMContentLoaded', function() {new MOH()});
