@@ -9,6 +9,7 @@
     <script src="/Resources/all.js"></script>
 
     <link href="/Resources/MEMORIES OF HIM/MEMORIES OF HIM.css" rel="stylesheet" type="text/css" media="all">
+    <script src="/Resources/MEMORIES OF HIM/b-prefabs.js"></script>
     <script src="/Resources/MEMORIES OF HIM/MEMORIES OF HIM.js"></script>
 </head>
 <body>
@@ -22,21 +23,20 @@
         <div id="thoughts" style="flex-grow: 1"></div>
     </div>
     <div id="playArea" style="flex-grow: 2;">
-        <div id="spawnPoint"></div>
-        <div class="Card" style="display: flex; flex-direction: column; aspect-ratio: 3/5; width: 80px; border-radius: 10px; background-color: #261e57;">
-            <div style="flex-basis: 66%; background-color: #1d0d36; border-bottom: 1px solid black;"></div>
-            <div style="flex-basis: 33%; display: flex; align-items: center; justify-content: center;">
-                <p style="font-size: var(--text-mid);">INSIGHT</p>
-            </div>
-        </div>
+        <b-spawn-zone id="spawnZone" style="position: absolute; width: 400px; height: 150px; left: 50%; transform: translate(-50%, 0); background-color: #1c0f1e; border-radius: 0 0 10px 10px;">
+            
+        </b-spawn-zone>
     </div>
 </div>
-<p class="version">5.20261112</p>
+<p class="version">6.20261112</p>
 
 <div id="prefabs" style="display: none">
-    <div class="Card" style="aspect-ratio: 3/5; width: 80px; border-radius: 10px; background-color: #261e57;">
-        <p>INSIGHT</p>
-    </div>
+    <b-card style="display: flex; flex-direction: column; aspect-ratio: 3/5; width: 80px; border-radius: 10px; background-color: #261e57; position: absolute; transform: translate(-50%, -50%);">
+        <div class="CardArt" style="flex-basis: 66%; background-color: #1d0d36;"></div>
+        <div style="flex-basis: 33%; display: flex; align-items: center; justify-content: center;">
+            <p class="CardName" style="font-size: var(--text-mid);">INSIGHT</p>
+        </div>
+    </b-card>
 </div>
 </body>
 </html>

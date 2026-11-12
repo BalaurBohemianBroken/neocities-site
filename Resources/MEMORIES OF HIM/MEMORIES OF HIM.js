@@ -5,6 +5,9 @@ class MOH {
     static tickSpeed = 17;
     static sfxTick =  new Audio("/Resources/MEMORIES OF HIM/SFX/Tick.mp3");
     static sfxTock =  new Audio("/Resources/MEMORIES OF HIM/SFX/Tock.mp3");
+
+    spawnZone_e = null;
+    playArea_e = null;
     
     lastFrameTime = -1;
     frameTime = -1;
@@ -34,6 +37,11 @@ class MOH {
         // For some reason, giving setInterval this.Update causes this. to refer to the Window object, instead of MOH.
         // Only by wrapping it within a function call can I get this. to refer to the object.
         setInterval(function () {MOH.instance.Update()}, MOH.tickSpeed);
+
+        this.spawnZone_e = document.getElementById("spawnZone");
+        this.playArea_e = document.getElementById("playArea");
+        
+        this.SpawnCard();
     }
     
     Update() {
@@ -70,6 +78,13 @@ class MOH {
         console.log("tock");
         MOH.sfxTock.play();
         this.clockNextTrigger = MOH.EClockTriggers.tick;
+    }
+    
+    SpawnCard() {
+        BCard.Instantiate("INSIGHT", this.playArea_e, this.spawnZone_e.spawnPositions[0]);
+        BCard.Instantiate("DESPAIR", this.playArea_e, this.spawnZone_e.spawnPositions[1]);
+        BCard.Instantiate("HOPE", this.playArea_e, this.spawnZone_e.spawnPositions[2]);
+        BCard.Instantiate("PASSION", this.playArea_e, this.spawnZone_e.spawnPositions[3]);
     }
 
     static EClockTriggers = {
