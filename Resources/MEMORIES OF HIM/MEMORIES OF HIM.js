@@ -81,7 +81,7 @@ class MOH {
     }
     
     SpawnCard() {
-        BCard.Instantiate("INSIGHT", this.playArea_e, this.spawnZone_e.spawnPositions[0]);
+        BCardSlot.Instantiate(this.playArea_e, this.spawnZone_e.spawnPositions[0]);
         BCard.Instantiate("DESPAIR", this.playArea_e, this.spawnZone_e.spawnPositions[1]);
         BCard.Instantiate("HOPE", this.playArea_e, this.spawnZone_e.spawnPositions[2]);
         BCard.Instantiate("PASSION", this.playArea_e, this.spawnZone_e.spawnPositions[3]);
