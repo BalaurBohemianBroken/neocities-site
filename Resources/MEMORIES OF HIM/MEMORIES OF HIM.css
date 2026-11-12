@@ -1,5 +1,6 @@
 html {
     --border: 2px solid purple;
+    --text-mid: 13px;
 }
 
 p {
