@@ -159,9 +159,8 @@ customElements.define("b-card-slot", BCardSlot);
 
 class BActivityOption extends BMOH {
     static _prefab = Helpers.ElementFromString(`
-<b-activity-option>
-    <p style="text-align: right; width: 100%; height: 30px; background: #772a9b; background: radial-gradient(ellipse at 70%, rgba(119, 42, 155, 1) 0%, rgba(119, 42, 155, 0) 100%);">activity name</p>
-<!--    <div style="width: 33%; height: 3px; margin: 0 auto; background-color: var(&#45;&#45;border-color); border-radius: 10px"></div>-->
+<b-activity-option style="display: flex; height: 30px; background: #772a9b; background: radial-gradient(ellipse at 70%, rgba(119, 42, 155, 1) 0%, rgba(119, 42, 155, 0) 100%);">
+    <p style="margin: auto; padding-right: var(--text-padding); text-align: right; width: 100%;">activity name</p>
 </b-activity-option>`);
 
     static Instantiate(parent) {

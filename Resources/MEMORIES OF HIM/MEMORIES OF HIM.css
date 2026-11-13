@@ -1,8 +1,10 @@
 html {
+    --text-padding: 5px;
     --border-color: purple;
     --border-thickness: 2px;
     --border: var(--border-thickness) solid var(--border-color);
     --text-mid: 13px;
+    
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
     -khtml-user-select: none; /* Konqueror HTML */
@@ -17,5 +19,5 @@ p {
 }
 
 .Padded {
-    padding: 10px;
+    padding: var(--text-padding);
 }
