@@ -59,9 +59,13 @@ class BSpawnZone extends BMOH {
 customElements.define("b-spawn-zone", BSpawnZone);
 
 class BCard extends BMOH {
-    static get _prefab() {
-        return document.getElementById("prefabs").getElementsByTagName("b-card")[0];
-    }
+    static _prefab = Helpers.ElementFromString(
+    `<b-card style="display: flex; flex-direction: column; aspect-ratio: 3/5; width: 80px; border-radius: 10px; background-color: #261e57; position: absolute; transform: translate(-50%, -50%);">
+        <div class="CardArt" style="border-radius: 10px 10px 0 0; flex-basis: 66%; background-color: #1d0d36;"></div>
+        <div style="flex-basis: 33%; display: flex; align-items: center; justify-content: center;">
+            <p class="CardName" style="font-size: var(--text-mid);">INSIGHT</p>
+        </div>
+    </b-card>`);
 
     static _aspectRatio = 3/5;
     static get width() {
@@ -114,9 +118,10 @@ class BCard extends BMOH {
 customElements.define("b-card", BCard);
 
 class BCardSlot extends BMOH {
-    static get _prefab() {
-        return document.getElementById("prefabs").getElementsByTagName("b-card-slot")[0];
-    }
+    static _prefab = Helpers.ElementFromString(`
+    <b-card-slot>
+        
+    </b-card-slot>`);
 
     static Instantiate(parent, position) {
         let card = BCardSlot._prefab.cloneNode(true);
@@ -151,3 +156,30 @@ class BCardSlot extends BMOH {
 }
 
 customElements.define("b-card-slot", BCardSlot);
+
+class BActivityOption extends BMOH {
+    static _prefab = Helpers.ElementFromString(`
+<b-activity-option>
+    <p style="text-align: right; width: 100%; height: 30px; background: #772a9b; background: radial-gradient(ellipse at 70%, rgba(119, 42, 155, 1) 0%, rgba(119, 42, 155, 0) 100%);">activity name</p>
+<!--    <div style="width: 33%; height: 3px; margin: 0 auto; background-color: var(&#45;&#45;border-color); border-radius: 10px"></div>-->
+</b-activity-option>`);
+
+    static Instantiate(parent) {
+        let inst = this._prefab.cloneNode(true);
+        parent.appendChild(inst);
+        return inst;
+    }
+
+    constructor() {
+        super();
+    }
+
+    connectedCallback() {
+    }
+
+    disconnectedCallback() {
+
+    }
+}
+
+customElements.define("b-activity-option", BActivityOption);

@@ -1,5 +1,7 @@
 html {
-    --border: 2px solid purple;
+    --border-color: purple;
+    --border-thickness: 2px;
+    --border: var(--border-thickness) solid var(--border-color);
     --text-mid: 13px;
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -12,4 +14,8 @@ html {
 
 p {
     margin: 0;
+}
+
+.Padded {
+    padding: 10px;
 }

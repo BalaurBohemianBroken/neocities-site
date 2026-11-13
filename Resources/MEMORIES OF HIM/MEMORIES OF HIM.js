@@ -8,6 +8,7 @@ class MOH {
 
     spawnZone_e = null;
     playArea_e = null;
+    actionOptions_e = null;
     
     lastFrameTime = -1;
     frameTime = -1;
@@ -34,12 +35,12 @@ class MOH {
     
     StartGame() {
         this.clockTimeRemaining = this.clockTime;
-        // For some reason, giving setInterval this.Update causes this. to refer to the Window object, instead of MOH.
-        // Only by wrapping it within a function call can I get this. to refer to the object.
+        // This wrapping is necessary because otherwise this. is set to Window in setInterval
         setInterval(function () {MOH.instance.Update()}, MOH.tickSpeed);
 
         this.spawnZone_e = document.getElementById("spawnZone");
         this.playArea_e = document.getElementById("playArea");
+        this.actionOptions_e = document.getElementById("actionOptions");
         
         this.SpawnCard();
     }
@@ -85,6 +86,7 @@ class MOH {
         BCard.Instantiate("DESPAIR", this.playArea_e, this.spawnZone_e.spawnPositions[1]);
         BCard.Instantiate("HOPE", this.playArea_e, this.spawnZone_e.spawnPositions[2]);
         BCard.Instantiate("PASSION", this.playArea_e, this.spawnZone_e.spawnPositions[3]);
+        BActivityOption.Instantiate(this.actionOptions_e);
     }
 
     static EClockTriggers = {

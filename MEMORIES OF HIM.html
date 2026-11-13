@@ -15,8 +15,11 @@
 <body>
 <div id="game" style="display: flex; flex-direction: column; width:100vw; height: 100vh">
     <div id="actArea" style="display: flex; flex-basis: 40%; border-bottom: var(--border);">
-        <div id="actions" style="flex-basis: 50%; border-right: var(--border);">
-            <div id="actionWork">
+        <div id="actions" style="display: flex; flex-basis: 50%; border-right: var(--border);">
+            <div id="actionOptions" style="width: 150px; border-right: var(--border);">
+                
+            </div>
+            <div id="actionWork" class="Padded">
                 <p>Burning scent sticks, dim lights, and artifacts given as payment. Mostly, for safety.</p>
             </div>
         </div>
@@ -28,18 +31,9 @@
         </b-spawn-zone>
     </div>
 </div>
-<p class="version">10.20261112</p>
+<p class="version">11.20261113</p>
 
 <div id="prefabs" style="display: none">
-    <b-card style="display: flex; flex-direction: column; aspect-ratio: 3/5; width: 80px; border-radius: 10px; background-color: #261e57; position: absolute; transform: translate(-50%, -50%);">
-        <div class="CardArt" style="border-radius: 10px 10px 0 0; flex-basis: 66%; background-color: #1d0d36;"></div>
-        <div style="flex-basis: 33%; display: flex; align-items: center; justify-content: center;">
-            <p class="CardName" style="font-size: var(--text-mid);">INSIGHT</p>
-        </div>
-    </b-card>
-    <b-card-slot>
-        
-    </b-card-slot>
 </div>
 </body>
 </html>

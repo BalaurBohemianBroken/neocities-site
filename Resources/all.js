@@ -1,26 +1,44 @@
-all = {
-    keyboard_history: [],
-    keyboard_history_max: 20,
-    
-    codes_max: 20,
-    
-    codes: {
-        70068064: blue_rose  // do i?
-    },
+/// This provides general helper functions,
+// and cross-site functionality, such as which pages have been visited.
 
-    br_style: `
+class Helpers {
+    static ElementFromString(html) {
+        // From: https://stackoverflow.com/a/35385518
+        const template = document.createElement('template');
+        template.innerHTML = html.trim();
+        const nNodes = template.content.childNodes.length;
+        if (nNodes !== 1) {
+            throw new Error("string does not represent a single element.");
+        }
+        return template.content.firstChild;
+    }
+}
+
+function all_main() {
+    all = {
+        keyboard_history: [],
+        keyboard_history_max: 20,
+
+        codes_max: 20,
+
+        codes: {
+            70068064: blue_rose  // do i?
+        },
+
+        br_style: `
     .BlueRose {
         display: none; 
     }`,
-    br_stylesheet: null,
+        br_stylesheet: null,
+    }
+    MarkPageVisited();
+
+    document.addEventListener("keydown", code_listener);
+
+    all.br_stylesheet = document.createElement("style");
+    all.br_stylesheet.textContent = all.br_style;
+    document.head.appendChild(all.br_stylesheet);
 }
-MarkPageVisited();
-
-document.addEventListener("keydown", code_listener)
-
-all.br_stylesheet = document.createElement("style");
-all.br_stylesheet.textContent = all.br_style;
-document.head.appendChild(all.br_stylesheet);
 
 function code_listener(keypress) {
     all.keyboard_history.unshift(keypress.key);
@@ -29,9 +47,9 @@ function code_listener(keypress) {
     check_for_codes(all.keyboard_history);
 }
 
-// This is pretty much just for fun and so i can surprise my friends with hidden content
-// It's not a secure hiding place! :)
 function check_for_codes(values) {
+    // This is pretty much just for fun and so i can surprise my friends with hidden content
+    // It's not a secure hiding place! :)
     let code = "";
     for (let i = 0; i < all.codes_max; i++) {
         if (i >= values.length)
@@ -48,13 +66,13 @@ function blue_rose() {
     all.br_stylesheet.textContent = `.BlueRose {background-color: #08608287;}`
 }
 
-// From: https://stackoverflow.com/a/8831937
-// I thought about using a more secure hashing function.
-// But for one, this is all client side
-// two this stuff isn't very hidden anyway
-// three if someone wants to crack this that sounds fun
-// and four the secure stuff will be server side.
 function hash_code(str) {
+    // From: https://stackoverflow.com/a/8831937
+    // I thought about using a more secure hashing function.
+    // But for one, this is all client side
+    // two this stuff isn't very hidden anyway
+    // three if someone wants to crack this that sounds fun
+    // and four the secure stuff will be server side.
     let hash = 0;
     for (let i = 0, len = str.length; i < len; i++) {
         let chr = str.charCodeAt(i);
@@ -85,3 +103,5 @@ function GetPagesVisited() {
         return {};
     return JSON.parse(existing_cookie);
 }
+
+all_main();
