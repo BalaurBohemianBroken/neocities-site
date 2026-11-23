@@ -19,7 +19,8 @@ from datetime import datetime
 
 class VersionTrackingFile:
     versions_location = Path("Resources/PageData/Version")
-    re_version = r"v\.(\d+)\.(\d+)"
+    re_version = r"(\d+)\.(\d+)"
+    re_html_version = r'(<p id="version".*?>)(.+?)(</p>)'
     
     def __init__(self, write_to, master_file, *patterns):
         self.write_to = VersionTrackingFile.versions_location / Path(write_to)
@@ -46,11 +47,29 @@ class VersionTrackingFile:
                 file_content = f.read()
         current_version += 1
         date = datetime.utcnow().strftime('%Y%m%d')
-        version = f"v.{current_version}.{date}"
+        version = f"{current_version}.{date}"
         file_content = f"{version} {msg}\n{file_content}"
         with open(self.write_to, "w") as f:
             f.write(file_content)
         subprocess.check_output(["git", "add", self.write_to])
+        
+        self.update_html_version(version)
+    
+    def update_html_version(self, new_version):
+        content = ""
+        with open(self.master_file, "r") as f:
+            content = f.read()
+        version_line = re.search(VersionTrackingFile.re_html_version, content)
+        if version_line is None:
+            print(f"Cannot update version in {self.master_file}: Unable to find version element")
+            return
+        new_version_line = f"{version_line.group(1)}{new_version}{version_line.group(3)}"
+        # Lazy to redo the search, but fast to type :)
+        content = content.replace(version_line.group(0), new_version_line, 1)
+        with open(self.master_file, "w") as f:
+            f.write(content)
+        print(f"Updated {self.master_file} version from {version_line.group(2)} -> {new_version}")
+        subprocess.check_output(["git", "add", self.master_file])
             
             
 def get_commit_message():
@@ -79,5 +98,3 @@ for f in to_check:
 version_message = get_commit_message()
 for tracker in trackers_to_run:
     tracker.update_version(version_message)
-
-# Update version in tracked file
