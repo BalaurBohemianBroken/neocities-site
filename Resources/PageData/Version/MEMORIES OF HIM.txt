@@ -1,2 +1,3 @@
+14.20261123 some writings
 13.20261123 automate versioning in html files
 12.20261121 oldest version - i need to go back and add more :)

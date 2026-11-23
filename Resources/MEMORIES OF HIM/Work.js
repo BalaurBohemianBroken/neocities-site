@@ -1,0 +1,3 @@
+class WorkMagmaDragon {
+    content = ``
+}
