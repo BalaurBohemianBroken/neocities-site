@@ -223,9 +223,14 @@ function Console() {
     b_console.input_field_e.addEventListener("keydown", OnConsoleInput);
 
     // Requests
-    // TODO: Request all data for visited pages, rather than hardcode
     RequestText("/Resources/PageData/Version/_.txt", function(data) {
         b_console.versions["_"] = data;
+    });
+    RequestText("/Resources/PageData/Version/MEMORIES OF HIM.txt", function(data) {
+        b_console.versions["MEMORIES OF HIM"] = data;
+    });
+    RequestText("/Resources/PageData/Version/terminus.txt", function(data) {
+        b_console.versions["terminus"] = data;
     });
 
     // Boot process
@@ -453,13 +458,19 @@ function TraverseFileSystem(path) {
 }
 
 function CreateActivityHeatmap() {
-    let versions = b_console.versions["_"].split("\n");
+    const versioned_pages = Object.keys(b_console.versions)
+    let collated_versions = []
+    for (const vp of versioned_pages) {
+        const versions = b_console.versions[vp];
+        collated_versions = collated_versions.concat(versions.split("\n"))
+    }
+    
     let commit_dates = {};
-    for (let ver of versions) {
-        const reg = /^(v\.\d+\.(\d+)) (.+)/;
+    for (let ver of collated_versions) {
+        const reg = /^(\d+\.(\d+)) (.+)/;
         let m = ver.match(reg);
         if (m === null) {
-            console.warning("Unable to match a given version: " + ver);
+            console.warn("Unable to match a given version: " + ver);
             continue;
         }
         let version_date = DateTime.YMDToDate(m[2]);
@@ -477,9 +488,6 @@ function CreateActivityHeatmap() {
     
     let start_day = new Date(end_day.getTime() - (DateTime.day_length * (total_days - 1)));
     start_day = new Date(start_day.getTime());
-
-    console.log(start_day.getDay());
-    console.log((end_day.getTime() - start_day.getTime()) / DateTime.day_length);
     
     let heatmap = CreateHeatmap(start_day.getTime(), end_day.getTime(), commit_dates);
     
