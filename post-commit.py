@@ -17,13 +17,13 @@ import re
 from pathlib import Path
 from datetime import datetime
 
-class VersionTrackingFile:
+class SubRepo:
     versions_location = Path("Resources/PageData/Version")
     re_version = r"(\d+)\.(\d+)"
     re_html_version = r'(<p id="version".*?>)(.+?)(</p>)'
     
     def __init__(self, write_to, master_file, *patterns):
-        self.write_to = VersionTrackingFile.versions_location / Path(write_to)
+        self.write_to = SubRepo.versions_location / Path(write_to)
         self.master_file = master_file  # .html file that has version number within it. 
         self.patterns = patterns  # Regex for any other files that should trigger an update.
     
@@ -41,16 +41,18 @@ class VersionTrackingFile:
         if self.write_to.is_file():
             with open(self.write_to, "r") as f:
                 line = f.readline()
-                current_version = re.match(VersionTrackingFile.re_version, line).group(1)
+                current_version = re.match(SubRepo.re_version, line).group(1)
                 current_version = int(current_version)
                 f.seek(0)
                 file_content = f.read()
         current_version += 1
         date = datetime.utcnow().strftime('%Y%m%d')
         version = f"{current_version}.{date}"
-        file_content = f"{version} {msg}\n{file_content}"
+        prepend = f"{version} {msg}"
+        file_content = f"{prepend}\n{file_content}"
         with open(self.write_to, "w") as f:
             f.write(file_content)
+        print(f"Prepended line to {self.write_to}: {prepend}")
         subprocess.check_output(["git", "add", self.write_to])
         
         self.update_html_version(version)
@@ -59,7 +61,7 @@ class VersionTrackingFile:
         content = ""
         with open(self.master_file, "r") as f:
             content = f.read()
-        version_line = re.search(VersionTrackingFile.re_html_version, content)
+        version_line = re.search(SubRepo.re_html_version, content)
         if version_line is None:
             print(f"Cannot update version in {self.master_file}: Unable to find version element")
             return
@@ -83,9 +85,9 @@ def get_commit_files():
 
 
 trackers = []
-trackers.append(VersionTrackingFile("_.txt", "index.html", r"Resources\/Console\/.+"))
-trackers.append(VersionTrackingFile("terminus.txt", "terminus.html", r"Resources\/Terminus\/.+"))
-trackers.append(VersionTrackingFile("MEMORIES OF HIM.txt", "MEMORIES OF HIM.html", r"Resources\/MEMORIES OF HIM\/.+"))
+trackers.append(SubRepo("_.txt", "index.html", r"Resources\/Console\/.+"))
+trackers.append(SubRepo("terminus.txt", "terminus.html", r"Resources\/Terminus\/.+"))
+trackers.append(SubRepo("MEMORIES OF HIM.txt", "MEMORIES OF HIM.html", r"Resources\/MEMORIES OF HIM\/.+"))
 
 to_check = get_commit_files()
 trackers_to_run = set()
