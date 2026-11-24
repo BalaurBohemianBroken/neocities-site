@@ -20,6 +20,6 @@ Your body does not tense up as it is turned. Lifted. Carried. Away, somewhere fa
 
 class DreamAttemptedEscape {
     content = `You remember the song, the one they smuggled in, the one that made them disappear. The steady beat accentuated by the cymbals, you match your pace to it. A march, into a jog, then a run through the halls.
-Alarms are blaring, lights turned red. A deafening crack, a blinding pain in your stomach, you don't stop, you do not blink, unwilling to lose sight of your escape, your mind is emptied, singularly focused on performance.
+Alarms are blaring, lights turned red. A deafening crack, a blinding pain in your chest, you don't stop, you do not blink, unwilling to lose sight of your escape, your mind is emptied, singularly focused on performance.
 You were declawed, but not defanged, you stole a pulse to keep yours and the guilt burns into your tongue, your running now a frantic sprint, slamming into walls and redirecting momentum, your heart pounds into the hundreds and feels like it might arrest under the adrenaline, and panic, and terror and fury as you tackle and shred another, they need you alive and you need to be free in any way possible, another shot rings out-`;
 }
