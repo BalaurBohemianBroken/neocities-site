@@ -23,14 +23,18 @@ p {
 }
 
 .Disposition {
-    width: 32px;
-    height: 32px;
-    
-    <!-- Shapes for these come from: https://css-shape.com/ -->
-    .Longing {
-        --r: 5px;
-        
-        /*padding: var(--r);*/
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+
+
+    /* Shapes for these come from: https://css-shape.com/ */
+    &.Longing {
+        width: 13.5px;
+        height: 13.5px;
+        --r: 2.5px;
+
+        padding: var(--r);
         background: #b3b39c;
         mask:
                 radial-gradient(50% 50%,#0000 66%,#000 67%) round

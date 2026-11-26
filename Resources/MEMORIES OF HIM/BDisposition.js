@@ -24,3 +24,4 @@ class Longing extends BDisposition {
         this.classList.add("Longing");
     }
 }
+customElements.define("b-longing", Longing);
