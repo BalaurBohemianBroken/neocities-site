@@ -1,6 +1,8 @@
 // TODO: Make an Action state where multiple actions are taking place at once, e.g. at a party.
 
-// Activities encompass both Actions, such as work or sleep, and also Thoughts, such as MEMORIES OF HIM, or INSANITY
+// Activities encompass both Actions, such as work or sleep, and also Thoughts, such as MEMORIES OF HIM, or INSANITY.
+// An activity being active means that it is subscribed to, and responds to, the passing of time.
+// It displays a selectable panel in its chosen field, which when selected, displays text, and optionally clickable choices or card slots.
 class BActivity extends BMOH {
     // TODO: A mechanic that tracks how much time has passed, and changes events based on it.
 //     static _prefab = Helpers.ElementFromString(`
@@ -15,12 +17,18 @@ class BActivity extends BMOH {
     
     // See SetEnabled
     enabled = true;
+
+    static Instantiate() {
+        
+    }
+    
+    // == Events == //
     
     // Code to run when time progresses on this activity.
     OnProgress() {
         return null;
     }
-    
+
     // When disabled:
     // Cards cannot be added to an activity
     // Existing cards are returned to the table
@@ -29,6 +37,7 @@ class BActivity extends BMOH {
         this.enabled = enabled;
     }
     
+    // == Internal functions == //
     
     // Add a card slot to the description section of this activity.
     SpawnCardSlot() {
@@ -38,9 +47,6 @@ class BActivity extends BMOH {
     // A collection of options to click on and select one.
     SpawnDecisions() {
         
-    }
-
-    static Instantiate() {
     }
 }
 

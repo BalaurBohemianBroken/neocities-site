@@ -95,4 +95,33 @@ class MOH {
     };
 }
 
-document.addEventListener('DOMContentLoaded', function() {new MOH()});
+function LoadScript(url, onload)  {
+    let head = document.getElementsByTagName('head')[0];
+    let script = document.createElement('script');
+    script.onload = onload;
+    script.type = 'text/javascript';
+    script.src = url;
+    head.appendChild(script);
+}
+
+function OnScriptLoaded() {
+    // hopefully no race conditions here
+    scripts_loaded += 1;
+    
+    if (scripts_loaded >= scripts_count)
+        new MOH();
+}
+
+// request all the other scripts this game needs to run
+scripts_required = [
+    "/Resources/MEMORIES OF HIM/b-prefabs.js", 
+    "/Resources/MEMORIES OF HIM/BCard.js",
+    "/Resources/MEMORIES OF HIM/BDisposition.js"
+]
+scripts_loaded = 0;
+scripts_count = scripts_required.length;
+for (const s of scripts_required) {
+    LoadScript(s, OnScriptLoaded);
+}
+
+// document.addEventListener('DOMContentLoaded', function() {new MOH()});

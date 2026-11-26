@@ -21,3 +21,20 @@ p {
 .Padded {
     padding: var(--text-padding);
 }
+
+.Disposition {
+    width: 32px;
+    height: 32px;
+    
+    <!-- Shapes for these come from: https://css-shape.com/ -->
+    .Longing {
+        --r: 5px;
+        
+        /*padding: var(--r);*/
+        background: #b3b39c;
+        mask:
+                radial-gradient(50% 50%,#0000 66%,#000 67%) round
+                var(--r) var(--r)/calc(2*var(--r)) calc(2*var(--r)),
+                conic-gradient(#000 0 0) content-box;
+    }
+}
