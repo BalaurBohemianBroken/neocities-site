@@ -1,4 +1,6 @@
 class BDisposition extends BMOH {
+    static width = 30;
+    
     get exhausted() {
         return this.classList.contains("Exhausted");
     }
@@ -33,6 +35,9 @@ class DispositionTest extends BDisposition {
         const img = document.createElement("img");
 
         img.src = "Resources/MEMORIES OF HIM/Sprites/eye.png";
+        img.width = BDisposition.width;
+        img.height = BDisposition.width;
+        // TODO: This causes the container to resize its height. Figure that out.
         this.appendChild(img);
     }
 }
