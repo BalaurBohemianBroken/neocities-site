@@ -26,13 +26,12 @@ p {
     width: 16px;
     height: 16px;
     display: inline-block;
-
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
 
     /* Shapes for these come from: https://css-shape.com/ */
     &.Longing {
-        width: 13.5px;
-        height: 13.5px;
-        --r: 2.5px;
+        --r: 2px;
 
         padding: var(--r);
         background: #b3b39c;

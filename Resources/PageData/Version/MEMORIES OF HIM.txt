@@ -1,3 +1,4 @@
+19.20261127 precise size for disposition icons
 18.20261126 first disposition icon
 17.20261126 bunch of structure work
 16.20261125 some writing, some music
