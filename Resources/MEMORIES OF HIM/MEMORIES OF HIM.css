@@ -31,6 +31,7 @@ p {
 .Disposition {
     width: 30px;
     aspect-ratio: 1/1;
+    border: 1px solid var(--border-color);
     /*height: 20px;*/
     display: inline-block;
 
@@ -44,10 +45,6 @@ p {
                 radial-gradient(50% 50%,#0000 66%,#000 67%) round
                 var(--r) var(--r)/calc(2*var(--r)) calc(2*var(--r)),
                 conic-gradient(#000 0 0) content-box;
-    }
-
-    &.Test {
-        
     }
 
     /*&.Test {*/

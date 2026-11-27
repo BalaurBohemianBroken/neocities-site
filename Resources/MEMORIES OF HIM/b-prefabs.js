@@ -98,6 +98,8 @@ class BCardSlot extends BMOH {
     <b-card-slot>
         
     </b-card-slot>`);
+    
+    static _border_thickness = 2;
 
     static Instantiate(parent, position) {
         let card = BCardSlot._prefab.cloneNode(true);
@@ -119,9 +121,9 @@ class BCardSlot extends BMOH {
         this.style.borderRadius = "10px";
         this.style.transform = "translate(-50%, -50%)";
         this.style.position = "absolute";
-        this.style.width = BCard.width + "px";
-        this.style.height = BCard.height + "px";
-        this.style.border = "2px solid #261e57";
+        this.style.width = BCard.width + BCardSlot._border_thickness * 2 + "px";
+        this.style.height = BCard.height + BCardSlot._border_thickness * 2 + "px";
+        this.style.border = `${BCardSlot._border_thickness}px solid #261e57`;
         this.style.backgroundColor = "#1d0d36";
         this.style.position = "absolute";
     }
