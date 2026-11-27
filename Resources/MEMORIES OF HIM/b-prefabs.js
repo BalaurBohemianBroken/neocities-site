@@ -1,4 +1,19 @@
 class BMOH extends HTMLElement {
+    _render_layer = "";
+    get render_layer() {
+        return this._render_layer;
+    }
+    set render_layer(layer_name) {
+        this.UpdateRenderLayer(this._render_position, layer_name);
+    }
+    
+    _render_position = -1;
+    get render_position() {
+        return this._render_position;
+    }
+    set render_position(layer_position) {
+        this.UpdateRenderLayer(layer_position, this._render_layer);
+    }
 
     constructor() {
         super();
@@ -10,6 +25,26 @@ class BMOH extends HTMLElement {
 
     disconnectedCallback() {
 
+    }
+    
+    UpdateRenderLayer(position= -1, layer= null) {
+        if (layer === null) {
+            layer = this._render_layer;
+        }
+        this._render_layer = layer;
+        
+        if (this._render_layer === "") {
+            this.style.z_index = "auto";
+            return;
+        }
+        
+        if (position === -1) {
+            position = this._render_position;
+        }
+        this._render_position = position;
+        
+        let range = MOH.z_layer_ranges[this._render_layer];
+        this.style.z_index = range[0] + this._render_position;
     }
 }
 
