@@ -1,7 +1,7 @@
 class BCard extends BMOH {
     static _prefab = Helpers.ElementFromString(
-        `<b-card style="display: flex; flex-direction: column; aspect-ratio: 3/5; width: 80px; border-radius: 10px; background-color: #261e57; position: absolute; transform: translate(-50%, -50%);">
-        <div class="CardArt" style="border-radius: 10px 10px 0 0; flex-basis: 66%; background-color: #1d0d36;"></div>
+        `<b-card style="display: flex; flex-direction: column; border-radius: 10px; background-color: #261e57; position: absolute; transform: translate(-50%, -50%);">
+        <div class="CardArt" style="border-radius: 10px 10px 0 0; flex-basis: 66%; background-color: #1d0d36; padding: 10px;"></div>
         <div style="flex-basis: 33%; display: flex; align-items: center; justify-content: center;">
             <p class="CardName" style="font-size: var(--text-mid);">INSIGHT</p>
         </div>
@@ -34,6 +34,8 @@ class BCard extends BMOH {
     static Instantiate(card_name, parent, position, disposition = []) {
         let card = BCard._prefab.cloneNode(true);
         card.name = card_name;
+        card.style.width = `${BCard.width}px`;
+        card.style.aspectRatio = `${BCard._aspectRatio}`;
         parent.appendChild(card);
         card.SetPosition(position);
         card.AddDispositions(disposition);

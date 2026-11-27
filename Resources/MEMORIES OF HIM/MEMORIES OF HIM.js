@@ -83,7 +83,7 @@ class MOH {
     
     SpawnCard() {
         BCardSlot.Instantiate(this.playArea_e, this.spawnZone_e.spawnPositions[0]);
-        BCard.Instantiate("DESPAIR", this.playArea_e, this.spawnZone_e.spawnPositions[1], [new Longing()]);
+        BCard.Instantiate("DESPAIR", this.playArea_e, this.spawnZone_e.spawnPositions[1], [new Longing(), new DispositionTest()]);
         BCard.Instantiate("HOPE", this.playArea_e, this.spawnZone_e.spawnPositions[2]);
         BCard.Instantiate("PASSION", this.playArea_e, this.spawnZone_e.spawnPositions[3]);
         BActivityOption.Instantiate(this.actionOptions_e);

@@ -1,3 +1,9 @@
+* {
+    /* This allows me to define the size of my elements simply as "width", without needing to also calculate padding or margin. */
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
 html {
     --text-padding: 5px;
     --border-color: purple;
@@ -23,15 +29,14 @@ p {
 }
 
 .Disposition {
-    width: 16px;
-    height: 16px;
+    width: 30px;
+    aspect-ratio: 1/1;
+    /*height: 20px;*/
     display: inline-block;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
 
     /* Shapes for these come from: https://css-shape.com/ */
     &.Longing {
-        --r: 2px;
+        --r: 3px;
 
         padding: var(--r);
         background: #b3b39c;
@@ -40,4 +45,14 @@ p {
                 var(--r) var(--r)/calc(2*var(--r)) calc(2*var(--r)),
                 conic-gradient(#000 0 0) content-box;
     }
+
+    &.Test {
+        
+    }
+
+    /*&.Test {*/
+    /*    --b: 2px; !* border thickness *!*/
+    /*    background: #EDC951;*/
+    /*    mask: radial-gradient(#0000 71%, #000 72% calc(72% + var(--b)),#0000 calc(73% + var(--b))) 10000% 10000%/99.5% 99.5%;*/
+    /*}*/
 }

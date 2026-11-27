@@ -25,3 +25,15 @@ class Longing extends BDisposition {
     }
 }
 customElements.define("b-longing", Longing);
+
+class DispositionTest extends BDisposition {
+    constructor() {
+        super();
+        this.classList.add("Test");
+        const img = document.createElement("img");
+
+        img.src = "Resources/MEMORIES OF HIM/Sprites/eye.png";
+        this.appendChild(img);
+    }
+}
+customElements.define("b-disposition-test", DispositionTest);
