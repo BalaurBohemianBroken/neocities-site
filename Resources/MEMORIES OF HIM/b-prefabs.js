@@ -93,48 +93,6 @@ class BSpawnZone extends BMOH {
 }
 customElements.define("b-spawn-zone", BSpawnZone);
 
-class BCardSlot extends BMOH {
-    static _prefab = Helpers.ElementFromString(`
-    <b-card-slot>
-        
-    </b-card-slot>`);
-    
-    static _border_thickness = 2;
-
-    static Instantiate(parent, position) {
-        let card = BCardSlot._prefab.cloneNode(true);
-        parent.appendChild(card);
-        card.SetPosition(position);
-        return card;
-    }
-
-    SetPosition(position) {
-        this.style.left = position[0] + "px";
-        this.style.top = position[1] + "px";
-    }
-
-    constructor() {
-        super();
-    }
-
-    connectedCallback() {
-        this.style.borderRadius = "10px";
-        this.style.transform = "translate(-50%, -50%)";
-        this.style.position = "absolute";
-        this.style.width = BCard.width + BCardSlot._border_thickness * 2 + "px";
-        this.style.height = BCard.height + BCardSlot._border_thickness * 2 + "px";
-        this.style.border = `${BCardSlot._border_thickness}px solid #261e57`;
-        this.style.backgroundColor = "#1d0d36";
-        this.style.position = "absolute";
-    }
-
-    disconnectedCallback() {
-
-    }
-}
-
-customElements.define("b-card-slot", BCardSlot);
-
 class BActivityOption extends BMOH {
     static _prefab = Helpers.ElementFromString(`
 <b-activity-option style="display: flex; height: 30px; background: #772a9b; background: radial-gradient(ellipse at 70%, rgba(119, 42, 155, 1) 0%, rgba(119, 42, 155, 0) 100%);">

@@ -23,12 +23,22 @@ class BDisposition extends BMOH {
         this.style.height = BDisposition.height + "px";
         this.classList.add("Disposition");
     }
+    
+    AddImg(src) {
+        const img = document.createElement("img");
+        img.src = src;
+        img.style.width = "100%";
+        img.style.height = "100%";
+        img.style.object_fit = "contain";
+        this.appendChild(img);
+    }
 }
 
 class Longing extends BDisposition {
     constructor() {
         super();
         this.classList.add("Longing");
+        this.AddImg("Resources/MEMORIES OF HIM/Sprites/passion.png");
     }
 }
 customElements.define("b-longing", Longing);
@@ -37,12 +47,7 @@ class Insight extends BDisposition {
     constructor() {
         super();
         this.classList.add("Insight");
-        const img = document.createElement("img");
-        img.src = "Resources/MEMORIES OF HIM/Sprites/eye.png";
-        img.style.width = "100%";
-        img.style.height = "100%";
-        img.style.object_fit = "contain";
-        this.appendChild(img);
+        this.AddImg("Resources/MEMORIES OF HIM/Sprites/eye.png");
     }
 }
 customElements.define("b-insight", Insight);

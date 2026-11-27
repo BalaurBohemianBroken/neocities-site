@@ -1,3 +1,4 @@
+22.20261127 disposition art
 21.20261127 add new disposition, change card art layout
 20.20261127 add render layers
 19.20261127 precise size for disposition icons
