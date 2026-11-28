@@ -84,10 +84,10 @@ class BSpawnZone extends BMOH {
     
     get spawnPositions() {
         return [
-            [this.spawnLeft + (this.spawnWidth * (0)), this.yMiddle],
-            [this.spawnLeft + (this.spawnWidth * (1/3)), this.yMiddle],
-            [this.spawnLeft + (this.spawnWidth * (2/3)), this.yMiddle],
-            [this.spawnLeft + (this.spawnWidth * (3/3)), this.yMiddle],
+            new Vector2(this.spawnLeft + (this.spawnWidth * (0)), this.yMiddle),
+            new Vector2(this.spawnLeft + (this.spawnWidth * (1/3)), this.yMiddle),
+            new Vector2(this.spawnLeft + (this.spawnWidth * (2/3)), this.yMiddle),
+            new Vector2(this.spawnLeft + (this.spawnWidth * (3/3)), this.yMiddle),
         ];
     }
 }

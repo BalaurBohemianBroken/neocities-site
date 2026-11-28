@@ -20,8 +20,11 @@ class MOH {
     
     lastFrameTime = -1;
     frameTime = -1;
-    get deltaTime() {
-        return this.frameTime - this.lastFrameTime; 
+    static get deltaMs() {
+        return MOH.instance.frameTime - MOH.instance.lastFrameTime; 
+    };
+    static get deltaS() {
+        return MOH.deltaMs / 1000; 
     };
     static get realTime() {
         return Date.now();
@@ -62,7 +65,7 @@ class MOH {
         this.lastFrameTime = this.frameTime;
         this.frameTime = MOH.realTime;
         
-        this.clockTimeRemaining -= this.deltaTime * this.clockSpeedMultiplier;
+        this.clockTimeRemaining -= MOH.deltaMs * this.clockSpeedMultiplier;
         if (this.clockTimeRemaining <= 0) {
             this.ClockProgressed();
             this.clockTimeRemaining += this.clockTime;  // += is used to carry any overflow to the next frame. Keeps on time.
@@ -137,10 +140,12 @@ function OnScriptLoaded() {
 
 // request all the other scripts this game needs to run
 scripts_required = [
-    "/Resources/MEMORIES OF HIM/b-prefabs.js", 
+    "/Resources/MEMORIES OF HIM/b-prefabs.js",
     "/Resources/MEMORIES OF HIM/BCard.js",
+    "/Resources/MEMORIES OF HIM/BCardSlot.js",
     "/Resources/MEMORIES OF HIM/BDisposition.js",
     "/Resources/MEMORIES OF HIM/Collider.js",
+    "/Resources/GenericScripts/Vector2.js",
 ]
 scripts_loaded = 0;
 scripts_count = scripts_required.length;

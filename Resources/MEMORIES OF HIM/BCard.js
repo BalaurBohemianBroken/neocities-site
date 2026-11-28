@@ -17,6 +17,13 @@ class BCard extends BMOH {
         return BCard.artHeight + BCard.nameHeight;
     }
 
+    get position() {
+        return new Vector2(this.x, this.y);
+    }
+    set position(to) {
+        this.x = to.x;
+        this.y = to.y;
+    }
     get x() {
         return Number(this.style.left.slice(0, -2));
     }
@@ -50,63 +57,19 @@ class BCard extends BMOH {
     // Ordered based on last interacted with.
     static active_cards = [];
     
+    updateInstance = null;
     collider = null;
+    inCardSlot = null;
+
+    moveTarget = null;
+    moveMaxSpeed = 1000;
+    moveMinSpeed = 100;
+    moveRadiusSlow = 100;
     
     beingDragged = false;
     dragOffset = [0, 0];
     draggingFunction = null;
     disposition = [];
-
-    static Instantiate(card_name, parent, position, disposition = []) {
-        let card = BCard._prefab.cloneNode(true);
-        // Child elements don't exist unless I append to the parent first. Dunno why.
-        parent.appendChild(card);
-        
-        card.addEventListener("pointerdown", card.PointerDown);
-        card.addEventListener("pointerup", card.PointerUp);
-        card.name = card_name;
-        card.SetPosition(position);
-        card.AddDispositions(disposition);
-        card.collider = new Collider(card, BCard.width, BCard.height, "Card");
-        card.collider.onCollide.add(card.OnCollide.bind(card));
-        return card;
-    }
-    
-    OnCollide(other) {
-
-    }
-    
-    PointerDown(event) {
-        if (this.beingDragged)
-            return;
-        this.beingDragged = true;
-        this.dragOffset = [this.x - event.pageX, this.y - event.clientY];
-        this.draggingFunction = this.FollowMouse.bind(this);
-        MOH.updateEvents.add(this.draggingFunction);
-    }
-    
-    PointerUp(event) {
-        this.beingDragged = false;
-        MOH.updateEvents.delete(this.draggingFunction);
-    }
-
-    // TODO: Limit positions the card can go. Prevent it from going off screen, overlapping UI elements.
-    FollowMouse() {
-        this.x = MOH.mousePosition[0] + this.dragOffset[0];
-        this.y = MOH.mousePosition[1] + this.dragOffset[1];
-    }
-
-    SetPosition(position) {
-        this.x = position[0];
-        this.y = position[1];
-    }
-    
-    AddDispositions(disposition = []) {
-        for (const d of disposition) {
-            this.cardArt_e.appendChild(d);
-            this.disposition.push(d);
-        }
-    }
 
     constructor() {
         super();
@@ -118,77 +81,108 @@ class BCard extends BMOH {
         this.cardNameContainer_e.style.height = BCard.nameHeight + "px";
     }
 
-    disconnectedCallback() {
-
-    }
-}
-customElements.define("b-card", BCard);
-
-class BCardSlot extends BMOH {
-    static _prefab = Helpers.ElementFromString(`
-    <b-card-slot>
+    static Instantiate(card_name, parent, position, disposition = []) {
+        let card = BCard._prefab.cloneNode(true);
+        // Child elements don't exist unless I append to the parent first. Dunno why.
+        parent.appendChild(card);
         
-    </b-card-slot>`);
-
-    static _border_thickness = 2;
-
-    static get width() {
-        return BCard.width + BCardSlot._border_thickness * 2;
-    }
-    static get height() {
-        return BCard.height + BCardSlot._border_thickness * 2;
-    }
-
-    get x() {
-        return Number(this.style.left.slice(0, -2));
-    }
-    set x(value) {
-        this.style.left = value + "px";
-    }
-    get y() {
-        return Number(this.style.top.slice(0, -2));
-    }
-    set y(value) {
-        this.style.top = value + "px";
+        card.addEventListener("pointerdown", card.PointerDown);
+        card.addEventListener("pointerup", card.PointerUp);
+        card.name = card_name;
+        card.position = position;
+        card.AddDispositions(disposition);
+        card.collider = new Collider(card, BCard.width, BCard.height, "Card");
+        card.collider.onCollide.add(card.OnCollide.bind(card));
+        
+        card.updateInstance = card.Update.bind(card);
+        MOH.updateEvents.add(card.updateInstance);
+        return card;
     }
     
-    collider = null;
-
-    static Instantiate(parent, position) {
-        let card_slot = BCardSlot._prefab.cloneNode(true);
-        parent.appendChild(card_slot);
-        card_slot.SetPosition(position);
-        card_slot.collider = new Collider(card_slot, BCardSlot.width, BCardSlot.height, "CardSlot");
-        card_slot.collider.onCollide.add(card_slot.OnCollide.bind(card_slot))
-        return card_slot;
-    }
-
-    SetPosition(position) {
-        this.style.left = position[0] + "px";
-        this.style.top = position[1] + "px";
+    Update() {
+        if (this.beingDragged) {
+            this.FollowMouse();
+        }
+        else if (this.moveTarget) {
+            this.MoveToward(this.moveTarget);
+        }
     }
     
     OnCollide(other) {
 
     }
-
-    constructor() {
-        super();
+    
+    PointerDown(event) {
+        if (this.beingDragged || this.beingGrabbed)
+            return;
+        this.StartDrag(event);
+    }
+    
+    PointerUp(event) {
+        if (!this.beingDragged) return;
+        this.StopDrag();
+        
+        for (let col of Array.from(this.collider.collidingWith)) {
+            if (col.parent instanceof BCardSlot) {
+                this.EnterSlot(col.parent);
+                return;
+            }
+        }
     }
 
-    connectedCallback() {
-        this.style.borderRadius = "10px";
-        this.style.transform = "translate(-50%, -50%)";
-        this.style.position = "absolute";
-        this.style.width = BCard.width + BCardSlot._border_thickness * 2 + "px";
-        this.style.height = BCard.height + BCardSlot._border_thickness * 2 + "px";
-        this.style.border = `${BCardSlot._border_thickness}px solid #261e57`;
-        this.style.backgroundColor = "#1d0d36";
-        this.style.position = "absolute";
+    // TODO: Limit positions the card can go. Prevent it from going off screen, overlapping UI elements.
+    FollowMouse() {
+        this.x = MOH.mousePosition[0] + this.dragOffset[0];
+        this.y = MOH.mousePosition[1] + this.dragOffset[1];
     }
-
-    disconnectedCallback() {
-
+    
+    StartDrag(event) {
+        this.LeaveSlot();
+        this.dragOffset = [this.x - event.pageX, this.y - event.pageY];
+        this.beingDragged = true;
+    }
+    
+    StopDrag() {
+        MOH.updateEvents.delete(this.draggingFunction);
+        this.beingDragged = false;
+    }
+    
+    EnterSlot(card_slot) {
+        if (card_slot.grabbedCard !== null) {
+            console.warn("Cannot be grabbed by slot, it is already filled!", this, card_slot);
+            return;
+        }
+        
+        this.inCardSlot = card_slot;
+        this.moveTarget = card_slot.position;
+        card_slot.grabbedCard = this;
+    }
+    
+    LeaveSlot() {
+        if (this.inCardSlot !== null) {
+            this.inCardSlot.grabbedCard = null;
+        }
+        this.inCardSlot = null;
+        this.moveTarget = null;
+    }
+    
+    MoveToward(point) {
+        // Move card towards this point
+        let delta = point.Subtract(this.position);
+        let distance = delta.Magnitude();
+        let speed_mult = Math.min(distance / this.moveRadiusSlow, 1);
+        let speed = this.moveMaxSpeed * speed_mult;
+        speed = Math.max(this.moveMinSpeed, speed) * MOH.deltaS;
+        let distance_to_move = Math.min(speed, distance);
+        let move_vector = delta.Normalize().Multiply(distance_to_move);
+        this.position = this.position.Add(move_vector);
+    }
+    
+    AddDispositions(disposition = []) {
+        for (const d of disposition) {
+            this.cardArt_e.appendChild(d);
+            this.disposition.push(d);
+        }
     }
 }
-customElements.define("b-card-slot", BCardSlot);
+customElements.define("b-card", BCard);
