@@ -1,3 +1,4 @@
+32.20261128 improve collision system
 31.20261128 fix janky collision (it work now!)
 30.20261128 add broken collision detection
 29.20261128 prevent cards snapping when dragged

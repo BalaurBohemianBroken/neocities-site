@@ -1,8 +1,14 @@
 class Collider extends BMOH {
-    static collisionLayers = {
-        "Card": new Set(),
-        "CardSlot": new Set(),
+    static eLayerName = {
+        "Card": 0,
+        "CardSlot": 1,
     }
+    
+    static allColliders = new Set();
+    static collisionLayers = [
+        new Set(),
+        new Set(),
+    ]
     
     static collisionMatrix = [
     //      C  
@@ -33,14 +39,12 @@ class Collider extends BMOH {
     layer = "";
     layer_i = -1;
 
-    get tl() { return [this.x, this.y]; };
-    get tr() { return [this.x, this.y + this.w]; };
-    get bl() { return [this.x + this.w, this.y]; };
-    get br() { return [this.x + this.w, this.y + this.w]; };
-
     onCollide = new Set();
+    
+    collidingWith = new Set();
 
     _OnCollide(collided_with) {
+        this.collidingWith.add(collided_with);
         for (const event of this.onCollide) {
             event(collided_with);
         }
@@ -48,9 +52,12 @@ class Collider extends BMOH {
 
     constructor(parent, width, height, layer, x_offset = 0, y_offset = 0) {
         super();
-        Collider.collisionLayers[layer].add(this);
         this.layer = layer;
-        this.layer_i = Object.keys(Collider.collisionLayers).indexOf(layer);
+        this.layer_i = Collider.eLayerName[layer];
+        
+        Collider.allColliders.add(this);
+        Collider.collisionLayers[this.layer_i].add(this);
+        
         this.parent = parent;
         this.w = width;
         this.h = height;
@@ -69,21 +76,17 @@ class Collider extends BMOH {
             this.y + this.h > other.y
         );
     }
-    
-    CanCollide(other) {
-        return Collider.CanLayersCollide(this.layer_i, other.layer_i);
-    }
-    
-    static CanLayersCollide(matrix1, matrix2) {
-        return Collider.collisionMatrix[matrix1][matrix2] !== 0;
-    }
 
     static CheckCollisions() {
-        let layer_names = Object.keys(Collider.collisionLayers);
-        for (let i = 0; i < layer_names.length; i++)  {
-            for (let j = i; j < layer_names.length; j++) {
+        // Clear last frame's collision info.
+        for (let col of Collider.allColliders) {
+            col.collidingWith = new Set();
+        }
+        
+        for (let i = 0; i < Collider.collisionLayers.length; i++)  {
+            for (let j = i; j < Collider.collisionLayers.length; j++) {
                 if (!Collider.CanLayersCollide(i, j)) continue;
-                Collider.CheckCollisionsBetweenLayers(layer_names[i], layer_names[j]);
+                Collider.CheckCollisionsBetweenLayers(i, j);
             }
         }
     }
@@ -103,6 +106,10 @@ class Collider extends BMOH {
                 }
             }
         }
+    }
+
+    static CanLayersCollide(matrix1, matrix2) {
+        return Collider.collisionMatrix[matrix1][matrix2] !== 0;
     }
 }
 customElements.define("b-collider", Collider);
