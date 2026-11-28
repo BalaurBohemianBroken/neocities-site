@@ -68,6 +68,8 @@ class MOH {
             this.clockTimeRemaining += this.clockTime;  // += is used to carry any overflow to the next frame. Keeps on time.
         }
         
+        Collider.CheckCollisions();
+        
         for (const event of MOH.updateEvents) {
             event();
         }
@@ -137,7 +139,8 @@ function OnScriptLoaded() {
 scripts_required = [
     "/Resources/MEMORIES OF HIM/b-prefabs.js", 
     "/Resources/MEMORIES OF HIM/BCard.js",
-    "/Resources/MEMORIES OF HIM/BDisposition.js"
+    "/Resources/MEMORIES OF HIM/BDisposition.js",
+    "/Resources/MEMORIES OF HIM/Collider.js",
 ]
 scripts_loaded = 0;
 scripts_count = scripts_required.length;

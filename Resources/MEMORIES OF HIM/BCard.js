@@ -50,6 +50,8 @@ class BCard extends BMOH {
     // Ordered based on last interacted with.
     static active_cards = [];
     
+    collider = null;
+    
     beingDragged = false;
     dragOffset = [0, 0];
     draggingFunction = null;
@@ -65,6 +67,7 @@ class BCard extends BMOH {
         card.name = card_name;
         card.SetPosition(position);
         card.AddDispositions(disposition);
+        card.collider = new Collider(card, BCard.width, BCard.height, "Card");
         return card;
     }
     
