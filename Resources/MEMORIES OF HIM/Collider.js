@@ -1,11 +1,21 @@
 class Collider extends BMOH {
     static collisionLayers = {
         "Card": new Set(),
-        "CardSlot": new Set()
+        "CardSlot": new Set(),
     }
+    
     static collisionMatrix = [
-        [1, 1],  // Cards
-        [1, 1],  // Card slots
+    //      C  
+    //      a  
+    //      r  
+    //      d  
+    //   C  s  
+    //   a  l  
+    //   r  o  
+    //   d  t  
+    //   s  s  
+        [0, 1],  // Cards
+        [1, 0],  // Card slots
     ]
 
     // For now, I'm assuming that objects have an x/y value that can be read.
@@ -20,6 +30,8 @@ class Collider extends BMOH {
     y_offset = 0;
     w = 0;
     h = 0;
+    layer = "";
+    layer_i = -1;
 
     get tl() { return [this.x, this.y]; };
     get tr() { return [this.x, this.y + this.w]; };
@@ -37,6 +49,8 @@ class Collider extends BMOH {
     constructor(parent, width, height, layer, x_offset = 0, y_offset = 0) {
         super();
         Collider.collisionLayers[layer].add(this);
+        this.layer = layer;
+        this.layer_i = Object.keys(Collider.collisionLayers).indexOf(layer);
         this.parent = parent;
         this.w = width;
         this.h = height;
@@ -55,31 +69,37 @@ class Collider extends BMOH {
             this.y + this.h > other.y
         );
     }
+    
+    CanCollide(other) {
+        return Collider.CanLayersCollide(this.layer_i, other.layer_i);
+    }
+    
+    static CanLayersCollide(matrix1, matrix2) {
+        return Collider.collisionMatrix[matrix1][matrix2] !== 0;
+    }
 
     static CheckCollisions() {
-        let layer_names =  Object.keys(Collider.collisionLayers);
+        let layer_names = Object.keys(Collider.collisionLayers);
         for (let i = 0; i < layer_names.length; i++)  {
-            let layer_name = layer_names[i];
-            let layer_matrix = Collider.collisionMatrix[i];
-            for (let matrix_i = 0; matrix_i < layer_matrix.length; matrix_i++) {
-                if (layer_matrix[i] === 0)
-                    continue;
-                Collider.CheckLayerCollisions(layer_name, layer_names[matrix_i]);
+            for (let j = i; j < layer_names.length; j++) {
+                if (!Collider.CanLayersCollide(i, j)) continue;
+                Collider.CheckCollisionsBetweenLayers(layer_names[i], layer_names[j]);
             }
         }
     }
 
-    static CheckLayerCollisions(from, to) {
+    static CheckCollisionsBetweenLayers(l1, l2) {
         // TODO: This will need a special rule if we're checking collider against itself, to prevent multiple collisions firing.
-        let from_colliders = Collider.collisionLayers[from];
-        let to_colliders = Collider.collisionLayers[to];
-        for (let collider of from_colliders) {
+        let l1_colliders = Collider.collisionLayers[l1];
+        let l2_colliders = Collider.collisionLayers[l2];
+        for (let collider of l1_colliders) {
             if (!collider) continue;  // Can happen if a collision causes a destruction.
-            for (let other of to_colliders) {
+            for (let other of l2_colliders) {
                 if (!other) continue;
                 if (collider.IsColliding(other)) {
+                    // TODO: I can implement one-way collisions with my current set up, if I want to.
                     collider._OnCollide(other);
-                    // other._OnCollide(other);
+                    other._OnCollide(collider);
                 }
             }
         }

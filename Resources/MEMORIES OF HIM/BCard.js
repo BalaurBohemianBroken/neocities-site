@@ -68,7 +68,12 @@ class BCard extends BMOH {
         card.SetPosition(position);
         card.AddDispositions(disposition);
         card.collider = new Collider(card, BCard.width, BCard.height, "Card");
+        card.collider.onCollide.add(card.OnCollide.bind(card));
         return card;
+    }
+    
+    OnCollide(other) {
+
     }
     
     PointerDown(event) {
@@ -127,16 +132,44 @@ class BCardSlot extends BMOH {
 
     static _border_thickness = 2;
 
+    static get width() {
+        return BCard.width + BCardSlot._border_thickness * 2;
+    }
+    static get height() {
+        return BCard.height + BCardSlot._border_thickness * 2;
+    }
+
+    get x() {
+        return Number(this.style.left.slice(0, -2));
+    }
+    set x(value) {
+        this.style.left = value + "px";
+    }
+    get y() {
+        return Number(this.style.top.slice(0, -2));
+    }
+    set y(value) {
+        this.style.top = value + "px";
+    }
+    
+    collider = null;
+
     static Instantiate(parent, position) {
-        let card = BCardSlot._prefab.cloneNode(true);
-        parent.appendChild(card);
-        card.SetPosition(position);
-        return card;
+        let card_slot = BCardSlot._prefab.cloneNode(true);
+        parent.appendChild(card_slot);
+        card_slot.SetPosition(position);
+        card_slot.collider = new Collider(card_slot, BCardSlot.width, BCardSlot.height, "CardSlot");
+        card_slot.collider.onCollide.add(card_slot.OnCollide.bind(card_slot))
+        return card_slot;
     }
 
     SetPosition(position) {
         this.style.left = position[0] + "px";
         this.style.top = position[1] + "px";
+    }
+    
+    OnCollide(other) {
+
     }
 
     constructor() {
