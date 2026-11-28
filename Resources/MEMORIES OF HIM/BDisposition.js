@@ -30,6 +30,7 @@ class BDisposition extends BMOH {
         img.style.width = "100%";
         img.style.height = "100%";
         img.style.object_fit = "contain";
+        img.draggable = false;
         this.appendChild(img);
     }
 }

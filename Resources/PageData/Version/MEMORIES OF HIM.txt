@@ -1,3 +1,4 @@
+28.20261128 Fix img being dragged
 27.20261128 fix broken version history
 26.20261128 add card dragging
 25.20261128 add disposition exhausting

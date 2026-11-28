@@ -2,6 +2,20 @@
     /* This allows me to define the size of my elements simply as "width", without needing to also calculate padding or margin. */
     box-sizing: border-box;
     -moz-box-sizing: border-box;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                              supported by Chrome, Edge, Opera and Firefox */
+
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
 }
 
 html {
@@ -10,14 +24,6 @@ html {
     --border-thickness: 2px;
     --border: var(--border-thickness) solid var(--border-color);
     --text-mid: 13px;
-    
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-    -khtml-user-select: none; /* Konqueror HTML */
-    -moz-user-select: none; /* Old versions of Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently
-                              supported by Chrome, Edge, Opera and Firefox */
 }
 
 p {
