@@ -34,4 +34,7 @@ p {
     /*border: 1px solid var(--border-color);*/
     /*height: 20px;*/
     /*display: inline-block;*/
+    &.Exhausted {
+        filter: grayscale(1);
+    }
 }
