@@ -17,6 +17,19 @@ class BCard extends BMOH {
         return BCard.artHeight + BCard.nameHeight;
     }
 
+    get x() {
+        return Number(this.style.left.slice(0, -2));
+    }
+    set x(value) {
+        this.style.left = value + "px";
+    }
+    get y() {
+        return Number(this.style.top.slice(0, -2));
+    }
+    set y(value) {
+        this.style.top = value + "px";
+    }
+
     get cardNameContainer_e() {
         return this.getElementsByClassName("CardNameContainer")[0];
     }
@@ -71,13 +84,13 @@ class BCard extends BMOH {
 
     // TODO: Limit positions the card can go. Prevent it from going off screen, overlapping UI elements.
     FollowMouse() {
-        this.style.left = MOH.mousePosition[0] + "px";
-        this.style.top = MOH.mousePosition[1] + "px";
+        this.x = MOH.mousePosition[0] + this.dragOffset[0];
+        this.y = MOH.mousePosition[1] + this.dragOffset[1];
     }
 
     SetPosition(position) {
-        this.style.left = position[0] + "px";
-        this.style.top = position[1] + "px";
+        this.x = position[0];
+        this.y = position[1];
     }
     
     AddDispositions(disposition = []) {
