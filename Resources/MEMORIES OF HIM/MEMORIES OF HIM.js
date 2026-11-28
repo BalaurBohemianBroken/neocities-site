@@ -6,11 +6,6 @@ class MOH {
     static sfxTick =  new Audio("/Resources/MEMORIES OF HIM/SFX/Tick.mp3");
     static sfxTock =  new Audio("/Resources/MEMORIES OF HIM/SFX/Tock.mp3");
     
-    static z_layer_ranges = {
-        "": [0, 999],
-        "Card": [2000, 2999],
-    }
-
     spawnZone_e = null;
     playArea_e = null;
     actionOptions_e = null;

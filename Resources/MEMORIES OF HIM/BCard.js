@@ -53,9 +53,8 @@ class BCard extends BMOH {
     set name(val) {
         this.cardName_e.innerText = val;
     }
-
-    // Ordered based on last interacted with.
-    static active_cards = [];
+    
+    // static allCards = [];
     
     updateInstance = null;
     collider = null;
