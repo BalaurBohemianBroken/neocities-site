@@ -37,15 +37,42 @@ class BCard extends BMOH {
     // Ordered based on last interacted with.
     static active_cards = [];
     
+    beingDragged = false;
+    dragOffset = [0, 0];
+    draggingFunction = null;
     disposition = [];
 
     static Instantiate(card_name, parent, position, disposition = []) {
         let card = BCard._prefab.cloneNode(true);
+        // Child elements don't exist unless I append to the parent first. Dunno why.
         parent.appendChild(card);
+        
+        card.addEventListener("pointerdown", card.PointerDown);
+        card.addEventListener("pointerup", card.PointerUp);
         card.name = card_name;
         card.SetPosition(position);
         card.AddDispositions(disposition);
         return card;
+    }
+    
+    PointerDown(event) {
+        if (this.beingDragged)
+            return;
+        this.beingDragged = true;
+        this.dragOffset = [this.x - event.pageX, this.y - event.clientY];
+        this.draggingFunction = this.FollowMouse.bind(this);
+        MOH.updateEvents.add(this.draggingFunction);
+    }
+    
+    PointerUp(event) {
+        this.beingDragged = false;
+        MOH.updateEvents.delete(this.draggingFunction);
+    }
+
+    // TODO: Limit positions the card can go. Prevent it from going off screen, overlapping UI elements.
+    FollowMouse() {
+        this.style.left = MOH.mousePosition[0] + "px";
+        this.style.top = MOH.mousePosition[1] + "px";
     }
 
     SetPosition(position) {

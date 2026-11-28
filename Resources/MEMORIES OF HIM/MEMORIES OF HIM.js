@@ -14,6 +14,9 @@ class MOH {
     spawnZone_e = null;
     playArea_e = null;
     actionOptions_e = null;
+
+    static mousePosition = [0, 0];
+    static updateEvents = new Set();
     
     lastFrameTime = -1;
     frameTime = -1;
@@ -23,8 +26,8 @@ class MOH {
     static get realTime() {
         return Date.now();
     };
-
-    clockTime = 5000;
+    
+    clockTime = 7500;
     clockSpeedMultiplier = 1;
     
     clockTimeRemaining = this.clockTime;
@@ -34,6 +37,7 @@ class MOH {
         MOH.instance = this;
         this.lastFrameTime = MOH.realTime;
         this.frameTime = this.lastFrameTime;
+        document.addEventListener("mousemove", this.MouseMove);
 
         this.StartGame();
     }
@@ -50,6 +54,10 @@ class MOH {
         this.SpawnCard();
     }
     
+    MouseMove(event) {
+        MOH.mousePosition = [event.pageX, event.pageY]; 
+    }
+    
     Update() {
         this.lastFrameTime = this.frameTime;
         this.frameTime = MOH.realTime;
@@ -58,6 +66,10 @@ class MOH {
         if (this.clockTimeRemaining <= 0) {
             this.ClockProgressed();
             this.clockTimeRemaining += this.clockTime;  // += is used to carry any overflow to the next frame. Keeps on time.
+        }
+        
+        for (const event of MOH.updateEvents) {
+            event();
         }
     }
     
