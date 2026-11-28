@@ -1,6 +1,11 @@
-22.20261127 disposition art
-21.20261127 add new disposition, change card art layout
-20.20261127 add render layers
+27.20261128 fix broken version history
+26.20261128 add card dragging
+25.20261128 add disposition exhausting
+24.20261127 disposition art
+23.20261127 add new disposition, change card art layout
+22.20261127 add render layers
+21.20261127 more art work
+20.20261127 more attempts at art
 19.20261127 precise size for disposition icons
 18.20261126 first disposition icon
 17.20261126 bunch of structure work
@@ -8,4 +13,16 @@
 15.20261124 writing, restructure
 14.20261123 some writings
 13.20261123 automate versioning in html files
-12.20261121 oldest version - i need to go back and add more :)
+12.20261121 some more infrastructure for game
+11.20261113 more visuals work
+10.20261113 some ui work
+9.20261112 code for card slot
+8.20261112 fix flex grow being bad
+7.20261112 prevent selection on page
+6.20261112 fix tops of cards not being rounded
+5.20261112 prefab spawning
+4.20261112 styling work
+3.20261111 template for a card
+2.20261111 add clock sfx
+1.20261111 fix dumb and stupid reassignment of this. in setInterval call
+0.20261111 MOH outline
